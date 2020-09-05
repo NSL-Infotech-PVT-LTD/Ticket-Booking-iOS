@@ -1,0 +1,6 @@
+framework module Pods_SurpriseMe_User {
+  umbrella header "Pods-SurpriseMe User-umbrella.h"
+
+  export *
+  module * { export * }
+}
