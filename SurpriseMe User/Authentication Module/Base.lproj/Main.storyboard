@@ -198,7 +198,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <rect key="frame" x="20" y="240" width="374" height="400"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you new?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-J0-pWd">
-                                                        <rect key="frame" x="104" y="30" width="166" height="30"/>
+                                                        <rect key="frame" x="104.33333333333333" y="30" width="165.66666666666669" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="CQF-Tn-Gh4"/>
                                                         </constraints>
@@ -570,7 +570,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dj1-dl-qJU">
-                                                                <rect key="frame" x="41.000000000000007" y="12.666666666666686" width="95.666666666666686" height="20"/>
+                                                                <rect key="frame" x="40.999999999999993" y="12.666666666666686" width="95.333333333333314" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="m65-oy-eND"/>
                                                                 </constraints>
@@ -585,7 +585,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -638,7 +638,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erP-Ds-9de">
                                                                 <rect key="frame" x="308" y="25" width="24" height="30"/>
@@ -924,7 +924,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ez2-wD-7uh">
-                                                                <rect key="frame" x="41.000000000000007" y="12.666666666666657" width="64.666666666666686" height="20"/>
+                                                                <rect key="frame" x="40.999999999999993" y="12.666666666666657" width="64.333333333333314" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="K6h-XM-u6i"/>
                                                                 </constraints>
@@ -939,7 +939,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -977,7 +977,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcV-Zx-9nU">
-                                                                <rect key="frame" x="41.000000000000007" y="12.666666666666686" width="95.666666666666686" height="20"/>
+                                                                <rect key="frame" x="40.999999999999993" y="12.666666666666686" width="95.333333333333314" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="fFT-yt-Sld"/>
                                                                 </constraints>
@@ -992,7 +992,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1047,7 +1047,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1085,7 +1085,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jF-IQ-Fxb">
-                                                                <rect key="frame" x="41" y="12.666666666666686" width="116" height="20"/>
+                                                                <rect key="frame" x="41.000000000000007" y="12.666666666666686" width="115.66666666666669" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="2Yo-wd-imW"/>
                                                                 </constraints>
@@ -1100,7 +1100,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1264,9 +1264,9 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 <rect key="frame" x="20" y="100" width="374" height="596"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLx-Oc-iry">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="18"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="PbL-kB-8z3"/>
+                                            <constraint firstAttribute="height" constant="33" id="PbL-kB-8z3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1292,7 +1292,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                     <constraint firstItem="tLx-Oc-iry" firstAttribute="top" secondItem="CWD-bB-0cO" secondAttribute="top" id="DAm-qy-bEy"/>
                                     <constraint firstItem="tBy-e5-3C6" firstAttribute="leading" secondItem="CWD-bB-0cO" secondAttribute="leading" id="ETW-yh-1zX"/>
                                     <constraint firstItem="tLx-Oc-iry" firstAttribute="leading" secondItem="CWD-bB-0cO" secondAttribute="leading" id="OTR-jO-HjS"/>
-                                    <constraint firstItem="tBy-e5-3C6" firstAttribute="top" secondItem="tLx-Oc-iry" secondAttribute="bottom" constant="19" id="jmf-PN-hFL"/>
+                                    <constraint firstItem="tBy-e5-3C6" firstAttribute="top" secondItem="tLx-Oc-iry" secondAttribute="bottom" constant="4" id="jmf-PN-hFL"/>
                                     <constraint firstAttribute="trailing" secondItem="tLx-Oc-iry" secondAttribute="trailing" constant="20" id="kL9-jF-ofw"/>
                                 </constraints>
                             </view>
@@ -1311,6 +1311,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                         <viewLayoutGuide key="safeArea" id="G1s-BQ-rbV"/>
                     </view>
                     <connections>
+                        <outlet property="headerLbl" destination="tLx-Oc-iry" id="RGN-Jn-u81"/>
                         <outlet property="viewHeader" destination="Td5-Fb-WrK" id="AJH-8Q-c0I"/>
                     </connections>
                 </viewController>
@@ -1378,7 +1379,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                         </constraints>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPq-4b-e9I">
                                         <rect key="frame" x="31" y="4" width="285" height="20"/>
@@ -1494,7 +1495,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         <image name="email" width="64" height="64"/>
         <image name="fb" width="64" height="64"/>
         <image name="login_bg" width="589" height="393"/>
-        <image name="logo" width="256" height="256"/>
+        <image name="logo" width="1024" height="1024"/>
         <image name="password" width="64" height="64"/>
         <image name="redesign signup" width="589" height="1275"/>
         <image name="signup_surpriseme" width="64" height="64"/>

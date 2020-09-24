@@ -12,7 +12,10 @@ class ManageAddressVC: UIViewController {
     
     //MARK:- Outlets -
     @IBOutlet weak var tblAddress: UITableView!
+    @IBOutlet weak var viewHeader: UIView!
     
+    
+    @IBOutlet weak var noDataFound: UIView!
     //MARK:- Variables -
     var objectViewModel = ManageAddressViewModel()
     var modelObject = [ManageAddressModel]()
@@ -24,11 +27,15 @@ class ManageAddressVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.SetInititialSetup()
+        self.viewHeader.addBottomShadow()
     }
     
     func SetInititialSetup()  {
         self.tabBarController?.tabBar.isHidden = true
         let view = UIView()
+        self.tblAddress.isHidden = true
+        self.noDataFound.isHidden = true
+
         tblAddress.tableFooterView = view
         tblAddress.estimatedRowHeight = 68.0
         tblAddress.rowHeight = UITableView.automaticDimension
@@ -46,6 +53,22 @@ class ManageAddressVC: UIViewController {
     
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.back()
+    }
+    
+    
+    
+    
+    
+    @objc func btnEditTapped(_ sender: UIButton){
+    // use the tag of button as index
+    let modelData = modelObject[sender.tag]
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+               let controller = storyboard.instantiateViewController(withIdentifier: "UpdateLocationVC") as! UpdateLocationVC
+        controller.isEdit = true
+        controller.modelObjectDict = modelData
+               navigationController?.pushViewController(controller, animated: false)
+        
+        
     }
     
     @objc func btnDeleteTapped(_ sender: UIButton){
@@ -89,12 +112,19 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomManageAddressCell
         let data = modelObject[indexPath.row]
-        cell.lblAddress.text = "\(data.name ?? "") \(data.street_address ?? "") \(data.city ?? "") \(data.state ?? "")  \(data.country ?? "") \(data.zip ?? 0)"
+        cell.lblAddressType.text = "\(data.name ?? "")"
+        cell.lblAddress.text = " \(data.street_address ?? "") "
         cell.btnEdit.tag = indexPath.row
         cell.btnDelete.tag = indexPath.row
-//        cell.btnEdit.addTarget(self, action: #selector(btnEditTapped(_:)), for: .touchUpInside)
- cell.btnDelete.addTarget(self, action: #selector(btnDeleteTapped(_:)), for: .touchUpInside)
-        
+        if data.name == "Home"{
+            cell.addressTypeImg.image = UIImage.init(named: "Mask Group 71")
+        }else if data.name == "Work"{
+            cell.addressTypeImg.image = UIImage.init(named: "Mask Group 72")
+        }else{
+            cell.addressTypeImg.image = UIImage.init(named: "Mask Group 70")
+        }
+        cell.btnEdit.addTarget(self, action: #selector(btnEditTapped(_:)), for: .touchUpInside)
+       cell.btnDelete.addTarget(self, action: #selector(btnDeleteTapped(_:)), for: .touchUpInside)
 
         return cell
     }
@@ -107,17 +137,50 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         return 38
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dataItem = modelObject[indexPath.row]
+        currentAddress = dataItem.street_address ?? ""
+        customAddress = true
+        currentLat = dataItem.lat ?? 0.0
+        currentLong = dataItem.long ?? 0.0
+        self.back()
+    }
+    
+    
 }
 
 
 //Error handling Signup Api Here:-
 extension ManageAddressVC: ManageAddressViewModelProtocol {
+    func addAddress() {
+        
+    }
+    
+    func successAlert(susccessTitle: String, successMessage: String, from: Bool) {
+        
+        if from == false{
+            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: successMessage, btnOkTitle: "OK") {
+                self.objectViewModel.getParamForManageAddress(param: [:])
+                      }
+        }
+        
+    }
+    
     func manageAddressApiResponse(message: String, modelArray response:  [ManageAddressModel],isError :Bool) {
         if isError == true{
             Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "OK") {
             }
         }else{
             modelObject = response
+            if modelObject.count == 0{
+                self.tblAddress.isHidden = true
+                self.noDataFound.isHidden = false
+
+            }else{
+                self.tblAddress.isHidden = false
+                self.noDataFound.isHidden = true
+            }
+            
             self.tblAddress.reloadData()
         }
         

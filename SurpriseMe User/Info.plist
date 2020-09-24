@@ -26,7 +26,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>367334191094815</string>
 	<key>FacebookDisplayName</key>
@@ -51,10 +51,16 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app will use camera for upload profile picture</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location is required for getting current location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is required for getting current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is required for getting current location</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app will use camera for upload profile picture</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-LightItalic.ttf</string>

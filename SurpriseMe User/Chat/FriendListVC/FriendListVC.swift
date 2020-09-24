@@ -9,15 +9,17 @@
 import UIKit
 
 class FriendListVC: UIViewController {
-
+    
+    
     @IBOutlet weak var viewMsgDash: UIView!
     @IBOutlet weak var MessageTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Mark: UIView DashLine
         self.viewMsgDash.addDashedBorderMsg()
         self.navigationController?.isNavigationBarHidden = true
-
+        
         //Mark:tableview delegate/datasource
         MessageTableView.delegate = self
         MessageTableView.dataSource = self
@@ -44,22 +46,25 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
 }
 
 extension UIView {
-func addDashedBorderMsg() {
-    let color = UIColor.white.cgColor
-
-  let shapeLayer:CAShapeLayer = CAShapeLayer()
-  let frameSize = self.frame.size
-  let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
-
-  shapeLayer.bounds = shapeRect
-  shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
-  shapeLayer.fillColor = UIColor.clear.cgColor
-  shapeLayer.strokeColor = color
-  shapeLayer.lineWidth = 1
-  shapeLayer.lineJoin = CAShapeLayerLineJoin.round
-  shapeLayer.lineDashPattern = [4,4]
-  shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 6).cgPath
-
-  self.layer.addSublayer(shapeLayer)
-  }
+    func addDashedBorderMsg() {
+        let color = UIColor.white.cgColor
+        
+        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let frameSize = self.frame.size
+        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+        
+        shapeLayer.bounds = shapeRect
+        shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = color
+        shapeLayer.lineWidth = 1
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        shapeLayer.lineDashPattern = [4,4]
+        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 6).cgPath
+        
+        self.layer.addSublayer(shapeLayer)
+    }
 }
+
+
+

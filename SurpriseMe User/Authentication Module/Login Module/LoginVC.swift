@@ -28,6 +28,7 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         self.navigationController?.isNavigationBarHidden = true
         loginViewModel.delegate = self
        
+       
     }
     
     //MARK:- Custom button's Action -

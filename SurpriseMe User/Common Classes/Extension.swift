@@ -128,7 +128,7 @@ extension UIViewController{
     
     func pushWithAnimate(StoryName :String,Controller : String)  {
             let storyboard = UIStoryboard(name: StoryName, bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: Controller) as! LoginVC
+            let controller = storyboard.instantiateViewController(withIdentifier: Controller)
             let transition = CATransition()
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: .default)
@@ -138,10 +138,22 @@ extension UIViewController{
             navigationController?.pushViewController(controller, animated: false)
     }
     
+    func pushWithAnimateDirectly(StoryName :String,Controller : String)  {
+               let storyboard = UIStoryboard(name: StoryName, bundle: nil)
+               let controller = storyboard.instantiateViewController(withIdentifier: Controller)
+               let transition = CATransition()
+               transition.duration = 0.5
+               transition.timingFunction = CAMediaTimingFunction(name: .default)
+               transition.type = .fade
+               transition.subtype = .fromRight
+               controller.hidesBottomBarWhenPushed = true
+               navigationController?.view.layer.add(transition, forKey: kCATransition)
+               navigationController?.pushViewController(controller, animated: false)
+     }
     
-    func getLoaderAnimated()  {
-        
-    }
+  
+    
+  
     
     
     func goToDashBoard()  {

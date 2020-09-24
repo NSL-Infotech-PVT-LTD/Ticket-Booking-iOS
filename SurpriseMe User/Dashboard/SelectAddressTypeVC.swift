@@ -7,33 +7,35 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 class SelectAddressTypeVC: UIViewController {
-
+    
+    //MARK:- Outlets -
+    @IBOutlet weak var viewHeader: UIView!
+    
+    //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.viewHeader.addBottomShadow()
         // Do any additional setup after loading the view.
     }
     
     
+    //MARK:- CUstom button's Action -
     @IBAction func btnSelectOtherLocation(_ sender: UIButton) {
+        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ManualAddressVC)
+        
     }
     @IBAction func btnCurrentLocation(_ sender: UIButton) {
+        cameFrom = false
+        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.UpdateLocationVC)
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+

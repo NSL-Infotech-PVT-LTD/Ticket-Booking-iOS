@@ -9,7 +9,13 @@
 import UIKit
 
 class CustomSearchArtistCell: UITableViewCell {
-
+    
+    
+    
+    @IBOutlet weak var lblCat: UILabel!
+    @IBOutlet weak var nameArtist: UILabel!
+    @IBOutlet weak var imgArtist: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

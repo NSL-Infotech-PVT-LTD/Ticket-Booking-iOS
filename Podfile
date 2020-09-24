@@ -13,8 +13,15 @@ pod 'Alamofire', '~> 4.0'
 pod 'SwiftyJSON'
 pod 'TagListView', '~> 1.0'
 pod 'NVActivityIndicatorView'
-
-
-
+pod 'SDWebImage', '~> 5.0'
+pod 'KJNavigationViewAnimation', '~> 0.1.0'
+pod 'FSCalendar'
+#pod 'GoogleMaps'
+#pod 'GooglePlaces'
+pod 'GooglePlacePicker'
+pod 'Kingfisher'
+pod 'AlamofireImage'
+pod "YoutubePlayer-in-WKWebView"
+pod 'Starscream', '~> 3.0.6'
 
 end

@@ -11,6 +11,10 @@ import UIKit
 class TermsProfileVC: UIViewController {
 
     @IBOutlet weak var viewHeader: UIView!
+    @IBOutlet weak var headerLbl: UILabel!
+    
+    var headerName = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +23,7 @@ class TermsProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewHeader.addBottomShadow()
+        headerLbl.text = selectedIdentifier
 
     }
     

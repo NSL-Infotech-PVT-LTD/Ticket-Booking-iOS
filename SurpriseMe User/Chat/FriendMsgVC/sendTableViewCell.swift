@@ -10,6 +10,7 @@ import UIKit
 
 class sendTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var lblSendMsg: UILabel!
     @IBOutlet weak var sendView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()

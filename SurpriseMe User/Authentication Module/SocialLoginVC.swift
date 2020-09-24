@@ -89,6 +89,8 @@ class SocialLoginVC: UIViewController {
     
     
     @IBAction func btnTerConditionAction(_ sender: UIButton) {
+        selectedIdentifier = "Terms And Conditions"
+
         self.presentViewController(viewController : "TermsProfileVC", value: "Main")
 
     }

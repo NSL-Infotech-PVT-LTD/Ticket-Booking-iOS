@@ -74,7 +74,7 @@ extension WalkThroughVC : UICollectionViewDelegate,UICollectionViewDataSource,UI
         cell.imgWalkThrough.image = UIImage.init(named: imgArray[indexPath.row])
         cell.lblTitleWalkThrough.text = arrayHeader[indexPath.row]
         cell.heightConstant.constant = view.frame.size.height
-        //        cell.widthConstant.constant = collectionView.frame.size.width
+        cell.widthConstant.constant = self.view.frame.size.width
         return cell
     }
     

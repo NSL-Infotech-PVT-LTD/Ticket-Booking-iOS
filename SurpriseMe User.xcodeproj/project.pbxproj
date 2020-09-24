@@ -8,11 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		61BD5B2F786B2C19D79141B4 /* Pods_SurpriseMe_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156C76C3EB7268A2E43496A2 /* Pods_SurpriseMe_User.framework */; };
+		830D4BAE251C6EF1002ABAC9 /* GetFreindListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */; };
+		830D4BB0251C70B9002ABAC9 /* ChatHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830D4BAF251C70B9002ABAC9 /* ChatHistoryViewModel.swift */; };
 		8318DA5B24FDFA70004F16EF /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318DA5A24FDFA70004F16EF /* UserDefaultKey.swift */; };
 		8318DA5E24FE001C004F16EF /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318DA5D24FE001C004F16EF /* ForgetPasswordVC.swift */; };
 		8318DA6024FE0410004F16EF /* ForgetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318DA5F24FE0410004F16EF /* ForgetPasswordViewModel.swift */; };
 		8318DA6324FE1355004F16EF /* ManageAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318DA6224FE1355004F16EF /* ManageAddressViewModel.swift */; };
 		8318DA6524FE250C004F16EF /* ManageAddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8318DA6424FE250C004F16EF /* ManageAddressModel.swift */; };
+		8322B3A9250E997700D1B3FA /* SelectDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8322B3A8250E997700D1B3FA /* SelectDateVC.swift */; };
+		8322B3AC250EAA6F00D1B3FA /* EditDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8322B3AA250EAA6E00D1B3FA /* EditDateVC.swift */; };
+		8322B3AD250EAA6F00D1B3FA /* dateListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8322B3AB250EAA6F00D1B3FA /* dateListCollectionViewCell.swift */; };
+		8325DAAC250F63EB00A606DD /* GetBookingListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325DAAB250F63EB00A606DD /* GetBookingListModel.swift */; };
+		8325DAAF250FFAB300A606DD /* BookingStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8325DAAE250FFAB300A606DD /* BookingStoreViewModel.swift */; };
+		832A359C251B2EA400587D8A /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832A359B251B2EA400587D8A /* ChangePasswordViewModel.swift */; };
 		832C887A24F4ED6C0003B10B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C887924F4ED6C0003B10B /* AppDelegate.swift */; };
 		832C887E24F4ED6C0003B10B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C887D24F4ED6C0003B10B /* ViewController.swift */; };
 		832C888124F4ED6C0003B10B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 832C887F24F4ED6C0003B10B /* Main.storyboard */; };
@@ -21,11 +29,27 @@
 		832C888F24F5018D0003B10B /* WalkThroughVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C888E24F5018D0003B10B /* WalkThroughVC.swift */; };
 		832C889224F503610003B10B /* CustomWalkThroughCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C889124F503610003B10B /* CustomWalkThroughCell.swift */; };
 		832C889624F529830003B10B /* SocialLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832C889524F529830003B10B /* SocialLoginVC.swift */; };
+		83511CDA25135E2700E9C501 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CD925135E2700E9C501 /* ChangePasswordVC.swift */; };
+		83511CDC2513694D00E9C501 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CDB2513694D00E9C501 /* SettingVC.swift */; };
+		83511CDE2513884800E9C501 /* SearchArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CDD2513884800E9C501 /* SearchArtistViewModel.swift */; };
+		83511CE02513934B00E9C501 /* GetArtistCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CDF2513934B00E9C501 /* GetArtistCategoryVC.swift */; };
+		83511CE2251398D600E9C501 /* CustomArtistCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CE1251398D600E9C501 /* CustomArtistCategoryCell.swift */; };
+		83511CE4251399F200E9C501 /* GetArtistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CE3251399F200E9C501 /* GetArtistViewModel.swift */; };
+		83511CE62513E4B400E9C501 /* SearchArtistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CE52513E4B400E9C501 /* SearchArtistModel.swift */; };
+		83511CE82514000400E9C501 /* FilterArtistDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CE72514000400E9C501 /* FilterArtistDataViewModel.swift */; };
+		83511CEB251400A300E9C501 /* FilterArtistDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CEA251400A300E9C501 /* FilterArtistDataModel.swift */; };
+		83511CF125145D0000E9C501 /* ViewProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CED25145D0000E9C501 /* ViewProfileVC.swift */; };
+		83511CF225145D0000E9C501 /* serviceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CEE25145D0000E9C501 /* serviceCollectionViewCell.swift */; };
+		83511CF325145D0000E9C501 /* imageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CEF25145D0000E9C501 /* imageCollectionViewCell.swift */; };
+		83511CF425145D0000E9C501 /* showCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF025145D0000E9C501 /* showCollectionViewCell.swift */; };
+		83511CF625146F1200E9C501 /* GetArtistCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */; };
 		8391ACD924FCEABA008C04D3 /* customTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACD824FCEABA008C04D3 /* customTabBar.swift */; };
 		8391ACDD24FD194B008C04D3 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDC24FD194B008C04D3 /* InternetConnection.swift */; };
 		8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDE24FD1AAE008C04D3 /* SignupViewModel.swift */; };
 		8391ACE124FD1B64008C04D3 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACE024FD1B64008C04D3 /* SignupModel.swift */; };
 		8391ACE524FD6A8D008C04D3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACE424FD6A8D008C04D3 /* LoginViewModel.swift */; };
+		839EDA62250E59AF00230F1C /* ScheduleBookingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839EDA61250E59AF00230F1C /* ScheduleBookingVC.swift */; };
+		83A3A993251B603C00269F55 /* SocketConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A3A992251B603C00269F55 /* SocketConnectionManager.swift */; };
 		83B2F27324FB9FF40041A762 /* recievedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2F26A24FB9FF40041A762 /* recievedTableViewCell.swift */; };
 		83B2F27424FB9FF40041A762 /* FriendMsgVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2F26B24FB9FF40041A762 /* FriendMsgVC.swift */; };
 		83B2F27524FB9FF40041A762 /* sendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2F26C24FB9FF40041A762 /* sendTableViewCell.swift */; };
@@ -47,6 +71,10 @@
 		83B2F29724FC32E50041A762 /* ManualAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2F29624FC32E50041A762 /* ManualAddressVC.swift */; };
 		83B2F29924FC3AC40041A762 /* TermsProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2F29824FC3AC40041A762 /* TermsProfileVC.swift */; };
 		83B95D1424F6267B001ABB9D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B95D1324F6267B001ABB9D /* LoginVC.swift */; };
+		83BA5D422514917500C3ED86 /* GetArtistProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5D412514917500C3ED86 /* GetArtistProfileViewModel.swift */; };
+		83BA5D442514919D00C3ED86 /* GetArtistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5D432514919D00C3ED86 /* GetArtistModel.swift */; };
+		83BA5D46251499A500C3ED86 /* SearchArtistByNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5D45251499A500C3ED86 /* SearchArtistByNameVC.swift */; };
+		83BA5D4825149B8F00C3ED86 /* SearchArtistesdCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BA5D4725149B8F00C3ED86 /* SearchArtistesdCustomCell.swift */; };
 		83CDC29C24F8BC850020E302 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDC29B24F8BC850020E302 /* SignupVC.swift */; };
 		83CDC2A224F8E38E0020E302 /* CurrentLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDC29E24F8E38E0020E302 /* CurrentLocationExtension.swift */; };
 		83CDC2A324F8E38E0020E302 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDC29F24F8E38E0020E302 /* Extension.swift */; };
@@ -78,6 +106,12 @@
 		83CDC2D824F92E160020E302 /* CustomSearchArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDC2D724F92E160020E302 /* CustomSearchArtistCell.swift */; };
 		83CDC2DA24F935AE0020E302 /* UpdateLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDC2D924F935AE0020E302 /* UpdateLocationVC.swift */; };
 		83CDC2DC24F957FF0020E302 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CDC2DB24F957FF0020E302 /* FilterViewController.swift */; };
+		83CE39B22510DDF7005E9CBC /* CustomManualAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CE39B12510DDF7005E9CBC /* CustomManualAddressCell.swift */; };
+		83D877642507618E00BFB6D1 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D877632507618E00BFB6D1 /* HomeScreenViewModel.swift */; };
+		83D877662507FFFE00BFB6D1 /* BookingListModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D877652507FFFD00BFB6D1 /* BookingListModelView.swift */; };
+		83D8776825089B8200BFB6D1 /* GetrtistListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D8776725089B8200BFB6D1 /* GetrtistListModel.swift */; };
+		83D8776A2509532200BFB6D1 /* HomeScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D877692509532000BFB6D1 /* HomeScreenModel.swift */; };
+		83D8776C2509579400BFB6D1 /* GetArtistListHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D8776B2509579400BFB6D1 /* GetArtistListHomeModel.swift */; };
 		83EA841424FAE245001510F5 /* AddCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA841324FAE245001510F5 /* AddCardVC.swift */; };
 		83EA841624FAE530001510F5 /* ManageAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA841524FAE530001510F5 /* ManageAddressVC.swift */; };
 		83F1BB6624FF79D2005B5FED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F1BB6524FF79D2005B5FED /* Profile.storyboard */; };
@@ -90,11 +124,19 @@
 /* Begin PBXFileReference section */
 		156C76C3EB7268A2E43496A2 /* Pods_SurpriseMe_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurpriseMe_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2097EC0D952BA2867A9735 /* Pods-SurpriseMe User.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurpriseMe User.debug.xcconfig"; path = "Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User.debug.xcconfig"; sourceTree = "<group>"; };
+		830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFreindListViewModel.swift; sourceTree = "<group>"; };
+		830D4BAF251C70B9002ABAC9 /* ChatHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryViewModel.swift; sourceTree = "<group>"; };
 		8318DA5A24FDFA70004F16EF /* UserDefaultKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		8318DA5D24FE001C004F16EF /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
 		8318DA5F24FE0410004F16EF /* ForgetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewModel.swift; sourceTree = "<group>"; };
 		8318DA6224FE1355004F16EF /* ManageAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressViewModel.swift; sourceTree = "<group>"; };
 		8318DA6424FE250C004F16EF /* ManageAddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressModel.swift; sourceTree = "<group>"; };
+		8322B3A8250E997700D1B3FA /* SelectDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateVC.swift; sourceTree = "<group>"; };
+		8322B3AA250EAA6E00D1B3FA /* EditDateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDateVC.swift; sourceTree = "<group>"; };
+		8322B3AB250EAA6F00D1B3FA /* dateListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateListCollectionViewCell.swift; sourceTree = "<group>"; };
+		8325DAAB250F63EB00A606DD /* GetBookingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBookingListModel.swift; sourceTree = "<group>"; };
+		8325DAAE250FFAB300A606DD /* BookingStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStoreViewModel.swift; sourceTree = "<group>"; };
+		832A359B251B2EA400587D8A /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		832C887624F4ED6C0003B10B /* SurpriseMe User.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SurpriseMe User.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832C887924F4ED6C0003B10B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		832C887D24F4ED6C0003B10B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,11 +147,27 @@
 		832C888E24F5018D0003B10B /* WalkThroughVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughVC.swift; sourceTree = "<group>"; };
 		832C889124F503610003B10B /* CustomWalkThroughCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWalkThroughCell.swift; sourceTree = "<group>"; };
 		832C889524F529830003B10B /* SocialLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginVC.swift; sourceTree = "<group>"; };
+		83511CD925135E2700E9C501 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		83511CDB2513694D00E9C501 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		83511CDD2513884800E9C501 /* SearchArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistViewModel.swift; sourceTree = "<group>"; };
+		83511CDF2513934B00E9C501 /* GetArtistCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistCategoryVC.swift; sourceTree = "<group>"; };
+		83511CE1251398D600E9C501 /* CustomArtistCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomArtistCategoryCell.swift; sourceTree = "<group>"; };
+		83511CE3251399F200E9C501 /* GetArtistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistViewModel.swift; sourceTree = "<group>"; };
+		83511CE52513E4B400E9C501 /* SearchArtistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistModel.swift; sourceTree = "<group>"; };
+		83511CE72514000400E9C501 /* FilterArtistDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterArtistDataViewModel.swift; sourceTree = "<group>"; };
+		83511CEA251400A300E9C501 /* FilterArtistDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterArtistDataModel.swift; sourceTree = "<group>"; };
+		83511CED25145D0000E9C501 /* ViewProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileVC.swift; sourceTree = "<group>"; };
+		83511CEE25145D0000E9C501 /* serviceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serviceCollectionViewCell.swift; sourceTree = "<group>"; };
+		83511CEF25145D0000E9C501 /* imageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCollectionViewCell.swift; sourceTree = "<group>"; };
+		83511CF025145D0000E9C501 /* showCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showCollectionViewCell.swift; sourceTree = "<group>"; };
+		83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistCategoryModel.swift; sourceTree = "<group>"; };
 		8391ACD824FCEABA008C04D3 /* customTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTabBar.swift; sourceTree = "<group>"; };
 		8391ACDC24FD194B008C04D3 /* InternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		8391ACDE24FD1AAE008C04D3 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		8391ACE024FD1B64008C04D3 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 		8391ACE424FD6A8D008C04D3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		839EDA61250E59AF00230F1C /* ScheduleBookingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleBookingVC.swift; sourceTree = "<group>"; };
+		83A3A992251B603C00269F55 /* SocketConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConnectionManager.swift; sourceTree = "<group>"; };
 		83B2F26A24FB9FF40041A762 /* recievedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recievedTableViewCell.swift; sourceTree = "<group>"; };
 		83B2F26B24FB9FF40041A762 /* FriendMsgVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendMsgVC.swift; sourceTree = "<group>"; };
 		83B2F26C24FB9FF40041A762 /* sendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sendTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,6 +189,10 @@
 		83B2F29624FC32E50041A762 /* ManualAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAddressVC.swift; sourceTree = "<group>"; };
 		83B2F29824FC3AC40041A762 /* TermsProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsProfileVC.swift; sourceTree = "<group>"; };
 		83B95D1324F6267B001ABB9D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		83BA5D412514917500C3ED86 /* GetArtistProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistProfileViewModel.swift; sourceTree = "<group>"; };
+		83BA5D432514919D00C3ED86 /* GetArtistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistModel.swift; sourceTree = "<group>"; };
+		83BA5D45251499A500C3ED86 /* SearchArtistByNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistByNameVC.swift; sourceTree = "<group>"; };
+		83BA5D4725149B8F00C3ED86 /* SearchArtistesdCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistesdCustomCell.swift; sourceTree = "<group>"; };
 		83CDC29B24F8BC850020E302 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		83CDC29E24F8E38E0020E302 /* CurrentLocationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocationExtension.swift; sourceTree = "<group>"; };
 		83CDC29F24F8E38E0020E302 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -162,6 +224,12 @@
 		83CDC2D724F92E160020E302 /* CustomSearchArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchArtistCell.swift; sourceTree = "<group>"; };
 		83CDC2D924F935AE0020E302 /* UpdateLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLocationVC.swift; sourceTree = "<group>"; };
 		83CDC2DB24F957FF0020E302 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		83CE39B12510DDF7005E9CBC /* CustomManualAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomManualAddressCell.swift; sourceTree = "<group>"; };
+		83D877632507618E00BFB6D1 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		83D877652507FFFD00BFB6D1 /* BookingListModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingListModelView.swift; sourceTree = "<group>"; };
+		83D8776725089B8200BFB6D1 /* GetrtistListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetrtistListModel.swift; sourceTree = "<group>"; };
+		83D877692509532000BFB6D1 /* HomeScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenModel.swift; sourceTree = "<group>"; };
+		83D8776B2509579400BFB6D1 /* GetArtistListHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistListHomeModel.swift; sourceTree = "<group>"; };
 		83EA841324FAE245001510F5 /* AddCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardVC.swift; sourceTree = "<group>"; };
 		83EA841524FAE530001510F5 /* ManageAddressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressVC.swift; sourceTree = "<group>"; };
 		83F1BB6524FF79D2005B5FED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -207,8 +275,40 @@
 				83EA841524FAE530001510F5 /* ManageAddressVC.swift */,
 				8318DA6224FE1355004F16EF /* ManageAddressViewModel.swift */,
 				8318DA6424FE250C004F16EF /* ManageAddressModel.swift */,
+				83D8776725089B8200BFB6D1 /* GetrtistListModel.swift */,
+				83D877692509532000BFB6D1 /* HomeScreenModel.swift */,
+				83D8776B2509579400BFB6D1 /* GetArtistListHomeModel.swift */,
+				8322B3A8250E997700D1B3FA /* SelectDateVC.swift */,
+				83511CE3251399F200E9C501 /* GetArtistViewModel.swift */,
+				83511CE52513E4B400E9C501 /* SearchArtistModel.swift */,
+				83BA5D4725149B8F00C3ED86 /* SearchArtistesdCustomCell.swift */,
 			);
 			path = "Manage Address Module";
+			sourceTree = "<group>";
+		};
+		8325DAAD250FFA8D00A606DD /* BookingStore */ = {
+			isa = PBXGroup;
+			children = (
+				8325DAAE250FFAB300A606DD /* BookingStoreViewModel.swift */,
+			);
+			path = BookingStore;
+			sourceTree = "<group>";
+		};
+		832A3597251B1CE600587D8A /* Socket Manager */ = {
+			isa = PBXGroup;
+			children = (
+				83A3A992251B603C00269F55 /* SocketConnectionManager.swift */,
+			);
+			path = "Socket Manager";
+			sourceTree = "<group>";
+		};
+		832A359A251B2E2A00587D8A /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				83511CD925135E2700E9C501 /* ChangePasswordVC.swift */,
+				832A359B251B2EA400587D8A /* ChangePasswordViewModel.swift */,
+			);
+			path = "Change Password";
 			sourceTree = "<group>";
 		};
 		832C886D24F4ED6B0003B10B = {
@@ -232,6 +332,7 @@
 		832C887824F4ED6C0003B10B /* SurpriseMe User */ = {
 			isa = PBXGroup;
 			children = (
+				832A3597251B1CE600587D8A /* Socket Manager */,
 				83F1BB6424FF7961005B5FED /* Profile */,
 				83B2F27A24FBA6670041A762 /* BookingDetails */,
 				83B2F26824FB9FF40041A762 /* Chat */,
@@ -290,6 +391,29 @@
 			path = "Authentication Module";
 			sourceTree = "<group>";
 		};
+		83511CE92514005E00E9C501 /* FilterArtistData */ = {
+			isa = PBXGroup;
+			children = (
+				83511CE72514000400E9C501 /* FilterArtistDataViewModel.swift */,
+				83CDC2DB24F957FF0020E302 /* FilterViewController.swift */,
+				83511CEA251400A300E9C501 /* FilterArtistDataModel.swift */,
+			);
+			path = FilterArtistData;
+			sourceTree = "<group>";
+		};
+		83511CEC25145D0000E9C501 /* ViewProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				83511CED25145D0000E9C501 /* ViewProfileVC.swift */,
+				83511CEE25145D0000E9C501 /* serviceCollectionViewCell.swift */,
+				83511CEF25145D0000E9C501 /* imageCollectionViewCell.swift */,
+				83511CF025145D0000E9C501 /* showCollectionViewCell.swift */,
+				83BA5D412514917500C3ED86 /* GetArtistProfileViewModel.swift */,
+				83BA5D432514919D00C3ED86 /* GetArtistModel.swift */,
+			);
+			path = ViewProfileVC;
+			sourceTree = "<group>";
+		};
 		8391ACE224FD699E008C04D3 /* SignUp Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +467,8 @@
 			children = (
 				83B2F27124FB9FF40041A762 /* MessageTableViewCell.swift */,
 				83B2F27224FB9FF40041A762 /* FriendListVC.swift */,
+				830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */,
+				830D4BAF251C70B9002ABAC9 /* ChatHistoryViewModel.swift */,
 			);
 			path = FriendListVC;
 			sourceTree = "<group>";
@@ -387,6 +513,8 @@
 			children = (
 				83B2F28224FBA6670041A762 /* BookingVC.swift */,
 				83B2F28324FBA6670041A762 /* BookingTableViewCell.swift */,
+				83D877652507FFFD00BFB6D1 /* BookingListModelView.swift */,
+				8325DAAB250F63EB00A606DD /* GetBookingListModel.swift */,
 			);
 			path = BookingVC;
 			sourceTree = "<group>";
@@ -394,9 +522,16 @@
 		83B2F28924FBB3600041A762 /* NotificationVC */ = {
 			isa = PBXGroup;
 			children = (
+				8325DAAD250FFA8D00A606DD /* BookingStore */,
 				8318DA6124FE1332004F16EF /* Manage Address Module */,
 				83B2F28A24FBB3600041A762 /* NotificationVC.swift */,
+				8322B3AB250EAA6F00D1B3FA /* dateListCollectionViewCell.swift */,
+				8322B3AA250EAA6E00D1B3FA /* EditDateVC.swift */,
 				83B2F28B24FBB3600041A762 /* NotificationTableViewCell.swift */,
+				83D877632507618E00BFB6D1 /* HomeScreenViewModel.swift */,
+				83CE39B12510DDF7005E9CBC /* CustomManualAddressCell.swift */,
+				83511CDF2513934B00E9C501 /* GetArtistCategoryVC.swift */,
+				83511CE1251398D600E9C501 /* CustomArtistCategoryCell.swift */,
 			);
 			path = NotificationVC;
 			sourceTree = "<group>";
@@ -434,12 +569,12 @@
 		83CDC2A924F8F9210020E302 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				83511CE92514005E00E9C501 /* FilterArtistData */,
 				83B2F28924FBB3600041A762 /* NotificationVC */,
 				83CDC2AC24F8FA7E0020E302 /* HOmeViewController.swift */,
 				83CDC2AA24F8F93F0020E302 /* Dashboard.storyboard */,
 				83CDC2D524F92CBA0020E302 /* SearchArtistVC.swift */,
 				83CDC2D724F92E160020E302 /* CustomSearchArtistCell.swift */,
-				83CDC2DB24F957FF0020E302 /* FilterViewController.swift */,
 				83CDC2D924F935AE0020E302 /* UpdateLocationVC.swift */,
 				83EA841324FAE245001510F5 /* AddCardVC.swift */,
 				83B2F28E24FC208E0041A762 /* CustomManageAddressCell.swift */,
@@ -447,6 +582,9 @@
 				83B2F29224FC2CB40041A762 /* SelectAddressTypeVC.swift */,
 				83B2F29424FC2DEE0041A762 /* SelectAddressVC.swift */,
 				83B2F29624FC32E50041A762 /* ManualAddressVC.swift */,
+				839EDA61250E59AF00230F1C /* ScheduleBookingVC.swift */,
+				83511CDD2513884800E9C501 /* SearchArtistViewModel.swift */,
+				83BA5D45251499A500C3ED86 /* SearchArtistByNameVC.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -480,10 +618,14 @@
 		83F1BB6424FF7961005B5FED /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				832A359A251B2E2A00587D8A /* Change Password */,
 				83F1BB6524FF79D2005B5FED /* Profile.storyboard */,
 				83F1BB6724FF80E9005B5FED /* ProfileVC.swift */,
 				83F1BB6B24FF8B26005B5FED /* ProfileViewModel.swift */,
 				83F1BB6D24FFA6D9005B5FED /* GetProfileModel.swift */,
+				83511CEC25145D0000E9C501 /* ViewProfileVC */,
+				83511CDB2513694D00E9C501 /* SettingVC.swift */,
+				83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -516,6 +658,7 @@
 				832C887324F4ED6C0003B10B /* Frameworks */,
 				832C887424F4ED6C0003B10B /* Resources */,
 				7A54E36E76A7B8905269F8DC /* [CP] Embed Pods Frameworks */,
+				8BC5ECDADC4CC5D10ADB05C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -613,6 +756,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8BC5ECDADC4CC5D10ADB05C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C7F68B7DAF063C3BE510EBDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -642,44 +802,75 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8322B3AD250EAA6F00D1B3FA /* dateListCollectionViewCell.swift in Sources */,
+				83511CE2251398D600E9C501 /* CustomArtistCategoryCell.swift in Sources */,
+				83511CF325145D0000E9C501 /* imageCollectionViewCell.swift in Sources */,
 				83B2F28724FBA6680041A762 /* BookingVC.swift in Sources */,
 				83B2F29724FC32E50041A762 /* ManualAddressVC.swift in Sources */,
 				83CDC2DC24F957FF0020E302 /* FilterViewController.swift in Sources */,
 				83CDC2D824F92E160020E302 /* CustomSearchArtistCell.swift in Sources */,
 				83CDC2A724F8F46E0020E302 /* ApiManager.swift in Sources */,
+				83CE39B22510DDF7005E9CBC /* CustomManualAddressCell.swift in Sources */,
+				83A3A993251B603C00269F55 /* SocketConnectionManager.swift in Sources */,
 				83F1BB7024FFAA4C005B5FED /* LoaderClass.swift in Sources */,
+				8322B3A9250E997700D1B3FA /* SelectDateVC.swift in Sources */,
 				832C887E24F4ED6C0003B10B /* ViewController.swift in Sources */,
+				83511CF625146F1200E9C501 /* GetArtistCategoryModel.swift in Sources */,
+				8322B3AC250EAA6F00D1B3FA /* EditDateVC.swift in Sources */,
 				83B2F29524FC2DEE0041A762 /* SelectAddressVC.swift in Sources */,
+				83511CDC2513694D00E9C501 /* SettingVC.swift in Sources */,
 				83F1BB6E24FFA6D9005B5FED /* GetProfileModel.swift in Sources */,
+				83D877642507618E00BFB6D1 /* HomeScreenViewModel.swift in Sources */,
 				83CDC2A424F8E38E0020E302 /* Helper.swift in Sources */,
 				83B2F27424FB9FF40041A762 /* FriendMsgVC.swift in Sources */,
 				83EA841624FAE530001510F5 /* ManageAddressVC.swift in Sources */,
+				83BA5D4825149B8F00C3ED86 /* SearchArtistesdCustomCell.swift in Sources */,
 				83B2F27824FB9FF40041A762 /* MessageTableViewCell.swift in Sources */,
 				832C887A24F4ED6C0003B10B /* AppDelegate.swift in Sources */,
 				8318DA5E24FE001C004F16EF /* ForgetPasswordVC.swift in Sources */,
+				83511CE62513E4B400E9C501 /* SearchArtistModel.swift in Sources */,
 				83CDC2A224F8E38E0020E302 /* CurrentLocationExtension.swift in Sources */,
+				83D8776825089B8200BFB6D1 /* GetrtistListModel.swift in Sources */,
 				8391ACD924FCEABA008C04D3 /* customTabBar.swift in Sources */,
+				83BA5D422514917500C3ED86 /* GetArtistProfileViewModel.swift in Sources */,
+				830D4BAE251C6EF1002ABAC9 /* GetFreindListViewModel.swift in Sources */,
+				83511CF425145D0000E9C501 /* showCollectionViewCell.swift in Sources */,
+				83511CE4251399F200E9C501 /* GetArtistViewModel.swift in Sources */,
 				83CDC2D624F92CBA0020E302 /* SearchArtistVC.swift in Sources */,
+				83D8776A2509532200BFB6D1 /* HomeScreenModel.swift in Sources */,
 				83EA841424FAE245001510F5 /* AddCardVC.swift in Sources */,
 				83B2F28C24FBB3610041A762 /* NotificationVC.swift in Sources */,
+				839EDA62250E59AF00230F1C /* ScheduleBookingVC.swift in Sources */,
 				83CDC2A524F8E38E0020E302 /* extension+UIView.swift in Sources */,
 				83B95D1424F6267B001ABB9D /* LoginVC.swift in Sources */,
 				83B2F27524FB9FF40041A762 /* sendTableViewCell.swift in Sources */,
+				83511CF125145D0000E9C501 /* ViewProfileVC.swift in Sources */,
+				832A359C251B2EA400587D8A /* ChangePasswordViewModel.swift in Sources */,
+				8325DAAF250FFAB300A606DD /* BookingStoreViewModel.swift in Sources */,
 				83B2F27924FB9FF40041A762 /* FriendListVC.swift in Sources */,
+				8325DAAC250F63EB00A606DD /* GetBookingListModel.swift in Sources */,
 				83B2F28624FBA6680041A762 /* FilterVC.swift in Sources */,
+				83511CF225145D0000E9C501 /* serviceCollectionViewCell.swift in Sources */,
+				83511CDA25135E2700E9C501 /* ChangePasswordVC.swift in Sources */,
 				8391ACE524FD6A8D008C04D3 /* LoginViewModel.swift in Sources */,
 				8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */,
 				8318DA6524FE250C004F16EF /* ManageAddressModel.swift in Sources */,
 				83B2F29324FC2CB40041A762 /* SelectAddressTypeVC.swift in Sources */,
 				83B2F28D24FBB3610041A762 /* NotificationTableViewCell.swift in Sources */,
+				83511CE02513934B00E9C501 /* GetArtistCategoryVC.swift in Sources */,
 				83F1BB6C24FF8B26005B5FED /* ProfileViewModel.swift in Sources */,
+				83511CE82514000400E9C501 /* FilterArtistDataViewModel.swift in Sources */,
 				83F1BB6824FF80E9005B5FED /* ProfileVC.swift in Sources */,
 				83B2F28F24FC208E0041A762 /* CustomManageAddressCell.swift in Sources */,
+				83D8776C2509579400BFB6D1 /* GetArtistListHomeModel.swift in Sources */,
 				83B2F27624FB9FF40041A762 /* typingTableViewCell.swift in Sources */,
 				83B2F27324FB9FF40041A762 /* recievedTableViewCell.swift in Sources */,
 				832C888F24F5018D0003B10B /* WalkThroughVC.swift in Sources */,
+				83BA5D442514919D00C3ED86 /* GetArtistModel.swift in Sources */,
+				83511CEB251400A300E9C501 /* FilterArtistDataModel.swift in Sources */,
 				83CDC2DA24F935AE0020E302 /* UpdateLocationVC.swift in Sources */,
 				8318DA6324FE1355004F16EF /* ManageAddressViewModel.swift in Sources */,
+				830D4BB0251C70B9002ABAC9 /* ChatHistoryViewModel.swift in Sources */,
 				83CDC2A324F8E38E0020E302 /* Extension.swift in Sources */,
 				83CDC2AD24F8FA7E0020E302 /* HOmeViewController.swift in Sources */,
 				832C889224F503610003B10B /* CustomWalkThroughCell.swift in Sources */,
@@ -687,10 +878,13 @@
 				83B2F28824FBA6680041A762 /* BookingTableViewCell.swift in Sources */,
 				83CDC29C24F8BC850020E302 /* SignupVC.swift in Sources */,
 				8318DA6024FE0410004F16EF /* ForgetPasswordViewModel.swift in Sources */,
+				83BA5D46251499A500C3ED86 /* SearchArtistByNameVC.swift in Sources */,
 				8391ACE124FD1B64008C04D3 /* SignupModel.swift in Sources */,
+				83511CDE2513884800E9C501 /* SearchArtistViewModel.swift in Sources */,
 				832C889624F529830003B10B /* SocialLoginVC.swift in Sources */,
 				83B2F29924FC3AC40041A762 /* TermsProfileVC.swift in Sources */,
 				83B2F29124FC20AE0041A762 /* CustomHeaderAddressCell.swift in Sources */,
+				83D877662507FFFE00BFB6D1 /* BookingListModelView.swift in Sources */,
 				8318DA5B24FDFA70004F16EF /* UserDefaultKey.swift in Sources */,
 				8391ACDD24FD194B008C04D3 /* InternetConnection.swift in Sources */,
 			);
@@ -839,6 +1033,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 36FMUYQNRJ;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -861,6 +1056,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 36FMUYQNRJ;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

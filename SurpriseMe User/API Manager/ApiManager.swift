@@ -10,10 +10,36 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+var selectedType = String()
+var selectedDate = String()
+var selectToTime = String()
+var selectFromTime = String()
+var cameFrom = Bool()
+var currentLat = Double()
+var currentLong = Double()
+var customAddress = Bool()
+var currentAddress = String()
+var selectedIdentifier = String()
+
+var userArtistID = Int()
+var arrayCategorySelected = [Int]()
+var arrayCategorySelectedName = [String]()
+
+
+
+let googleKey = "AIzaSyAkWmuRRj9I9d5fyr4RqM61QDuIwOAZzvA"
+
 struct Storyboard {
     static let Main = "Main"
     static let DashBoard = "Dashboard"
+    static let Profile = "Profile"
+    static let Chat = "Chat"
 }
+
+
+
+
+
 
 
 struct StringFile {
@@ -45,6 +71,21 @@ struct StringFile {
 struct ViewControllers {
     static let Login = "LoginVC"
     static let DashBoard = "Dashboard"
+    static let ManageAddressVC = "ManageAddressVC"
+    static let UpdateLocationVC = "UpdateLocationVC"
+    static let ScheduleBookingVC = "ScheduleBookingVC"
+    static let SeleteDate = "SelectDateVC"
+    static let EditDateVC = "EditDateVC"
+    static let ManualAddressVC = "ManualAddressVC"
+    static let ChangePasswordVC = "ChangePasswordVC"
+    static let GetArtistCategoryVC = "GetArtistCategoryVC"
+    static let FilterViewController = "FilterViewController"
+    static let ViewProfileVC = "ViewProfileVC"
+    static let SettingVC = "SettingVC"
+    static let TermsProfileVC = "TermsProfileVC"
+
+
+
 
 
 }
@@ -55,15 +96,37 @@ struct Api {
     
     //MARK : SurpriseMe User API
     static let baseUrl = "https://dev.netscapelabs.com/surpriseme/public/api/customer/"
+    static let basePublicUrl = "https://dev.netscapelabs.com/surpriseme/public/api/"
+
     static let baseAuthUrl = "https://dev.netscapelabs.com/surpriseme/public/api/"
+    static let imageURL = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/customer/"
+
+    static let imageURLArtist = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/artist/"
     
-    static let login                    = baseAuthUrl + "login"
+    static let login                    = baseUrl + "login"
     static let Register                 = baseUrl + "register"
+    static let update                 = baseUrl + "update"
+    
+    static let changePassword                 = baseAuthUrl + "customer/change-password"
+
+    
+
     static let resetPassword       = baseAuthUrl + "reset-password"
     static let addresslist            = baseUrl + "address/list"
     static let addressdelete         = baseUrl + "address/delete"
     static let getProfile              = baseAuthUrl + "get-profile"
     static let logout          = baseAuthUrl + "logout"
+    static let artistList          = baseUrl + "artist/list"
+    static let bookinglist          = baseUrl + "booking/list"
+    static let bookingStore          = baseUrl + "booking/store"
+    static let addressStore         = baseUrl + "address/store"
+    static let addressUpdate         = baseUrl + "address/update"
+    static let customerUpdate         = baseUrl + "update"
+    static let artistBookingList         = baseUrl + "artist/booking/list"
+    static let artistCategoryList         = basePublicUrl + "category/list"
+    static let customerArtist         = basePublicUrl + "customer/artist"
+    static let getItemsByReceiverId   = basePublicUrl + "chat/getItemsByReceiverId"
+
     
     //String Files -
     
@@ -116,6 +179,55 @@ class ApiManeger : NSObject{
             }
         }
     }
+    
+    
+    func alamofire_uploadVideo(url: String, method: HTTPMethod,parameters: [String: Any],profileImage1: UIImage?,profileImgName : String,  hearders: HTTPHeaders, completion:@escaping (_ result : AnyObject, NSError?) -> ()) {
+
+                  Alamofire.upload(multipartFormData:
+                  {
+                      (multipartFormData) in
+                    
+                   //profile image
+                    if let imageData1 = profileImage1?.jpegData(compressionQuality: 0.5) {
+                        multipartFormData.append(imageData1, withName: profileImgName, fileName: "file.jpg", mimeType: "image/jpg")
+                    }
+                      
+                          
+                        
+                      for (key, value) in parameters
+                      {
+                          multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                      }
+              }, to: url, headers:hearders)
+              { (result) in
+                  switch result {
+                  case .success(let upload,_,_ ):
+                      upload.uploadProgress(closure: { (progress) in
+                          //Print progress
+                      })
+                      upload.responseJSON
+                          { response in
+                              //print response.result
+                            if let result = response.result.value as? NSDictionary{
+                                print("the response is \(result)")
+                                if let status = result["status"] as? Bool{
+                                    if status == true  {
+                                        completion(result, nil)
+                                    }else{
+                                        completion(result, response.result.error?.localizedDescription as? NSError)
+                                    }
+                                }else{
+                                    completion(result, nil)
+                                }
+                            }
+                      }
+                  case .failure(let encodingError):
+                    print(encodingError)
+                      break
+                  }
+              }
+        }
+    
     
     
     func callApiWithOutHeaderWithoutParam(url:String,method:HTTPMethod,completion:@escaping ([String:Any],NSError?)->()){
