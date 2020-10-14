@@ -11,30 +11,79 @@ import IQKeyboardManager
 import CoreLocation
 import GoogleMaps
 import GooglePlaces
-
+import UserNotifications
+import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK:- Varible -
     var window: UIWindow?
-    
+    let gcmMessageIDKey = "gcm.message_id"
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.setInitialSetup()
-        
-        
-        
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        //    //MARK: FIREBASE DEVICE TOKEN
+               if #available(iOS 10.0, *) {
+                   // For iOS 10 display notification (sent via APNS)
+                   UNUserNotificationCenter.current().delegate = self
+                   
+                   let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                   UNUserNotificationCenter.current().requestAuthorization(
+                       options: authOptions,
+                       completionHandler: {_, _ in })
+               } else {
+                   let settings: UIUserNotificationSettings =
+                       UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+                   application.registerUserNotificationSettings(settings)
+               }
+               
+               application.registerForRemoteNotifications()
+
         return true
     }
+    
+    
+    // [START receive_message]
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+        
+    }
+    
+    // [END receive_message]
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("APNs token retrieved: \(deviceToken)")
+    }
+
     
     //MARK:- Set Initial Function -
     func setInitialSetup()  {
         self.window = self.window ?? UIWindow()
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().shouldResignOnTouchOutside = true
-       
         GMSServices.provideAPIKey("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")
         GMSPlacesClient.provideAPIKey("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")
         self.checkUserLogin()
@@ -42,11 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 
-      
-    
-    
-    
-    
     //MARK:- Funtion check whether user is login or not -
     func checkUserLogin()  {
         if let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool{
@@ -66,14 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.shared.windows.first?.makeKeyAndVisible()
             }
         }
-        
     }
     
-    
-   
-    
-    
-    func applicationWillResignActive(_ application: UIApplication) {
+   func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
@@ -101,3 +140,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+// [START ios_10_message_handling]
+@available(iOS 12.0, *)
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+        completionHandler([[.alert, .sound]])
+    }
+    
+    
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+        
+        completionHandler()
+    }
+}
+
+// [END ios_10_message_handling]
+
+@available(iOS 12.0, *)
+extension AppDelegate : MessagingDelegate {
+    // [START refresh_token]
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        UserDefaults.standard.set(fcmToken, forKey: "device_token") //MARK: DEVICE TOKEN SET
+    }
+}

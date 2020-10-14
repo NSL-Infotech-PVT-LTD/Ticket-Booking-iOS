@@ -70,7 +70,9 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         
         var param = [String : Any]()
         LoaderClass.shared.loadAnimation()
-        param = ["email":tfEmail.text! , "password" : tfPassword.text! , "device_type":"ios","device_token": "ios"]
+        let deviceToken = UserDefaults.standard.value(forKey: "device_token")
+        print("the device token is \(deviceToken)")
+        param = ["email":tfEmail.text! , "password" : tfPassword.text! , "device_type":"ios","device_token": deviceToken ?? ""]
         loginViewModel.getParamForLogin(param: param)
     }
     
@@ -85,6 +87,15 @@ extension LoginVC: LoginViewModelProtocol {
         if !isError{
             UserDefaults.standard.set(response["token"], forKey: UserdefaultKeys.token)
             UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
+            UserDefaults.standard.removeObject(forKey: UserdefaultKeys.userID)
+            let useriD = response["user"] as? [String:Any]
+            
+            print("the user id is \(useriD?["id"] ?? 0)")
+            UserDefaults.standard.set(useriD?["id"] ?? 0, forKey:UserdefaultKeys.userID )
+            UserDefaults.standard.set(useriD?["name"] ?? "", forKey:UserdefaultKeys.userName )
+
+
+            
             self.stopAnimating()
             self.goToDashBoard()
         }else{

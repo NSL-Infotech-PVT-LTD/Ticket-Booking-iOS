@@ -12,6 +12,7 @@ class SearchArtistesdCustomCell: UITableViewCell {
     
     
 
+    @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var categoryLbl: UILabel!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblName: UILabel!

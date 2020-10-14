@@ -23,5 +23,8 @@ pod 'Kingfisher'
 pod 'AlamofireImage'
 pod "YoutubePlayer-in-WKWebView"
 pod 'Starscream', '~> 3.0.6'
+pod 'Firebase'
+pod 'Firebase/Analytics'
+pod 'Firebase/Messaging'
 
 end

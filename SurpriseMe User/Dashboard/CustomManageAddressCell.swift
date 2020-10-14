@@ -13,6 +13,8 @@ class CustomManageAddressCell: UITableViewCell {
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAddressType: UILabel!
     @IBOutlet weak var addressTypeImg: UIImageView!
+    
+    @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
     

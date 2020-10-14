@@ -13,7 +13,63 @@ PODS:
     - FBSDKLoginKit/Login (= 7.0.0)
   - FBSDKLoginKit/Login (7.0.0):
     - FBSDKCoreKit (~> 7.0.0)
+  - Firebase (6.32.2):
+    - Firebase/Core (= 6.32.2)
+  - Firebase/Analytics (6.32.2):
+    - Firebase/Core
+  - Firebase/Core (6.32.2):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.8.2)
+  - Firebase/CoreOnly (6.32.2):
+    - FirebaseCore (= 6.10.2)
+  - Firebase/Messaging (6.32.2):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.6.2)
+  - FirebaseAnalytics (6.8.2):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleAppMeasurement (= 6.8.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30906.0)
+  - FirebaseCore (6.10.2):
+    - FirebaseCoreDiagnostics (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.6.0):
+    - GoogleDataTransport (~> 7.2)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+    - nanopb (~> 1.30906.0)
+  - FirebaseInstallations (1.7.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.6.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+  - FirebaseMessaging (4.6.2):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstanceID (~> 4.6)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Reachability (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
+    - Protobuf (>= 3.9.2, ~> 3.9)
   - FSCalendar (2.8.1)
+  - GoogleAppMeasurement (6.8.2):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30906.0)
+  - GoogleDataTransport (7.3.0):
+    - nanopb (~> 1.30906.0)
   - GoogleMaps (3.1.0):
     - GoogleMaps/Maps (= 3.1.0)
   - GoogleMaps/Base (3.1.0)
@@ -24,14 +80,40 @@ PODS:
     - GooglePlaces (= 3.1.0)
   - GooglePlaces (3.1.0):
     - GoogleMaps/Base (= 3.1.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.7.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.7.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.7.2):
+    - GoogleUtilities/Logger
   - IQKeyboardManager (6.5.5)
   - Kingfisher (5.15.0):
     - Kingfisher/Core (= 5.15.0)
   - Kingfisher/Core (5.15.0)
   - KJNavigationViewAnimation (0.1.0)
+  - nanopb (1.30906.0):
+    - nanopb/decode (= 1.30906.0)
+    - nanopb/encode (= 1.30906.0)
+  - nanopb/decode (1.30906.0)
+  - nanopb/encode (1.30906.0)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
+  - PromisesObjC (1.2.10)
+  - Protobuf (3.13.0)
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
@@ -45,6 +127,9 @@ DEPENDENCIES:
   - AlamofireImage
   - Cosmos (~> 22.1)
   - FBSDKLoginKit
+  - Firebase
+  - Firebase/Analytics
+  - Firebase/Messaging
   - FSCalendar
   - GooglePlacePicker
   - IQKeyboardManager
@@ -64,14 +149,27 @@ SPEC REPOS:
     - Cosmos
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
     - FSCalendar
+    - GoogleAppMeasurement
+    - GoogleDataTransport
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
+    - GoogleUtilities
     - IQKeyboardManager
     - Kingfisher
     - KJNavigationViewAnimation
+    - nanopb
     - NVActivityIndicatorView
+    - PromisesObjC
+    - Protobuf
     - SDWebImage
     - Starscream
     - SwiftyJSON
@@ -84,20 +182,33 @@ SPEC CHECKSUMS:
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
   FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
   FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
+  Firebase: 47176280bfba198e531f909cfb1612dad216cb96
+  FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
+  FirebaseCore: 1d697bb944bf2af5fc248f1a66e165c9dd88bf97
+  FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FirebaseInstanceID: 84f5f5762f1bee94ca2254f693bbf5aec6666504
+  FirebaseMessaging: 82d75b3770a78bbce470769a6980429608b4c407
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  GoogleAppMeasurement: 1a66f478c68ecd6c16ee63ee60c7c3a648e6b337
+  GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlacePicker: fa975116ac202ac29822c0a79758ea1c4db5a95f
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   KJNavigationViewAnimation: 0473485c433c20bdcd4f575ef2244ed25f9a0266
+  nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 6ab947371432cf8ee612036f25f5fc9cd30cd28e
+PODFILE CHECKSUM: 793567906dc87dd7ec270130c9081b2b855a847d
 
 COCOAPODS: 1.8.4

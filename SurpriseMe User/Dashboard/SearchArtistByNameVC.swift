@@ -64,7 +64,14 @@ extension SearchArtistByNameVC :UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SearchArtistesdCustomCell
         
-        
+        cell.viewContainer.layer.cornerRadius = 8
+        cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.viewContainer.layer.shadowOpacity = 1
+        cell.viewContainer.layer.shadowRadius = 3
+        //MARK:- Shade a view
+        cell.viewContainer.layer.shadowOpacity = 0.5
+        cell.viewContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        cell.viewContainer.layer.masksToBounds = false
         
         let dataItem = arrayHomeArtistList[indexPath.row]
         cell.lblName.text = dataItem.name ?? ""

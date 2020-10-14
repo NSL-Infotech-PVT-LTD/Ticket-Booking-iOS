@@ -15,12 +15,13 @@ import SwiftyJSON
 protocol chatHistoryViewModelProtocol {
     func chatHistoryApiResponse(message: String, response: [ChatHistoryModel] , isError : Bool)
     func errorAlert(errorTitle: String, errorMessage: String)
+    
+    
 }
 
 
 class ChatHistoryViewModel {
     
-    //    var loginModelObject: GetProfileModel?
     
     var arrayObject = [ChatHistoryModel]()
     var delegate: chatHistoryViewModelProtocol?
@@ -28,6 +29,8 @@ class ChatHistoryViewModel {
     func getParamForChatHistory(param: [String: Any]){
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        print("the param is \(param)")
         
         if Reachability.isConnectedToNetwork() {
             LoaderClass.shared.loadAnimation()
@@ -43,14 +46,20 @@ class ChatHistoryViewModel {
                             
                             self.arrayObject.removeAll()
                             
-                            let dataDict = result["data"] as? [String : Any]
-                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                            if let dataArray = result["data"] as? NSArray {
                                 for index in dataArray{
+                                    let getIndx = index as! [String: Any]
                                     print("the index value is \(index)")
-                                    let dataDict = ChatHistoryModel.init(response: index)
+                                    let dataDict = ChatHistoryModel.init(response: getIndx)
                                     self.arrayObject.append(dataDict)
                                 }
                             }
+                            
+                            
+                            print("the chat history is \(self.arrayObject.count)")
+                            
+                            
+                            
                             self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, isError: false)
                             
                         }

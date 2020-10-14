@@ -160,9 +160,12 @@ class UpdateLocationVC: UIViewController {
     func setAddress()  {
         var dictParam = [String : Any]()
         if addressType == "Other"{
-            dictParam = ["name":otherAddressTF.text!,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            
+            
+            
+            dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
         }else{
-            dictParam = ["name":addressType,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
         }
         self.objectViewModel.getParamForAddAddress(param: dictParam)
     }

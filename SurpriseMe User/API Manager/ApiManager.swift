@@ -25,6 +25,7 @@ var userArtistID = Int()
 var arrayCategorySelected = [Int]()
 var arrayCategorySelectedName = [String]()
 
+var sendReceiveTime = String()
 
 
 let googleKey = "AIzaSyAkWmuRRj9I9d5fyr4RqM61QDuIwOAZzvA"
@@ -56,14 +57,14 @@ struct StringFile {
     static let Enter_Password = "Enter your password"
     static let Enter_Email = "Enter your email"
     static let Enter_UserName = "Enter your user name"
-
-
-
     
     
     
-
-
+    
+    
+    
+    
+    
     
 }
 
@@ -83,11 +84,11 @@ struct ViewControllers {
     static let ViewProfileVC = "ViewProfileVC"
     static let SettingVC = "SettingVC"
     static let TermsProfileVC = "TermsProfileVC"
-
-
-
-
-
+    
+    
+    
+    
+    
 }
 
 
@@ -97,35 +98,38 @@ struct Api {
     //MARK : SurpriseMe User API
     static let baseUrl = "https://dev.netscapelabs.com/surpriseme/public/api/customer/"
     static let basePublicUrl = "https://dev.netscapelabs.com/surpriseme/public/api/"
-
+    
     static let baseAuthUrl = "https://dev.netscapelabs.com/surpriseme/public/api/"
     static let imageURL = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/customer/"
-
+    
     static let imageURLArtist = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/artist/"
     
-    static let login                    = baseUrl + "login"
-    static let Register                 = baseUrl + "register"
+    static let login                  = baseUrl + "login"
+    static let Register               = baseUrl + "register"
     static let update                 = baseUrl + "update"
-    
-    static let changePassword                 = baseAuthUrl + "customer/change-password"
-
-    
-
-    static let resetPassword       = baseAuthUrl + "reset-password"
+    static let changePassword         = baseAuthUrl + "customer/change-password"
+    static let resetPassword          = baseAuthUrl + "reset-password"
     static let addresslist            = baseUrl + "address/list"
-    static let addressdelete         = baseUrl + "address/delete"
-    static let getProfile              = baseAuthUrl + "get-profile"
-    static let logout          = baseAuthUrl + "logout"
-    static let artistList          = baseUrl + "artist/list"
-    static let bookinglist          = baseUrl + "booking/list"
-    static let bookingStore          = baseUrl + "booking/store"
-    static let addressStore         = baseUrl + "address/store"
-    static let addressUpdate         = baseUrl + "address/update"
+    static let addressdelete          = baseUrl + "address/delete"
+    static let getProfile             = baseAuthUrl + "get-profile"
+    static let logout                 = baseAuthUrl + "logout"
+    static let artistList             = baseUrl + "artist/list"
+    static let bookinglist            = baseUrl + "booking/list"
+    static let bookingStore           = baseUrl + "booking/store"
+    static let addressStore           = baseUrl + "address/store"
+    static let addressUpdate          = baseUrl + "address/update"
     static let customerUpdate         = baseUrl + "update"
-    static let artistBookingList         = baseUrl + "artist/booking/list"
-    static let artistCategoryList         = basePublicUrl + "category/list"
+    static let artistBookingList      = baseUrl + "artist/booking/list"
+    static let artistCategoryList     = basePublicUrl + "category/list"
     static let customerArtist         = basePublicUrl + "customer/artist"
     static let getItemsByReceiverId   = basePublicUrl + "chat/getItemsByReceiverId"
+    static let getFreindList          = basePublicUrl + "chat/getItemByReceiverId"
+    static let getNotification        = basePublicUrl + "notification/list"
+    static let rateArtist             = baseUrl + "rate-booking"
+    static let bookinDetaildById      = basePublicUrl + "customer/booking"
+    static let ChangeNotificationStatus   = basePublicUrl + "notification/status"
+    static let changeBookingStatus    = basePublicUrl + "customer/change-booking-status"
+    static let notificationReadOrWrite    = basePublicUrl + "notification/read"
 
     
     //String Files -
@@ -135,7 +139,6 @@ struct Api {
 class ApiManeger : NSObject{
     
     static let sharedInstance = ApiManeger()
-    
     func callApi(url:String,method:HTTPMethod,param:[String:Any],completion:@escaping ([String:Any],NSError?)->()){
         
         Alamofire.request(url, method: method, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
@@ -182,51 +185,51 @@ class ApiManeger : NSObject{
     
     
     func alamofire_uploadVideo(url: String, method: HTTPMethod,parameters: [String: Any],profileImage1: UIImage?,profileImgName : String,  hearders: HTTPHeaders, completion:@escaping (_ result : AnyObject, NSError?) -> ()) {
-
-                  Alamofire.upload(multipartFormData:
-                  {
-                      (multipartFormData) in
-                    
-                   //profile image
-                    if let imageData1 = profileImage1?.jpegData(compressionQuality: 0.5) {
-                        multipartFormData.append(imageData1, withName: profileImgName, fileName: "file.jpg", mimeType: "image/jpg")
-                    }
-                      
-                          
-                        
-                      for (key, value) in parameters
-                      {
-                          multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
-                      }
-              }, to: url, headers:hearders)
-              { (result) in
-                  switch result {
-                  case .success(let upload,_,_ ):
-                      upload.uploadProgress(closure: { (progress) in
-                          //Print progress
-                      })
-                      upload.responseJSON
-                          { response in
-                              //print response.result
-                            if let result = response.result.value as? NSDictionary{
-                                print("the response is \(result)")
-                                if let status = result["status"] as? Bool{
-                                    if status == true  {
-                                        completion(result, nil)
-                                    }else{
-                                        completion(result, response.result.error?.localizedDescription as? NSError)
-                                    }
-                                }else{
+        
+        Alamofire.upload(multipartFormData:
+            {
+                (multipartFormData) in
+                
+                //profile image
+                if let imageData1 = profileImage1?.jpegData(compressionQuality: 0.5) {
+                    multipartFormData.append(imageData1, withName: profileImgName, fileName: "file.jpg", mimeType: "image/jpg")
+                }
+                
+                
+                
+                for (key, value) in parameters
+                {
+                    multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                }
+        }, to: url, headers:hearders)
+        { (result) in
+            switch result {
+            case .success(let upload,_,_ ):
+                upload.uploadProgress(closure: { (progress) in
+                    //Print progress
+                })
+                upload.responseJSON
+                    { response in
+                        //print response.result
+                        if let result = response.result.value as? NSDictionary{
+                            print("the response is \(result)")
+                            if let status = result["status"] as? Bool{
+                                if status == true  {
                                     completion(result, nil)
+                                }else{
+                                    completion(result, response.result.error?.localizedDescription as? NSError)
                                 }
+                            }else{
+                                completion(result, nil)
                             }
-                      }
-                  case .failure(let encodingError):
-                    print(encodingError)
-                      break
-                  }
-              }
+                        }
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+                break
+            }
         }
+    }
     
     
     

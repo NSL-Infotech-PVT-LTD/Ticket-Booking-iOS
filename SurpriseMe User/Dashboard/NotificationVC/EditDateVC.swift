@@ -24,12 +24,12 @@ class EditDateVC: UIViewController {
     var screenHeight: CGFloat!
     var indxArr = [Int]()
     var viewModelObject = BookingStoreViewModel()
-    var aarayTime = ["12:00 PM - 01:00 PM","01:00 PM - 02:00 PM","02:00 PM - 03:00 PM","03:00 PM - 04:00 PM","04:00 PM - 05:00 PM","05:00 PM - 06:00 PM","06:00 PM - 07:00 PM","07:00 PM - 8:00 PM","8:00 PM - 9:00 PM","9:00 PM - 10:00 PM","10:00 PM - 11:00 PM","11:00 PM - 12:00 AM","12:00 AM - 01:00 AM","01:00 AM - 02:00 AM","02:00 AM - 03:00 AM","03:00 AM - 04:00 AM","04:00 AM - 05:00 AM","05:00 AM - 06:00 AM","06:00 AM - 07:00 AM","07:00 AM - 8:00 AM","8:00 AM - 9:00 AM","9:00 AM - 10:00 AM","10:00 AM - 11:00 AM","11:00 AM - 12:00 PM"]
-    var aarayTimeSecond = ["00:00 - 01:00","01:00 - 02:00","02:00 - 03:00","03:00 - 04:00","04:00 - 05:00","05:00 - 06:00","06:00 - 07:00","07:00 - 08:00","08:00 - 09:00","09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00","13:00 - 14:00","14:00 - 15:00","15:00 - 16:00","16:00 - 17:00","17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","20:00 - 21:00","21:00 - 22:00","22:00 - 23:00","23:00 - 24:00"]
+    var aarayTime = ["12:00 AM - 01:00 AM","01:00 AM - 02:00 AM","02:00 AM - 03:00 AM","03:00 AM - 04:00 AM","04:00 AM - 05:00 AM","05:00 AM - 06:00 AM","06:00 AM - 07:00 AM","07:00 AM - 8:00 AM","8:00 AM - 9:00 AM","9:00 AM - 10:00 AM","10:00 AM - 11:00 AM","11:00 AM - 12:00 PM","12:00 PM - 01:00 PM","01:00 PM - 02:00 PM","02:00 PM - 03:00 PM","03:00 PM - 04:00 PM","04:00 PM - 05:00 PM","05:00 PM - 06:00 PM","06:00 PM - 07:00 PM","07:00 PM - 8:00 PM","8:00 PM - 9:00 PM","9:00 PM - 10:00 PM","10:00 PM - 11:00 PM","11:00 PM - 12:00 AM"]
+    var aarayTimeSecond = ["00:00 - 01:00","01:00 - 02:00","02:00 - 03:00","03:00 - 04:00","04:00 - 05:00","05:00 - 06:00","06:00 - 07:00","07:00 - 08:00","08:00 - 09:00","09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00","13:00 - 14:00","14:00 - 15:00","15:00 - 16:00","16:00 - 17:00","17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","20:00 - 21:00","21:00 - 22:00","22:00 - 23:00","23:00 - 00:00"]
     var firstTime = String()
     var secondTime = String()
     
-    
+    var arrayTestingData = [[String : [[String : Any]]]]()
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
@@ -41,6 +41,11 @@ class EditDateVC: UIViewController {
         
         print(aarayTime.count)
         print(aarayTimeSecond.count)
+        
+     
+        
+        
+        
         
     }
     
@@ -106,51 +111,63 @@ class EditDateVC: UIViewController {
     
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
-        print("hello guys how r u?")
-        
-        print("the first value is \(first)")
-        print("the first value is \(second)")
         
         
         
-        if first != -1 && second == -1{
-            
-            let inputString = aarayTimeSecond[first]
-            let splits = inputString.components(separatedBy: " - ")
-            firstTime = splits[0]
-            secondTime = splits[1]
-            let dataParam = ["type":selectedType,"date":selectedDate,"from_time":firstTime,"to_time":secondTime,"artist_id":userArtistID] as [String : Any]
-            
-            print("the dict param is \(dataParam)")
-            
-            self.viewModelObject.getParamForBookingStore(param: dataParam)
-            
-        }else if first == -1 && second == -1{
-             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Please select Any Slot", btnOkTitle: "Done") {
-            }
-        }
+        // create the alert
+        let alert = UIAlertController(title: "", message: "Do you want to book this Artist", preferredStyle: UIAlertController.Style.alert)
+
+      alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
+
+            // do something like...
+      
+              
+              
+              
+        if self.first != -1 && self.second == -1{
+                  
+                  let inputString = self.aarayTimeSecond[self.first]
+                  let splits = inputString.components(separatedBy: " - ")
+                  self.firstTime = splits[0]
+                  self.secondTime = splits[1]
+            let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
+                  
+                  print("the dict param is \(dataParam)")
+                  
+                  self.viewModelObject.getParamForBookingStore(param: dataParam)
+                  
+              }else if self.first == -1 && self.second == -1{
+                   Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Please select Any Slot", btnOkTitle: "Done") {
+                  }
+              }
+              
+              else   {
+                 
+                  let inputString = self.aarayTimeSecond[self.first]
+                  let splits = inputString.components(separatedBy: " - ")
+                  self.firstTime = splits[0]
+                  
+                  
+                  let inputString2 = self.aarayTimeSecond[self.second]
+                  let splits2 = inputString2.components(separatedBy: " - ")
+                  self.secondTime = splits2[1]
+                 let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
+                  
+                  print("the dict param is \(dataParam)")
+                  
+                  self.viewModelObject.getParamForBookingStore(param: dataParam)
+              }
+
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+     
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
         
-        else   {
-            print("the first value is \(aarayTimeSecond[first])")
-            
-            print("the first value is \(aarayTimeSecond[second])")
-            print("the first value is \(second)")
-            let inputString = aarayTimeSecond[first]
-            let splits = inputString.components(separatedBy: " - ")
-            firstTime = splits[0]
-            
-            
-            let inputString2 = aarayTimeSecond[second]
-            let splits2 = inputString2.components(separatedBy: " - ")
-            secondTime = splits2[1]
-            
-            
-            let dataParam = ["type":selectedType,"date":selectedDate,"from_time":firstTime,"to_time":secondTime,"artist_id":userArtistID] as [String : Any]
-            
-            print("the dict param is \(dataParam)")
-            
-            self.viewModelObject.getParamForBookingStore(param: dataParam)
-        }
+        
+        
+      
         
         
     }
@@ -170,13 +187,6 @@ class EditDateVC: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSaveOnPress(_ sender: UIButton) {
-        
-        
-        print("hello guys how r u?")
-        
-        let dataParam = ["type":selectedType,"date":selectedDate,"from_time":"02:00","to_time":"03:00","artist_id":"2"]
-        //  self.viewModelObject.getParamForBookingStore(param: dataParam)
-        
     }
     func checkRange(num: Int) -> Bool {
         
@@ -232,11 +242,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         
         let dataItem = aarayTimeSecond[indexPath.row]
         print(dataItem)
-        
-        
-        
-        //        indxArr.append(indexPath.row)
-        
         if first == -1{
             first = indexPath.row
         }else if first < indexPath.row{
@@ -247,12 +252,7 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
             second = temp
             
         }
-        
-        
-        
-        
         print("the index array is \(indxArr)")
-        
         self.dateListCollectionView.reloadData()
     }
 }
@@ -270,12 +270,11 @@ extension EditDateVC : BookingStoreViewModelProtocol{
                     if controller.isKind(of: HOmeViewController.self) {
                         self.navigationController!.popToViewController(controller, animated: true)
                         break
+                    }else{
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
             }
-            
-            
-            
         }
     }
     

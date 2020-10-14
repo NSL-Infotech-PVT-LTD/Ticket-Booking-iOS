@@ -37,7 +37,7 @@ class ManageAddressVC: UIViewController {
         self.noDataFound.isHidden = true
 
         tblAddress.tableFooterView = view
-        tblAddress.estimatedRowHeight = 68.0
+        tblAddress.estimatedRowHeight = 75.0
         tblAddress.rowHeight = UITableView.automaticDimension
         objectViewModel.delegate = self
         objectViewModel.getParamForManageAddress(param: [:])
@@ -125,6 +125,15 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         }
         cell.btnEdit.addTarget(self, action: #selector(btnEditTapped(_:)), for: .touchUpInside)
        cell.btnDelete.addTarget(self, action: #selector(btnDeleteTapped(_:)), for: .touchUpInside)
+        
+        cell.viewContainer.layer.cornerRadius = 8
+                      cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
+                      cell.viewContainer.layer.shadowOpacity = 1
+                      cell.viewContainer.layer.shadowRadius = 3
+                      //MARK:- Shade a view
+                      cell.viewContainer.layer.shadowOpacity = 0.5
+                      cell.viewContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+                      cell.viewContainer.layer.masksToBounds = false
 
         return cell
     }
@@ -145,7 +154,6 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         currentLong = dataItem.long ?? 0.0
         self.back()
     }
-    
     
 }
 

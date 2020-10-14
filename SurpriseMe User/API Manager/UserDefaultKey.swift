@@ -23,6 +23,8 @@ struct UserdefaultKeys {
     static let mobile                       = "mobile"
     static let profileImage                 = "profileImage"
     static let otp                          = "otp"
+    static let is_notify                          = "is_notify"
+
  
     static let chatPerKoin                  = "chatPerKoin"
     static let PerChatMessageKoin           = "PerChatMessageKoin"

@@ -70,12 +70,17 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DR6-Js-qjD">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="700"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePic" translatesAutoresizingMaskIntoConstraints="NO" id="Ght-aD-pMK">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user (1)" translatesAutoresizingMaskIntoConstraints="NO" id="Ght-aD-pMK">
                                                 <rect key="frame" x="147" y="8" width="120" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="Ud6-Gm-9vC"/>
                                                     <constraint firstAttribute="height" constant="120" id="tS9-rM-Jct"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="60"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhV-bz-un4">
                                                 <rect key="frame" x="40" y="206" width="334" height="59"/>
@@ -241,8 +246,8 @@
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="nKx-Ry-xwO"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYK-rY-6X3">
-                                                        <rect key="frame" x="41" y="19.5" width="44.5" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYK-rY-6X3">
+                                                        <rect key="frame" x="41" y="19.5" width="51.5" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Uch-fi-Bae"/>
                                                         </constraints>
@@ -918,13 +923,13 @@
         <image name="Back-1" width="58" height="19"/>
         <image name="Mask Group 67" width="64" height="64"/>
         <image name="Mask Group 68" width="64" height="64"/>
-        <image name="ProfilePic" width="89" height="92"/>
         <image name="editImage" width="512" height="512"/>
         <image name="email" width="64" height="64"/>
         <image name="login_bg" width="589" height="393"/>
         <image name="logo" width="1024" height="1024"/>
         <image name="password" width="64" height="64"/>
         <image name="password-1" width="64" height="64"/>
+        <image name="user (1)" width="128" height="128"/>
         <image name="username" width="12" height="14.5"/>
     </resources>
 </document>

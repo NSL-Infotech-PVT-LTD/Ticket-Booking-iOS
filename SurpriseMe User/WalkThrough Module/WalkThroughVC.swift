@@ -11,6 +11,7 @@ class WalkThroughVC: UIViewController {
     //MARK:- Outlets -
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnGetStarted: UIButton!
+    @IBOutlet weak var pageController: UIPageControl!
     
     //MARK:- Variable -
     var imgArray = ["WalkThrough1","WalkThrough2","WalkThrough3"]
@@ -27,7 +28,7 @@ class WalkThroughVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.reloadData()
-        self.setAutoScroll()
+//        self.setAutoScroll()
         
     }
     
@@ -57,6 +58,11 @@ class WalkThroughVC: UIViewController {
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.changeImages), userInfo: nil, repeats: true)
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+    pageController.currentPage = Int(pageIndex)
     }
 
     

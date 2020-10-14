@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>965223697290-nkrqgkr68r9hg77eunq9fn5uivjlq8ln.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.965223697290-nkrqgkr68r9hg77eunq9fn5uivjlq8ln</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAG4Zdy_zUwAJVQVLrBPbwdB_s5WqB11qM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>965223697290</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Netscapelabs.SurpriseMe-User</string>
+	<key>PROJECT_ID</key>
+	<string>surprisemeartistios</string>
+	<key>STORAGE_BUCKET</key>
+	<string>surprisemeartistios.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:965223697290:ios:184d7f8200166caf87d673</string>
+	<key>DATABASE_URL</key>
+	<string>https://surprisemeartistios.firebaseio.com</string>
+</dict>
+</plist>

@@ -18,7 +18,6 @@ protocol SearchArtistViewModelProtocol {
     func getProfileApiResponse(message: String, response: [SearchArtistModel] , isError : Bool)
     func errorAlert(errorTitle: String, errorMessage: String)
     
-    
 }
 
 

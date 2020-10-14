@@ -30,8 +30,8 @@ class ProfileVC: UIViewController {
     var objectViewModel = ProfileViewModel()
     var imagePicker = UIImagePickerController()
     var picker: UIImagePickerController = UIImagePickerController()
-
-   //MARK:- View's Life cycle -
+    
+    //MARK:- View's Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -56,24 +56,19 @@ class ProfileVC: UIViewController {
         let tapviewLogin = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewLogin(_:)))
         logoutView.addGestureRecognizer(tapviewLogin)
         let tapviewChangePassword = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewChangePassword(_:)))
-               viewChangePassword.addGestureRecognizer(tapviewChangePassword)
+        viewChangePassword.addGestureRecognizer(tapviewChangePassword)
         
-      
-               let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
-                      viewAboutUs.addGestureRecognizer(tapviewAboutUs)
-     }
+        
+        let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
+        viewAboutUs.addGestureRecognizer(tapviewAboutUs)
+    }
     
     //MARK:- Handling Tap Gesture -
     
-    
-    
-    
-    @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
+    @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil)
+    {
         self.pushWithAnimateDirectly(StoryName: Storyboard.Profile, Controller: ViewControllers.SettingVC)
-
-       }
-    
-    
+    }
     
     @objc func handletapviewLogin(_ sender: UITapGestureRecognizer? = nil) {
         let alert = UIAlertController(title: "Alert", message: "Do you want to logout?", preferredStyle: UIAlertController.Style.alert)
@@ -95,17 +90,17 @@ class ProfileVC: UIViewController {
     
     @IBAction func btnEditAction(_ sender: UIButton) {
         let alert = UIAlertController(title: "", message: "Please Select an Option", preferredStyle: .actionSheet)
-           alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
             self.openCamera()
-           }))
-           alert.addAction(UIAlertAction(title: "Gallery", style: .default , handler:{ (UIAlertAction)in
+        }))
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default , handler:{ (UIAlertAction)in
             self.openGallery()
-           }))
+        }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
         }))
-       self.present(alert, animated: true, completion: {
-           })
+        self.present(alert, animated: true, completion: {
+        })
     }
     
     func openGallery()  {
@@ -125,8 +120,8 @@ class ProfileVC: UIViewController {
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
             imagePicker.allowsEditing = true
             self.addChild(imagePicker)
-                           imagePicker.didMove(toParent: self)
-                           self.view!.addSubview(imagePicker.view!)
+            imagePicker.didMove(toParent: self)
+            self.view!.addSubview(imagePicker.view!)
         }
         else
         {
@@ -136,21 +131,21 @@ class ProfileVC: UIViewController {
         }
     }
     
-
+    
     func noCamera(){
         let alertVC = UIAlertController(title: "No Camera", message: "Sorry, Gallery is not accessible.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style:.default, handler: nil)
-                   alertVC.addAction(okAction)
+        alertVC.addAction(okAction)
         present(alertVC, animated: true, completion: nil)
-               }
-  
+    }
+    
     @IBAction func btnUpdateProfileAction(_ sender: UIButton) {
         self.editProfileBtn.isHidden = false
         self.editImgBtn.isHidden = true
         self.updateBtn.isHidden = true
-         self.tfUserName.isUserInteractionEnabled = false
-               self.tfEmail.isUserInteractionEnabled = false
-          objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
+        self.tfUserName.isUserInteractionEnabled = false
+        self.tfEmail.isUserInteractionEnabled = false
+        objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
     }
     
     @IBAction func btnEditProfile(_ sender: UIButton) {
@@ -158,18 +153,19 @@ class ProfileVC: UIViewController {
         self.editImgBtn.isHidden = false
         self.updateBtn.isHidden = false
         self.tfUserName.isUserInteractionEnabled = true
-              self.tfEmail.isUserInteractionEnabled = true
-              self.tfUserName.becomeFirstResponder()
+        self.tfEmail.isUserInteractionEnabled = false
+        self.tfUserName.becomeFirstResponder()
     }
     
     func getProfileData(profile :GetProfileModel? )  {
         self.tfUserName.text = profile?.name ?? ""
         self.tfEmail.text = profile?.email ?? ""
-        var urlSting : String = "\(Api.baseUrl)\(profile?.image ?? "")"
+        
+        var urlSting : String = "\(Api.imageURL)\(profile?.image ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-               let urlImage = URL(string: urlStringaa)!
-         self.imgUserProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            self.imgUserProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        let urlImage = URL(string: urlStringaa)!
+        self.imgUserProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        self.imgUserProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
     }
     
 }
@@ -198,7 +194,7 @@ extension ProfileVC: ProfileViewModelProtocol {
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "profile has been updated succesfully", btnOkTitle: "Done") {
                 self.objectViewModel.getParamForGetProfile(param: [:])
-                       }
+            }
         }
     }
     
@@ -225,12 +221,20 @@ extension ProfileVC: ProfileViewModelProtocol {
 extension ProfileVC : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     //MARK:-- ImagePicker delegate
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let imagedata = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-              {
-                self.imgUserProfile.image = imagedata
-              }
-            self.imgUserProfile.contentMode = .scaleAspectFill
-            picker.view!.removeFromSuperview()
-            picker.removeFromParent()
-    }}
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let imagedata = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        {
+            self.imgUserProfile.image = imagedata
+        }
+        self.imgUserProfile.contentMode = .scaleAspectFill
+        picker.view!.removeFromSuperview()
+        picker.removeFromParent()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+       picker.view!.removeFromSuperview()
+        picker.removeFromParent()
+    }
+    
+}

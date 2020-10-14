@@ -17,9 +17,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash background" translatesAutoresizingMaskIntoConstraints="NO" id="KBN-1g-gDu">
-                                <rect key="frame" x="0.0" y="-8" width="375" height="675"/>
+                                <rect key="frame" x="0.0" y="-8" width="439" height="675"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="eDR-tb-6z1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login logo With shadow" translatesAutoresizingMaskIntoConstraints="NO" id="eDR-tb-6z1">
                                 <rect key="frame" x="67.5" y="208.5" width="240" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="73c-Rl-N9n"/>
@@ -30,7 +30,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="KBN-1g-gDu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8dv-m8-tKt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KBN-1g-gDu" secondAttribute="trailing" id="PUE-88-rcp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KBN-1g-gDu" secondAttribute="trailing" constant="-64" id="PUE-88-rcp"/>
                             <constraint firstAttribute="bottom" secondItem="KBN-1g-gDu" secondAttribute="bottom" id="XsJ-eQ-gzC"/>
                             <constraint firstItem="eDR-tb-6z1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bT4-YC-rgD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="KBN-1g-gDu" secondAttribute="topMargin" id="dOu-Lf-Wsn"/>
@@ -41,11 +41,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="1024" height="1024"/>
+        <image name="login logo With shadow" width="662" height="662"/>
         <image name="splash background" width="589" height="1275"/>
     </resources>
 </document>

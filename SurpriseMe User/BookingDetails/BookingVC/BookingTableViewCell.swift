@@ -21,8 +21,18 @@ class BookingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblBookDate: UILabel!
     @IBOutlet weak var lblBookingTime: UILabel!
     
+    @IBOutlet weak var lblBookingStatus: UILabel!
+    
     @IBOutlet weak var lblSkill: UILabel!
     
+    
+    @IBOutlet weak var lblRatedAddress: UILabel!
+    
+    
+    @IBOutlet weak var viewCosmo: CosmosView!
+    @IBOutlet weak var lblReview: UILabel!
+    
+    @IBOutlet weak var lblAddress: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -101,8 +101,8 @@ class FilterViewController: UIViewController {
             lblArtistCategpry.font = lblArtistCategpry.font.withSize(12)
             lblArtistCategpry.text = arrayCategorySelectedName.joined(separator: ",")
         }else{
-            lblArtistCategpry.font = lblArtistCategpry.font.withSize(20)
-            lblArtistCategpry.text = "Select Artist Category"
+            lblArtistCategpry.font = lblArtistCategpry.font.withSize(16)
+            lblArtistCategpry.text = "Click to choose category"
 
         }
         
@@ -124,8 +124,13 @@ class FilterViewController: UIViewController {
     
     
     @IBAction func toBtnTap(_ sender: Any) {
+        
+        Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: "Functionality is not available", btnOkTitle: StringFile.OK) {
+        }
     }
     @IBAction func fromBtnTap(_ sender: Any) {
+        Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: "Functionality is not available", btnOkTitle: StringFile.OK) {
+        }
     }
     
     @IBAction func electronicTapBtn(_ sender: Any) {

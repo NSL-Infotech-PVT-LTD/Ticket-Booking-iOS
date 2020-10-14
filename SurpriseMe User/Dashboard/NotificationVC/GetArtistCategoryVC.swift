@@ -29,6 +29,10 @@ class GetArtistCategoryVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        let view = UIView()
+        tblCategory.tableFooterView = view
+        
         self.objectModelView.delegate = self
         let dictParam = ["search":"","limit":"20"]
         self.objectModelView.geArtistCategoryData(param: dictParam)
@@ -38,6 +42,10 @@ class GetArtistCategoryVC: UIViewController {
     }
     
     
+    @IBAction func btnDoneAction(_ sender: UIButton) {
+        self.back()
+
+    }
     
     @IBAction func tnBackAction(_ sender: UIButton) {
         self.back()

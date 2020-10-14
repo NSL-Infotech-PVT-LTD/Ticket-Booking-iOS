@@ -13,18 +13,17 @@ import IQKeyboardManager
 
 class SearchArtistVC: UIViewController {
     
+    //MARK:- Outlets -
     @IBOutlet weak var tblSearchArtist: UITableView!
     @IBOutlet weak var tfSearch: UITextField!
-    
-    
-    
     @IBOutlet weak var searchFeild: UITextField!
     @IBOutlet weak var viewCover: UIView!
     
-    
+    //MARK:- Variables -
     var objectViewModel = SearchArtistViewModel()
     var arrayHomeArtistList = [SearchArtistModel]()
     
+    //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tblSearchArtist.reloadData()
@@ -39,18 +38,13 @@ class SearchArtistVC: UIViewController {
         self.tblSearchArtist.isHidden = true
     }
     
+    //MARK:- Custom button action -
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.back()
         dismiss(animated: true, completion: nil)
-
-     
-    }
+ }
     
-    
-    @IBAction func btnBack(_ sender: UIButton) {
-       
-    }
-    
+   
     
 
 
@@ -61,9 +55,7 @@ class SearchArtistVC: UIViewController {
     
     @IBAction func btnFilterAction(_ sender: Any) {
         
-      
-        
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+       let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                          let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
                          controller.hidesBottomBarWhenPushed = true
         controller.delegate = self

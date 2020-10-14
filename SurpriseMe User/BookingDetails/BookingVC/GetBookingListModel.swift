@@ -17,10 +17,16 @@ class GetBookingListModel: NSObject {
     var from_time: String?
     var to_time: String?
     var image: String?
+    var address: String?
+
+    var id: Int?
+
     var dateInString: String?
     var type: String?
+    var status: String?
+var artist_detail  : ArtistDetailModels?
+    var rate_detail  : RatedetailModels?
 
-    var artist_detail           : ArtistDetailModel?
 
   
     convenience init(resposne : [String:Any]) {
@@ -32,7 +38,14 @@ class GetBookingListModel: NSObject {
         dateInString = json[GetBookingListModelModelModelKey.date].stringValue
         image = json[GetBookingListModelModelModelKey.image].stringValue
         type = json[GetBookingListModelModelModelKey.type].stringValue
-     artist_detail = ArtistDetailModel.init(resposne: json["artist_detail"].dictionaryObject!)
+        status = json[GetBookingListModelModelModelKey.status].stringValue
+        address = json[GetBookingListModelModelModelKey.address].stringValue
+
+        
+        id = json[GetBookingListModelModelModelKey.id].intValue
+        artist_detail = ArtistDetailModels.init(resposne: json["artist_detail"].dictionaryObject!)
+        
+        rate_detail = RatedetailModels.init(resposne: json["rate_detail"].dictionaryObject ?? [String:Any]())
     }
     
     struct GetBookingListModelModelModelKey {
@@ -42,12 +55,17 @@ class GetBookingListModel: NSObject {
         static let image = "image"
         static let date = "date"
         static let type = "type"
+        static let id = "id"
+        static let status = "status"
+
+        static let address = "address"
+
 
     }
     
 }
 
-class ArtistDetailModel: NSObject {
+class ArtistDetailModels: NSObject {
     
     var ID                      : Int?
     var name                    : String?
@@ -71,5 +89,30 @@ class ArtistDetailModel: NSObject {
         static let name                  = "name"
         static let imageProfile          = "image"
         static let category_id_details   = "category_id_details"
+    }
+}
+
+
+class RatedetailModels: NSObject {
+    
+    var rate                      : Int?
+    var review                    : String?
+   
+    
+    
+    convenience init(resposne : [String:Any]) {
+        self.init()
+        let json = JSON(resposne)
+        rate                  = json[userModelKey.rate].intValue
+        review                = json[userModelKey.review].stringValue
+      
+        
+    }
+    
+    struct userModelKey {
+        
+        static let rate                    = "rate"
+        static let review                  = "review"
+       
     }
 }
