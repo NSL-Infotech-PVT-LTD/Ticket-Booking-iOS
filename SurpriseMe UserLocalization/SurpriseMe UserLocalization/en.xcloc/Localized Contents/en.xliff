@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="SurpriseMe User/Authentication Module/Base.lproj/Main.storyboard" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.3.1" build-num="11C504"/>
+    </header>
+    <body>
+      <trans-unit id="2Y4-gq-OLZ.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "2Y4-gq-OLZ";</note>
+      </trans-unit>
+      <trans-unit id="4jF-IQ-Fxb.text" xml:space="preserve">
+        <source>Confirm Password</source>
+        <target>Confirm Password</target>
+        <note>Class = "UILabel"; text = "Confirm Password"; ObjectID = "4jF-IQ-Fxb";</note>
+      </trans-unit>
+      <trans-unit id="A3M-dA-ArW.text" xml:space="preserve">
+        <source>Signup with facebook</source>
+        <target>Signup with facebook</target>
+        <note>Class = "UILabel"; text = "Signup with facebook"; ObjectID = "A3M-dA-ArW";</note>
+      </trans-unit>
+      <trans-unit id="BGo-YI-XIj.text" xml:space="preserve">
+        <source>Register with us in surpriseme.</source>
+        <target>Register with us in surpriseme.</target>
+        <note>Class = "UILabel"; text = "Register with us in surpriseme."; ObjectID = "BGo-YI-XIj";</note>
+      </trans-unit>
+      <trans-unit id="DPq-4b-e9I.text" xml:space="preserve">
+        <source>E-mail Address</source>
+        <target>E-mail Address</target>
+        <note>Class = "UILabel"; text = "E-mail Address"; ObjectID = "DPq-4b-e9I";</note>
+      </trans-unit>
+      <trans-unit id="EII-E3-5hc.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "EII-E3-5hc";</note>
+      </trans-unit>
+      <trans-unit id="EcV-Zx-9nU.text" xml:space="preserve">
+        <source>E-mail Address</source>
+        <target>E-mail Address</target>
+        <note>Class = "UILabel"; text = "E-mail Address"; ObjectID = "EcV-Zx-9nU";</note>
+      </trans-unit>
+      <trans-unit id="Eiu-1j-iqv.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "Eiu-1j-iqv";</note>
+      </trans-unit>
+      <trans-unit id="Gen-nm-m1C.normalTitle" xml:space="preserve">
+        <source>Register Now</source>
+        <target>Register Now</target>
+        <note>Class = "UIButton"; normalTitle = "Register Now"; ObjectID = "Gen-nm-m1C";</note>
+      </trans-unit>
+      <trans-unit id="Kjo-HJ-WVt.text" xml:space="preserve">
+        <source>Choose your preffered 
+language</source>
+        <target>Choose your preffered 
+language</target>
+        <note>Class = "UILabel"; text = "Choose your preffered \nlanguage"; ObjectID = "Kjo-HJ-WVt";</note>
+      </trans-unit>
+      <trans-unit id="MBi-F8-7pc.text" xml:space="preserve">
+        <source>Remember me</source>
+        <target>Remember me</target>
+        <note>Class = "UILabel"; text = "Remember me"; ObjectID = "MBi-F8-7pc";</note>
+      </trans-unit>
+      <trans-unit id="NST-rB-rKx.text" xml:space="preserve">
+        <source>Signup with Apple</source>
+        <target>Signup with Apple</target>
+        <note>Class = "UILabel"; text = "Signup with Apple"; ObjectID = "NST-rB-rKx";</note>
+      </trans-unit>
+      <trans-unit id="Nai-AV-hVL.normalTitle" xml:space="preserve">
+        <source>Next</source>
+        <target>Next</target>
+        <note>Class = "UIButton"; normalTitle = "Next"; ObjectID = "Nai-AV-hVL";</note>
+      </trans-unit>
+      <trans-unit id="QAz-pJ-NL4.text" xml:space="preserve">
+        <source>Password</source>
+        <target>Password</target>
+        <note>Class = "UILabel"; text = "Password"; ObjectID = "QAz-pJ-NL4";</note>
+      </trans-unit>
+      <trans-unit id="Sbo-Wg-Oy7.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "Sbo-Wg-Oy7";</note>
+      </trans-unit>
+      <trans-unit id="TIH-vw-ldu.text" xml:space="preserve">
+        <source>English</source>
+        <target>English</target>
+        <note>Class = "UILabel"; text = "English"; ObjectID = "TIH-vw-ldu";</note>
+      </trans-unit>
+      <trans-unit id="VYb-BY-lxV.text" xml:space="preserve">
+        <source>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
+Ipsum has been the industry's standard dummy text ever</source>
+        <target>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
+Ipsum has been the industry's standard dummy text ever</target>
+        <note>Class = "UILabel"; text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem \nIpsum has been the industry's standard dummy text ever"; ObjectID = "VYb-BY-lxV";</note>
+      </trans-unit>
+      <trans-unit id="WBa-J0-pWd.text" xml:space="preserve">
+        <source>Are you new?</source>
+        <target>Are you new?</target>
+        <note>Class = "UILabel"; text = "Are you new?"; ObjectID = "WBa-J0-pWd";</note>
+      </trans-unit>
+      <trans-unit id="Xjv-ED-sAi.text" xml:space="preserve">
+        <source>we will served on the basis of your selection.</source>
+        <target>we will served on the basis of your selection.</target>
+        <note>Class = "UILabel"; text = "we will served on the basis of your selection."; ObjectID = "Xjv-ED-sAi";</note>
+      </trans-unit>
+      <trans-unit id="bID-jn-tTn.normalTitle" xml:space="preserve">
+        <source>Forgot Password? </source>
+        <target>Forgot Password? </target>
+        <note>Class = "UIButton"; normalTitle = "Forgot Password? "; ObjectID = "bID-jn-tTn";</note>
+      </trans-unit>
+      <trans-unit id="dj1-dl-qJU.text" xml:space="preserve">
+        <source>E-mail Address</source>
+        <target>E-mail Address</target>
+        <note>Class = "UILabel"; text = "E-mail Address"; ObjectID = "dj1-dl-qJU";</note>
+      </trans-unit>
+      <trans-unit id="euf-Rd-8gL.text" xml:space="preserve">
+        <source>Are your new?</source>
+        <target>Are your new?</target>
+        <note>Class = "UILabel"; text = "Are your new?"; ObjectID = "euf-Rd-8gL";</note>
+      </trans-unit>
+      <trans-unit id="ez2-wD-7uh.text" xml:space="preserve">
+        <source>Username</source>
+        <target>Username</target>
+        <note>Class = "UILabel"; text = "Username"; ObjectID = "ez2-wD-7uh";</note>
+      </trans-unit>
+      <trans-unit id="kbf-u8-I5K.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "kbf-u8-I5K";</note>
+      </trans-unit>
+      <trans-unit id="oR4-Kr-NCy.text" xml:space="preserve">
+        <source>Back to login</source>
+        <target>Back to login</target>
+        <note>Class = "UILabel"; text = "Back to login"; ObjectID = "oR4-Kr-NCy";</note>
+      </trans-unit>
+      <trans-unit id="qOy-zj-CBb.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "qOy-zj-CBb";</note>
+      </trans-unit>
+      <trans-unit id="rzo-Ml-A1D.text" xml:space="preserve">
+        <source>or</source>
+        <target>or</target>
+        <note>Class = "UILabel"; text = "or"; ObjectID = "rzo-Ml-A1D";</note>
+      </trans-unit>
+      <trans-unit id="s0S-2T-Ybq.normalTitle" xml:space="preserve">
+        <source>Continue</source>
+        <target>Continue</target>
+        <note>Class = "UIButton"; normalTitle = "Continue"; ObjectID = "s0S-2T-Ybq";</note>
+      </trans-unit>
+      <trans-unit id="sbL-au-DjE.normalTitle" xml:space="preserve">
+        <source>Log In</source>
+        <target>Log In</target>
+        <note>Class = "UIButton"; normalTitle = "Log In"; ObjectID = "sbL-au-DjE";</note>
+      </trans-unit>
+      <trans-unit id="tBy-e5-3C6.text" xml:space="preserve">
+        <source>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ing versions of Lorem Ipsum</source>
+        <target>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ing versions of Lorem Ipsum</target>
+        <note>Class = "UITextView"; text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ing versions of Lorem Ipsum"; ObjectID = "tBy-e5-3C6";</note>
+      </trans-unit>
+      <trans-unit id="tLx-Oc-iry.text" xml:space="preserve">
+        <source>Terms &amp; Conditions</source>
+        <target>Terms &amp; Conditions</target>
+        <note>Class = "UILabel"; text = "Terms &amp; Conditions"; ObjectID = "tLx-Oc-iry";</note>
+      </trans-unit>
+      <trans-unit id="w1B-OB-0og.text" xml:space="preserve">
+        <source>Password</source>
+        <target>Password</target>
+        <note>Class = "UILabel"; text = "Password"; ObjectID = "w1B-OB-0og";</note>
+      </trans-unit>
+      <trans-unit id="x3O-rR-Lq0.placeholder" xml:space="preserve">
+        <source>type here...</source>
+        <target>type here...</target>
+        <note>Class = "UITextField"; placeholder = "type here..."; ObjectID = "x3O-rR-Lq0";</note>
+      </trans-unit>
+      <trans-unit id="xgq-T7-B5A.text" xml:space="preserve">
+        <source>Signup with Email</source>
+        <target>Signup with Email</target>
+        <note>Class = "UILabel"; text = "Signup with Email"; ObjectID = "xgq-T7-B5A";</note>
+      </trans-unit>
+      <trans-unit id="z1k-KE-mvo.normalTitle" xml:space="preserve">
+        <source>Get Started</source>
+        <target>Get Started</target>
+        <note>Class = "UIButton"; normalTitle = "Get Started"; ObjectID = "z1k-KE-mvo";</note>
+      </trans-unit>
+      <trans-unit id="zfN-HL-Ygm.text" xml:space="preserve">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "zfN-HL-Ygm";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="SurpriseMe User/en.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="11.3.1" build-num="11C504"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>SurpriseMe</source>
+        <target>SurpriseMe</target>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>This app will use camera for upload profile picture</source>
+        <target>This app will use camera for upload profile picture</target>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationAlwaysAndWhenInUseUsageDescription" xml:space="preserve">
+        <source>Your location is required for getting current location</source>
+        <target>Your location is required for getting current location</target>
+        <note>Privacy - Location Always and When In Use Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationAlwaysUsageDescription" xml:space="preserve">
+        <source>Your location is required for getting current location</source>
+        <target>Your location is required for getting current location</target>
+        <note>Privacy - Location Always Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSLocationWhenInUseUsageDescription" xml:space="preserve">
+        <source>Your location is required for getting current location</source>
+        <target>Your location is required for getting current location</target>
+        <note>Privacy - Location When In Use Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve">
+        <source>This app will use camera for upload profile picture</source>
+        <target>This app will use camera for upload profile picture</target>
+        <note>Privacy - Photo Library Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

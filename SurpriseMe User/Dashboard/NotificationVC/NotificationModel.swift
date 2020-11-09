@@ -49,6 +49,7 @@ class BookingDetails: NSObject {
     
     var booking_id : Int?
     var data_type  : String?
+    var target_model  : String?
     var status     : String?
     
     convenience init(resposne : [String:Any]) {
@@ -56,12 +57,16 @@ class BookingDetails: NSObject {
         let json = JSON(resposne)
         booking_id   = json[userModelKey.booking_id].intValue
         data_type    = json[userModelKey.data_type].stringValue
+        target_model    = json[userModelKey.target_model].stringValue
+
         status       = json[userModelKey.status].stringValue
    }
     
     struct userModelKey {
         
         static let booking_id  = "target_id"
+        static let target_model  = "target_model"
+
         static let data_type   = "data_type"
         static let status      = "status"
     }

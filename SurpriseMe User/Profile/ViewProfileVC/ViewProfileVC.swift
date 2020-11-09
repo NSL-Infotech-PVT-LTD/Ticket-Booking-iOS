@@ -16,28 +16,28 @@ import NVActivityIndicatorView
 import YoutubePlayer_in_WKWebView
 import AVKit
 import AVFoundation
+import NYTPhotoViewer
 
 class ViewProfileVC: UIViewController {
     
-    
+    //MARK:- Outlets -
+
     @IBOutlet weak var showCollectionView: UICollectionView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
     @IBOutlet weak var serviceCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var viewLiveShow: UIView!
     @IBOutlet weak var viewDigitalShow: UIView!
-    
-    
     @IBOutlet weak var novideoLbl: UILabel!
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
     @IBOutlet weak var imgViedoPlay: UIImageView!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var imgProfileYoutube: UIImageView!
     @IBOutlet weak var imgProfileInsta: UIImageView!
-    
     @IBOutlet weak var playerView: WKYTPlayerView!
     @IBOutlet weak var lblInstaLink: UILabel!
     @IBOutlet weak var lblYoutubeLink: UILabel!
-    
+    @IBOutlet var viewContainerPreview: UIView!
+    @IBOutlet var imgViewUserPreview: UIImageView!
     @IBOutlet weak var dashlineView: UIImageView!
     @IBOutlet weak var lblGallery: UILabel!
     @IBOutlet weak var lblName: UILabel!
@@ -46,13 +46,17 @@ class ViewProfileVC: UIViewController {
     @IBOutlet weak var lblYoutubeSubscribers: UILabel!
     @IBOutlet weak var lblInstagramSubscribers: UILabel!
     @IBOutlet weak var txtViewAbout: UITextView!
-    
     @IBOutlet weak var viewBack: UIView!
+    @IBOutlet weak var btnCrossImage: UIButton!
+    
+    
+    //MARK:- Variable -
     var getProfileVMObject = GetArtistProfileViewModel()
     var getArtistProfile : GetArtistModel?
     var youtubeImageUrl = String()
     var youtubeID = String()
     var VideoLink = String()
+    var photo = [UIImage]()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +70,10 @@ class ViewProfileVC: UIViewController {
         let dictParam = ["id":userArtistID]
         getProfileVMObject.getProfileData(param:dictParam)
         novideoLbl.isHidden = true
+        viewContainerPreview.isHidden = true
+        imgViewUserPreview.isHidden = true
+        btnCrossImage.isHidden = true
+
         
         //Mark: CollectionView Delegate
         serviceCollectionView.delegate = self
@@ -77,12 +85,13 @@ class ViewProfileVC: UIViewController {
         showCollectionView.delegate = self
         showCollectionView.dataSource = self
         self.showCollectionView.reloadData()
-        
         //Mark: UIView border dash
         self.viewLiveShow.viewLiveShowDashline()
         self.viewDigitalShow.viewLiveShowDashline()
         
-        //        self.viewLiveShow.addDashedBorder(UIColor(red: 0.84, green: 0.84, blue: 0.84, alpha: 1.00), withWidth: 1, cornerRadius: 4, dashPattern: [2,2])
+        let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
+              imgProfile.addGestureRecognizer(tapviewAboutUs)
+        
     }
     
     //Mark: CollectionView Height
@@ -97,6 +106,33 @@ class ViewProfileVC: UIViewController {
         
         
     }
+    
+    
+    
+    @IBAction func btnCrossProfileAction(_ sender: UIButton) {
+        viewContainerPreview.isHidden = true
+         imgViewUserPreview.isHidden = true
+         btnCrossImage.isHidden = true
+        
+    }
+    
+    @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
+//        let photosViewController = NYTPhotosViewController(photos: photo)
+//     present(photosViewController, animated: true)
+        
+         let transition = CATransition()
+                transition.duration = 0.5
+                transition.timingFunction = CAMediaTimingFunction(name: .linear)
+                transition.type = CATransitionType(rawValue: "flip")
+                transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromTop
+                imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+        viewContainerPreview.isHidden = false
+        imgViewUserPreview.isHidden = false
+        btnCrossImage.isHidden = false
+        imgViewUserPreview.image = imgProfile.image
+       }
+
     
     
     @IBAction func btnPlayVideoAction(_ sender: UIButton) {
@@ -128,6 +164,8 @@ class ViewProfileVC: UIViewController {
     @IBAction func btnReviewonPress(_ sender: UIButton) {
                 let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "ReviewVC") as! ReviewVC
+        controller.artistID = userArtistID
+        
                 navigationController?.pushViewController(controller, animated: true)
     }
     

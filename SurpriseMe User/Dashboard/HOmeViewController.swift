@@ -11,9 +11,15 @@ import SDWebImage
 import KJNavigationViewAnimation
 import CoreLocation
 import Alamofire
+import Cosmos
+import Stripe
 
 
-class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
+class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAuthenticationContext {
+    func authenticationPresentingViewController() -> UIViewController {
+        return UIViewController()
+    }
+    
     
     //MARK:- Outlets -
     @IBOutlet weak var viewUpdateLocation: UIView!
@@ -39,15 +45,59 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
     var animalList = [AnyObject]()
     
     
+    
     //MARK:- View's Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         print("the user custom address is \(currentAddress)")
-    
+        
+        
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
+        let navController = UINavigationController(rootViewController: VC1)
+        navController.modalPresentationStyle = .overCurrentContext
+        navController.isNavigationBarHidden = true
+        //self.present(navController, animated:true, completion: nil)
+        
+        
+        let iDEALParams = STPPaymentMethodiDEALParams()
+        iDEALParams.bankName = "abn_amro"
+        
+        let billingDetails = STPPaymentMethodBillingDetails()
+        billingDetails.name = "Jane Doe"
+        
+        
+        let paymentIntentParams = STPPaymentIntentParams(clientSecret: "sk_test_4eC39HqLyjWDarjtT1zdp7dc")
+        paymentIntentParams.paymentMethodParams = STPPaymentMethodParams(iDEAL: iDEALParams,
+                                                                         billingDetails: billingDetails,
+                                                                         metadata: nil)
+        
+        STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (handlerStatus, paymentIntent, error) in
+            switch handlerStatus {
+            case .succeeded:
+                print("hello")
+                break
+                // Payment succeeded
+                
+            case .canceled: break
+                // Payment was cancelled
+                
+            case .failed: break
+                // Payment failed
+                
+            @unknown default:
+                fatalError()
+            }
+        }
+        
+        
+        
         self.setDashLine()
         self.SetInitialSetup()
         self.tableView_out.isHidden = true
@@ -65,9 +115,9 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
         let tapviewimgUserProfile = UITapGestureRecognizer(target: self, action: #selector(self.handletaptapviewimgUserProfile(_:)))
         imgUserProfile.isUserInteractionEnabled = true
         imgUserProfile.addGestureRecognizer(tapviewimgUserProfile)
-   }
+    }
     
-  @objc func handletaptapviewimgUserProfile(_ sender: UITapGestureRecognizer? = nil) {
+    @objc func handletaptapviewimgUserProfile(_ sender: UITapGestureRecognizer? = nil) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
         controller.hidesBottomBarWhenPushed = true
@@ -102,7 +152,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
     }
     
     func getDataBookingList(pageNumber : Int )  {
-        let dict = ["latitude":currentLat ,"longitude":currentLong , "limit" : "5" , "page" : pageNumber ] as [String : Any]
+        let dict = ["latitude":currentLat ,"longitude":currentLong , "limit" : "20" , "page" : pageNumber ] as [String : Any]
         self.viewModelObject.getParamForBookingList(param: dict)
     }
     
@@ -124,9 +174,9 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
             self.getDataBookingList(pageNumber: 1)
             print("the user custom address is \(currentAddress)")
             print("the user custom address is \(self.locationTf.text!)")
-
-
-         } else {
+            
+            
+        } else {
             print("Location services are not enabled");
         }
     }
@@ -151,7 +201,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
     
     //MARK:- Handling tap Gesture Method -
     @objc func handletapviewSearch(_ sender: UITapGestureRecognizer? = nil) {
-     
+        
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SearchArtistByNameVC") as! SearchArtistByNameVC
         controller.hidesBottomBarWhenPushed = true
@@ -176,7 +226,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
     
     
     @IBAction func btnViewProfileAction(_ sender: UIButton) {
-        
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
         let transition = CATransition()
@@ -192,12 +241,8 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate {
     
     
     @objc func btnBookAction(sender:UIButton)  {
-        
-        
         userArtistID = arrayHomeArtistList[sender.tag].id ?? 0
-        
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
-        
     }
     
     
@@ -247,6 +292,16 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
         }else{
             cell.RolePlayLbl_out.text = "\(dataItem.category?.map({$0}) ?? [] )"
         }
+        
+        if dataItem.ratingValue == "<null>"{
+            cell.cosmoView.rating = 0.0
+        }else{
+            cell.cosmoView.rating = Double("\(dataItem.rating ?? 0)") ?? 0.0
+        }
+        
+        
+        
+        
         let urlSting : String = "\(Api.imageURLArtist)\(dataItem.image ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
         let urlImage = URL(string: urlStringaa)!
@@ -299,6 +354,7 @@ class homeTableCell: UITableViewCell {
     @IBOutlet weak var ratingView_out: UIView!
     
     
+    @IBOutlet weak var cosmoView: CosmosView!
     @IBOutlet weak var VIEWOUTERCONTAINER: UIView!
     @IBOutlet weak var bookBtn_out: UIButton!
     @IBOutlet weak var viewContainer: UIView!

@@ -1,0 +1,12 @@
+/* Bundle name */
+"CFBundleName" = "SurpriseMe";
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "This app will use camera for upload profile picture";
+/* Privacy - Location Always and When In Use Usage Description */
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Your location is required for getting current location";
+/* Privacy - Location Always Usage Description */
+"NSLocationAlwaysUsageDescription" = "Your location is required for getting current location";
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "Your location is required for getting current location";
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "This app will use camera for upload profile picture";

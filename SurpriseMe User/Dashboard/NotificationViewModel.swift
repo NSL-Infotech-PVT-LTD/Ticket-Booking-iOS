@@ -16,7 +16,7 @@ import SwiftyJSON
 
 
 protocol NotificationViewModelProtocol {
-    func getNotificationApiResponse(message: String, response: [NotificationModel] , isError : Bool)
+    func getNotificationApiResponse(message: String, response: [NotificationModel] , isError : Bool,isMorePagination : Bool)
     func errorAlert(errorTitle: String, errorMessage: String)
     func changeNotificationStatus(message: String, response: ChangeNotificationModel? ,errorMessage: String)
     func changeNotificationRead(message: String, response: String ,errorMessage: String)
@@ -29,10 +29,13 @@ class NotificationViewModel {
         var loginModelObject: ChangeNotificationModel?
     
     var arrayObject = [NotificationModel]()
+    var arrayFreindLoadMore = [NotificationModel]()
+
+    
     var delegate: NotificationViewModelProtocol?
     
-    func getParamForNotification(param: [String: Any]){
-        self.notificationListData(param: param)
+    func getParamForNotification(param: [String: Any] , page : Int){
+        self.notificationListData(param: param ,page : page )
     }
     
     func getParamForChangeNotificationStatus(param: [String: Any]){
@@ -131,7 +134,7 @@ class NotificationViewModel {
     }
     
     
-    func notificationListData(param: [String: Any]) {
+    func notificationListData(param: [String: Any] , page : Int) {
         
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
@@ -146,21 +149,47 @@ class NotificationViewModel {
                     let result = response
                     if let status = result["status"] as? Bool {
                         if status ==  true{
+//                                    if page == 1{
+                                print("the notification list is \(response)")
+                                                        
+                                                        self.arrayObject.removeAll()
+
+                                                        let dataDict = result["data"] as? [String : Any]
+                                                        if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                                            for index in dataArray{
+                                                               
+                                                                let dataDict = NotificationModel.init(resposne: index)
+                                                                self.arrayObject.append(dataDict)
+                                                            }
+                                                        }
+                              self.delegate?.getNotificationApiResponse(message: "", response: self.arrayObject, isError: false, isMorePagination: true)
+                                
+//                            }else{
+//
+//                                self.arrayFreindLoadMore.removeAll()
+//                                let dataDict = result["data"] as? [String : Any]
+//                                                                                       if let dataArray = dataDict?["data"] as? [[String : Any]]{
+//                                                                                           for index in dataArray{
+//                                                                                               print("the index value is \(index)")
+//                                                                                               let dataDict = NotificationModel.init(resposne: index)
+//                                                                                               self.arrayFreindLoadMore.append(dataDict)
+//                                                                                           }
+//                                                                                       }
+//                                self.arrayObject = self.arrayObject + self.arrayFreindLoadMore
+//                                if (self.arrayFreindLoadMore.count == 0){
+//                                    self.delegate?.getNotificationApiResponse(message: "", response: self.arrayObject, isError: false, isMorePagination: false)
+//  }else{
+//                                    self.delegate?.getNotificationApiResponse(message: "", response: self.arrayObject, isError: false, isMorePagination: true)
+//
+//                                }
+//                                print("the number of running fixture is \(self.arrayFreindLoadMore.count)")
+//
+//
+//                            }
+                            
                             //
                             
-                            print("the notification list is \(response)")
-                            
-                            self.arrayObject.removeAll()
-
-                            let dataDict = result["data"] as? [String : Any]
-                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
-                                for index in dataArray{
-                                    print("the index value is \(index)")
-                                    let dataDict = NotificationModel.init(resposne: index)
-                                    self.arrayObject.append(dataDict)
-                                }
-                            }
-                            self.delegate?.getNotificationApiResponse(message: "", response: self.arrayObject, isError: false)
+                        
                             
                         }else{
                             

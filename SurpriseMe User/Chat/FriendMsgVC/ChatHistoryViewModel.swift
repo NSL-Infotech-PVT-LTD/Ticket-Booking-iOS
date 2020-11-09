@@ -13,7 +13,7 @@ import SwiftyJSON
 
 
 protocol chatHistoryViewModelProtocol {
-    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel] , isError : Bool)
+    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel] ,receiverDetails : [String:Any] ,  isError : Bool)
     func errorAlert(errorTitle: String, errorMessage: String)
     
     
@@ -45,8 +45,16 @@ class ChatHistoryViewModel {
                             //
                             
                             self.arrayObject.removeAll()
+                            let chatData = result["data"] as? [String:Any]
+
                             
-                            if let dataArray = result["data"] as? NSArray {
+                            let chatList = chatData?["chat"] as? [String:Any]
+                            
+                            let receiver_detail = chatData?["receiver_detail"] as? [String:Any]
+
+                            
+                            
+                            if let dataArray = chatList?["data"] as? NSArray {
                                 for index in dataArray{
                                     let getIndx = index as! [String: Any]
                                     print("the index value is \(index)")
@@ -60,7 +68,7 @@ class ChatHistoryViewModel {
                             
                             
                             
-                            self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, isError: false)
+                            self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false)
                             
                         }
                         else{

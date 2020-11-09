@@ -76,6 +76,14 @@ extension SearchArtistVC : SendDataPrevoius{
     func getFilterData(message: String, response: [SearchArtistModel]) {
                 print("the data is \(response.count)")
                     arrayHomeArtistList = response.map({$0})
+        
+        if arrayHomeArtistList.count > 0{
+            
+        }else{
+            
+        }
+        
+        
         self.tblSearchArtist.isHidden = false
         self.tblSearchArtist.reloadData()
 

@@ -20,13 +20,14 @@ var currentLong = Double()
 var customAddress = Bool()
 var currentAddress = String()
 var selectedIdentifier = String()
-
+var userArtistIDBooking : Any?
 var userArtistID = Int()
 var arrayCategorySelected = [Int]()
 var arrayCategorySelectedName = [String]()
-
 var sendReceiveTime = String()
+var bookingPaymentID : Int?
 
+var arrayCardListCommom = [GetCardModel]()
 
 let googleKey = "AIzaSyAkWmuRRj9I9d5fyr4RqM61QDuIwOAZzvA"
 
@@ -58,7 +59,8 @@ struct StringFile {
     static let Enter_Email = "Enter your email"
     static let Enter_UserName = "Enter your user name"
     
-    
+    static let Publish_Key = "pk_test_51HcYaaDVPC7KpoaUBqxarUUagXrI14GRCicyaZt8NztibJ4G9Y7KMtunrcWTg5PDm3PzcuBe1zkFFJiJRt1mXs8s009njabz8l"
+
     
     
     
@@ -84,10 +86,6 @@ struct ViewControllers {
     static let ViewProfileVC = "ViewProfileVC"
     static let SettingVC = "SettingVC"
     static let TermsProfileVC = "TermsProfileVC"
-    
-    
-    
-    
     
 }
 
@@ -130,7 +128,18 @@ struct Api {
     static let ChangeNotificationStatus   = basePublicUrl + "notification/status"
     static let changeBookingStatus    = basePublicUrl + "customer/change-booking-status"
     static let notificationReadOrWrite    = basePublicUrl + "notification/read"
+    static let artistbookslot    = basePublicUrl + "customer/bookslot/list"
+    static let customerCardList    = basePublicUrl + "customer/cards/list"
+    static let customerdeleteCard    = basePublicUrl + "customer/cards/delete"
 
+    static let customerAddCard    = basePublicUrl + "customer/cards/store"
+
+    static let artistGetArtistRating    = basePublicUrl + "customer/getartistrating"
+    static let artistAvailableSlot    = basePublicUrl + "customer/bookslot/list-date"
+
+
+    
+    
     
     //String Files -
     

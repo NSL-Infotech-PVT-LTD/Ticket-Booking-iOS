@@ -65,7 +65,7 @@ class SignupVC: UIViewController {
             
             let deviceToken = UserDefaults.standard.value(forKey: "device_token")
 
-            param = [StringFile.Name:tfUserName.text! , StringFile.Email : tfEmail.text! , StringFile.Password : tfPassword.text! , StringFile.device_type:StringFile.iOS,StringFile.device_token:deviceToken ?? ""]
+            param = [StringFile.Name:tfUserName.text! , StringFile.Email : tfEmail.text! , StringFile.Password : tfPassword.text! , StringFile.device_type:StringFile.iOS,StringFile.device_token:deviceToken ?? "","lang":"en"]
                          viewModelObject.getParamForSignUp(param: param)
                }
         

@@ -20,6 +20,8 @@ class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        //MARK:- TABBAR LINE TOP ON PICS
+        tabBar.selectionIndicatorImage = UIImage().createSelectionIndicator(color: UIColor(red: 212/255, green: 20/255, blue: 90/255, alpha: 1), size: CGSize(width: (view.frame.width/4), height: tabBar.frame.height), lineHeight: 2.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,4 +56,15 @@ class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate 
         }
     }
     
+}
+
+extension UIImage {
+    func createSelectionIndicator(color: UIColor, size: CGSize, lineHeight: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(CGRect(origin: CGPoint(x :0,y: 0), size: CGSize(width: size.width, height: lineHeight)))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
 }

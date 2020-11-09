@@ -15,6 +15,12 @@ class SelectDateVC: UIViewController {
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var calenderView: FSCalendar!
     
+    //MARK:- Variable -
+    
+    var arrayAvailDate = [GetArtistDateList]()
+    var arrayAvailDate2 = [String]()
+
+    
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +29,71 @@ class SelectDateVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewHeader.addBottomShadow()
+        
+        let dict = ["artist_id":userArtistID]
+        self.getAvailableSlot(dict: dict)
 
     }
+    
+    
+    func getAvailableSlot(dict : [String:Any])  {
+            
+            let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+            
+            
+            if Reachability.isConnectedToNetwork() {
+                LoaderClass.shared.loadAnimation()
+                
+                
+                ApiManeger.sharedInstance.callApiWithHeader(url: Api.artistAvailableSlot, method: .post, param: dict, header: headerToken) { (response, error) in
+                    print(response)
+                    LoaderClass.shared.stopAnimation()
+                    if error == nil {
+                        let result = response
+                        
+                        
+//                        self.arrayCardList.removeAll()
+                        if let status = result["status"] as? Bool {
+                            if status ==  true{
+                                self.arrayAvailDate2.removeAll()
+                                if let dataArray = result["data"] as? [[String : Any]]{
+                                    for index in dataArray{
+                                        print("the index value is \(index)")
+                                        let date = index["date"] as? String
+                                        
+                                        let dataDict = GetArtistDateList.init(resposne: index)
+                                        self.arrayAvailDate.append(dataDict)
+                                        self.arrayAvailDate2.append(date ?? "")
+                                        
+                                        
+                                    }
+                                }
+                                self.calenderView.reloadData()
+                                
+                              
+                                
+                             
+                            }
+                            else{
+                            }
+                        }
+                        else {
+                            if let error_message = response["error"] as? [String:Any] {
+                                if (error_message["error_message"] as? String) != nil {
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                    }
+                }
+                
+            }else{
+                // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+            }
+        }
+    
     
     //MARK:- Custom Button Action -
     @IBAction func backAction(_ sender: UIButton) {
@@ -47,7 +116,7 @@ class SelectDateVC: UIViewController {
     }
 }
 
-extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate{
+extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDelegateAppearance{
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
@@ -56,13 +125,84 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate{
         selectedDate  = currentDate
          self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.EditDateVC)
     }
-    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        if date .compare(Date()) == .orderedAscending {
-            return false
+   
+    
+  func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool{
+
+      let currentDate = self.covertDate(date :date)
+             print(currentDate)
+    
+    if self.arrayAvailDate2.contains(currentDate) { //MARK:- SELECTED DATE
+         
+          return true
+
+      }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
+          return false
+
+      }else {
+          return false
+      }
+  }
+
+
+
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+
+        print(date)
+               let currentDate = self.covertDate(date :date)
+               print(currentDate)
+
+//        if self.arrayDateSelect.contains(dateChoose) == true{
+//            let indexOfB = arrayDateSelect.firstIndex(of:dateChoose )
+//            self.arrayDateSelect.remove(at: indexOfB ?? 0)
+//
+//        }
+    }
+
+
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance,  titleDefaultColorFor date: Date) -> UIColor? {
+
+        print(date)
+               let currentDate = self.covertDate(date :date)
+               print(currentDate)
+        if self.arrayAvailDate2.contains(currentDate)
+        {
+            return UIColor.white
+        }else{
+            return UIColor.blue
         }
-        else {
-            return true
+    }
+
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+
+        print(date)
+                      let currentDate = self.covertDate(date :date)
+                      print(currentDate)
+        if self.arrayAvailDate2.contains(currentDate) {
+            return 1
         }
+        return 0
+    }
+
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+        print(date)
+                             let currentDate = self.covertDate(date :date)
+                             print(currentDate)
+        
+        
+        if self.arrayAvailDate2.contains(currentDate) {
+            return UIColor.init(red: 236/255, green: 0/255.0, blue: 80/255.0, alpha: 1)
+        }
+        return UIColor.clear
+    }
+
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
+        let currentDate = self.covertDate(date :date)
+        print(currentDate)
+        if self.arrayAvailDate2.contains(currentDate) {
+            return UIColor.init(red: 236/255, green: 0/255.0, blue: 80/255.0, alpha: 1)
+        }
+        return appearance.subtitleWeekendColor
     }
     
     

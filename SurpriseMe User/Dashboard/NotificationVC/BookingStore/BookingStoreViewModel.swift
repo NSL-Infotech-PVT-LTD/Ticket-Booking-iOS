@@ -44,16 +44,28 @@ class BookingStoreViewModel {
                                                         self.delegate?.bookingStoreApiResponse(message: "Booking Success", response: [:], isError: false)
                                                       }
                                                       else{
+                                                        
+                                                        print("the error is abhishek")
+                                                        
+                                                        self.delegate?.bookingStoreApiResponse(message: "Booking Success", response: response["error"] as? [String:Any] ?? [:], isError: true)
+                                                        
+                                                        
+                                                        
                                                       }
                                                   }
                                                   else {
                                                       if let error_message = response["error"] as? [String:Any] {
                                                        if (error_message["error_message"] as? String) != nil {
+                                                        print("the error is error_message")
+
+                                                        
                                                           }
                                                       }
                                                   }
                                               }
                                               else {
+                                                print("the error is errorAlert")
+
                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                                               }
                                           }

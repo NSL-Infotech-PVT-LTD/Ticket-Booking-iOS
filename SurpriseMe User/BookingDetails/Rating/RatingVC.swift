@@ -94,8 +94,17 @@ extension RatingVC : RatingViewModelProtocol{
     
     func getRatingApiResponse(message: String, isError: Bool) {
         
+        for controller in (self.navigationController?.viewControllers ?? []) as Array {
+            if controller.isKind(of: BookingVC.self) {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }else{
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+        
         let param = ["booking_id":bookingID ?? 0,"status":"completed_review"] as [String : Any]
-              self.objectViewModel.getCompletedBooking(param: param)
+              //self.objectViewModel.getCompletedBooking(param: param)
     }
     
     func errorAlert(errorTitle: String, errorMessage: String) {

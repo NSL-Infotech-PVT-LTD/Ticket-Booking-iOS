@@ -12,7 +12,7 @@ import SDWebImage
 
 
 class FriendMsgVC: UIViewController {
-
+    
     //MARK:- Outlets -
     @IBOutlet weak var msgTableView: UITableView!
     @IBOutlet weak var bottomConstant: NSLayoutConstraint!
@@ -27,10 +27,12 @@ class FriendMsgVC: UIViewController {
     var reciverData  = GetFreindListModel()
     var name = String()
     var userImage = String()
+    var comingFrom = String()
+    var recieverIDHistoryList = Int()
     
-
+    
     //MARK:- View's Life Cycle -
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         msgTableView.delegate = self
@@ -55,55 +57,55 @@ class FriendMsgVC: UIViewController {
     }
     
     
-     func changeTimeFormate(date: String)-> String {
-               if date == "" || date == nil {
-                   return ""
-               } else {
-                
-
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                if let dt = dateFormatter.date(from: date) {
-                    dateFormatter.locale = Locale.current
-                    dateFormatter.timeZone = TimeZone.current
-                    dateFormatter.dateFormat = "HH:mm"
-                    return dateFormatter.string(from: dt)
-                } else {
-                    return "Unknown date"
-                }
-                
-                
-                
-                
-                
-                
-    //            let formatter = DateFormatter()
-    //            // initially set the format based on your datepicker date / server String
-    //            formatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
-    //            formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-    //
-    //            //        let myString = formatter.string(from: Date()) // string purpose I add here
-    //            // convert your string to date
-    //            let yourDate = formatter.date(from: date)
-    //            //then again set the date format whhich type of output you need
-    //            formatter.dateFormat = "HH:mm"
-    //            // again convert your date to string
-    //            let myStringafd = formatter.string(from: yourDate ?? Date())
-    //            print(myStringafd)
-    //            return myStringafd
-                
-    //           let dateFormatter = DateFormatter()
-    //           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    //           let val_Date = dateFormatter.date(from: date)
-    //           dateFormatter.dateFormat = "HH:mm"
-    //               if val_Date != nil {
-    //                return dateFormatter.string(from: val_Date!)
-    //               }
-    //           return ""
-               }
-           }
+    func changeTimeFormate(date: String)-> String {
+        if date == "" || date == nil {
+            return ""
+        } else {
+            
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+            if let dt = dateFormatter.date(from: date) {
+                dateFormatter.locale = Locale.current
+                dateFormatter.timeZone = TimeZone.current
+                dateFormatter.dateFormat = "HH:mm"
+                return dateFormatter.string(from: dt)
+            } else {
+                return "Unknown date"
+            }
+            
+            
+            
+            
+            
+            
+            //            let formatter = DateFormatter()
+            //            // initially set the format based on your datepicker date / server String
+            //            formatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
+            //            formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+            //
+            //            //        let myString = formatter.string(from: Date()) // string purpose I add here
+            //            // convert your string to date
+            //            let yourDate = formatter.date(from: date)
+            //            //then again set the date format whhich type of output you need
+            //            formatter.dateFormat = "HH:mm"
+            //            // again convert your date to string
+            //            let myStringafd = formatter.string(from: yourDate ?? Date())
+            //            print(myStringafd)
+            //            return myStringafd
+            
+            //           let dateFormatter = DateFormatter()
+            //           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            //           let val_Date = dateFormatter.date(from: date)
+            //           dateFormatter.dateFormat = "HH:mm"
+            //               if val_Date != nil {
+            //                return dateFormatter.string(from: val_Date!)
+            //               }
+            //           return ""
+        }
+    }
     
     
     @IBAction func btnBookAction(_ sender: UIButton) {
@@ -111,32 +113,32 @@ class FriendMsgVC: UIViewController {
         
         
         if reciverData.receiver_id ?? 0 == 0{
-                   
-
-                  
-               }else{
-                   
-                   let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                   
-                   
-                   if userName == reciverData.receiver_name ?? ""{
-                      
-                    userArtistID =  reciverData.sender_id ?? 0
-
-                     
-                   }else{
-                      
-                               userArtistID =  reciverData.receiver_id ?? 0
-                           
-                   }
-                   
-                   
-                   
-               }
+            
+            
+            
+        }else{
+            
+            let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+            
+            
+            if userName == reciverData.receiver_name ?? ""{
+                
+                userArtistID =  reciverData.sender_id ?? 0
+                
+                
+            }else{
+                
+                userArtistID =  reciverData.receiver_id ?? 0
+                
+            }
+            
+            
+            
+        }
         
         
         
-       
+        
         
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
         
@@ -144,72 +146,83 @@ class FriendMsgVC: UIViewController {
     
     func chatHistoryApi() {
         
-       
         
         
-        if reciverData.receiver_id ?? 0 == 0{
-            let param = ["receiver_id": userArtistID ] as [String: Any]
-                   chatVMObject.getParamForChatHistory(param: param)
-            self.lblRecierverName.text = name
-                   let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
-                           let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                                              print(urlStringaa)
-                                              let urlImage = URL(string: urlStringaa)!
-                               picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                                picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        if comingFrom == "NotificationTabs"{
+            
+            let param = ["receiver_id": recieverIDHistoryList ] as [String: Any]
+            chatVMObject.getParamForChatHistory(param: param)
+            
         }else{
             
-            let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-            
-            
-            if userName == reciverData.receiver_name ?? ""{
-                let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
-                       chatVMObject.getParamForChatHistory(param: param)
-                self.lblRecierverName.text = reciverData.sender_name ?? ""
-                       let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
-                               let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                                                  print(urlStringaa)
-                                                  let urlImage = URL(string: urlStringaa)!
-                                   picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            if reciverData.receiver_id ?? 0 == 0{
+                let param = ["receiver_id": userArtistID ] as [String: Any]
+                chatVMObject.getParamForChatHistory(param: param)
+                self.lblRecierverName.text = name
+                let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
+                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                print(urlStringaa)
+                let urlImage = URL(string: urlStringaa)!
+                picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             }else{
-                let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
-                       chatVMObject.getParamForChatHistory(param: param)
-                self.lblRecierverName.text = reciverData.receiver_name ?? ""
-                       let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
-                               let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                                                  print(urlStringaa)
-                                                  let urlImage = URL(string: urlStringaa)!
-                                   picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                
+                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                
+                
+                if userName == reciverData.receiver_name ?? ""{
+                    let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
+                    chatVMObject.getParamForChatHistory(param: param)
+                    self.lblRecierverName.text = reciverData.sender_name ?? ""
+                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
+                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                    print(urlStringaa)
+                    let urlImage = URL(string: urlStringaa)!
+                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                }else{
+                    let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
+                    chatVMObject.getParamForChatHistory(param: param)
+                    self.lblRecierverName.text = reciverData.receiver_name ?? ""
+                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
+                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                    print(urlStringaa)
+                    let urlImage = URL(string: urlStringaa)!
+                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                }
+                
+                
+                
             }
-            
-            
-            
         }
         
-       
+        
+        
+        
+        
+        
     }
     
     func convertTimeInto24(timeData : String) -> String {
-           let dateAsString = timeData
-           let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateAsString = timeData
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-               
-               let date = dateFormatter.date(from: dateAsString)
-                   dateFormatter.timeZone = TimeZone.current
-                   dateFormatter.dateFormat = "h:mm a"
-               return dateFormatter.string(from: date ?? Date())
+        
+        let date = dateFormatter.date(from: dateAsString)
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: date ?? Date())
         
         
-//           let date = dateFormatter.date(from: dateAsString)
-//           dateFormatter.dateFormat = "h:mm a"
-//           let Date12 = dateFormatter.string(from: date ?? Date())
-//           print("12 hour formatted Date:",Date12)
-//           return Date12
-       }
+        //           let date = dateFormatter.date(from: dateAsString)
+        //           dateFormatter.dateFormat = "h:mm a"
+        //           let Date12 = dateFormatter.string(from: date ?? Date())
+        //           print("12 hour formatted Date:",Date12)
+        //           return Date12
+    }
     
     
     func utcToLocal(dateStr: String) -> String? {
@@ -220,7 +233,7 @@ class FriendMsgVC: UIViewController {
         if let date = dateFormatter.date(from: dateStr) {
             dateFormatter.timeZone = TimeZone.current
             dateFormatter.dateFormat = "h:mm a"
-        
+            
             return dateFormatter.string(from: date)
         }
         return nil
@@ -228,14 +241,14 @@ class FriendMsgVC: UIViewController {
     
     
     @objc func tapEdit(gesture: UITapGestureRecognizer) {
-           
-           UIView.animate(withDuration: 0.5, animations: { () -> Void in
-               self.bottomConstant?.constant = 0
-               self.view.layoutIfNeeded()
+        
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.bottomConstant?.constant = 0
+            self.view.layoutIfNeeded()
             self.view.endEditing(true)
             
-           })
-       }
+        })
+    }
     
     @objc func handleKeyboardNotification(_ notification: Notification) {
         
@@ -259,100 +272,141 @@ class FriendMsgVC: UIViewController {
     }
     
     
+    func setData(param : [String:Any])  {
+        self.lblRecierverName.text = param["name"]  as?  String
+        let urlSting : String = "\(Api.imageURLArtist)\(param["image"]  as?  String ?? "")"
+        let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+        print(urlStringaa)
+        let urlImage = URL(string: urlStringaa)!
+        picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+    }
+    
+    
     func scrollToBottom(){
         
         if self.chatHistoryData.count > 0{
             DispatchQueue.main.async {
-             let indexPath = NSIndexPath.init(row: self.chatHistoryData.count - 1, section: 0)
-             self.msgTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
+                let indexPath = NSIndexPath.init(row: self.chatHistoryData.count - 1, section: 0)
+                self.msgTableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: true)
             }
-
+            
         }
         
-       }
+    }
     
     @IBAction func btnSendmessageAction(_ sender: UIButton) {
         
-       var message = txtMssg.text ?? ""
+        var message = txtMssg.text ?? ""
         message = message.trimmingCharacters(in: .whitespacesAndNewlines)
         
         //          message_type = "text"
         if message.count == 0 || txtMssg.text == "Type your message"{
-          //  txtMssg.text = ""
+            //  txtMssg.text = ""
             // toast with a specific duration and position
-//            self.showSimpleAlert(Title: "Alert", message: "Enter Message", inClass: self)
+            //            self.showSimpleAlert(Title: "Alert", message: "Enter Message", inClass: self)
             
             return
         }
         else {
             
+            
+            //            if SocketConnectionManager.shared.socket.isConnected {
             let localTime = Int64(Date().timeIntervalSince1970*1000)
             
             let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
-
-            if reciverData.receiver_id ?? 0 != 0{
+            
+            if comingFrom == "NotificationTabs"{
                 
-                
-                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                           
-                           
-                           if userName == reciverData.receiver_name ?? ""{
-                            
-                            let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                            let data = Data(data1.utf8)
-                                  if SocketConnectionManager.shared.socket.isConnected {
-                                      SocketConnectionManager.shared.socket.write(data: data)
-                                      txtMssg.text = ""
-                                      
-                                  }else{
-                                      SocketConnectionManager.shared.socket.connect()
-                                  }
-
-                            
-                           }else{
-                            let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                            let data = Data(data1.utf8)
-                                  if SocketConnectionManager.shared.socket.isConnected {
-                                      SocketConnectionManager.shared.socket.write(data: data)
-                                      txtMssg.text = ""
-                                      
-                                  }else{
-                                      SocketConnectionManager.shared.socket.connect()
-                                  }
-
+                let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(recieverIDHistoryList)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                let data = Data(data1.utf8)
+                if SocketConnectionManager.shared.socket.isConnected {
+                    SocketConnectionManager.shared.socket.write(data: data)
+                    txtMssg.text = ""
+                    
+                }else{
+                    SocketConnectionManager.shared.socket.connect()
                 }
                 
-                
-                                       
             }else{
-                
-                
-                
-                
-                let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userArtistID)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                            let data = Data(data1.utf8)
-                                  if SocketConnectionManager.shared.socket.isConnected {
-                                      SocketConnectionManager.shared.socket.write(data: data)
-                                      txtMssg.text = ""
-                                      
-                                  }else{
-                                      SocketConnectionManager.shared.socket.connect()
-                                  }
-                
+                if reciverData.receiver_id ?? 0 != 0{
+                    
+                    
+                    let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                    
+                    
+                    if userName == reciverData.receiver_name ?? ""{
+                        
+                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                        let data = Data(data1.utf8)
+                        if SocketConnectionManager.shared.socket.isConnected {
+                            SocketConnectionManager.shared.socket.write(data: data)
+                            txtMssg.text = ""
+                            
+                        }else{
+                            SocketConnectionManager.shared.socket.connect()
+                        }
+                        
+                        
+                    }else{
+                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                        let data = Data(data1.utf8)
+                        if SocketConnectionManager.shared.socket.isConnected {
+                            SocketConnectionManager.shared.socket.write(data: data)
+                            txtMssg.text = ""
+                            
+                        }else{
+                            SocketConnectionManager.shared.socket.connect()
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }else{
+                    
+                    
+                    
+                    
+                    let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userArtistID)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                    let data = Data(data1.utf8)
+                    if SocketConnectionManager.shared.socket.isConnected {
+                        SocketConnectionManager.shared.socket.write(data: data)
+                        txtMssg.text = ""
+                        
+                    }else{
+                        SocketConnectionManager.shared.socket.connect()
+                    }
+                    
+                }
             }
             
             
-           
+            
+            
+            
+            //            }else{
+            ////                SocketConnectionManager.shared.socket.connect()
+            //                Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Chat is disable Right now.Please contact admin", btnOkTitle: "Done") {
+            //                      }
+            //                self.txtMssg.becomeFirstResponder()
+            //            }
+            
+            
+            
+            
+            
+            
         }
     }
-
+    
     
     @IBAction func btnBAckOnPress(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
 }
 extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatHistoryData.count
@@ -372,7 +426,7 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             
             let timeStamp = self.changeTimeFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
             SendCell.lblTime.text =  timeStamp1
-//            SendCell.sendView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
+            //            SendCell.sendView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
             return SendCell
         }
         else /*if reciverID == messageArr[indexPath.row].receiver_id*/ {
@@ -386,57 +440,57 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             
             
             let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
-             ReceiveCell.lblReciveTime.text =  timeStamp
+            ReceiveCell.lblReciveTime.text =  timeStamp
             
             
             if reciverData.receiver_id ?? 0 == 0{
-               
-                       let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
-                               let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                                                  print(urlStringaa)
-                                                  let urlImage = URL(string: urlStringaa)!
-                                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                                     ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                
+                let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
+                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                print(urlStringaa)
+                let urlImage = URL(string: urlStringaa)!
+                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             }else{
                 
                 let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
                 
                 
                 if userName == reciverData.receiver_name ?? ""{
-                   
-                           let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
-                                   let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                                                      print(urlStringaa)
-                                                      let urlImage = URL(string: urlStringaa)!
-                                        ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                                         ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                    
+                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
+                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                    print(urlStringaa)
+                    let urlImage = URL(string: urlStringaa)!
+                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                    ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
                 }else{
-                  
-                           let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
-                                   let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                                                      print(urlStringaa)
-                                                      let urlImage = URL(string: urlStringaa)!
-                                        ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                                         ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                    
+                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
+                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                    print(urlStringaa)
+                    let urlImage = URL(string: urlStringaa)!
+                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                    ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
                 }
-
-            
-            
-//            let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].receiver_image ?? "")"
-//                           let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-//                                              print("the url image of is \(urlSting)")
-//                                              let urlImage = URL(string: urlStringaa)!
-//                                                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//            ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
-            
-            
-//            ReceiveCell.receiveView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
-        }
+                
+                
+                
+                //            let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].receiver_image ?? "")"
+                //                           let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                //                                              print("the url image of is \(urlSting)")
+                //                                              let urlImage = URL(string: urlStringaa)!
+                //                                                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                //            ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                
+                
+                
+                //            ReceiveCell.receiveView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
+            }
             return ReceiveCell
-
+            
         }
-
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -449,7 +503,7 @@ extension FriendMsgVC : UITextViewDelegate{
         if textView.text == "Type your message"{
             textView.text = ""
         }}
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == ""{
             textView.text = "Type your message"
@@ -459,7 +513,7 @@ extension FriendMsgVC : UITextViewDelegate{
 extension FriendMsgVC: chatDetailForChatVCProtocol {
     func cDetail(receiver_name: String, sender_id: Int, reply_id: Int, id: Int, receiver_image: String, sender_name: String, type: String, message: String, receiver_id: Int, message_id: Int, sender_image: String, is_read: Int, attachment: String, thumbnailImage: String) {
         
-            chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage]))
+        chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage]))
         DispatchQueue.main.async {
             //scroll down tableview
             if self.chatHistoryData.count > 0 {
@@ -470,17 +524,26 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
 
 extension FriendMsgVC : SocketConnectionManagerDelegate {
     func onDataReceive(str: String){
+        
+        Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Chat is disable Right now.Please contact admin", btnOkTitle: "Done") {
+        }
+        
     }
 }
 
 extension FriendMsgVC: chatHistoryViewModelProtocol {
-    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel], isError: Bool) {
-         if message == "success" {
+    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel], receiverDetails: [String : Any], isError: Bool) {
+        if message == "success" {
             chatHistoryData = response.map({$0}).reversed()
             self.scrollToBottom()
             msgTableView.reloadData()
+            if comingFrom == "NotificationTabs"{
+                self.setData(param: receiverDetails)
+            }
         }
+        
     }
+    
     
     func errorAlert(errorTitle: String, errorMessage: String) {
         showSimpleAlert(Title: errorTitle, message: errorMessage, inClass: self)

@@ -15,6 +15,7 @@ import UserNotifications
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -45,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                }
                
                application.registerForRemoteNotifications()
+        
+        Stripe.setDefaultPublishableKey(StringFile.Publish_Key)
+
 
         return true
     }
@@ -93,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK:- Funtion check whether user is login or not -
     func checkUserLogin()  {
+        
+        
         if let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool{
             if isLogin == true{
                 let vc = UIStoryboard(name: "Main", bundle: nil)
@@ -153,6 +159,66 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
             print("Message ID: \(messageID)")
         }
         print(userInfo)
+        
+        print("the bookking id is \(userInfo["target_id"])")
+        
+        print("the bookking id is \(userInfo[""])")
+
+        
+        if let userInfo = notification.request.content.userInfo as? [String : Any] {
+                  print(userInfo["target_id"])
+            
+            
+            
+        }
+        print("the bookking id iswithCompletionHandler \(userInfo["target_id"] ?? 0)")
+               userArtistIDBooking = userInfo["target_id"] as? Int
+
+               
+               
+//               if let userInfo = notification.request.content.userInfo as? [AnyHashable : Any] {
+//                   let bookingID = userInfo["target_id"] ?? 0
+//                   userArtistIDBooking = userInfo["target_id"]
+//                   let bookingStatus = userInfo["target_model"] ?? ""
+//                if bookingStatus as! String == "Booking"{
+//                               let rootViewController = self.window!.rootViewController as? UINavigationController
+//        let mainStoryboard = UIStoryboard(name: "BookingDetail", bundle: nil)
+//
+//
+//                                      if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetailVC") as? BookingDetailVC{
+//                                       bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
+//                                      // bookigDetail.bookingID = (bookingID as? Int)!
+//
+//
+//                                          bookigDetail.isComingFrom = "NotificationCame"
+//                                        rootViewController?.pushViewController(bookigDetail, animated: true)
+//
+//                           }else{
+//                               
+//                           }
+//                           }else{
+//                   //
+//                   //
+//                           }
+//                   
+//                   
+//               }
+               
+
+            
+          
+
+                
+//                rootViewController.pushViewController(bookigDetail, animated: true)
+//                                                   rootViewController.pushViewController(bookigDetail, animated: true)
+
+            
+//                                  let controller = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetails") as! BookingDetails
+//           controller.bookingID = userInfo["target_id"] ?? 0
+//                                   rootViewController.pushViewController(controller, animated: true)
+
+        
+        
         completionHandler([[.alert, .sound]])
     }
     
@@ -169,10 +235,49 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         }
         print(userInfo)
         
+        print("the bookking id iswithCompletionHandler \(userInfo["target_id"] ?? 0)")
+        userArtistIDBooking = userInfo["target_id"] as? Int
+
+        
+        
+        if let userInfo = response.notification.request.content.userInfo as? [AnyHashable : Any] {
+            let bookingID = userInfo["target_id"] ?? 0
+            userArtistIDBooking = userInfo["target_id"]
+            let bookingStatus = userInfo["target_model"] ?? ""
+         if bookingStatus as! String == "Booking"{
+                        let rootViewController = self.window!.rootViewController as! UINavigationController
+ let mainStoryboard = UIStoryboard(name: "BookingDetail", bundle: nil)
+
+
+                               if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetailVC") as? BookingDetailVC{
+                                bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
+                               // bookigDetail.bookingID = (bookingID as? Int)!
+
+
+                                   bookigDetail.isComingFrom = "NotificationCame"
+                                   rootViewController.pushViewController(bookigDetail, animated: true)
+
+                    }else{
+                        
+                    }
+                    }else{
+            //
+            //
+                    }
+            
+            
+        }
+        
+        
+        
+            
+            
+               
+
+//            rootViewController.pushWithAnimate(StoryName: "BookingDetail", Controller: "BookingDetailVC")
         completionHandler()
     }
 }
-
 // [END ios_10_message_handling]
 
 @available(iOS 12.0, *)

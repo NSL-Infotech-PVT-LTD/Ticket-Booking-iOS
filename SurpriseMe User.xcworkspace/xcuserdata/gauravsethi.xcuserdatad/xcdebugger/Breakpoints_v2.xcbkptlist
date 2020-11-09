@@ -254,8 +254,8 @@
             filePath = "SurpriseMe User/Profile/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "logoutResponse(isError:errorMessage:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "SurpriseMe User/Profile/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "logoutResponse(isError:errorMessage:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -510,8 +510,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -526,8 +526,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -542,8 +542,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,8 +558,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -574,8 +574,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -590,8 +590,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -606,8 +606,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "uploadMultiImageData(inputUrl:header:parameters:imageParamName:imagesData:completion:)"
             landmarkType = "7">
             <Locations>
@@ -702,8 +702,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -718,8 +718,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,10 +734,42 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1D90D118-A258-4D59-82BD-53061F8738FD - cc3d7d46ab0bb7d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in SurpriseMe_User.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "218"
+                  endingLineNumber = "218"
+                  offsetFromSymbolStart = "531">
+               </Location>
+               <Location
+                  uuid = "1D90D118-A258-4D59-82BD-53061F8738FD - 89fd607d1a0a74b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in SurpriseMe_User.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "219">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -750,8 +782,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -766,8 +798,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -782,10 +814,42 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F5C64F7E-C540-4A98-928E-00E1FF534474 - 38e3b2c77462998f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe_User.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "335">
+               </Location>
+               <Location
+                  uuid = "F5C64F7E-C540-4A98-928E-00E1FF534474 - d84c158f9e0da26a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in SurpriseMe_User.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "1283">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -798,42 +862,10 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "alamofire_uploadVideo(url:method:parameters:profileImage1:profileImgName:hearders:completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F1189F50-1A2D-4CFB-A1EF-ED3259E21685 - 3dff872807ea0944"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in SurpriseMe_User.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "SurpriseMe User"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/API%20Manager/ApiManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "336">
-               </Location>
-               <Location
-                  uuid = "F1189F50-1A2D-4CFB-A1EF-ED3259E21685 - 1635d7fb673e228c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.NSProgress) -&gt; () in closure #2 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in SurpriseMe_User.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "SurpriseMe User"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/API%20Manager/ApiManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "210"
-                  endingLineNumber = "210"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -846,8 +878,8 @@
             filePath = "SurpriseMe User/Profile/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "btnUpdateProfileAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -916,34 +948,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "5807D182-4EC3-4D93-B28B-CC0BAB0CD069 - 5f4cbb6991d95d45"
+                  uuid = "5807D182-4EC3-4D93-B28B-CC0BAB0CD069 - 285d977983397119"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe_User.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "318"
                   endingLineNumber = "318"
-                  offsetFromSymbolStart = "208">
+                  offsetFromSymbolStart = "69">
                </Location>
                <Location
-                  uuid = "5807D182-4EC3-4D93-B28B-CC0BAB0CD069 - 785a10709220d198"
+                  uuid = "5807D182-4EC3-4D93-B28B-CC0BAB0CD069 - f4b3c6080c0fdc4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 () -&gt; () in SurpriseMe_User.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "319"
                   endingLineNumber = "319"
-                  offsetFromSymbolStart = "156">
+                  offsetFromSymbolStart = "60">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1006,8 +1038,8 @@
             filePath = "SurpriseMe User/Profile/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "getProfileData(profile:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1022,8 +1054,8 @@
             filePath = "SurpriseMe User/Profile/ProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "getProfileData(profile:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1108,34 +1140,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0CFD38E6-DC5E-40D6-8921-AA47254B5FF7 - 5f4cbb6991d95d45"
+                  uuid = "0CFD38E6-DC5E-40D6-8921-AA47254B5FF7 - 285d977983397119"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe_User.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "318"
                   endingLineNumber = "318"
-                  offsetFromSymbolStart = "208">
+                  offsetFromSymbolStart = "69">
                </Location>
                <Location
-                  uuid = "0CFD38E6-DC5E-40D6-8921-AA47254B5FF7 - 785a10709220d198"
+                  uuid = "0CFD38E6-DC5E-40D6-8921-AA47254B5FF7 - f4b3c6080c0fdc4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 () -&gt; () in SurpriseMe_User.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "319"
                   endingLineNumber = "319"
-                  offsetFromSymbolStart = "156">
+                  offsetFromSymbolStart = "60">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1262,8 +1294,8 @@
             filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "SetInitialSetup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1278,8 +1310,8 @@
             filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "SetInitialSetup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1390,8 +1422,8 @@
             filePath = "SurpriseMe User/Dashboard/FilterArtistData/FilterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "getFilterArtistDataApiResponse(message:response:isError:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1486,10 +1518,42 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "callApi(url:method:param:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - 7d07ff564859993b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe_User.ApiManeger.callApi(url: Swift.String, method: Alamofire.HTTPMethod, param: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - 70dc10f6cc557698"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in SurpriseMe_User.ApiManeger.callApi(url: Swift.String, method: Alamofire.HTTPMethod, param: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "181">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1502,8 +1566,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "callApi(url:method:param:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1518,8 +1582,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "callApi(url:method:param:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1534,8 +1598,8 @@
             filePath = "SurpriseMe User/API Manager/ApiManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "callApi(url:method:param:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1554,6 +1618,38 @@
             endingLineNumber = "115"
             landmarkName = "fetArtistCategoryApiResponse(message:response:isError:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6691C2CA-BA2A-4A2D-B407-D7C9451A550C - 58d09864f8d5034e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe_User.GetArtistCategoryVC.fetArtistCategoryApiResponse(message: Swift.String, response: Swift.Array&lt;SurpriseMe_User.GetArtistCategoryModel&gt;, isError: Swift.Bool) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/NotificationVC/GetArtistCategoryVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "123">
+               </Location>
+               <Location
+                  uuid = "6691C2CA-BA2A-4A2D-B407-D7C9451A550C - 596d0fa27823a8e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in SurpriseMe_User.GetArtistCategoryVC.fetArtistCategoryApiResponse(message: Swift.String, response: Swift.Array&lt;SurpriseMe_User.GetArtistCategoryModel&gt;, isError: Swift.Bool) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/NotificationVC/GetArtistCategoryVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1607,38 +1703,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "458CE2C5-FFE1-42F8-A76E-503FA0EFBB5A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "49581EFE-4FF2-47BD-B81F-3DCE82FBB119"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "checkRange(num:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "14B97580-6793-4D08-9C92-E9BC28E80D4D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1668,34 +1732,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - 67d7bbdc928b8f07"
+                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - 630b175e39a25a1c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe_User.ForgetPasswordViewModel.getForgetPasswordViewData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
                   endingLineNumber = "32"
-                  offsetFromSymbolStart = "128">
+                  offsetFromSymbolStart = "135">
                </Location>
                <Location
-                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - 529f00f1429c6ca3"
+                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - 5643ac73e9b5b9b8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe_User.ForgetPasswordViewModel.getForgetPasswordViewData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
                   endingLineNumber = "32"
-                  offsetFromSymbolStart = "232">
+                  offsetFromSymbolStart = "279">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1838,40 +1902,40 @@
             filePath = "SurpriseMe User/Chat/FriendListVC/FriendListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "getFriendListViewArray(response:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - d1cc13d29de9f062"
+                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - 2feb759667a0f46d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe_User.FriendListVC.getFriendListViewArray(response: Swift.Array&lt;SurpriseMe_User.GetFreindListModel&gt;) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
-                  offsetFromSymbolStart = "52">
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "50">
                </Location>
                <Location
-                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - 29bed02d7e303af5"
+                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - d799b66984793efa"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (SurpriseMe_User.GetFreindListModel) -&gt; SurpriseMe_User.GetFreindListModel in SurpriseMe_User.FriendListVC.getFriendListViewArray(response: Swift.Array&lt;SurpriseMe_User.GetFreindListModel&gt;) -&gt; ()"
                   moduleName = "SurpriseMe User"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/SurpriseMe%20User/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
-                  offsetFromSymbolStart = "48">
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1886,8 +1950,8 @@
             filePath = "SurpriseMe User/Chat/FriendListVC/FriendListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "getFriendListViewArray(response:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2046,8 +2110,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "btnBookAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2062,8 +2126,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "btnBookAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2072,22 +2136,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6F6B3CF7-40EC-4052-A13C-83E643F98CEF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "btnBookAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A3CF9D3B-E8D6-4A94-819E-01BA986CDED7"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -2103,6 +2151,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "A3CF9D3B-E8D6-4A94-819E-01BA986CDED7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "btnBookAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "6C45C5CC-3202-400D-BA2C-9A637F52768B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2110,8 +2174,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "btnBookAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2120,22 +2184,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F0E37687-D733-4020-BA81-50ACFB037E01"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "btnBookAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "740C047F-6571-4263-AA92-05E65FD658CF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -2151,6 +2199,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "740C047F-6571-4263-AA92-05E65FD658CF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "btnBookAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "1FD8509D-EBB5-4515-8724-6CB22E9CC890"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -2158,8 +2222,8 @@
             filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "btnContinueAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2174,8 +2238,8 @@
             filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "btnContinueAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2190,8 +2254,8 @@
             filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "btnContinueAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2206,8 +2270,8 @@
             filePath = "SurpriseMe User/Chat/FriendListVC/FriendListVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "getFriendListViewArray(response:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2222,10 +2286,10 @@
             filePath = "SurpriseMe User/Profile/ViewProfileVC/ViewProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "btnInstagramAction(_:)"
-            landmarkType = "7">
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "ViewProfileVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2263,16 +2327,800 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CB5C813D-E19A-4AD0-904E-E35AC280739D"
+            uuid = "3D480118-273D-4D9B-AC35-5DB81C9DF75D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B89DCC6C-884E-4FDF-94B2-68AA6BD6EA0F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "userNotificationCenter(_:willPresent:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32B8AC58-D384-4910-B36D-1105A1BE0903"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Common Classes/Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "pushWithAnimate(StoryName:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8026296A-B653-4FAF-8FBC-5A8CD325A458"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Common Classes/Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "pushWithAnimate(StoryName:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A36514D3-C8E8-4812-957C-E1071BC1B0F5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Common Classes/Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "pushWithAnimate(StoryName:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6716F24A-233B-4E68-A5BF-792DE19A8DCA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Common Classes/Extension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "pushWithAnimate(StoryName:Controller:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F69EDBC-EDF2-4DD5-9C2E-8A0C15961BBC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
+            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7E283824-3A09-49B3-B726-BBB5A0413E18"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "userNotificationCenter(_:didReceive:withCompletionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "94168228-8557-4775-8C82-0EDDD1D35A3E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
+            landmarkName = "onDataReceive(str:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "94168228-8557-4775-8C82-0EDDD1D35A3E - de63eb278f574f85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe_User.FriendMsgVC.onDataReceive(str: Swift.String) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Chat/FriendMsgVC/FriendMsgVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "528"
+                  endingLineNumber = "528"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "94168228-8557-4775-8C82-0EDDD1D35A3E - 12ca7da906f58ed5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in SurpriseMe_User.FriendMsgVC.onDataReceive(str: Swift.String) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Chat/FriendMsgVC/FriendMsgVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "529"
+                  endingLineNumber = "529"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "02F4F6D3-284F-4C69-84D9-10C3BC8CC068"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/BookingDetails/BookingVC/BookingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "getBookingListData(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4FE3BC56-EDFF-4424-9BB7-87972E6FB24D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/BookingDetails/BookingVC/BookingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "getBookingListData(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19DB38A8-68AC-4DD7-BE7B-ADFF9EA9392C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/BookingDetails/BookingVC/BookingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "getBookingListData(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B76FAEA4-7AE5-4A4D-A98A-82B4EF879DE6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/ChatHistoryViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getParamForChatHistory(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4BC8CB9A-52AC-4A4A-81E9-5204656D4C62"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/ChatHistoryViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "getParamForChatHistory(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2EB4991F-47EE-41BB-92A3-3B198C062704"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/ChatHistoryViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "getParamForChatHistory(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55E92381-2896-4017-B357-F7A19C8E4E22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Chat/FriendMsgVC/ChatHistoryViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "getParamForChatHistory(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C214604A-12AF-46B2-808B-8C724601783C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "getTimeAvail(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B65A812E-EC89-4F2E-89DF-63EF8B756377"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "getTimeAvail(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4884EFE9-F8DD-4290-A85C-3D2347E04844"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "getTimeAvail(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A990500C-672E-44D7-AF36-D7ACF1A792D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/FilterArtistData/FilterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "touchHappen(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CBB0C317-FD13-4AB6-BA2A-DCFA969C7613"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/FilterArtistData/FilterViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "touchHappen(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE77249E-491D-411D-8EAF-DD482DB1E649"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "198B464E-36DB-4CAB-BE61-5A454BC21380"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F33D1B5F-AFD4-4707-9AC2-D320D149D1AC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "463207D0-470D-4D78-BEBC-45B33F08503E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/NotificationVC/EditDateVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4D770B2-9A21-4D34-BD35-9330A5C9B5AA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Profile/SettingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "handletapviewTAndC(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC300D56-8095-4F51-8C6C-819B14B7B28B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Profile/SettingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "handletapviewTAndC(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "07D50801-2CCB-4496-9762-F66A634548CD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A51F907D-6BF4-4BE6-951C-1A71B8CF486C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C083268-EE66-4A51-9B69-80F343BADE6D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "56CB1C2C-5153-421B-B13A-16F5CCFA7218"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E82B483-613C-46E1-8AE0-161B4EBB227C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/HOmeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0E82B483-613C-46E1-8AE0-161B4EBB227C - f5066c933e146183"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe_User.HOmeViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/HOmeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "1924">
+               </Location>
+               <Location
+                  uuid = "0E82B483-613C-46E1-8AE0-161B4EBB227C - f4b895fe8be195ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.STPPaymentHandlerActionStatus, Swift.Optional&lt;__C.STPPaymentIntent&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SurpriseMe_User.HOmeViewController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/HOmeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B38E36FA-3D10-4B09-939C-03721E4E9901"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/AddCardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "btnAddCardAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE0B45DD-6F07-4B9E-8647-0D36AEC5F2CA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/AddCardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "getToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF5E0BAD-4C5D-4C56-9D62-6D5F204BA7A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/AddCardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "getToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/AddCardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "getToken()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9 - 294a14c0f191108d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe_User.AddCardVC.getToken() -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/AddCardVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "5558">
+               </Location>
+               <Location
+                  uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9 - de866074df0aa678"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.STPToken&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SurpriseMe_User.AddCardVC.getToken() -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Dashboard/AddCardVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "173">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E58CB780-5167-4BF0-9C1B-4BD75E94D63C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/AddCardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "getToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ABC9F195-9D5A-4C55-BB3D-167B4E4F5101"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/AddCardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getToken()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Authentication Module/SignUp Module/SignupViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getSignupData(param:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F - d9238e0113bfae71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe_User.SignUpViewModel.getSignupData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Authentication%20Module/SignUp%20Module/SignupViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1302">
+               </Location>
+               <Location
+                  uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F - d9238e0113bfae71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe_User.SignUpViewModel.getSignupData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "SurpriseMe User"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/SurpriseMe%20User%203/SurpriseMe%20User/Authentication%20Module/SignUp%20Module/SignupViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1700">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "06CF62FB-65A8-4DAF-A452-D16383C92C3C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Authentication Module/SignUp Module/SignupViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "getSignupData(param:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2D253F7-B4D1-4398-BEE1-16A0B72C2CE6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "cancelBookingAction()"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
+            landmarkName = "btnBackOnPress(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DBCE2042-7BA3-483C-8D6D-12E6D2E1EB43"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "409"
+            endingLineNumber = "409"
+            landmarkName = "btnBackOnPress(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

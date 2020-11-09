@@ -26,5 +26,12 @@ pod 'Starscream', '~> 3.0.6'
 pod 'Firebase'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
+pod 'Stripe'
+pod 'NYTPhotoViewer'
+pod 'HSCycleGalleryView'
+pod 'iCarousel'
+
+
+
 
 end

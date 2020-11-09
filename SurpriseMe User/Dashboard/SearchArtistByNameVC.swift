@@ -11,13 +11,16 @@ import SDWebImage
 
 class SearchArtistByNameVC: UIViewController {
     
-    
+    //MARK:- Variable -
     var objectViewModel = SearchArtistViewModel()
     var arrayHomeArtistList = [SearchArtistModel]()
     
+    //MARK:- Outlets -
     @IBOutlet weak var searchTf: UITextField!
     @IBOutlet weak var tblArtist: UITableView!
+    @IBOutlet var noFoundLbl: UILabel!
     
+    //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         let view = UIView()
@@ -27,27 +30,25 @@ class SearchArtistByNameVC: UIViewController {
         searchTf.delegate = self
         self.objectViewModel.delegate = self
         self.tblArtist.isHidden = true
+                self.noFoundLbl.isHidden = true
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+//        self.tblArtist.isHidden = true
+//        self.noFoundLbl.isHidden = true
     }
     
-    
+    //MARK:- Custom Button's Action -
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.back()
     }
     
-    
-    
-    @IBAction func btnFilterAction(_ sender: UIButton) {
+     @IBAction func btnFilterAction(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
         controller.hidesBottomBarWhenPushed = true
         controller.delegate = self
-        
         self.addChild(controller)
         controller.didMove(toParent: self)
         self.view!.addSubview(controller.view!)
@@ -93,7 +94,6 @@ extension SearchArtistByNameVC :UITableViewDataSource,UITableViewDelegate{
         userArtistID = arrayHomeArtistList[indexPath.row].id ?? 0
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ViewProfileVC)
     }
-    
 }
 
 
@@ -102,10 +102,18 @@ extension SearchArtistByNameVC : SendDataPrevoius{
     func getFilterData(message: String, response: [SearchArtistModel]) {
         print("the data is \(response.count)")
         arrayHomeArtistList = response.map({$0})
-        self.tblArtist.isHidden = false
+        
+        if arrayHomeArtistList.count > 0{
+            self.tblArtist.isHidden = false
+            self.noFoundLbl.isHidden = true
+        }else{
+            self.tblArtist.isHidden = true
+            self.noFoundLbl.isHidden = false
+        }
+        
         self.tblArtist.reloadData()
     }
- 
+    
 }
 
 extension SearchArtistByNameVC : UITextFieldDelegate{
@@ -129,7 +137,6 @@ extension SearchArtistByNameVC : UITextFieldDelegate{
             
         } else {
             self.tblArtist.isHidden = true
-            
         }
         return true
     }

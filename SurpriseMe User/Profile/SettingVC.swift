@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Stripe
 
-class SettingVC: UIViewController {
+class SettingVC: UIViewController, STPAuthenticationContext {
+    func authenticationPresentingViewController() -> UIViewController {
+        
+        return UIViewController()
+    }
+    
     
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var viewAboutUs: UIView!
@@ -38,6 +44,8 @@ class SettingVC: UIViewController {
           }
     
     @objc func handletapviewTAndC(_ sender: UITapGestureRecognizer? = nil) {
+        
+        
      selectedIdentifier = "Terms And Conditions"
       self.presentViewController(viewController : ViewControllers.TermsProfileVC , value : Storyboard.Main)
        }

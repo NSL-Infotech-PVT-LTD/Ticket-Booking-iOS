@@ -85,7 +85,17 @@ class ProfileVC: UIViewController {
     
     //MARK:- Back Action -
     @IBAction func btnBackAction(_ sender: UIButton) {
-        self.back()
+        
+        let alert = UIAlertController(title: "Alert!", message: "Do you want to save your profile?", preferredStyle: UIAlertController.Style.alert)
+       alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+            self.back()
+              }))
+         self.present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func btnEditAction(_ sender: UIButton) {

@@ -30,13 +30,13 @@ class NotificationVC: UIViewController {
         NotificationTableView.delegate = self
         NotificationTableView.dataSource = self
         NotificationTableView.reloadData()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-          refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-          NotificationTableView.addSubview(refreshControl)
+       // refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+         // refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+         // NotificationTableView.addSubview(refreshControl)
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        self.hideTable()
+       // self.hideTable()
         refreshControl.endRefreshing()
     }
     
@@ -81,7 +81,7 @@ class NotificationVC: UIViewController {
         
         let dictParam = ["limit":"20" , "page":1] as [String : Any]
         objectViewModel.delegate = self
-        objectViewModel.getParamForNotification(param: dictParam)
+        objectViewModel.getParamForNotification(param: dictParam , page : 1)
     }
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
@@ -89,18 +89,18 @@ class NotificationVC: UIViewController {
     }
     
     //Pagination
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if ((NotificationTableView.contentOffset.y + NotificationTableView.frame.size.height) >= NotificationTableView.contentSize.height)
-        {
-            print("scrollViewDidEndDragging")
-            if isLoadMore == false{
-                self.pageInt = self.pageInt + 1
-                print("scrollViewDidEndDragging page number is \(self.pageInt)")
-                let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
-                objectViewModel.getParamForNotification(param: dictParam)
-            }
-        }
-    }
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if ((NotificationTableView.contentOffset.y + NotificationTableView.frame.size.height) >= NotificationTableView.contentSize.height)
+//        {
+//            print("scrollViewDidEndDragging")
+//            if isLoadMore == false{
+//                self.pageInt = self.pageInt + 1
+//                print("scrollViewDidEndDragging page number is \(self.pageInt)")
+//                let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
+//                objectViewModel.getParamForNotification(param: dictParam, page: self.pageInt)
+//            }
+//        }
+//    }
     
 }
 
@@ -132,14 +132,28 @@ extension NotificationVC : UITableViewDelegate,UITableViewDataSource {
         let notiID = arrayNotification[indexPath.row].id ?? 0
         let dictParam = ["id":notiID]
         objectViewModel.getParamForChangenotificationRead(param: dictParam)
-        let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-               let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
-               controller.hidesBottomBarWhenPushed = true
         let dictData = arrayNotification[indexPath.row]
-        let bookingID = dictData.artist_detail?.booking_id ?? 0
-        controller.isComingFrom = "Notification"
-        controller.bookingID = bookingID
-        navigationController?.pushViewController(controller, animated: true)
+               let bookingID = dictData.artist_detail?.booking_id ?? 0
+        if dictData.artist_detail?.target_model == "Message"{
+            let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "FriendMsgVC") as! FriendMsgVC
+                    controller.hidesBottomBarWhenPushed = true
+             controller.comingFrom = "NotificationTabs"
+             controller.recieverIDHistoryList = dictData.artist_detail?.booking_id ?? 0
+             navigationController?.pushViewController(controller, animated: true)
+            
+        }else{
+            let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
+                          let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
+                          controller.hidesBottomBarWhenPushed = true
+                  
+                   controller.isComingFrom = "Notification"
+                   controller.bookingID = bookingID
+                   navigationController?.pushViewController(controller, animated: true)
+        }
+        
+        
+       
         
         
            
@@ -148,39 +162,21 @@ extension NotificationVC : UITableViewDelegate,UITableViewDataSource {
 
 //Error handling Get Profile Api Here:-
 extension NotificationVC: NotificationViewModelProtocol {
+    func getNotificationApiResponse(message: String, response: [NotificationModel], isError: Bool, isMorePagination: Bool) {
+        print("the notification list status value is \(isError)")
+        if isError == false{
+            self.arrayNotification.removeAll()
+            self.arrayNotification = response.map({$0})
+        }
+        self.NotificationTableView.reloadData()
+
+    }
+    
     func changeNotificationRead(message: String, response: String, errorMessage: String) {
         print("the notifcation is getting")
     }
     
-    func getNotificationApiResponse(message: String, response: [NotificationModel], isError: Bool) {
-        print(response)
-        print("the current page is \(pageInt)")
-        
-        if self.pageInt == 1{
-            self.arrayNotification.removeAll()
-            self.arrayNotification = response.map({$0})
-        }else{
-            self.arrayNotificationLoadMore.removeAll()
-            arrayNotificationLoadMore = response.map({$0})
-            arrayNotification = arrayNotification + arrayNotificationLoadMore
-            
-            if arrayNotificationLoadMore.count == 0{
-                isLoadMore = true
-            }
-            
-//            if arrayNotification.count > 0 {
-//                self.viewNoData.isHidden = true
-//                self.NotificationTableView.isHidden = false
-//            }else{
-//                self.viewNoData.isHidden = false
-//                              self.NotificationTableView.isHidden = true
-//            }
-            
-            
-            print("the page number is arrayHomeArtistListLoadMore\(arrayNotification )")
-        }
-        self.NotificationTableView.reloadData()
-    }
+   
     
     func errorAlert(errorTitle: String, errorMessage: String) {
         

@@ -39,8 +39,8 @@ class SignUpViewModel {
                     if code == 1{
                         self?.delegate?.signupApiResponse(message: dictData?["message"]  as! String, response: dictData ?? [:], isError: false)
                     }else{
-                        let dictError = result["errors"] as? [String:Any]
-                        self?.delegate?.signupApiResponse(message: dictError?["email"]  as! String, response: dictData ?? [:], isError: true)
+                        let dictError = result["error"] as? String
+                        self?.delegate?.signupApiResponse(message: dictError ?? "", response: dictData ?? [:], isError: true)
                     }
                    }else{
                     self?.delegate?.signupApiResponse(message: error!.localizedDescription, response:  [:], isError: true)

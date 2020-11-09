@@ -24,8 +24,12 @@ class BookingDetailsModel: NSObject {
     var dateInString: String?
     var type: String?
     var status: String?
+    var price: Double?
+
     var artist_detail  : ArtistBookingDetailsData?
     var rate_detail  : RatedDetailsData?
+    var reportReason  : ReportResonsArtist?
+
 
 
   convenience init(resposne : [String:Any]) {
@@ -41,12 +45,16 @@ class BookingDetailsModel: NSObject {
     address = json[GetBookingListModelModelModelKey.address].stringValue
 
     
+    
+    price = json[GetBookingListModelModelModelKey.price].doubleValue
+
+    
         id = json[GetBookingListModelModelModelKey.id].intValue
     otp = json[GetBookingListModelModelModelKey.otp].intValue
 
-    
-    
     artist_detail = ArtistBookingDetailsData.init(resposne: json["artist_detail"].dictionaryObject ?? [:])
+    
+    reportReason = ReportResonsArtist.init(resposne: json["params"].dictionaryObject ?? [:])
     
     rate_detail = RatedDetailsData.init(resposne: json["rate_detail"].dictionaryObject ?? [String:Any]())
 
@@ -63,17 +71,40 @@ class BookingDetailsModel: NSObject {
         static let status = "status"
         static let address = "address"
         static let otp = "otp"
+        static let price = "price"
 
-
-        
- }
+  }
 }
+
+
+class ReportResonsArtist: NSObject {
+    
+    var report                      : String?
+  
+    
+    
+    convenience init(resposne : [String:Any]) {
+        self.init()
+        let json = JSON(resposne)
+        report                = json[userModelKey.report].stringValue
+        
+    }
+    
+    struct userModelKey {
+        
+        static let report                    = "report"
+     
+    }
+}
+
 
 class ArtistBookingDetailsData: NSObject {
     
     var ID                      : Int?
     var name                    : String?
     var imageProfile            : String?
+    var currency            : String?
+
     
     
     convenience init(resposne : [String:Any]) {
@@ -82,7 +113,7 @@ class ArtistBookingDetailsData: NSObject {
         ID                  = json[userModelKey.ID].intValue
         name                = json[userModelKey.name].stringValue
         imageProfile        = json[userModelKey.imageProfile].stringValue
-        
+        currency = json[userModelKey.currency].stringValue
     }
     
     struct userModelKey {
@@ -90,6 +121,9 @@ class ArtistBookingDetailsData: NSObject {
         static let ID                    = "id"
         static let name                  = "name"
         static let imageProfile          = "image"
+        static let currency          = "currency"
+
+        
     }
 }
 

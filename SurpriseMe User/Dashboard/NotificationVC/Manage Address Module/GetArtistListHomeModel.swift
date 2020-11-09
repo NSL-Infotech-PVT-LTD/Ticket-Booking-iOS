@@ -15,6 +15,11 @@ class GetArtistListHomeModel: NSObject {
     var artistDescription: String?
     var image: String?
     var id: Int?
+    var rating: Int?
+    var ratingValue: String?
+
+
+    
 
     var category : [JSON]?
   
@@ -24,6 +29,11 @@ class GetArtistListHomeModel: NSObject {
         name = json[HomeScreenModelModelKey.name].stringValue
         artistDescription = json[HomeScreenModelModelKey.description].stringValue
         image = json[HomeScreenModelModelKey.image].stringValue
+        ratingValue = json[HomeScreenModelModelKey.rating].stringValue
+        
+        rating = json[HomeScreenModelModelKey.rating].intValue
+
+
         id = json[HomeScreenModelModelKey.id].intValue
 
         category = json[HomeScreenModelModelKey.category_id_details].array
@@ -35,6 +45,8 @@ class GetArtistListHomeModel: NSObject {
         static let description = "description"
         static let image = "image"
         static let id = "id"
+        static let rating = "rating"
+
 
         static let category_id_details = "category_id_details"
 
