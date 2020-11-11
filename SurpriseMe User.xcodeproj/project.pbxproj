@@ -62,6 +62,10 @@
 		83511CF325145D0000E9C501 /* imageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CEF25145D0000E9C501 /* imageCollectionViewCell.swift */; };
 		83511CF425145D0000E9C501 /* showCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF025145D0000E9C501 /* showCollectionViewCell.swift */; };
 		83511CF625146F1200E9C501 /* GetArtistCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */; };
+		83682EA0255BB16E00C87A45 /* IdelPaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83682E9F255BB16E00C87A45 /* IdelPaymentVC.swift */; };
+		83682EA2255BB18400C87A45 /* IdelPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83682EA1255BB18400C87A45 /* IdelPaymentModel.swift */; };
+		83682EA4255BF8FC00C87A45 /* SchueduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */; };
+		83682EA6255C1EF900C87A45 /* SuccessPaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83682EA5255C1EF100C87A45 /* SuccessPaymentVC.swift */; };
 		8391ACD924FCEABA008C04D3 /* customTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACD824FCEABA008C04D3 /* customTabBar.swift */; };
 		8391ACDD24FD194B008C04D3 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDC24FD194B008C04D3 /* InternetConnection.swift */; };
 		8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDE24FD1AAE008C04D3 /* SignupViewModel.swift */; };
@@ -216,6 +220,10 @@
 		83511CEF25145D0000E9C501 /* imageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCollectionViewCell.swift; sourceTree = "<group>"; };
 		83511CF025145D0000E9C501 /* showCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showCollectionViewCell.swift; sourceTree = "<group>"; };
 		83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistCategoryModel.swift; sourceTree = "<group>"; };
+		83682E9F255BB16E00C87A45 /* IdelPaymentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdelPaymentVC.swift; sourceTree = "<group>"; };
+		83682EA1255BB18400C87A45 /* IdelPaymentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdelPaymentModel.swift; sourceTree = "<group>"; };
+		83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchueduleVC.swift; sourceTree = "<group>"; };
+		83682EA5255C1EF100C87A45 /* SuccessPaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPaymentVC.swift; sourceTree = "<group>"; };
 		8391ACD824FCEABA008C04D3 /* customTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTabBar.swift; sourceTree = "<group>"; };
 		8391ACDC24FD194B008C04D3 /* InternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		8391ACDE24FD1AAE008C04D3 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -637,6 +645,7 @@
 				0D74309B255521FA00A81A42 /* GetCardModel.swift */,
 				0D32E08825554DE800CC10E0 /* LoaderVC.swift */,
 				0D32E08A2555594800CC10E0 /* SelectPaymentVC.swift */,
+				83682EA5255C1EF100C87A45 /* SuccessPaymentVC.swift */,
 			);
 			path = "Payment Module";
 			sourceTree = "<group>";
@@ -677,6 +686,8 @@
 				83511CE92514005E00E9C501 /* FilterArtistData */,
 				83B2F28924FBB3600041A762 /* NotificationVC */,
 				83CDC2AA24F8F93F0020E302 /* Dashboard.storyboard */,
+				83682E9F255BB16E00C87A45 /* IdelPaymentVC.swift */,
+				83682EA1255BB18400C87A45 /* IdelPaymentModel.swift */,
 				83CDC2AC24F8FA7E0020E302 /* HOmeViewController.swift */,
 				83CDC2D524F92CBA0020E302 /* SearchArtistVC.swift */,
 				83CDC2D724F92E160020E302 /* CustomSearchArtistCell.swift */,
@@ -684,6 +695,7 @@
 				83EA841324FAE245001510F5 /* AddCardVC.swift */,
 				83B2F28E24FC208E0041A762 /* CustomManageAddressCell.swift */,
 				83B2F29024FC20AE0041A762 /* CustomHeaderAddressCell.swift */,
+				83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */,
 				83B2F29224FC2CB40041A762 /* SelectAddressTypeVC.swift */,
 				83B2F29424FC2DEE0041A762 /* SelectAddressVC.swift */,
 				83B2F29624FC32E50041A762 /* ManualAddressVC.swift */,
@@ -942,6 +954,7 @@
 				83511CDC2513694D00E9C501 /* SettingVC.swift in Sources */,
 				83F1BB6E24FFA6D9005B5FED /* GetProfileModel.swift in Sources */,
 				83D877642507618E00BFB6D1 /* HomeScreenViewModel.swift in Sources */,
+				83682EA4255BF8FC00C87A45 /* SchueduleVC.swift in Sources */,
 				83CDC2A424F8E38E0020E302 /* Helper.swift in Sources */,
 				83B2F27424FB9FF40041A762 /* FriendMsgVC.swift in Sources */,
 				83EA841624FAE530001510F5 /* ManageAddressVC.swift in Sources */,
@@ -972,6 +985,7 @@
 				83CDC2A524F8E38E0020E302 /* extension+UIView.swift in Sources */,
 				83B95D1424F6267B001ABB9D /* LoginVC.swift in Sources */,
 				83B2F27524FB9FF40041A762 /* sendTableViewCell.swift in Sources */,
+				83682EA6255C1EF900C87A45 /* SuccessPaymentVC.swift in Sources */,
 				83511CF125145D0000E9C501 /* ViewProfileVC.swift in Sources */,
 				832A359C251B2EA400587D8A /* ChangePasswordViewModel.swift in Sources */,
 				8325DAAF250FFAB300A606DD /* BookingStoreViewModel.swift in Sources */,
@@ -983,6 +997,7 @@
 				83511CF225145D0000E9C501 /* serviceCollectionViewCell.swift in Sources */,
 				83511CDA25135E2700E9C501 /* ChangePasswordVC.swift in Sources */,
 				8391ACE524FD6A8D008C04D3 /* LoginViewModel.swift in Sources */,
+				83682EA2255BB18400C87A45 /* IdelPaymentModel.swift in Sources */,
 				8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */,
 				8318DA6524FE250C004F16EF /* ManageAddressModel.swift in Sources */,
 				83B2F29324FC2CB40041A762 /* SelectAddressTypeVC.swift in Sources */,
@@ -1008,6 +1023,7 @@
 				83AD65F2252CAEAB00B10EAA /* BookingDetailsModel.swift in Sources */,
 				83CDC2A324F8E38E0020E302 /* Extension.swift in Sources */,
 				833D2808251D18E8002E654F /* GetUserChatListViewM.swift in Sources */,
+				83682EA0255BB16E00C87A45 /* IdelPaymentVC.swift in Sources */,
 				0D32E08F2555704C00CC10E0 /* cardPaymentListCell.swift in Sources */,
 				83CDC2AD24F8FA7E0020E302 /* HOmeViewController.swift in Sources */,
 				832C889224F503610003B10B /* CustomWalkThroughCell.swift in Sources */,
@@ -1192,7 +1208,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMe UserDebug.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
@@ -1205,7 +1221,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
-				PROVISIONING_PROFILE_SPECIFIER = SurpriseMeUser_AppStore_Profile;
+				PROVISIONING_PROFILE_SPECIFIER = Dev_Mode_Profile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1216,7 +1232,7 @@
 			baseConfigurationReference = 8D79C18DFC0374C660B69917 /* Pods-SurpriseMe User.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
@@ -1229,7 +1245,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
-				PROVISIONING_PROFILE_SPECIFIER = SurpriseMeUser_AppStore_Profile;
+				PROVISIONING_PROFILE_SPECIFIER = Dev_Mode_Profile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

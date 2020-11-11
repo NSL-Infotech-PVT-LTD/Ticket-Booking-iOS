@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User-fram
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework
 ${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework
+${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
 ${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework
@@ -11,10 +12,6 @@ ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/KJNavigationViewAnimation/KJNavigationViewAnimation.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
 ${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework
-${BUILT_PRODUCTS_DIR}/NYTPhotoViewer/NYTPhotoViewer.framework
-${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework
-${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework
-${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework
 ${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework
 ${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
@@ -23,5 +20,4 @@ ${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework
 ${BUILT_PRODUCTS_DIR}/YoutubePlayer-in-WKWebView/YoutubePlayer_in_WKWebView.framework
-${BUILT_PRODUCTS_DIR}/iCarousel/iCarousel.framework
 ${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework

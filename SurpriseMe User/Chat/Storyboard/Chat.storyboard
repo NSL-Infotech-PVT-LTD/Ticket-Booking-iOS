@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +46,7 @@
         <!--Friend ListVC-->
         <scene sceneID="OCt-UX-IWr">
             <objects>
-                <viewController storyboardIdentifier="FriendListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pt9-WM-ZLT" customClass="FriendListVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pt9-WM-ZLT" customClass="FriendListVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lax-ff-w8b">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,7 +109,7 @@
                                         <rect key="frame" x="0.0" y="166" width="320" height="402"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageTableViewCell" rowHeight="103" id="byr-kX-iig" customClass="MessageTableViewCell" customModule="SurpriseMe_User" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageTableViewCell" rowHeight="103" id="byr-kX-iig" customClass="MessageTableViewCell" customModule="SurpriseMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="320" height="103"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="byr-kX-iig" id="d4f-JS-55b">
@@ -141,7 +141,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am good James you say? " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnN-bx-Jt6" userLabel="I am good James you say?">
-                                                                    <rect key="frame" x="80" y="49" width="137" height="29.5"/>
+                                                                    <rect key="frame" x="80" y="49" width="137" height="28"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="Z0J-97-zds"/>
                                                                     </constraints>
@@ -248,9 +248,9 @@
                                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no data" translatesAutoresizingMaskIntoConstraints="NO" id="Odh-7Q-n4l">
-                                                <rect key="frame" x="0.0" y="334" width="320" height="214"/>
+                                                <rect key="frame" x="0.0" y="320" width="320" height="171"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="214" id="Iv9-Ki-R7U"/>
+                                                    <constraint firstAttribute="height" constant="171" id="Iv9-Ki-R7U"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Chat Right Now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gae-dq-ZNw">
@@ -283,7 +283,7 @@
                                             <constraint firstItem="Odh-7Q-n4l" firstAttribute="centerX" secondItem="8hc-0e-4QC" secondAttribute="centerX" id="PtZ-A2-au5"/>
                                             <constraint firstItem="dVJ-Wj-IRx" firstAttribute="top" secondItem="gae-dq-ZNw" secondAttribute="bottom" constant="8" symbolic="YES" id="Z55-4E-gLk"/>
                                             <constraint firstItem="gae-dq-ZNw" firstAttribute="top" secondItem="8hc-0e-4QC" secondAttribute="top" constant="135" id="aqH-UD-kiz"/>
-                                            <constraint firstAttribute="bottom" secondItem="Odh-7Q-n4l" secondAttribute="bottom" id="uQq-vl-ZfP"/>
+                                            <constraint firstAttribute="bottom" secondItem="Odh-7Q-n4l" secondAttribute="bottom" constant="57" id="uQq-vl-ZfP"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -326,7 +326,7 @@
         <!--Friend MsgVC-->
         <scene sceneID="l3L-ej-hQo">
             <objects>
-                <viewController storyboardIdentifier="FriendMsgVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vdZ-by-6v3" customClass="FriendMsgVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendMsgVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vdZ-by-6v3" customClass="FriendMsgVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DLU-Mq-4I0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -420,7 +420,7 @@
                                 <rect key="frame" x="0.0" y="100" width="320" height="363"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recievedTableViewCell" rowHeight="114" id="j8l-MA-3NT" customClass="recievedTableViewCell" customModule="SurpriseMe_User" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recievedTableViewCell" rowHeight="114" id="j8l-MA-3NT" customClass="recievedTableViewCell" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j8l-MA-3NT" id="vZZ-ZG-hra">
@@ -504,7 +504,7 @@
                                             <outlet property="receiverImg" destination="52y-Ec-Lwj" id="Ww4-qc-Hfg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sendTableViewCell" rowHeight="81" id="dpZ-Ip-v3u" customClass="sendTableViewCell" customModule="SurpriseMe_User" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sendTableViewCell" rowHeight="81" id="dpZ-Ip-v3u" customClass="sendTableViewCell" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="142" width="320" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dpZ-Ip-v3u" id="VK7-Gw-sQA">
@@ -573,7 +573,7 @@
                                             <outlet property="sendView" destination="JGD-Sc-hK4" id="o18-v2-4QT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="typingTableViewCell" rowHeight="89" id="ens-vL-bCm" customClass="typingTableViewCell" customModule="SurpriseMe_User" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="typingTableViewCell" rowHeight="89" id="ens-vL-bCm" customClass="typingTableViewCell" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="223" width="320" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ens-vL-bCm" id="yNM-x9-SRU">

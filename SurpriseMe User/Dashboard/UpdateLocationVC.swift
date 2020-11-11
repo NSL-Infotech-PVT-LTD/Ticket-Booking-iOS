@@ -163,9 +163,9 @@ class UpdateLocationVC: UIViewController {
             
             
             
-            dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
         }else{
-            dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
         }
         self.objectViewModel.getParamForAddAddress(param: dictParam)
     }
@@ -186,13 +186,13 @@ class UpdateLocationVC: UIViewController {
         
         if isEdit == true{
             
-            if self.tfLandMark.text! == "" {
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
-            }else if self.tfHouserNumber.text! == ""{
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
-            }
+//            if self.tfLandMark.text! == "" {
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
+//            }else if self.tfHouserNumber.text! == ""{
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
+//            }
                 
-            else if addressType == "" {
+             if addressType == "" {
                 Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
             }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
                 Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
@@ -201,12 +201,13 @@ class UpdateLocationVC: UIViewController {
                 self.setEditAddress()
             }
         }else{
-            if self.tfLandMark.text! == "" {
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
-            }else if self.tfHouserNumber.text! == ""{
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
-            }
-            else if addressType == "" {
+//            if self.tfLandMark.text! == "" {
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
+//            }else if self.tfHouserNumber.text! == ""{
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
+//            }
+//            else
+                if addressType == "" {
                 Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
             }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
                 Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")

@@ -3,6 +3,7 @@ PODS:
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
   - Cosmos (22.1.0)
+  - DropDown (2.3.13)
   - FBSDKCoreKit (7.0.0):
     - FBSDKCoreKit/Basics (= 7.0.0)
     - FBSDKCoreKit/Core (= 7.0.0)
@@ -100,7 +101,6 @@ PODS:
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - HSCycleGalleryView (1.1.2)
-  - iCarousel (1.8.3)
   - IQKeyboardManager (6.5.5)
   - Kingfisher (5.15.0):
     - Kingfisher/Core (= 5.15.0)
@@ -114,29 +114,6 @@ PODS:
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - NYTPhotoViewer (5.0.5):
-    - NYTPhotoViewer/AnimatedGifSupport (= 5.0.5)
-    - NYTPhotoViewer/Core (= 5.0.5)
-  - NYTPhotoViewer/AnimatedGifSupport (5.0.5):
-    - NYTPhotoViewer/Core
-    - PINRemoteImage/iOS (~> 3.0.1)
-    - PINRemoteImage/PINCache
-  - NYTPhotoViewer/Core (5.0.5)
-  - PINCache (3.0.3):
-    - PINCache/Arc-exception-safe (= 3.0.3)
-    - PINCache/Core (= 3.0.3)
-  - PINCache/Arc-exception-safe (3.0.3):
-    - PINCache/Core
-  - PINCache/Core (3.0.3):
-    - PINOperation (~> 1.2.1)
-  - PINOperation (1.2.1)
-  - PINRemoteImage/Core (3.0.3):
-    - PINOperation
-  - PINRemoteImage/iOS (3.0.3):
-    - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.3):
-    - PINCache (~> 3.0.3)
-    - PINRemoteImage/Core
   - PromisesObjC (1.2.10)
   - Protobuf (3.13.0)
   - SDWebImage (5.8.0):
@@ -152,6 +129,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireImage
   - Cosmos (~> 22.1)
+  - DropDown
   - FBSDKLoginKit
   - Firebase
   - Firebase/Analytics
@@ -159,12 +137,10 @@ DEPENDENCIES:
   - FSCalendar
   - GooglePlacePicker
   - HSCycleGalleryView
-  - iCarousel
   - IQKeyboardManager
   - Kingfisher
   - KJNavigationViewAnimation (~> 0.1.0)
   - NVActivityIndicatorView
-  - NYTPhotoViewer
   - SDWebImage (~> 5.0)
   - Starscream (~> 3.0.6)
   - Stripe
@@ -177,6 +153,7 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - Cosmos
+    - DropDown
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -194,16 +171,11 @@ SPEC REPOS:
     - GooglePlaces
     - GoogleUtilities
     - HSCycleGalleryView
-    - iCarousel
     - IQKeyboardManager
     - Kingfisher
     - KJNavigationViewAnimation
     - nanopb
     - NVActivityIndicatorView
-    - NYTPhotoViewer
-    - PINCache
-    - PINOperation
-    - PINRemoteImage
     - PromisesObjC
     - Protobuf
     - SDWebImage
@@ -217,6 +189,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
   FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
   Firebase: 47176280bfba198e531f909cfb1612dad216cb96
@@ -234,16 +207,11 @@ SPEC CHECKSUMS:
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   HSCycleGalleryView: 791af0073b6f27adcefdf57f90cf6fc633bc2ae3
-  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   KJNavigationViewAnimation: 0473485c433c20bdcd4f575ef2244ed25f9a0266
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  NYTPhotoViewer: 6f50ea92f265d54a350b39a7ab7a1b91ca487ff6
-  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
-  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
-  PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
@@ -253,6 +221,6 @@ SPEC CHECKSUMS:
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 70afca5e213bba7e9c5281b8c3a8417e37de96f0
+PODFILE CHECKSUM: 2ffe4f42526ad8a43caad611463e52ad5ef3b75f
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.8.4

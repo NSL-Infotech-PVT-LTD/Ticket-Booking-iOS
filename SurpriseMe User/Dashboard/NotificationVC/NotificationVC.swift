@@ -168,6 +168,16 @@ extension NotificationVC: NotificationViewModelProtocol {
             self.arrayNotification.removeAll()
             self.arrayNotification = response.map({$0})
         }
+        
+        
+        if self.arrayNotification.count > 0 {
+            NotificationTableView.isHidden = false
+            viewNoData.isHidden = true
+        }else{
+            NotificationTableView.isHidden = true
+            viewNoData.isHidden = false
+        }
+        
         self.NotificationTableView.reloadData()
 
     }

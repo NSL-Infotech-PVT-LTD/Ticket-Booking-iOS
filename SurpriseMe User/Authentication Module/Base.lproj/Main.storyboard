@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OSS-Fw-VW7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OSS-Fw-VW7">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +35,7 @@
         <!--Walk ThroughVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="WalkThroughVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WalkThroughVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkThroughVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WalkThroughVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="dfX-hs-kVm" customClass="CustomWalkThroughCell" customModule="SurpriseMe_User" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="dfX-hs-kVm" customClass="CustomWalkThroughCell" customModule="SurpriseMe" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-37" width="408" height="697"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3hV-nm-XZ6">
@@ -171,7 +171,7 @@ Ipsum has been the industry's standard dummy text ever</string>
         <!--Social LoginVC-->
         <scene sceneID="o01-6O-ZGf">
             <objects>
-                <viewController storyboardIdentifier="SocialLoginVC" id="Zxg-Tk-gd0" customClass="SocialLoginVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SocialLoginVC" id="Zxg-Tk-gd0" customClass="SocialLoginVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kvo-MR-0nO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,7 +210,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <rect key="frame" x="20" y="240" width="335" height="400"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you new?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-J0-pWd">
-                                                        <rect key="frame" x="97.5" y="30" width="140.5" height="30"/>
+                                                        <rect key="frame" x="85" y="30" width="165.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="CQF-Tn-Gh4"/>
                                                         </constraints>
@@ -519,7 +519,7 @@ Ipsum has been the industry's standard dummy text ever</string>
         <!--LoginVC-->
         <scene sceneID="QRd-zh-xgX">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="19W-ON-k5f" customClass="LoginVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="19W-ON-k5f" customClass="LoginVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iak-XB-80Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -860,7 +860,7 @@ Ipsum has been the industry's standard dummy text ever</string>
         <!--SignupVC-->
         <scene sceneID="wpA-qR-ooX">
             <objects>
-                <viewController storyboardIdentifier="SignupVC" id="oxo-fD-w5Y" customClass="SignupVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupVC" id="oxo-fD-w5Y" customClass="SignupVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y4n-5X-BS9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1244,7 +1244,7 @@ Ipsum has been the industry's standard dummy text ever</string>
         <!--Terms ProfileVC-->
         <scene sceneID="DUc-9Y-0gn">
             <objects>
-                <viewController storyboardIdentifier="TermsProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOz-sc-t0b" customClass="TermsProfileVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOz-sc-t0b" customClass="TermsProfileVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6YC-8f-pwL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1333,7 +1333,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         <!--Forget PasswordVC-->
         <scene sceneID="KJD-d4-hfH">
             <objects>
-                <viewController storyboardIdentifier="ForgetPasswordVC" id="3t6-Lx-oeq" customClass="ForgetPasswordVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgetPasswordVC" id="3t6-Lx-oeq" customClass="ForgetPasswordVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U03-dV-gbL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1478,7 +1478,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         <!--Dashboard Tab Bar Controller-->
         <scene sceneID="ehp-xL-AZs">
             <objects>
-                <viewController storyboardIdentifier="DashboardTabBarController" id="ZDY-Ki-2T9" customClass="DashboardTabBarController" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardTabBarController" id="ZDY-Ki-2T9" customClass="DashboardTabBarController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="seI-cD-NOh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1493,7 +1493,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         <!--LanguageVC-->
         <scene sceneID="2ye-Te-j1H">
             <objects>
-                <viewController storyboardIdentifier="LanguageVC" id="UVz-RN-EA4" customClass="LanguageVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LanguageVC" id="UVz-RN-EA4" customClass="LanguageVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lqu-go-FMd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1562,7 +1562,7 @@ language</string>
                                         <rect key="frame" x="0.0" y="250" width="375" height="322"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LanguageTableCell" rowHeight="92" id="iz2-dt-t3R" customClass="LanguageTableCell" customModule="SurpriseMe_Artist" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LanguageTableCell" rowHeight="92" id="iz2-dt-t3R" customClass="LanguageTableCell" customModule="SurpriseMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iz2-dt-t3R" id="sh2-FV-VnS">

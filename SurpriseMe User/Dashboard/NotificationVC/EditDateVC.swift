@@ -523,6 +523,11 @@ extension EditDateVC : BookingStoreViewModelProtocol{
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Booking Successfull", btnOkTitle: "Done") {
                 userArtistID = 0
+                
+                
+                
+                self.tabBarController?.selectedIndex = 1
+                
                 for controller in (self.navigationController?.viewControllers ?? []) as Array {
                     if controller.isKind(of: HOmeViewController.self) {
                         self.navigationController!.popToViewController(controller, animated: true)

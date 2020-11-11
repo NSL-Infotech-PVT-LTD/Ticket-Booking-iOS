@@ -16,7 +16,6 @@ import NVActivityIndicatorView
 import YoutubePlayer_in_WKWebView
 import AVKit
 import AVFoundation
-import NYTPhotoViewer
 
 class ViewProfileVC: UIViewController {
     
@@ -242,7 +241,20 @@ class ViewProfileVC: UIViewController {
     @IBAction func btnBookAction(_ sender: UIButton) {
         
         userArtistID =  getArtistProfile?.id ?? 0
-        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+//        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+        
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+               let controller = storyboard.instantiateViewController(withIdentifier: "SchueduleVC") as! SchueduleVC
+               let transition = CATransition()
+               transition.duration = 0.5
+               transition.timingFunction = CAMediaTimingFunction(name: .default)
+               transition.type = .fade
+               transition.subtype = .fromRight
+               controller.hidesBottomBarWhenPushed = true
+               navigationController?.view.layer.add(transition, forKey: kCATransition)
+               navigationController?.pushViewController(controller, animated: false)
+
+        
         
     }
     

@@ -224,48 +224,6 @@ class BookingDetailVC: UIViewController {
         
     }
     
-    //    @IBAction func btnRateArtistAction(_ sender: UIButton) {
-    //        let buttonTitle = sender.titleLabel?.text
-    //        currentTitle = buttonTitle ?? ""
-    //        if buttonTitle ?? "" == "Cancel Booking"{
-    //            self.cancelBookingAction()
-    //        }else if buttonTitle ?? "" == "Pay Now"{
-    //            self.payNowAction()
-    //        }else if buttonTitle ?? "" == "Go To Home"{
-    //            self.tabBarController?.selectedIndex = 0
-    //            self.back()
-    //        }else if buttonTitle ?? "" == "Did Artist reach at your location?"{
-    //            let alert = UIAlertController(title: "", message: "Are you sure?", preferredStyle: UIAlertController.Style.alert)
-    //            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
-    //                self.viewOtp.isHidden = false
-    //                self.viewContainer.isHidden = false
-    //                self.lblOtpNumber.isHidden = false
-    //                self.lblOtpNumber.text = "Your OTP is: \(self.dictProfile?.otp ?? 0)\n Share your OTP with your Artist"
-    //            }))
-    //
-    //            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
-    //                self.viewContainer.isHidden = false
-    //                self.viewPicker.isHidden = false
-    //
-    //            }))
-    //
-    //
-    //
-    //
-    //            // show the alert
-    //            self.present(alert, animated: true, completion: nil)
-    //        }else if buttonTitle ?? "" == "Rate your artist"{
-    //            userArtistID =  dictProfile?.artist_detail?.ID ?? 0
-    //            let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-    //            let controller = storyboard.instantiateViewController(withIdentifier: "RatingVC") as! RatingVC
-    //            controller.artistName = dictProfile?.artist_detail?.name ?? ""
-    //            controller.userImg = dictProfile?.artist_detail?.imageProfile ?? ""
-    //            controller.bookingID = dictProfile?.id ?? 0
-    //            navigationController?.pushViewController(controller, animated: true)
-    //        }
-    //    }
-    
-    
     
     @IBAction func btnCrossDescAction(_ sender: UIButton) {
         self.viewContainer.isHidden = false
@@ -400,16 +358,21 @@ class BookingDetailVC: UIViewController {
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         
         if isComingFrom == "Payment"{
-            let vc = UIStoryboard(name: "Main", bundle: nil)
-            let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
-            let navigationController = UINavigationController(rootViewController: vc1)
-            navigationController.isNavigationBarHidden = true
-            UIApplication.shared.windows.first?.rootViewController = navigationController
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
+//           self.tabBarController?.selectedIndex = 1
+            
+            for controller in (self.navigationController?.viewControllers ?? []) as Array {
+                if controller.isKind(of: BookingVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }else{
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            }
         }else{
             self.navigationController?.popViewController(animated: true)
-            
         }
+//        self.tabBarController?.selectedIndex = 1
+
         
     }
     
@@ -592,7 +555,21 @@ class BookingDetailVC: UIViewController {
 extension BookingDetailVC :BookingDetailsModelViewDelegate{
     func cancelBookingApiResponse(message: String, isError: Bool) {
         if isError == false{
-            self.back()
+            
+            if isComingFrom == "Payment"{
+                for controller in (self.navigationController?.viewControllers ?? []) as Array {
+                               if controller.isKind(of: BookingVC.self) {
+                                   self.navigationController!.popToViewController(controller, animated: true)
+                                   break
+                               }else{
+                                   self.navigationController?.popToRootViewController(animated: true)
+                               }
+                           }
+            }else{
+                 self.back()
+            }
+            
+           
         }else{
         }
     }

@@ -21,30 +21,46 @@ class SelectPayMentTypeVC: UIViewController {
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
+    
     var arrayCardList = [GetCardModel]()
+    
     // MARK: - Constants
-    let cellWidth = (3 / 4) * UIScreen.main.bounds.width
-    let sectionSpacing = (1 / 8) * UIScreen.main.bounds.width
-    let cellSpacing = (1 / 16) * UIScreen.main.bounds.width
+//    let cellWidth = (1 / 4) * UIScreen.main.bounds.width
+//    let sectionSpacing = (1 / 8) * UIScreen.main.bounds.width
+//    let cellSpacing = (1 / 16) * UIScreen.main.bounds.width
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Do any additional setup after loading the view, typically from a nib.
+        collectionView.reloadData()
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: screenWidth, height: 200)
+        layout.minimumInteritemSpacing = 20
+        layout.minimumLineSpacing = 20
+        collectionView!.collectionViewLayout = layout
         
-        let layout = PagingCollectionViewLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: sectionSpacing, bottom: 0, right: sectionSpacing)
-        layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
-        layout.minimumLineSpacing = cellSpacing
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .white
-        collectionView.decelerationRate = .normal
-        collectionView.dataSource = self
+        //        screenSize = UIScreen.main.bounds
+        //        screenWidth = screenSize.width
+        //        screenHeight = screenSize.height
+        
+        //        let layout = PagingCollectionViewLayout()
+        //        layout.scrollDirection = .horizontal
+        //        layout.sectionInset = UIEdgeInsets(top: 0, left: sectionSpacing, bottom: 0, right: sectionSpacing)
+        //        layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+        //        layout.minimumLineSpacing = cellSpacing
+        //
+        //        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        //        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        //        collectionView.showsHorizontalScrollIndicator = false
+        //        collectionView.backgroundColor = .white
+        //        collectionView.decelerationRate = .normal
+        //        collectionView.dataSource = self
         
         //        // Do any additional setup after loading the view, typically from a nib.
         //        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -70,9 +86,9 @@ class SelectPayMentTypeVC: UIViewController {
     
     
     @IBAction func btnSeeAllAction(_ sender: UIButton) {
-         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
-                navigationController?.pushViewController(controller, animated: true)
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     
@@ -80,15 +96,15 @@ class SelectPayMentTypeVC: UIViewController {
         //        layout.itemSize = CGSize(width: UIScreen.main.bounds.width , height: intoCollection.frame.size.height)
         //        layout.scrollDirection = .horizontal
         //        intoCollection!.collectionViewLayout = layout
-//                let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-//                let  width = ((self.collectionView.frame.width - 20) / 3.2)
-//                let height = width + 30
-//                layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//                layout.itemSize = CGSize(width: UIScreen.main.bounds.width , height: collectionView.frame.size.height)
-//        layout.scrollDirection = .vertical
-//                layout.minimumLineSpacing = 0
-//                layout.minimumInteritemSpacing = 0
-//                collectionView!.collectionViewLayout = layout
+        //                let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        //                let  width = ((self.collectionView.frame.width - 20) / 3.2)
+        //                let height = width + 30
+        //                layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        //                layout.itemSize = CGSize(width: UIScreen.main.bounds.width , height: collectionView.frame.size.height)
+        //        layout.scrollDirection = .vertical
+        //                layout.minimumLineSpacing = 0
+        //                layout.minimumInteritemSpacing = 0
+        //                collectionView!.collectionViewLayout = layout
     }
     
     
@@ -106,13 +122,13 @@ class SelectPayMentTypeVC: UIViewController {
     private func registerCollectionViewCells() {
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "customcell")
     }
-    private func applyConstraints() {
-        view.addSubview(collectionView)
-        collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: cellWidth).isActive = true
-    }
+//    private func applyConstraints() {
+//        view.addSubview(collectionView)
+//        collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+//        collectionView.heightAnchor.constraint(equalToConstant: cellWidth).isActive = true
+//    }
     
     
     func getCard() {
@@ -266,8 +282,8 @@ extension SelectPayMentTypeVC: UICollectionViewDelegate,UICollectionViewDataSour
         let dataItem = arrayCardList[indexPath.row]
         print(dataItem.name)
         
-//        cell.heightConstant.constant = view.frame.size.height
-//        cell.widthConstant.constant = self.view.frame.size.width
+        //        cell.heightConstant.constant = view.frame.size.height
+        //        cell.widthConstant.constant = self.view.frame.size.width
         
         cell.lblCardNumber.text = "****  -  ****  -  ****\(dataItem.last4 ?? "")"
         cell.lblUserName.text = "\(dataItem.name ?? "")"

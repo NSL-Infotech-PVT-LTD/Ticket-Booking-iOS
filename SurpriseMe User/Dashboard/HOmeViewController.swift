@@ -57,44 +57,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         
         print("the user custom address is \(currentAddress)")
         
-        
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-        let navController = UINavigationController(rootViewController: VC1)
-        navController.modalPresentationStyle = .overCurrentContext
-        navController.isNavigationBarHidden = true
-        //self.present(navController, animated:true, completion: nil)
-        
-        
-        let iDEALParams = STPPaymentMethodiDEALParams()
-        iDEALParams.bankName = "abn_amro"
-        
-        let billingDetails = STPPaymentMethodBillingDetails()
-        billingDetails.name = "Jane Doe"
-        
-        
-        let paymentIntentParams = STPPaymentIntentParams(clientSecret: "sk_test_4eC39HqLyjWDarjtT1zdp7dc")
-        paymentIntentParams.paymentMethodParams = STPPaymentMethodParams(iDEAL: iDEALParams,
-                                                                         billingDetails: billingDetails,
-                                                                         metadata: nil)
-        
-        STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (handlerStatus, paymentIntent, error) in
-            switch handlerStatus {
-            case .succeeded:
-                print("hello")
-                break
-                // Payment succeeded
-                
-            case .canceled: break
-                // Payment was cancelled
-                
-            case .failed: break
-                // Payment failed
-                
-            @unknown default:
-                fatalError()
-            }
-        }
+
         
         
         
@@ -242,7 +205,18 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     
     @objc func btnBookAction(sender:UIButton)  {
         userArtistID = arrayHomeArtistList[sender.tag].id ?? 0
-        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+//        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+               let controller = storyboard.instantiateViewController(withIdentifier: "SchueduleVC") as! SchueduleVC
+               let transition = CATransition()
+               transition.duration = 0.5
+               transition.timingFunction = CAMediaTimingFunction(name: .default)
+               transition.type = .fade
+               transition.subtype = .fromRight
+               controller.hidesBottomBarWhenPushed = true
+               navigationController?.view.layer.add(transition, forKey: kCATransition)
+               navigationController?.pushViewController(controller, animated: false)
+        
     }
     
     

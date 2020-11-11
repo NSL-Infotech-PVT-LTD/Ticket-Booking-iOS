@@ -79,18 +79,9 @@ class SelectPaymentVC: UIViewController {
 //        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
 //        let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
 //        navigationController?.pushViewController(controller, animated: true)
-        
-        
-        let alert = UIAlertController(title: "", message: "This feature is coming soon", preferredStyle: UIAlertController.Style.alert)
-        //
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.destructive, handler: { action in
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-        //
-        //
-        //        // show the alert
-        self.present(alert, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "IdelPaymentVC") as! IdelPaymentVC
+        navigationController?.pushViewController(controller, animated: true)
         
     }
     
@@ -104,11 +95,14 @@ class SelectPaymentVC: UIViewController {
         
         if arrayCardListCommom.count > 0{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                          let controller = storyboard.instantiateViewController(withIdentifier: "SelectPayMentTypeVC") as! SelectPayMentTypeVC
+                          let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
                           navigationController?.pushViewController(controller, animated: true)
         }else{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                           let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+            
+            controller.isMoreCount = true
+            
                           navigationController?.pushViewController(controller, animated: true)
         }
     }

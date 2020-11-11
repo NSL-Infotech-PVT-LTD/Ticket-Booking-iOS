@@ -8,7 +8,7 @@
 import UIKit
 
 class cardPaymentList: UIViewController {
-
+    
     @IBOutlet weak var cardPaymentListTV: UITableView!
     
     var arrayCardList = [GetCardModel]()
@@ -22,15 +22,24 @@ class cardPaymentList: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Mark:tableview delegate/datasource
         self.getCard()
-       self.viewHeader.addBottomShadow()
+        self.viewHeader.addBottomShadow()
         
         noData.isHidden = true
         cardPaymentListTV.isHidden = true
-
+        
     }
+    
+    
+    
+    @IBAction func btnAddCardAction(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     
     
     @IBAction func btnPayNowAction(_ sender: UIButton) {
@@ -44,53 +53,51 @@ class cardPaymentList: UIViewController {
             if cardID == ""{
                 Helper.showOKAlert(onVC: self, title: "Please select any card", message: "")
             }else{
-                let param = ["booking_id":bookingPaymentID ?? 0 , "status":"confirmed" , "card_id":cardID] as [String : Any]
-                                let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-                                let navController = UINavigationController(rootViewController: VC1)
-                                navController.modalPresentationStyle = .overCurrentContext
-                                navController.isNavigationBarHidden = true
-                                self.present(navController, animated:true, completion: nil)
-                                self.getPaymentForBooking(param: param)
+                let param = ["booking_id":bookingPaymentID ?? 0 , "status":"confirmed" , "card_id":cardID,"payment_method":"card"] as [String : Any]
+                let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
+                let navController = UINavigationController(rootViewController: VC1)
+                navController.modalPresentationStyle = .overCurrentContext
+                navController.isNavigationBarHidden = true
+                self.present(navController, animated:true, completion: nil)
+                self.getPaymentForBooking(param: param)
             }
             
-           
-                 
+            
+            
         }
-       
- }
+        
+    }
     
     
     func getCard() {
-           
-           let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-           
-           
-           if Reachability.isConnectedToNetwork() {
-               LoaderClass.shared.loadAnimation()
-               
-               let dict = ["search":"","limit":"20"]
-               
-               ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
-                   print(response)
-                   LoaderClass.shared.stopAnimation()
-                   if error == nil {
-                       let result = response
-                       
-                       
-                       self.arrayCardList.removeAll()
-                       if let status = result["status"] as? Bool {
-                           if status ==  true{
-                               
-                               
-                               let dataDict = result["data"] as? [String : Any]
-                               if let dataArray = dataDict?["data"] as? [[String : Any]]{
-                                   for index in dataArray{
-                                       print("the index value is \(index)")
-                                       let dataDict = GetCardModel.init(resposne: index)
-                                       self.arrayCardList.append(dataDict)
-                                   }
-                               }
-                               
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            
+            let dict = ["search":"","limit":"20"]
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    
+                    
+                    self.arrayCardList.removeAll()
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            
+                            
+                            let dataDict = result["data"] as? [String : Any]
+                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                for index in dataArray{
+                                    print("the index value is \(index)")
+                                    let dataDict = GetCardModel.init(resposne: index)
+                                    self.arrayCardList.append(dataDict)
+                                }
+                            }
+                            
                             if self.arrayCardList.count > 0{
                                 self.noData.isHidden = true
                                 self.cardPaymentListTV.isHidden = false
@@ -101,32 +108,30 @@ class cardPaymentList: UIViewController {
                                 self.cardPaymentListTV.isHidden = true
                             }
                             
-                               self.cardPaymentListTV.reloadData()
-                           }
-                           else{
-                           }
-                       }
-                       else {
-                           if let error_message = response["error"] as? [String:Any] {
-                               if (error_message["error_message"] as? String) != nil {
-                               }
-                           }
-                       }
-                   }
-                   else {
-                       //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
-                   }
-               }
-               
-           }else{
-               // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
-           }
-       }
-    
-    
-    
-    @IBAction func btnAddCardAction(_ sender: UIButton) {
+                            self.cardPaymentListTV.reloadData()
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if (error_message["error_message"] as? String) != nil {
+                            }
+                        }
+                    }
+                }
+                else {
+                    //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
     }
+    
+    
+    
     
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
@@ -134,61 +139,58 @@ class cardPaymentList: UIViewController {
     }
     
     
-       func getPaymentForBooking(param: [String: Any]) {
-             let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-            print("the token is \(headerToken)")
+    func getPaymentForBooking(param: [String: Any]) {
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        
+        if Reachability.isConnectedToNetwork() {
+            // LoaderClass.shared.loadAnimation()
             
-                           if Reachability.isConnectedToNetwork() {
-                           // LoaderClass.shared.loadAnimation()
-
-                            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
-                                print(response)
-                                LoaderClass.shared.stopAnimation()
-                                               if error == nil {
-                                                   let result = response
-                                                   if let status = result["status"] as? Bool {
-                                                       if status ==  true{
-         
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            
+                            
+                            
                                                        
-                                                        
-                                                        let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-                                                        let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
-                                                        
-                                                        
-                                                        controller.isComingFrom = "Payment"
-                                                        
-                                                        controller.bookingID = bookingPaymentID ?? 0
-                                                        controller.hidesBottomBarWhenPushed = true
-                                                        
-//                                                        let bookingDict = self.arrayBookingList[indexPath.row]
-                                                        
-//                                                        controller.bookingID = bookingDict.id ?? 0
-                                                            self.navigationController?.pushViewController(controller, animated: true)
-                                                        
-                                                        bookingPaymentID  = 0
-                                                         self.dismiss(animated: true, completion: nil)
+                                                       
+                                                       
+                                                       let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                                                       let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                                                       
+                                                       
+                                                       //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
+                                                       
+                                                       //                                                        controller.bookingID = bookingDict.id ?? 0
+                                                       self.navigationController?.pushViewController(controller1, animated: true)
+                            self.dismiss(animated: true, completion: nil)
 
-                                                        
-                                                       }
-                                                       else{
-                                                       }
-                                                   }
-                                                   else {
-                                                       if let error_message = response["error"] as? [String:Any] {
-                                                        if (error_message["error_message"] as? String) != nil {
-                                                           }
-                                                       }
-                                                   }
-                                               }
-                                               else {
-//                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
-                                               }
-                                           }
-
-                           }else{
-//                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+                            
+                            
                         }
-     
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if (error_message["error_message"] as? String) != nil {
+                            }
+                        }
+                    }
+                }
+                else {
+                    //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+        
     }
     
     @objc func btnBookAction(sender:UIButton)  {
@@ -259,8 +261,8 @@ class cardPaymentList: UIViewController {
         
     }
     
-
-
+    
+    
     
     
 }
@@ -275,7 +277,7 @@ extension cardPaymentList : UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cardPaymentListCell", for: indexPath) as! cardPaymentListCell
         
         
-       // cell.viewContainer.addShadowWithCornerRadius(viewObject: cell.viewContainer)
+        // cell.viewContainer.addShadowWithCornerRadius(viewObject: cell.viewContainer)
         let dataItem = arrayCardList[indexPath.row]
         if arraySelectedzIndex == indexPath.row{
             cell.img.image = UIImage.init(named: "tick")
@@ -283,14 +285,14 @@ extension cardPaymentList : UITableViewDelegate,UITableViewDataSource {
             cell.img.image = UIImage.init(named: "untick")
         }
         cell.viewContainer.layer.cornerRadius = 8
-               cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
-               cell.viewContainer.layer.shadowOpacity = 1
-               cell.viewContainer.layer.shadowRadius = 3
-               //MARK:- Shade a view
-               cell.viewContainer.layer.shadowOpacity = 0.5
-               cell.viewContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-               cell.viewContainer.layer.masksToBounds = false
-       cell.lblName.text = dataItem.name ?? ""
+        cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.viewContainer.layer.shadowOpacity = 1
+        cell.viewContainer.layer.shadowRadius = 3
+        //MARK:- Shade a view
+        cell.viewContainer.layer.shadowOpacity = 0.5
+        cell.viewContainer.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        cell.viewContainer.layer.masksToBounds = false
+        cell.lblName.text = dataItem.name ?? ""
         cell.lblCardDetail.text = "**** - **** - **** \(dataItem.last4 ?? "")"
         cell.lblExpireMonth.text = "\(dataItem.exp_month ?? 0)/\(dataItem.exp_year ?? 0)"
         cell.deleteBtn.tag = indexPath.row
@@ -298,7 +300,7 @@ extension cardPaymentList : UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 112
+        return 250
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
