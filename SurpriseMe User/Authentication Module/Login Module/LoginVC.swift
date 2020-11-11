@@ -27,8 +27,7 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         loginViewModel.delegate = self
-       
-       
+        self.tfEmail.placeholder = "abc".localized()
     }
     
     //MARK:- Custom button's Action -

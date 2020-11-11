@@ -505,21 +505,17 @@ extension EditDateVC : BookingStoreViewModelProtocol{
             
             print("the respons is \(response)")
             
-            if let errorDict = response["message"] as? String{
-                print(errorDict)
-                let alert = UIAlertController(title: "", message: errorDict, preferredStyle: .alert)
-                          self.present(alert, animated: true, completion: nil)
-                          
-                          // change to desired number of seconds (in this case 5 seconds)
-                          let when = DispatchTime.now() + 5
-                          DispatchQueue.main.asyncAfter(deadline: when){
-                              // your code with delay
-                              alert.dismiss(animated: true, completion: nil)
-                          }
-                
-                
-                
-            }
+            let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+                      self.present(alert, animated: true, completion: nil)
+                      
+                      // change to desired number of seconds (in this case 5 seconds)
+                      let when = DispatchTime.now() + 5
+                      DispatchQueue.main.asyncAfter(deadline: when){
+                          // your code with delay
+                          alert.dismiss(animated: true, completion: nil)
+                      }
+            
+//        
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Booking Successfull", btnOkTitle: "Done") {
                 userArtistID = 0

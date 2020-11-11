@@ -30,7 +30,7 @@ pod 'Stripe'
 pod 'NYTPhotoViewer'
 pod 'HSCycleGalleryView'
 pod 'iCarousel'
-
+pod 'DropDown'
 
 
 

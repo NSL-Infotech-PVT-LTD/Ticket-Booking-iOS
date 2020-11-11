@@ -17,7 +17,9 @@
 		0DAD1BCC2559200B00AFA29A /* LanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAD1BCB2559200A00AFA29A /* LanguageVC.swift */; };
 		0DAD1BCE255933EC00AFA29A /* GetArtistDateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAD1BCD255933EC00AFA29A /* GetArtistDateList.swift */; };
 		0DAD1BD0255950E600AFA29A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DAD1BCF255950E500AFA29A /* GoogleService-Info.plist */; };
-		0DB6B2C5255960E80074DF6C /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0DB6B2C7255960E80074DF6C /* Localization.strings */; };
+		18F060DC255A79430001E0E8 /* IdelPaymentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F060DB255A79420001E0E8 /* IdelPaymentVC.swift */; };
+		18F060DF255A8F3D0001E0E8 /* IdelPaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F060DE255A8F3D0001E0E8 /* IdelPaymentModel.swift */; };
+		18F061AF255AC9F00001E0E8 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18F061B1255AC9F00001E0E8 /* Localization.strings */; };
 		61BD5B2F786B2C19D79141B4 /* Pods_SurpriseMe_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156C76C3EB7268A2E43496A2 /* Pods_SurpriseMe_User.framework */; };
 		830CDDDD251DB58B002B9752 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830CDDDC251DB58B002B9752 /* Extension + Date.swift */; };
 		830D4BAE251C6EF1002ABAC9 /* GetFreindListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */; };
@@ -158,17 +160,15 @@
 		0DAD1BCB2559200A00AFA29A /* LanguageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageVC.swift; sourceTree = "<group>"; };
 		0DAD1BCD255933EC00AFA29A /* GetArtistDateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistDateList.swift; sourceTree = "<group>"; };
 		0DAD1BCF255950E500AFA29A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0DB6B2BF255960BC0074DF6C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
-		0DB6B2C0255960C00074DF6C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		0DB6B2C1255960C40074DF6C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
-		0DB6B2C2255960CC0074DF6C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		0DB6B2C4255960DD0074DF6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		0DB6B2C6255960E80074DF6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
-		0DB6B2C8255961010074DF6C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localization.strings; sourceTree = "<group>"; };
-		0DB6B2C9255962CB0074DF6C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		0DB6B2CA255962D40074DF6C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		0DB6B2CB255962D80074DF6C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localization.strings; sourceTree = "<group>"; };
 		156C76C3EB7268A2E43496A2 /* Pods_SurpriseMe_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurpriseMe_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F060DB255A79420001E0E8 /* IdelPaymentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdelPaymentVC.swift; sourceTree = "<group>"; };
+		18F060DE255A8F3D0001E0E8 /* IdelPaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdelPaymentModel.swift; sourceTree = "<group>"; };
+		18F061AC255AC9E50001E0E8 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
+		18F061AD255AC9E60001E0E8 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		18F061B0255AC9F00001E0E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
+		18F061B3255ACA150001E0E8 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localization.strings; sourceTree = "<group>"; };
+		18F061B6255ACAC00001E0E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		18F061B8255ACAFE0001E0E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		6B2097EC0D952BA2867A9735 /* Pods-SurpriseMe User.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurpriseMe User.debug.xcconfig"; path = "Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User.debug.xcconfig"; sourceTree = "<group>"; };
 		830CDDDC251DB58B002B9752 /* Extension + Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
 		830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFreindListViewModel.swift; sourceTree = "<group>"; };
@@ -317,7 +317,7 @@
 		0DB6B2BC2559607B0074DF6C /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				0DB6B2C7255960E80074DF6C /* Localization.strings */,
+				18F061B1255AC9F00001E0E8 /* Localization.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -637,6 +637,8 @@
 				0D74309B255521FA00A81A42 /* GetCardModel.swift */,
 				0D32E08825554DE800CC10E0 /* LoaderVC.swift */,
 				0D32E08A2555594800CC10E0 /* SelectPaymentVC.swift */,
+				18F060DB255A79420001E0E8 /* IdelPaymentVC.swift */,
+				18F060DE255A8F3D0001E0E8 /* IdelPaymentModel.swift */,
 			);
 			path = "Payment Module";
 			sourceTree = "<group>";
@@ -805,7 +807,6 @@
 				en,
 				Base,
 				nl,
-				de,
 			);
 			mainGroup = 832C886D24F4ED6B0003B10B;
 			productRefGroup = 832C887724F4ED6C0003B10B /* Products */;
@@ -831,7 +832,7 @@
 				83CDC2C524F91C5A0020E302 /* Montserrat-Light.ttf in Resources */,
 				83B2F27724FB9FF40041A762 /* Chat.storyboard in Resources */,
 				83CDC2C924F91C5A0020E302 /* Montserrat-Bold.ttf in Resources */,
-				0DB6B2C5255960E80074DF6C /* Localization.strings in Resources */,
+				18F061AF255AC9F00001E0E8 /* Localization.strings in Resources */,
 				83CDC2CE24F91C5A0020E302 /* Montserrat-ExtraBold.ttf in Resources */,
 				83CDC2D424F91C5A0020E302 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				0DAD1BD0255950E600AFA29A /* GoogleService-Info.plist in Resources */,
@@ -983,6 +984,7 @@
 				83511CF225145D0000E9C501 /* serviceCollectionViewCell.swift in Sources */,
 				83511CDA25135E2700E9C501 /* ChangePasswordVC.swift in Sources */,
 				8391ACE524FD6A8D008C04D3 /* LoginViewModel.swift in Sources */,
+				18F060DF255A8F3D0001E0E8 /* IdelPaymentModel.swift in Sources */,
 				8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */,
 				8318DA6524FE250C004F16EF /* ManageAddressModel.swift in Sources */,
 				83B2F29324FC2CB40041A762 /* SelectAddressTypeVC.swift in Sources */,
@@ -1008,6 +1010,7 @@
 				83AD65F2252CAEAB00B10EAA /* BookingDetailsModel.swift in Sources */,
 				83CDC2A324F8E38E0020E302 /* Extension.swift in Sources */,
 				833D2808251D18E8002E654F /* GetUserChatListViewM.swift in Sources */,
+				18F060DC255A79430001E0E8 /* IdelPaymentVC.swift in Sources */,
 				0D32E08F2555704C00CC10E0 /* cardPaymentListCell.swift in Sources */,
 				83CDC2AD24F8FA7E0020E302 /* HOmeViewController.swift in Sources */,
 				832C889224F503610003B10B /* CustomWalkThroughCell.swift in Sources */,
@@ -1034,12 +1037,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0DB6B2C7255960E80074DF6C /* Localization.strings */ = {
+		18F061B1255AC9F00001E0E8 /* Localization.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0DB6B2C6255960E80074DF6C /* en */,
-				0DB6B2C8255961010074DF6C /* nl */,
-				0DB6B2CB255962D80074DF6C /* de */,
+				18F061B0255AC9F00001E0E8 /* en */,
+				18F061B3255ACA150001E0E8 /* nl */,
 			);
 			name = Localization.strings;
 			sourceTree = "<group>";
@@ -1048,9 +1050,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				832C888024F4ED6C0003B10B /* Base */,
-				0DB6B2BF255960BC0074DF6C /* nl */,
-				0DB6B2C1255960C40074DF6C /* nl */,
-				0DB6B2C9255962CB0074DF6C /* de */,
+				18F061AC255AC9E50001E0E8 /* nl */,
+				18F061B8255ACAFE0001E0E8 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1059,10 +1060,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				832C888524F4ED6E0003B10B /* Base */,
-				0DB6B2C0255960C00074DF6C /* nl */,
-				0DB6B2C2255960CC0074DF6C /* nl */,
-				0DB6B2C4255960DD0074DF6C /* en */,
-				0DB6B2CA255962D40074DF6C /* de */,
+				18F061AD255AC9E60001E0E8 /* nl */,
+				18F061B6255ACAC00001E0E8 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1192,8 +1191,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMe UserDebug.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
@@ -1205,7 +1204,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
-				PROVISIONING_PROFILE_SPECIFIER = SurpriseMeUser_AppStore_Profile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1216,8 +1215,8 @@
 			baseConfigurationReference = 8D79C18DFC0374C660B69917 /* Pods-SurpriseMe User.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
@@ -1229,7 +1228,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
-				PROVISIONING_PROFILE_SPECIFIER = SurpriseMeUser_AppStore_Profile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -47,7 +47,7 @@ class BookingStoreViewModel {
                                                         
                                                         print("the error is abhishek")
                                                         
-                                                        self.delegate?.bookingStoreApiResponse(message: "Booking Success", response: response["error"] as? [String:Any] ?? [:], isError: true)
+                                                        self.delegate?.bookingStoreApiResponse(message: response["error"] as? String ?? "", response: response["error"] as? [String:Any] ?? [:], isError: true)
                                                         
                                                         
                                                         

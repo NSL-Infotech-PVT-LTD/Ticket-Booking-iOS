@@ -136,8 +136,8 @@ struct Api {
 
     static let artistGetArtistRating    = basePublicUrl + "customer/getartistrating"
     static let artistAvailableSlot    = basePublicUrl + "customer/bookslot/list-date"
-
-
+    static let idelPayment           = basePublicUrl + "customer/create-payment-intent"
+    
     
     
     
