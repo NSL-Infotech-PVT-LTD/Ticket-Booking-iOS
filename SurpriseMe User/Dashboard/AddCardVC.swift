@@ -20,7 +20,7 @@ class AddCardVC: UIViewController {
     @IBOutlet var viewHeader: UIView!
     @IBOutlet var txtCardNumber: UITextField!
     
-    var arrayExpire = ["11/2020","11/2020","12/2020","1/2021","2/2021","3/2021","4/2021","5/2021"]
+    var arrayExpire = ["11/2020","12/2020","1/2021","2/2021","3/2021","4/2021","5/2021"]
     let pickerView = UIPickerView()
     var months = String()
     var year = String()
