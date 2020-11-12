@@ -9,6 +9,7 @@
 import UIKit
 import Stripe
 import DropDown
+import SafariServices
 
 enum IDEALBank: Int, CaseIterable {
     case ABNAMRO = 0,
@@ -119,8 +120,8 @@ class IdelPaymentVC: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-                LoaderClass.shared.stopAnimation()
-
+        LoaderClass.shared.stopAnimation()
+        
     }
     
     @IBAction func showDropDownOnPress(_ sender: UIButton) {
@@ -155,46 +156,53 @@ class IdelPaymentVC: UIViewController {
         }
     }
     
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        dismiss(animated: true)
+    }
+    
     func pay() {
+        
+        idealPayment = true
+        NotificationCenter.default.post(name: .myNotificationKey, object: self.index, userInfo: ["idealPayment": true])
         LoaderClass.shared.loadAnimation()
         guard let paymentIntentClientSecret = paymentIntentClientSecret else {
             return;
         }
         
-   
         let iDEALParams = STPPaymentMethodiDEALParams()
         iDEALParams.bankName = bankCode
-        
         // Collect customer information
         let billingDetails = STPPaymentMethodBillingDetails()
-                billingDetails.name = txtUserName.text
+        billingDetails.name = txtUserName.text
         
         let paymentIntentParams = STPPaymentIntentParams(clientSecret: paymentIntentClientSecret)
         
         paymentIntentParams.paymentMethodParams = STPPaymentMethodParams(iDEAL: iDEALParams,
                                                                          billingDetails: billingDetails,
                                                                          metadata: nil)
-        paymentIntentParams.returnURL = "surprisemecustomer://stripe-redirect"
+                paymentIntentParams.returnURL = "surpriseme://stripe-redirect" //original
+//        paymentIntentParams.returnURL = "smartsafezone://stripe-redirect" //testing by jujhar
         
         STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams,
                                                   authenticationContext: self)
         { (handlerStatus, paymentIntent, error) in
             switch handlerStatus {
             case .succeeded:
-
-                var param = ["booking_id":bookingPaymentID ?? 0 , "status":"confirmed" , "payment_method":"ideal"] as [String : Any]
-                param["payment_params"] = ["clientSecret":paymentIntent?.clientSecret ?? "" as Any ,"paymentMethodId":paymentIntent?.paymentMethodId ?? "","created":paymentIntent?.created ?? ""]
-                                let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-                                let navController = UINavigationController(rootViewController: VC1)
-                                navController.modalPresentationStyle = .overCurrentContext
-                                navController.isNavigationBarHidden = true
                 idealPayment = true
+                var param = ["booking_id":bookingPaymentID ?? 0 , "status": "confirmed" , "payment_method": "ideal"] as [String : Any]
+                param["payment_params"] = ["clientSecret":paymentIntent?.clientSecret ?? "" as Any ,"paymentMethodId":paymentIntent?.paymentMethodId ?? "","created":paymentIntent?.created ?? ""]
+//                let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
+//                let navController = UINavigationController(rootViewController: VC1)
+//                navController.modalPresentationStyle = .overCurrentContext
+//                navController.isNavigationBarHidden = true
+//                idealPayment = true
+//
+//                self.navigationController?.pushViewController(navController, animated: true)
+//
                 
-                self.navigationController?.pushViewController(navController, animated: true)
-
-                
-//                                self.present(navController, animated:true, completion: nil)
-                                self.getPaymentForBooking(param: param)
+                //                                self.present(navController, animated:true, completion: nil)
+                //                self.getPaymentForBooking(param: param)
                 
             case .canceled:
                 self.displayAlert(title: "Canceled",
@@ -266,9 +274,17 @@ extension IdelPaymentVC:IdelViewModelProtocol{
                     if let status = result["status"] as? Bool {
                         if status ==  true{
                             //
-                            let dictData = result["data"] as? [String:Any]
-                            let userProfile = dictData?["user"] as? [String:Any]
-                       
+//                            let dictData = result["data"] as? [String:Any]
+//                            let userProfile = dictData?["user"] as? [String:Any]
+//                            let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
+//                            let navController = UINavigationController(rootViewController: VC1)
+//                            navController.modalPresentationStyle = .overCurrentContext
+//                            navController.isNavigationBarHidden = true
+//                            idealPayment = true
+//                            self.navigationController?.present(navController, animated: true, completion: nil)
+//                            self.navigationController?.pushViewController(navController, animated: true)
+                            NotificationCenter.default.post(name: .myNotificationKey, object: self.index, userInfo: ["idealPayment": true])
+                            
                         }
                         else{
                         }
@@ -312,8 +328,12 @@ extension IdelPaymentVC : UITextFieldDelegate{
             self.btnNext.backgroundColor = UIColor.init(red: 230/255, green: 0/255, blue: 83/255, alpha: 1)
             
         } else {
-           self.btnNext.backgroundColor = UIColor.init(red: 203/255, green: 203/255, blue: 203/255, alpha: 1)
+            self.btnNext.backgroundColor = UIColor.init(red: 203/255, green: 203/255, blue: 203/255, alpha: 1)
         }
         return true
     }
+}
+
+extension Notification.Name {
+    public static let myNotificationKey = Notification.Name(rawValue: "myNotificationKey")
 }

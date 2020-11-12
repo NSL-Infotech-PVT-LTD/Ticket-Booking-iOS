@@ -161,9 +161,20 @@ class UpdateLocationVC: UIViewController {
         var dictParam = [String : Any]()
         if addressType == "Other"{
             
+            if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                           dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+                       }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                           dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+                       }
             
             
-            dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            else{
+                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            }
+            
+            
         }else{
             dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
         }
@@ -261,8 +272,22 @@ extension UpdateLocationVC : GMSMapViewDelegate{
             print("the edit address is \(position.target.latitude)")
             tfAddress.text = modelObjectDict.street_address ?? ""
             self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude )", withLongitude: "\(position.target.longitude )")
-            self.tfLandMark.text = modelObjectDict.country ?? ""
-            self.tfHouserNumber.text = modelObjectDict.state ?? ""
+            
+            if modelObjectDict.country ?? "" == "self.tfLandMark.text" || modelObjectDict.country ?? "" == ""{
+                
+            }else{
+                self.tfLandMark.text = modelObjectDict.country ?? ""
+
+            }
+            
+            
+            if modelObjectDict.state ?? "" == "self.tfHouserNumber.text" || modelObjectDict.state ?? "" == ""{
+                
+            }else{
+                self.tfLandMark.text = modelObjectDict.state ?? ""
+
+            }
+            
             addressLat = "\(position.target.latitude )"
             addressLong = "\(position.target.longitude )"
             
@@ -351,18 +376,7 @@ extension UpdateLocationVC : CLLocationManagerDelegate{
 //                            self.locationTf.text = results[0]["formatted_address"] as? String
                             for component in addressComponents {
                                 if let temp = component.object(forKey: "types") as? [String] {
-//                                    if (temp[0] == "postal_code") {
-//                                        self.pincode = component["long_name"] as? String
-//                                    }
-//                                    if (temp[0] == "locality") {
-//                                        self.city = component["long_name"] as? String
-//                                    }
-//                                    if (temp[0] == "administrative_area_level_1") {
-//                                        self.state = component["long_name"] as? String
-//                                    }
-//                                    if (temp[0] == "country") {
-//                                        self.country = component["long_name"] as? String
-//                                    }
+//                               
                                 }
                             }
                         }

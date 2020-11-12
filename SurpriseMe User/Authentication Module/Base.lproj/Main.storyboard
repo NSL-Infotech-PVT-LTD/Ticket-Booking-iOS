@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OSS-Fw-VW7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OSS-Fw-VW7">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,7 +43,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jUZ-vt-wqq">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iQG-dG-sYt">
                                     <size key="itemSize" width="408" height="697"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -123,7 +124,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="currentPageIndicatorTintColor" red="0.91764705879999997" green="0.039215686270000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1k-KE-mvo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1k-KE-mvo">
                                 <rect key="frame" x="40" y="587" width="295" height="50"/>
                                 <color key="backgroundColor" red="0.86274509803921573" green="0.047058823529411764" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -143,7 +144,8 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="z1k-KE-mvo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="2ES-Yz-1om"/>
                             <constraint firstItem="jUZ-vt-wqq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9XH-cV-dCk"/>
@@ -155,7 +157,6 @@ Ipsum has been the industry's standard dummy text ever</string>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="z1k-KE-mvo" secondAttribute="bottom" constant="30" id="oPQ-3y-cfA"/>
                             <constraint firstItem="xcQ-b3-fkS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wX1-mv-d8b"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="bc7-Ps-6F6"/>
                     <connections>
@@ -238,7 +239,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Eqy-Mv-KUf"/>
                                                             <constraint firstItem="xgq-T7-B5A" firstAttribute="centerY" secondItem="0wA-rH-MRE" secondAttribute="centerY" id="MBB-Ss-7cB"/>
@@ -275,7 +276,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="4RW-gc-yZW"/>
                                                             <constraint firstItem="oR4-Kr-NCy" firstAttribute="centerX" secondItem="wn9-Wb-Vpy" secondAttribute="centerX" id="LlM-gC-CIW"/>
@@ -470,6 +471,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Okk-Dw-EuZ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RW2-Er-75d" firstAttribute="top" secondItem="Okk-Dw-EuZ" secondAttribute="top" id="5xw-dq-kSZ"/>
@@ -483,7 +485,6 @@ Ipsum has been the industry's standard dummy text ever</string>
                             <constraint firstItem="RW2-Er-75d" firstAttribute="trailing" secondItem="Okk-Dw-EuZ" secondAttribute="trailing" id="urc-EJ-bI9"/>
                             <constraint firstItem="89u-Hk-qWn" firstAttribute="width" secondItem="kvo-MR-0nO" secondAttribute="width" id="xWg-82-2dB"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Okk-Dw-EuZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="k2y-pe-Cmy"/>
                     <connections>
@@ -603,7 +604,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="kbf-u8-I5K" firstAttribute="leading" secondItem="dj1-dl-qJU" secondAttribute="leading" id="Don-dh-gvU"/>
                                                             <constraint firstItem="dj1-dl-qJU" firstAttribute="leading" secondItem="ICB-SU-sdF" secondAttribute="trailing" constant="8" id="P71-ag-OuU"/>
@@ -664,7 +665,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="EII-E3-5hc" secondAttribute="trailing" constant="51" id="2WU-DF-VDf"/>
                                                             <constraint firstItem="EII-E3-5hc" firstAttribute="leading" secondItem="w1B-OB-0og" secondAttribute="leading" id="5PY-AW-VaW"/>
@@ -763,7 +764,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <constraint firstAttribute="height" constant="28" id="xxC-T7-L7N"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbL-au-DjE">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbL-au-DjE">
                                                 <rect key="frame" x="36" y="554" width="303" height="40"/>
                                                 <color key="backgroundColor" red="0.83137254901960778" green="0.078431372549019607" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -799,7 +800,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="96y-9F-ibn" firstAttribute="leading" secondItem="sbL-au-DjE" secondAttribute="leading" id="1KO-Yg-4oh"/>
                                             <constraint firstAttribute="trailing" secondItem="7cV-I9-mCy" secondAttribute="trailing" id="5bv-z7-i1C"/>
@@ -836,7 +837,8 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="APS-8B-xo8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vLX-pb-H4O" firstAttribute="height" secondItem="iak-XB-80Y" secondAttribute="height" priority="750" id="D5E-X3-jxq"/>
                             <constraint firstItem="vLX-pb-H4O" firstAttribute="width" secondItem="iak-XB-80Y" secondAttribute="width" id="Da8-lv-YX2"/>
@@ -845,7 +847,6 @@ Ipsum has been the industry's standard dummy text ever</string>
                             <constraint firstItem="jDM-Ih-DAV" firstAttribute="leading" secondItem="APS-8B-xo8" secondAttribute="leading" id="eoJ-rY-uTk"/>
                             <constraint firstAttribute="bottom" secondItem="jDM-Ih-DAV" secondAttribute="bottom" id="fPj-IX-Bh2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="APS-8B-xo8"/>
                     </view>
                     <navigationItem key="navigationItem" id="Hrj-9Y-XNb"/>
                     <connections>
@@ -953,7 +954,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="qOy-zj-CBb" secondAttribute="bottom" constant="17.5" id="1rs-Ck-Qel"/>
                                                             <constraint firstAttribute="height" constant="80" id="DsP-g3-JlP"/>
@@ -1006,7 +1007,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="EcV-Zx-9nU" firstAttribute="leading" secondItem="ZUb-Kp-Y3N" secondAttribute="trailing" constant="8" id="7E5-el-1AQ"/>
                                                             <constraint firstItem="EcV-Zx-9nU" firstAttribute="centerY" secondItem="ZUb-Kp-Y3N" secondAttribute="centerY" id="ATO-5s-op4"/>
@@ -1061,7 +1062,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="3eb-aK-0Ei"/>
                                                             <constraint firstAttribute="trailing" secondItem="Eiu-1j-iqv" secondAttribute="trailing" constant="36" id="9LU-WT-i4D"/>
@@ -1114,7 +1115,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="4jF-IQ-Fxb" firstAttribute="centerY" secondItem="tNb-kU-Vfp" secondAttribute="centerY" id="2Px-xx-YQk"/>
                                                             <constraint firstItem="4jF-IQ-Fxb" firstAttribute="leading" secondItem="tNb-kU-Vfp" secondAttribute="trailing" constant="8" id="4F1-XN-k2C"/>
@@ -1157,7 +1158,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <constraint firstItem="tfZ-43-3A0" firstAttribute="top" secondItem="Xuk-vd-Y8Y" secondAttribute="bottom" constant="12" id="vOP-Go-Dlu"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gen-nm-m1C">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gen-nm-m1C">
                                                 <rect key="frame" x="36" y="544" width="342" height="46"/>
                                                 <color key="backgroundColor" red="0.83137254901960778" green="0.078431372549019607" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -1187,7 +1188,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Gen-nm-m1C" firstAttribute="top" secondItem="veq-kj-H2Y" secondAttribute="bottom" constant="46" id="E2D-LT-dRW"/>
                                             <constraint firstItem="PmF-2l-vxm" firstAttribute="top" secondItem="RPw-Wn-zXK" secondAttribute="top" constant="30" id="MgS-Ol-h5g"/>
@@ -1213,7 +1214,8 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="BdG-oy-bdC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="RPw-Wn-zXK" firstAttribute="height" secondItem="Y4n-5X-BS9" secondAttribute="height" multiplier="0.910714" priority="750" constant="12.410930000000008" id="6AJ-km-ZeM"/>
                             <constraint firstItem="cx5-PV-yXq" firstAttribute="top" secondItem="Y4n-5X-BS9" secondAttribute="top" id="EGO-Fs-zbm"/>
@@ -1225,7 +1227,6 @@ Ipsum has been the industry's standard dummy text ever</string>
                             <constraint firstAttribute="bottom" secondItem="oH1-Jc-nZl" secondAttribute="bottom" id="rWL-c5-hbT"/>
                             <constraint firstItem="oH1-Jc-nZl" firstAttribute="top" secondItem="cx5-PV-yXq" secondAttribute="bottom" id="t9p-Z3-6Rg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="BdG-oy-bdC"/>
                     </view>
                     <navigationItem key="navigationItem" id="OxH-bl-ZKc"/>
                     <size key="freeformSize" width="414" height="755"/>
@@ -1264,7 +1265,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="G1c-xI-v1A"/>
                                     <constraint firstItem="JyK-8O-meH" firstAttribute="leading" secondItem="Td5-Fb-WrK" secondAttribute="leading" constant="18" id="ZI8-3y-IOe"/>
@@ -1285,7 +1286,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tBy-e5-3C6">
                                         <rect key="frame" x="0.0" y="37" width="335" height="497"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="497" id="HvC-tC-VVZ"/>
                                         </constraints>
@@ -1308,7 +1309,8 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="G1s-BQ-rbV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Td5-Fb-WrK" firstAttribute="top" secondItem="G1s-BQ-rbV" secondAttribute="top" id="HIG-oz-97e"/>
                             <constraint firstItem="Td5-Fb-WrK" firstAttribute="top" secondItem="G1s-BQ-rbV" secondAttribute="top" id="Hei-Sj-dp1"/>
@@ -1319,7 +1321,6 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                             <constraint firstItem="G1s-BQ-rbV" firstAttribute="bottom" secondItem="CWD-bB-0cO" secondAttribute="bottom" constant="40" id="ssO-ej-PAT"/>
                             <constraint firstItem="Td5-Fb-WrK" firstAttribute="trailing" secondItem="G1s-BQ-rbV" secondAttribute="trailing" id="yLu-Ks-MHw"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="G1s-BQ-rbV"/>
                     </view>
                     <connections>
                         <outlet property="headerLbl" destination="tLx-Oc-iry" id="RGN-Jn-u81"/>
@@ -1353,7 +1354,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Bew-vc-6fg" secondAttribute="bottom" constant="5" id="KvE-6P-ZcZ"/>
                                     <constraint firstItem="Bew-vc-6fg" firstAttribute="leading" secondItem="sRH-eG-M0p" secondAttribute="leading" constant="18" id="k2G-IP-PFJ"/>
@@ -1402,7 +1403,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="bfS-rh-iMU" firstAttribute="top" secondItem="vEN-9L-aCz" secondAttribute="top" constant="7" id="0J7-Rk-Mib"/>
                                     <constraint firstItem="Sbo-Wg-Oy7" firstAttribute="top" secondItem="DPq-4b-e9I" secondAttribute="bottom" constant="10" id="FqN-St-omq"/>
@@ -1426,7 +1427,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0S-2T-Ybq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0S-2T-Ybq">
                                 <rect key="frame" x="40" y="572" width="295" height="45"/>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.039215686270000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1446,7 +1447,8 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KzK-pX-3CJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vEN-9L-aCz" firstAttribute="top" secondItem="vkK-Fs-THs" secondAttribute="bottom" constant="81" id="2jW-2S-K5O"/>
                             <constraint firstItem="nsh-hw-6DX" firstAttribute="leading" secondItem="KzK-pX-3CJ" secondAttribute="leading" id="5KU-2R-m1i"/>
@@ -1463,7 +1465,6 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                             <constraint firstItem="vEN-9L-aCz" firstAttribute="leading" secondItem="KzK-pX-3CJ" secondAttribute="leading" constant="40" id="pLf-fZ-VNx"/>
                             <constraint firstItem="KzK-pX-3CJ" firstAttribute="trailing" secondItem="vEN-9L-aCz" secondAttribute="trailing" constant="40" id="r46-zM-cij"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="KzK-pX-3CJ"/>
                     </view>
                     <connections>
                         <outlet property="tfEmail" destination="Sbo-Wg-Oy7" id="LsW-Ah-GaO"/>
@@ -1482,8 +1483,8 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                     <view key="view" contentMode="scaleToFill" id="seI-cD-NOh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cFw-Ub-6V3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89P-IG-Rfw" sceneMemberID="firstResponder"/>
@@ -1539,7 +1540,7 @@ language</string>
                                             <constraint firstAttribute="height" constant="250" id="ggX-is-L5q"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-AV-hVL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-AV-hVL">
                                         <rect key="frame" x="30" y="582" width="315" height="60"/>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -1560,7 +1561,7 @@ language</string>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WDV-FT-Mym">
                                         <rect key="frame" x="0.0" y="250" width="375" height="322"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LanguageTableCell" rowHeight="92" id="iz2-dt-t3R" customClass="LanguageTableCell" customModule="SurpriseMe" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="92"/>
@@ -1586,7 +1587,7 @@ language</string>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="TIH-vw-ldu" firstAttribute="centerY" secondItem="f4b-9b-p3r" secondAttribute="centerY" id="Pk7-yh-qO1"/>
                                                                 <constraint firstItem="u8M-nU-hEb" firstAttribute="centerY" secondItem="f4b-9b-p3r" secondAttribute="centerY" id="Vns-Pf-6jh"/>
@@ -1611,7 +1612,7 @@ language</string>
                                         </prototypes>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="smB-cf-xPe" firstAttribute="leading" secondItem="3XX-9T-fUk" secondAttribute="leading" id="A4S-bb-nqx"/>
                                     <constraint firstItem="Nai-AV-hVL" firstAttribute="leading" secondItem="3XX-9T-fUk" secondAttribute="leading" constant="30" id="ACY-UV-YNb"/>
@@ -1629,7 +1630,8 @@ language</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gen-qd-Bjs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3XX-9T-fUk" firstAttribute="top" secondItem="lqu-go-FMd" secondAttribute="top" id="F24-zc-rXV"/>
                             <constraint firstItem="gen-qd-Bjs" firstAttribute="bottom" secondItem="Nai-AV-hVL" secondAttribute="bottom" constant="25" id="No5-80-7vN"/>
@@ -1638,7 +1640,6 @@ language</string>
                             <constraint firstItem="gen-qd-Bjs" firstAttribute="trailing" secondItem="3XX-9T-fUk" secondAttribute="trailing" id="tBZ-dK-Taw"/>
                             <constraint firstItem="3XX-9T-fUk" firstAttribute="leading" secondItem="gen-qd-Bjs" secondAttribute="leading" id="yPk-Tz-Qg1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="gen-qd-Bjs"/>
                     </view>
                     <connections>
                         <outlet property="btnNext" destination="Nai-AV-hVL" id="a2S-do-Njo"/>
@@ -1675,5 +1676,8 @@ language</string>
         <image name="tick_selected" width="64" height="64"/>
         <image name="tick_unselect" width="68" height="68"/>
         <image name="username" width="12" height="14.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

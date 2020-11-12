@@ -89,11 +89,19 @@ class BookingDetailVC: UIViewController {
         self.viewOtherResons.isHidden = true
         self.lblOtpNumber.isHidden = true
         self.reportReasonLbl.isHidden = true
-        
-        
-        
         self.pickerView.reloadAllComponents()
+        
+        let nc = NotificationCenter.default
+             nc.addObserver(self, selector: #selector(userLoggedIn), name: Notification.Name("BookingDetail"), object: nil)
     }
+   
+    
+    @objc func userLoggedIn(userInfo:Notification){
+           let data = userInfo.userInfo?["target_id"] as? String
+           //MARK: Load start
+          
+           
+       }
     
     func setAllData() {
         
@@ -200,6 +208,8 @@ class BookingDetailVC: UIViewController {
         transition.subtype = .fromRight
         
         if  isComingFrom == "NotificationCame"{
+            
+            print("the id is \(bookingIDNotification)")
             bookingPaymentID = userArtistIDBooking as? Int
         }else{
             bookingPaymentID = bookingID
@@ -358,7 +368,6 @@ class BookingDetailVC: UIViewController {
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         
         if isComingFrom == "Payment"{
-//           self.tabBarController?.selectedIndex = 1
             
             for controller in (self.navigationController?.viewControllers ?? []) as Array {
                 if controller.isKind(of: BookingVC.self) {
@@ -376,58 +385,7 @@ class BookingDetailVC: UIViewController {
         
     }
     
-    //    @IBAction func btnRefreshAction(_ sender: UIButton) {
-    //        if dictProfile?.status == "pending"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = false
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //            self.btnStatus.setTitle("Cancel Booking", for: .normal)
-    //        }else if dictProfile?.status == "cancel"{
-    //            self.btnStatus.isHidden = true
-    //            self.btnChat.isHidden = true
-    //        }else if dictProfile?.status == "accepted"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = false
-    //            self.btnStatus.setTitle("Pay Now", for: .normal)
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //        }else if dictProfile?.status == "rejected"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = true
-    //            self.btnStatus.setTitle("Go To Home", for: .normal)
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //        }else if dictProfile?.status == "confirmed"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = false
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //            let dateValue = "\("2020-10-09")" + " " + "\(dictProfile?.from_time ?? "")"
-    //                        let returnValue =   self.compareTime(performTime: "\(dateValue)")
-    //            if returnValue == true{
-    //                self.btnStatus.setTitle("Did Artist reach at your location?", for: .normal)
-    //            }else{
-    //                self.btnStatus.setTitle("Artist will reach at your location", for: .normal)
-    //            }
-    //        }else if dictProfile?.status == "processing"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = true
-    //            self.btnStatus.backgroundColor = UIColor.white
-    //            self.btnStatus.setTitleColor(.black, for: .normal)
-    //            self.btnStatus.setTitle("Your artist is start to perform!", for: .normal)
-    //        }else if dictProfile?.status == "completed"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = true
-    //            self.btnChat.setTitle("You artist completed his performance", for: .normal)
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //            self.btnStatus.setTitle("Rate your artist", for: .normal)
-    //        }
-    //        self.btnRateArtistAction(self.btnStatus)
-    //
-    //    }
-    
+  
     func setInitialData(dataItem :BookingDetailsModel?)  {
         lblNewStatus.text = "\(dataItem?.status?.capitalized ?? "")"
         btnLiveConcert.setTitle(dataItem?.type?.capitalized ?? "" , for: .normal)
@@ -547,6 +505,15 @@ class BookingDetailVC: UIViewController {
             self.btnChatTopBar.isHidden = true
             self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = "Reason:- \(dataItem?.reportReason?.report ?? "")"
+        }else if dataItem?.status == "payment_failed"{
+            self.viewContainerRating.isHidden = true
+            
+            self.btnStatus.isHidden = false
+            self.btnChatTopBar.isHidden = false
+            lblPaymentStatus.text = "Not paid"
+            self.btnStatus.setTitle("Pay Now", for: .normal)
+            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
+            self.btnStatus.setTitleColor(.white, for: .normal)
         }
     }
 }

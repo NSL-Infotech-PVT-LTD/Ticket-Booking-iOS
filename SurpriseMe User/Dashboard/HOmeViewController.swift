@@ -58,7 +58,8 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         print("the user custom address is \(currentAddress)")
         
 
-        
+        self.showToast(message: "Your Toast Message", font: .systemFont(ofSize: 12.0))
+
         
         
         self.setDashLine()

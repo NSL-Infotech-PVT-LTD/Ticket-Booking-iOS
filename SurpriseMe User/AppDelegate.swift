@@ -167,63 +167,49 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         if let userInfo = notification.request.content.userInfo as? [String : Any] {
                   print(userInfo["target_id"])
-            
-            
-            
         }
+        
+        let bookingStatus = userInfo["target_model"] ?? ""
         print("the bookking id iswithCompletionHandler \(userInfo["target_id"] ?? 0)")
-               userArtistIDBooking = userInfo["target_id"] as? Int
-
-               
-               
-//               if let userInfo = notification.request.content.userInfo as? [AnyHashable : Any] {
-//                   let bookingID = userInfo["target_id"] ?? 0
-//                   userArtistIDBooking = userInfo["target_id"]
-//                   let bookingStatus = userInfo["target_model"] ?? ""
-//                if bookingStatus as! String == "Booking"{
-//                               let rootViewController = self.window!.rootViewController as? UINavigationController
-//        let mainStoryboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-//
-//
-//                                      if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetailVC") as? BookingDetailVC{
-//                                       bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
-//                                      // bookigDetail.bookingID = (bookingID as? Int)!
-//
-//
-//                                          bookigDetail.isComingFrom = "NotificationCame"
-//                                        rootViewController?.pushViewController(bookigDetail, animated: true)
-//
-//                           }else{
-//                               
-//                           }
-//                           }else{
-//                   //
-//                   //
-//                           }
-//                   
-//                   
-//               }
-               
-
-            
-          
-
-                
-//                rootViewController.pushViewController(bookigDetail, animated: true)
-//                                                   rootViewController.pushViewController(bookigDetail, animated: true)
-
-            
-//                                  let controller = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetails") as! BookingDetails
-//           controller.bookingID = userInfo["target_id"] ?? 0
-//                                   rootViewController.pushViewController(controller, animated: true)
-
-        
-        
-        completionHandler([[.alert, .sound]])
+        userArtistIDBooking = userInfo["target_id"] as? Int
+        if bookingStatus as! String == "Booking"{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BookingDetail"), object: nil, userInfo: ["data": userInfo["target_id"] ?? ""])
+        }
+       completionHandler([[.alert, .sound]])
     }
     
     
-    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+           let stripeHandled = Stripe.handleURLCallback(with: url)
+           if stripeHandled {
+            let urlString = url.absoluteString
+            let string = urlString
+            if string.range(of:"failed") != nil {
+                print("exists")
+                let vc = UIStoryboard(name: "Dashboard", bundle: nil)
+                let vc1 = vc.instantiateViewController(withIdentifier: "LoaderVC")
+                let navigationController = UINavigationController(rootViewController: vc1)
+                navigationController.isNavigationBarHidden = true
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+            }else{
+                print("hello")
+                let vc = UIStoryboard(name: "Dashboard", bundle: nil)
+                let vc1 = vc.instantiateViewController(withIdentifier: "LoaderVC")
+                let navigationController = UINavigationController(rootViewController: vc1)
+                navigationController.isNavigationBarHidden = true
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+            }
+
+               return true
+           }
+        
+        
+       
+   
+           return false
+       }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
@@ -237,9 +223,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         print("the bookking id iswithCompletionHandler \(userInfo["target_id"] ?? 0)")
         userArtistIDBooking = userInfo["target_id"] as? Int
-
-        
-        
+ 
         if let userInfo = response.notification.request.content.userInfo as? [AnyHashable : Any] {
             let bookingID = userInfo["target_id"] ?? 0
             userArtistIDBooking = userInfo["target_id"]
@@ -247,7 +231,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
          if bookingStatus as! String == "Booking"{
                         let rootViewController = self.window!.rootViewController as! UINavigationController
  let mainStoryboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-
 
                                if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetailVC") as? BookingDetailVC{
                                 bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0

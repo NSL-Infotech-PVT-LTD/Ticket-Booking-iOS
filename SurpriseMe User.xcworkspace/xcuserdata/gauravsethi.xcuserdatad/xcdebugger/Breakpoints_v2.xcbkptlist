@@ -804,33 +804,33 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F1189F50-1A2D-4CFB-A1EF-ED3259E21685 - 8aa2c1bd210c4ad8"
+                  uuid = "F1189F50-1A2D-4CFB-A1EF-ED3259E21685 - a213d34e343ca005"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "218"
-                  endingLineNumber = "218"
+                  startingLineNumber = "219"
+                  endingLineNumber = "219"
                   offsetFromSymbolStart = "484">
                </Location>
                <Location
-                  uuid = "F1189F50-1A2D-4CFB-A1EF-ED3259E21685 - 494717f3436dfa17"
+                  uuid = "F1189F50-1A2D-4CFB-A1EF-ED3259E21685 - 61f60500565d10ca"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Alamofire.MultipartFormData) -&gt; () in SurpriseMe.ApiManeger.alamofire_uploadVideo(url: Swift.String, method: Alamofire.HTTPMethod, parameters: Swift.Dictionary&lt;Swift.String, Any&gt;, profileImage1: Swift.Optional&lt;__C.UIImage&gt;, profileImgName: Swift.String, hearders: Swift.Dictionary&lt;Swift.String, Swift.String&gt;, completion: (Swift.AnyObject, Swift.Optional&lt;__C.NSError&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "218"
-                  endingLineNumber = "218"
+                  startingLineNumber = "219"
+                  endingLineNumber = "219"
                   offsetFromSymbolStart = "884">
                </Location>
             </Locations>
@@ -914,38 +914,6 @@
             endingLineNumber = "319"
             landmarkName = "successAlert(susccessTitle:successMessage:from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5807D182-4EC3-4D93-B28B-CC0BAB0CD069 - ded1da6bc9db0ce6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SurpriseMe.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
-                  moduleName = "SurpriseMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "319"
-                  endingLineNumber = "319"
-                  offsetFromSymbolStart = "208">
-               </Location>
-               <Location
-                  uuid = "5807D182-4EC3-4D93-B28B-CC0BAB0CD069 - b5a8351ec343fb07"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in SurpriseMe.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
-                  moduleName = "SurpriseMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "320"
-                  endingLineNumber = "320"
-                  offsetFromSymbolStart = "156">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1106,38 +1074,6 @@
             endingLineNumber = "318"
             landmarkName = "successAlert(susccessTitle:successMessage:from:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0CFD38E6-DC5E-40D6-8921-AA47254B5FF7 - ded1da6bc9db0ce6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SurpriseMe.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
-                  moduleName = "SurpriseMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "319"
-                  endingLineNumber = "319"
-                  offsetFromSymbolStart = "208">
-               </Location>
-               <Location
-                  uuid = "0CFD38E6-DC5E-40D6-8921-AA47254B5FF7 - b5a8351ec343fb07"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in SurpriseMe.UpdateLocationVC.successAlert(susccessTitle: Swift.String, successMessage: Swift.String, from: Swift.Bool) -&gt; ()"
-                  moduleName = "SurpriseMe"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/UpdateLocationVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "320"
-                  endingLineNumber = "320"
-                  offsetFromSymbolStart = "156">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1492,48 +1428,48 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - 14cc76c092a596cf"
+                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - 3c7d643387b57c15"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_4C000391C29930916E7B6CACBF793086_func88"
+                  symbolName = "globalinit_33_4C000391C29930916E7B6CACBF793086_func89"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
                   offsetFromSymbolStart = "20">
                </Location>
                <Location
-                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - a001a7361b448030"
+                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - 88b0b5c50e746aed"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe.ApiManeger.sharedInstance.unsafeMutableAddressor : SurpriseMe.ApiManeger"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - f79d22902cdbcbef"
+                  uuid = "8033F777-76BF-436F-BBE4-1AECE878594F - df2c306339eb2132"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "static SurpriseMe.ApiManeger.sharedInstance.getter : SurpriseMe.ApiManeger"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/API%20Manager/ApiManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
                   offsetFromSymbolStart = "76">
                </Location>
             </Locations>
@@ -1683,14 +1619,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - 7451b13f093f96cd"
+                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - d11674cec632ccf9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe.ForgetPasswordViewModel.getForgetPasswordViewData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -1698,14 +1634,14 @@
                   offsetFromSymbolStart = "128">
                </Location>
                <Location
-                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - f408661ebb75a5e0"
+                  uuid = "F30FA5F3-A511-42AF-95DD-587E81CE478E - 514fa3ef7478ffd4"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe.ForgetPasswordViewModel.getForgetPasswordViewData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/Forget%20Password%20Module/ForgetPasswordViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "32"
@@ -1859,14 +1795,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - 9e8ded9c659d346d"
+                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - 1395a0ec896b9f1a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe.FriendListVC.getFriendListViewArray(response: Swift.Array&lt;SurpriseMe.GetFreindListModel&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
@@ -1874,14 +1810,14 @@
                   offsetFromSymbolStart = "52">
                </Location>
                <Location
-                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - 8647e4fe4afd8dda"
+                  uuid = "C4D88E95-5FD5-464D-AAB9-E448E40AD7AA - b5fa98ea60b26ad"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (SurpriseMe.GetFreindListModel) -&gt; SurpriseMe.GetFreindListModel in SurpriseMe.FriendListVC.getFriendListViewArray(response: Swift.Array&lt;SurpriseMe.GetFreindListModel&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Chat/FriendListVC/FriendListVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "269"
@@ -2787,14 +2723,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9 - 54f8085f1262ddac"
+                  uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9 - ed3bd66fa560f06f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe.AddCardVC.getToken() -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/AddCardVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/AddCardVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "170"
@@ -2802,14 +2738,14 @@
                   offsetFromSymbolStart = "5456">
                </Location>
                <Location
-                  uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9 - 1731cc47089410ac"
+                  uuid = "42D93A62-AACB-4198-B64D-DBF950A675D9 - aef21277bf963d6f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.STPToken&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SurpriseMe.AddCardVC.getToken() -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/AddCardVC.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/AddCardVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "171"
@@ -2867,14 +2803,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F - db3733a580b8ea7"
+                  uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F - 35a0ee1e8cd7ba86"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe.SignUpViewModel.getSignupData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/SignUp%20Module/SignupViewModel.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/SignUp%20Module/SignupViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "40"
@@ -2882,14 +2818,14 @@
                   offsetFromSymbolStart = "1008">
                </Location>
                <Location
-                  uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F - db3733a580b8ea7"
+                  uuid = "83A170D1-36B7-4073-83E6-ED3307830A4F - 35a0ee1e8cd7ba86"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe.SignUpViewModel.getSignupData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Customer%202/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/SignUp%20Module/SignupViewModel.swift"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Authentication%20Module/SignUp%20Module/SignupViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "40"
@@ -3073,6 +3009,54 @@
             endingLineNumber = "183"
             landmarkName = "pay()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A2DC9F0-D59A-4EDA-BF9F-8FA932E898D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Dashboard/IdelPaymentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "pay()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6A2DC9F0-D59A-4EDA-BF9F-8FA932E898D2 - 9b48efc76b6d1422"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SurpriseMe.IdelPaymentVC.pay() -&gt; ()"
+                  moduleName = "SurpriseMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/IdelPaymentVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "181"
+                  endingLineNumber = "181"
+                  offsetFromSymbolStart = "1304">
+               </Location>
+               <Location
+                  uuid = "6A2DC9F0-D59A-4EDA-BF9F-8FA932E898D2 - efb8fc754e6ec884"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.STPPaymentHandlerActionStatus, Swift.Optional&lt;__C.STPPaymentIntent&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SurpriseMe.IdelPaymentVC.pay() -&gt; ()"
+                  moduleName = "SurpriseMe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gauravsethi/Downloads/Costumer%20New/surpriseme_ios_customer/SurpriseMe%20User/Dashboard/IdelPaymentVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "232">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
