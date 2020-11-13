@@ -27,36 +27,6 @@ class Extension: NSObject{
 
 }
 
-extension Bundle {
-    private static var bundle: Bundle!
-
-    public static func localizedBundle() -> Bundle! {
-        if bundle == nil {
-            let appLang = UserDefaults.standard.string(forKey: "app_lang") ?? "en"
-            let path = Bundle.main.path(forResource: appLang, ofType: "lproj")
-            bundle = Bundle(path: path!)
-        }
-
-        return bundle;
-    }
-
-    public static func setLanguage(lang: String) {
-        UserDefaults.standard.set(lang, forKey: "app_lang")
-        let path = Bundle.main.path(forResource: lang, ofType: "lproj")
-        bundle = Bundle(path: path!)
-    }
-}
-
-extension String {
-    func localized() -> String {
-        return NSLocalizedString(self, tableName: nil, bundle: Bundle.localizedBundle(), value: "", comment: "")
-    }
-
-    func localizeWithFormat(arguments: CVarArg...) -> String{
-        return String(format: self.localized(), arguments: arguments)
-    }
-}
-
 private var __maxLengths = [UITextField: Int]()
 extension UITextField {
     @IBInspectable var maxLength: Int {
@@ -144,6 +114,25 @@ extension UIViewController{
                self.navigationController?.pushViewController(vc1!, animated: true)
     }
     
+    
+    func showToast(message : String, font: UIFont) {
+
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.7, options: .curveEaseOut, animations: {
+             toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
     
     func presentViewController(viewController : String , value : String)  {
       

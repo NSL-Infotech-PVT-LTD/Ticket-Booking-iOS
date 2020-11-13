@@ -20,6 +20,8 @@ class SearchArtistByNameVC: UIViewController {
     @IBOutlet weak var tblArtist: UITableView!
     @IBOutlet var noFoundLbl: UILabel!
     
+    @IBOutlet weak var viewNoData: UIView!
+    
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class SearchArtistByNameVC: UIViewController {
         searchTf.delegate = self
         self.objectViewModel.delegate = self
         self.tblArtist.isHidden = true
-                self.noFoundLbl.isHidden = true
+                self.viewNoData.isHidden = true
         
     }
     
@@ -105,10 +107,10 @@ extension SearchArtistByNameVC : SendDataPrevoius{
         
         if arrayHomeArtistList.count > 0{
             self.tblArtist.isHidden = false
-            self.noFoundLbl.isHidden = true
+            self.viewNoData.isHidden = true
         }else{
             self.tblArtist.isHidden = true
-            self.noFoundLbl.isHidden = false
+            self.viewNoData.isHidden = false
         }
         
         self.tblArtist.reloadData()
@@ -137,6 +139,7 @@ extension SearchArtistByNameVC : UITextFieldDelegate{
             
         } else {
             self.tblArtist.isHidden = true
+            self.viewNoData.isHidden = true
         }
         return true
     }
@@ -149,7 +152,18 @@ extension SearchArtistByNameVC : SearchArtistViewModelProtocol{
             }
         }else{
             arrayHomeArtistList = response.map({$0})
-            self.tblArtist.isHidden = false
+            
+            if arrayHomeArtistList.count > 0{
+                self.tblArtist.isHidden = false
+                self.viewNoData.isHidden = true
+            }else{
+                self.tblArtist.isHidden = true
+                self.viewNoData.isHidden = false
+            }
+            
+            
+            
+//            self.tblArtist.isHidden = false
             self.tblArtist.reloadData()
         }
     }

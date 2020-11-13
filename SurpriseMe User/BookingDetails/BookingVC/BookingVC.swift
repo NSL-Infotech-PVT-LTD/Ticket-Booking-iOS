@@ -26,20 +26,55 @@ class BookingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        NotificationCenter.default.addObserver(forName: .myNotificationKey,
+//        object: nil,
+//        queue: nil,
+//        using: checkIdealPayment)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         pageInt = 1
-        self.hideTable()
-
+        
+        if idealPayment == true{
+            
+        }else{
+            self.hideTable()
+        }
+        
+//
+        
+        print("hii i am abhishek")
+        
+        }
+        
+    func checkIdealPayment(notification:Notification) -> Void {
+        guard let idealPayment = notification.userInfo!["idealPayment"] as? Bool else { return }
+        if idealPayment == true {
+//
+        }else{
+            self.hideTable()
+        }
     }
+        
+    func navigateToSuccess() {
+        let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+        let navController = UINavigationController(rootViewController: controller1)
+        navController.modalPresentationStyle = .overCurrentContext
+        navController.isNavigationBarHidden = true
+        //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
+
+        //                                                        controller.bookingID = bookingDict.id ?? 0
+        self.navigationController?.pushViewController(controller1, animated: true)
+        
+    }
+        
     
     func hideTable()  {
         viewNoData.isHidden = true
         BookingTableView.isHidden = true
-        self.getBookingListData(param: pageInt)
+        self.getBookingListData(param: 1)
     }
     
     
@@ -68,7 +103,7 @@ class BookingVC: UIViewController {
         //then again set the date format whhich type of output you need
         formatter.dateFormat = "dd MMMM , yyyy"
         // again convert your date to string
-        let bookDate = formatter.string(from: yourDate!)
+        let bookDate = formatter.string(from: yourDate ?? Date())
         return bookDate
     }
     
@@ -79,7 +114,7 @@ class BookingVC: UIViewController {
         dateFormatter.dateFormat = "HH:mm:ss"
         let date = dateFormatter.date(from: dateAsString)
         dateFormatter.dateFormat = "h:mm a"
-        let Date12 = dateFormatter.string(from: date!)
+        let Date12 = dateFormatter.string(from: date ?? Date())
         return Date12
     }
     
@@ -239,13 +274,13 @@ class BookingVC: UIViewController {
         {
             print("scrollViewDidEndDragging")
             print("scrollViewDidEndDragging page number is \(self.pageInt)")
-
                 self.pageInt = self.pageInt + 1
-                print("scrollViewDidEndDragging page number is \(self.pageInt)")
                 let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
+            if isLoadMore == true{
+                self.showToast(message: "No More Data", font: .systemFont(ofSize: 12.0))
+            }else{
                 self.getBookingListData(param: self.pageInt)
-                
-                
+            }
         }
     }
     

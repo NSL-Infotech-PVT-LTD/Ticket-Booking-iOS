@@ -158,6 +158,12 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
 //
 //        }
     }
+    
+    
+    func minimumDate(for calendar: FSCalendar) -> Date {
+        return Date()
+    }
+    
 
 
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance,  titleDefaultColorFor date: Date) -> UIColor? {
@@ -168,8 +174,12 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
         if self.arrayAvailDate2.contains(currentDate)
         {
             return UIColor.white
-        }else{
-            return UIColor.blue
+        }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
+            return UIColor.lightGray
+
+        }
+       else{
+            return UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
         }
     }
 

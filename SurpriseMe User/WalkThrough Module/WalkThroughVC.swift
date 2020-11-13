@@ -34,6 +34,9 @@ class WalkThroughVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        
+        self.btnGetStarted.setTitle("GET_STARTED".localized(), for: .normal)
+
     }
     
     @IBAction func btnGetStartedAction(_ sender: Any) {

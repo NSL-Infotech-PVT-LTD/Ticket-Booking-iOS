@@ -1,0 +1,98 @@
+/* 
+  Localizable.strings
+  SurpriseMe User
+
+  Created by NetScape Labs on 11/11/20.
+  Copyright © 2020 Pankaj Mac. All rights reserved.
+*/
+//Language_VC
+
+"CHOOSE_PREFFERED"                  = "Elija su idioma preferido";
+"CHOOSE_YOUR_LAGUAGE_SUBTITTEL"     = "lo serviremos sobre la base de su selección.";
+"next"                              = "Próximo";
+
+//WalkThrough
+
+"GET_STARTED"           = "Empezar";
+"BIRTHDAY_SURPRISE"     = "Sorpresa de cumpleaños";
+
+//Login
+"EMAIL_ADDRESS"         = "Dirección de correo electrónico";
+"PASSWORD"              = "Contraseña";
+"TYPE_HERE"             = "Escriba aquí...";
+"WELCOME"               = "Bienvenido";
+"SIGN_TO_CONTINUE"      = "Iniciar sesión para continuar";
+"DONT_HAVE_ACCOUNT"     = "¿Aún no tienes cuenta?";
+"SIGN_UP"               = "Regístrate";
+"remember_me"           = "Recuérdame";
+"forget_password"       = "¿Se te olvidó tu contraseña?";
+"login"                 = "iniciar sesión";
+
+//Social Login
+"register_title"        = "Registrate con nosotros en sorpiseme.";
+"are_you_new"           = "Eres nuevo";
+"signup_with_email"     = "Ingresa con e-mail";
+"or"                    = "o";
+"signup_with_facebook"  = "Registrate con Facebook";
+"signup_with_apple"     = "Registrarse con Apple";
+"back_to_login"         = "Atrás para iniciar sesión";
+"by_signup"             = "Al registrarse, está de acuerdo con nuestra";
+"terms_condition"       = "Términos y condiciones";
+
+//SignUp
+"back"                  = "atrás";
+"fillup_detail"         = "Complete los detalles";
+"register_with"         = "Registrate con nosotros en sorpiseme";
+"TYPE_HERE"             = "Escriba aquí...";
+"username"              = "Nombre de usuario";
+"EMAIL_ADDRESS"         = "Dirección de correo electrónico";
+"PASSWORD"              = "Contraseña";
+"c_password"            = "Confirmar contraseña";
+"register_now"          = "Regístrate ahora";
+"back_to_login"         = "Atrás para iniciar sesión";
+
+//Forget Password
+"back"                  = "atrás";
+"EMAIL_ADDRESS"         = "Dirección de correo electrónico";
+"TYPE_HERE"             = "Escriba aquí...";
+"continue"              = "Seguir";
+
+//Terms & Conditions
+"back"                  = "atrás";
+"terms_title"           = "Términos y condiciones";
+
+//Home VC
+"view_profile"          = "Ver perfil";
+"your_location"         = "Tu ubicación";
+"search_for_artist"     = "Busca artista, cantante, etc.";
+"book_artist_title"     = "Artista del libro que escuchas";
+"see_artist_profile"    = "Ver perfil de artista";
+"book"                  = "Libro";
+
+//Schuedule booking
+"back"                  = "atrás";
+"select_way_booking"    = "Seleccionar forma de reserva";
+"check_availabilty"     = "Para comprobar la disponibilidad del artista en la fecha seleccionada";
+"live_booking"          = "Reserva de show en vivo";
+"digital_booking"       = "Reserva de espectáculos digitales";
+"Proceed"               = "Continuar";
+"book_now"              = "Reservar ahora";
+
+"live_booking_detail"   = "Ahora estamos listos con la próxima ola de entretenimiento. Estamos orgullosos de anunciar nuestra plataforma de transmisión en línea interna.";
+
+"digital_booking_detail"= "Ahora estamos listos con la próxima ola de entretenimiento. Estamos orgullosos de anunciar nuestra plataforma de transmisión en línea interna";
+
+//Calander
+"back"                  = "atrás";
+"select_date_booking"   = "Seleccionar fecha de reserva";
+"check_availabilty"     = "Para comprobar la disponibilidad del artista en la fecha seleccionada";
+
+//Edit Date
+"back"                  = "atrás";
+"select_time_booking"   = "Seleccionar hora de reserva";
+"multiple_slot"         = "puede seleccionar varios espacios seguidos.";
+"choose_another_date"   = "Artista no está disponible en esta fecha. Elija otra fecha";
+"clear_all"             = "Limpiar todo";
+"available"             = "Disponible";
+"unavailable"           = "Indisponible";
+"proceed_checkout"      = "Pasar por la caja";

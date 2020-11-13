@@ -22,6 +22,12 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     
     
     //MARK:- Outlets -
+    
+    @IBOutlet var btnViewProfile: UIButton!
+    @IBOutlet var lblYourLocation: UILabel!
+    @IBOutlet var lblBookArtistTitle: UILabel!
+    
+    
     @IBOutlet weak var viewUpdateLocation: UIView!
     @IBOutlet weak var searchHeaderView: KJNavigationViewAnimation!
     @IBOutlet weak var topHeaderView: UIView!
@@ -54,67 +60,36 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.btnViewProfile.setTitle("view_profile".localized(), for: .normal)
+        self.lblYourLocation.text = "your_location".localized()
+        self.searchTxt.placeholder = "search_for_artist".localized()
+        self.lblBookArtistTitle.text = "book_artist_title".localized()
         
         print("the user custom address is \(currentAddress)")
         
-        
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-        let navController = UINavigationController(rootViewController: VC1)
-        navController.modalPresentationStyle = .overCurrentContext
-        navController.isNavigationBarHidden = true
-        //self.present(navController, animated:true, completion: nil)
-        
-        
-        let iDEALParams = STPPaymentMethodiDEALParams()
-        iDEALParams.bankName = "abn_amro"
-        
-        let billingDetails = STPPaymentMethodBillingDetails()
-        billingDetails.name = "Jane Doe"
-        
-        
-        let paymentIntentParams = STPPaymentIntentParams(clientSecret: "sk_test_4eC39HqLyjWDarjtT1zdp7dc")
-        paymentIntentParams.paymentMethodParams = STPPaymentMethodParams(iDEAL: iDEALParams,
-                                                                         billingDetails: billingDetails,
-                                                                         metadata: nil)
-        
-        STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams, authenticationContext: self) { (handlerStatus, paymentIntent, error) in
-            switch handlerStatus {
-            case .succeeded:
-                print("hello")
-                break
-                // Payment succeeded
-                
-            case .canceled: break
-                // Payment was cancelled
-                
-            case .failed: break
-                // Payment failed
-                
-            @unknown default:
-                fatalError()
-            }
-        }
-        
-        
-        
-        self.setDashLine()
-        self.SetInitialSetup()
-        self.tableView_out.isHidden = true
-        self.noDataFound.isHidden = true
-        self.tabBarController?.tabBar.isHidden = false
-        topHeaderView.layer.cornerRadius = 1
-        topHeaderView.layer.shadowColor = UIColor.darkGray.cgColor
-        topHeaderView.layer.shadowOpacity = 1
-        topHeaderView.layer.shadowRadius = 1
-        //MARK:- Shade a view
-        topHeaderView.layer.shadowOpacity = 0.5
-        topHeaderView.layer.shadowOffset = CGSize(width: 1.0, height: 0.5)
-        topHeaderView.layer.masksToBounds = false
-        
-        let tapviewimgUserProfile = UITapGestureRecognizer(target: self, action: #selector(self.handletaptapviewimgUserProfile(_:)))
-        imgUserProfile.isUserInteractionEnabled = true
-        imgUserProfile.addGestureRecognizer(tapviewimgUserProfile)
+if idealPayment == true{
+           idealPayment = false
+           self.tabBarController?.selectedIndex = 1
+       }else{
+           self.setDashLine()
+           self.SetInitialSetup()
+           self.tableView_out.isHidden = true
+           self.noDataFound.isHidden = true
+           self.tabBarController?.tabBar.isHidden = false
+           topHeaderView.layer.cornerRadius = 1
+           topHeaderView.layer.shadowColor = UIColor.darkGray.cgColor
+           topHeaderView.layer.shadowOpacity = 1
+           topHeaderView.layer.shadowRadius = 1
+           //MARK:- Shade a view
+           topHeaderView.layer.shadowOpacity = 0.5
+           topHeaderView.layer.shadowOffset = CGSize(width: 1.0, height: 0.5)
+           topHeaderView.layer.masksToBounds = false
+           
+           let tapviewimgUserProfile = UITapGestureRecognizer(target: self, action: #selector(self.handletaptapviewimgUserProfile(_:)))
+           imgUserProfile.isUserInteractionEnabled = true
+           imgUserProfile.addGestureRecognizer(tapviewimgUserProfile)
+
+       }
     }
     
     @objc func handletaptapviewimgUserProfile(_ sender: UITapGestureRecognizer? = nil) {
@@ -242,7 +217,18 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     
     @objc func btnBookAction(sender:UIButton)  {
         userArtistID = arrayHomeArtistList[sender.tag].id ?? 0
-        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+//        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+               let controller = storyboard.instantiateViewController(withIdentifier: "SchueduleVC") as! SchueduleVC
+               let transition = CATransition()
+               transition.duration = 0.5
+               transition.timingFunction = CAMediaTimingFunction(name: .default)
+               transition.type = .fade
+               transition.subtype = .fromRight
+               controller.hidesBottomBarWhenPushed = true
+               navigationController?.view.layer.add(transition, forKey: kCATransition)
+               navigationController?.pushViewController(controller, animated: false)
+        
     }
     
     
@@ -287,6 +273,10 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
         let dataItem = arrayHomeArtistList[indexPath.row]
         cell.nameLbl_out.text = "\(dataItem.name ?? "")"
         cell.descriptionLbl_out.text = "\(dataItem.artistDescription ?? "")"
+        
+        cell.bookBtn_out.setTitle("book".localized(), for: .normal)
+        cell.lblSeeArtistProfile.text = "see_artist_profile".localized()
+        
         if dataItem.category?.count ?? 0 == 0{
             cell.RolePlayLbl_out.text = ""
         }else{
@@ -358,6 +348,7 @@ class homeTableCell: UITableViewCell {
     @IBOutlet weak var VIEWOUTERCONTAINER: UIView!
     @IBOutlet weak var bookBtn_out: UIButton!
     @IBOutlet weak var viewContainer: UIView!
+    @IBOutlet var lblSeeArtistProfile: UILabel!
 }
 
 

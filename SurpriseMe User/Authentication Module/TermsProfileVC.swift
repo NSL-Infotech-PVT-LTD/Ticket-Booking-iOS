@@ -10,6 +10,7 @@ import UIKit
 
 class TermsProfileVC: UIViewController {
 
+    @IBOutlet var btnBack: UIButton!
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var headerLbl: UILabel!
     
@@ -24,7 +25,9 @@ class TermsProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.viewHeader.addBottomShadow()
         headerLbl.text = selectedIdentifier
-
+        self.btnBack.setTitle("back".localized(), for: .normal)
+        self.headerLbl.text = "terms_title".localized()
+        
     }
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {

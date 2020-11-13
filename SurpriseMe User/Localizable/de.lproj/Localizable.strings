@@ -1,0 +1,99 @@
+/* 
+  Localizable.strings
+  SurpriseMe User
+
+  Created by NetScape Labs on 11/11/20.
+  Copyright © 2020 Pankaj Mac. All rights reserved.
+*/
+
+//Language_VC
+
+"CHOOSE_PREFFERED"                  = "Wählen Sie Ihre bevorzugte Sprache";
+"CHOOSE_YOUR_LAGUAGE_SUBTITTEL"     = "Wir werden auf der Grundlage Ihrer Auswahl bedient.";
+"next"                              = "Nächster";
+
+//WalkThrough
+
+"GET_STARTED"           = "Loslegen";
+"BIRTHDAY_SURPRISE"     = "Geburtstagsüberraschung";
+
+//Login
+"EMAIL_ADDRESS"         = "E-Mail-Addresse";
+"PASSWORD"              = "Passwort";
+"TYPE_HERE"             = "Geben Sie hier ein ...";
+"WELCOME"               = "Herzlich willkommen";
+"SIGN_TO_CONTINUE"      = "Anmelden, um fortzufahren";
+"DONT_HAVE_ACCOUNT"     = "Noch keinen Account?";
+"SIGN_UP"               = "Anmelden";
+"remember_me"           = "Behalte mich in Erinnerung";
+"forget_password"       = "Passwort vergessen?";
+"login"                 = "Anmeldung";
+
+//Social Login
+"register_title"        = "Registrieren Sie sich bei uns in Überraschung.";
+"are_you_new"           = "Bist du neu?";
+"signup_with_email"     = "Registrieren Sie sich mit Ihrer E-Mail Adresse";
+"or"                    = "oder";
+"signup_with_facebook"  = "Anmelden mit Facebook";
+"signup_with_apple"     = "Melden Sie sich bei Apple an";
+"back_to_login"         = "Zurück zur Anmeldung";
+"by_signup"             = "Mit Ihrer Anmeldung stimmen Sie unseren zu";
+"terms_condition"       = "Terms & amp; Bedingungen";
+
+//SignUp
+"back"                  = "Zurück";
+"fillup_detail"         = "Füllen Sie die Details aus";
+"register_with"         = "Registrieren Sie sich bei uns in Überraschung";
+"TYPE_HERE"             = "Geben Sie hier ein ...";
+"username"              = "Nutzername";
+"EMAIL_ADDRESS"         = "E-Mail-Addresse";
+"PASSWORD"              = "Passwort";
+"c_password"            = "Kennwort bestätigen";
+"register_now"          = "Jetzt registrieren";
+"back_to_login"         = "Zurück zur Anmeldung";
+
+//Forget Password
+"back"                  = "Zurück";
+"EMAIL_ADDRESS"         = "E-Mail-Addresse";
+"TYPE_HERE"             = "Geben Sie hier ein ...";
+"continue"              = "Fortsetzen";
+
+//Terms & Conditions
+"back"                  = "Zurück";
+"terms_title"           = "Terms & amp; Bedingungen";
+
+//Home VC
+"view_profile"          = "Profil anzeigen";
+"your_location"         = "Ihr Standort";
+"search_for_artist"     = "Suche nach Künstler, Sänger etc.";
+"book_artist_title"     = "Buchkünstler Sie hören";
+"see_artist_profile"    = "Siehe Künstlerprofil";
+"book"                  = "Buch";
+
+//Schuedule booking
+"back"                  = "Zurück";
+"select_way_booking"    = "Wählen Sie die Art der Buchung";
+"check_availabilty"     = "Um die Verfügbarkeit des Künstlers an Ihrem ausgewählten Datum zu überprüfen";
+"live_booking"          = "Live Show Buchung";
+"digital_booking"       = "Digitale Showbuchung";
+"Proceed"               = "Vorgehen";
+"book_now"              = "buchen Sie jetzt";
+
+"live_booking_detail"   = "Wir sind jetzt bereit für die nächste Welle der Unterhaltung. Wir sind stolz darauf, Ihnen unsere interne Online-Streaming-Plattform vorstellen zu können.";
+
+"digital_booking_detail"= "Wir sind jetzt bereit für die nächste Welle der Unterhaltung. Wir sind stolz darauf, Ihnen unsere interne Online-Streaming-Plattform vorstellen zu können.";
+
+//Calander
+"back"                  = "Zurück";
+"select_date_booking"   = "Wählen Sie das Datum der Buchung";
+"check_availabilty"     = "Um die Verfügbarkeit des Künstlers an Ihrem ausgewählten Datum zu überprüfen";
+
+//Edit Date
+"back"                  = "Zurück";
+"select_time_booking"   = "Wählen Sie den Zeitpunkt der Buchung";
+"multiple_slot"         = "Sie können mehrere Steckplätze hintereinander auswählen.";
+"choose_another_date"   = "Der Künstler ist an diesem Datum nicht verfügbar. Bitte wählen Sie ein anderes Datum";
+"clear_all"             = "Alles löschen";
+"available"             = "Verfügbar";
+"unavailable"           = "Nicht verfügbar";
+"proceed_checkout"      = "Zur Kasse";

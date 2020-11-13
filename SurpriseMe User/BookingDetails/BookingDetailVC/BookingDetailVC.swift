@@ -13,16 +13,11 @@ import Cosmos
 class BookingDetailVC: UIViewController {
     
     //MARK:- Outlets -
-    
     @IBOutlet weak var btnChatTopBar: UIButton!
     @IBOutlet weak var btnLiveConcert: UIButton!
-    
-    
-    
     @IBOutlet weak var lblNewStatus: UILabel!
     @IBOutlet weak var viewDash1: UIView!
     @IBOutlet weak var viewDash2: UIView!
-    
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var lblDate: UILabel!
@@ -34,17 +29,11 @@ class BookingDetailVC: UIViewController {
     @IBOutlet weak var lblBookingStatus: UILabel!
     @IBOutlet weak var viewList: TagListView!
     @IBOutlet weak var chatTopOutlet: NSLayoutConstraint!
-    
-    
-    @IBOutlet weak var lblRatingArtist: UILabel!
+   @IBOutlet weak var lblRatingArtist: UILabel!
     @IBOutlet weak var viewContainerRating: UIView!
-    
-    
-    
-    @IBOutlet weak var lblPaymentStatus: UILabel!
+   @IBOutlet weak var lblPaymentStatus: UILabel!
     @IBOutlet weak var viewRating: UILabel!
     @IBOutlet weak var viewCosmo: CosmosView!
-    
     @IBOutlet weak var ratingDesc: UITextView!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblOtpNumber: UILabel!
@@ -53,15 +42,11 @@ class BookingDetailVC: UIViewController {
     @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var lblOTP: UILabel!
     @IBOutlet weak var lblShowType: UILabel!
-    
-    
-    @IBOutlet weak var reportReasonLbl: UILabel!
+   @IBOutlet weak var reportReasonLbl: UILabel!
     @IBOutlet weak var descriptionTxt: UITextView!
     @IBOutlet weak var viewOtherResons: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var viewPicker: UIView!
-    
-    
     
     //MARK:- Variable -
     var id : String?
@@ -89,14 +74,19 @@ class BookingDetailVC: UIViewController {
         self.viewOtherResons.isHidden = true
         self.lblOtpNumber.isHidden = true
         self.reportReasonLbl.isHidden = true
-        
-        
-        
         self.pickerView.reloadAllComponents()
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(userLoggedIn), name: Notification.Name("BookingDetail"), object: nil)
     }
     
+    
+    @objc func userLoggedIn(userInfo:Notification){
+        let data = userInfo.userInfo?["target_id"] as? String
+        //MARK: Load start
+   }
+    
     func setAllData() {
-        
         self.viewModelObject.delegate = self
         if isComingFrom == "Notification"{
             let param = ["id":bookingID]
@@ -191,6 +181,7 @@ class BookingDetailVC: UIViewController {
     
     func payNowAction()  {
         
+        
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
         let transition = CATransition()
@@ -200,6 +191,8 @@ class BookingDetailVC: UIViewController {
         transition.subtype = .fromRight
         
         if  isComingFrom == "NotificationCame"{
+            
+            print("the id is \(bookingIDNotification)")
             bookingPaymentID = userArtistIDBooking as? Int
         }else{
             bookingPaymentID = bookingID
@@ -223,48 +216,6 @@ class BookingDetailVC: UIViewController {
         }
         
     }
-    
-    //    @IBAction func btnRateArtistAction(_ sender: UIButton) {
-    //        let buttonTitle = sender.titleLabel?.text
-    //        currentTitle = buttonTitle ?? ""
-    //        if buttonTitle ?? "" == "Cancel Booking"{
-    //            self.cancelBookingAction()
-    //        }else if buttonTitle ?? "" == "Pay Now"{
-    //            self.payNowAction()
-    //        }else if buttonTitle ?? "" == "Go To Home"{
-    //            self.tabBarController?.selectedIndex = 0
-    //            self.back()
-    //        }else if buttonTitle ?? "" == "Did Artist reach at your location?"{
-    //            let alert = UIAlertController(title: "", message: "Are you sure?", preferredStyle: UIAlertController.Style.alert)
-    //            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
-    //                self.viewOtp.isHidden = false
-    //                self.viewContainer.isHidden = false
-    //                self.lblOtpNumber.isHidden = false
-    //                self.lblOtpNumber.text = "Your OTP is: \(self.dictProfile?.otp ?? 0)\n Share your OTP with your Artist"
-    //            }))
-    //
-    //            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
-    //                self.viewContainer.isHidden = false
-    //                self.viewPicker.isHidden = false
-    //
-    //            }))
-    //
-    //
-    //
-    //
-    //            // show the alert
-    //            self.present(alert, animated: true, completion: nil)
-    //        }else if buttonTitle ?? "" == "Rate your artist"{
-    //            userArtistID =  dictProfile?.artist_detail?.ID ?? 0
-    //            let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-    //            let controller = storyboard.instantiateViewController(withIdentifier: "RatingVC") as! RatingVC
-    //            controller.artistName = dictProfile?.artist_detail?.name ?? ""
-    //            controller.userImg = dictProfile?.artist_detail?.imageProfile ?? ""
-    //            controller.bookingID = dictProfile?.id ?? 0
-    //            navigationController?.pushViewController(controller, animated: true)
-    //        }
-    //    }
-    
     
     
     @IBAction func btnCrossDescAction(_ sender: UIButton) {
@@ -299,11 +250,10 @@ class BookingDetailVC: UIViewController {
         currentTitle = buttonTitle ?? ""
         if buttonTitle ?? "" == "Cancel Booking"{
             self.cancelBookingAction()
-        }else if buttonTitle ?? "" == "Pay Now"{
+        }else if buttonTitle ?? "" == "Pay Now" ||  buttonTitle ?? "" == "Pay Now"{
             self.payNowAction()
         }else if buttonTitle ?? "" == "Go To Home"{
             self.setInitialHome()
-            
         }else if buttonTitle ?? "" == "Did Artist reach at your location?"{
             let alert = UIAlertController(title: "", message: "Are you sure?", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
@@ -318,11 +268,7 @@ class BookingDetailVC: UIViewController {
                 self.viewPicker.isHidden = false
                 
             }))
-            
-            
-            
-            
-            // show the alert
+    // show the alert
             self.present(alert, animated: true, completion: nil)
         }else if buttonTitle ?? "" == "Rate your artist"{
             userArtistID =  dictProfile?.artist_detail?.ID ?? 0
@@ -400,70 +346,21 @@ class BookingDetailVC: UIViewController {
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         
         if isComingFrom == "Payment"{
-            let vc = UIStoryboard(name: "Main", bundle: nil)
-            let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
-            let navigationController = UINavigationController(rootViewController: vc1)
-            navigationController.isNavigationBarHidden = true
-            UIApplication.shared.windows.first?.rootViewController = navigationController
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
+            
+            for controller in (self.navigationController?.viewControllers ?? []) as Array {
+                if controller.isKind(of: BookingVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    break
+                }else{
+                    self.setInitialHome()
+                }
+            }
         }else{
             self.navigationController?.popViewController(animated: true)
-            
         }
         
     }
     
-    //    @IBAction func btnRefreshAction(_ sender: UIButton) {
-    //        if dictProfile?.status == "pending"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = false
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //            self.btnStatus.setTitle("Cancel Booking", for: .normal)
-    //        }else if dictProfile?.status == "cancel"{
-    //            self.btnStatus.isHidden = true
-    //            self.btnChat.isHidden = true
-    //        }else if dictProfile?.status == "accepted"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = false
-    //            self.btnStatus.setTitle("Pay Now", for: .normal)
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //        }else if dictProfile?.status == "rejected"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = true
-    //            self.btnStatus.setTitle("Go To Home", for: .normal)
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //        }else if dictProfile?.status == "confirmed"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = false
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //            let dateValue = "\("2020-10-09")" + " " + "\(dictProfile?.from_time ?? "")"
-    //                        let returnValue =   self.compareTime(performTime: "\(dateValue)")
-    //            if returnValue == true{
-    //                self.btnStatus.setTitle("Did Artist reach at your location?", for: .normal)
-    //            }else{
-    //                self.btnStatus.setTitle("Artist will reach at your location", for: .normal)
-    //            }
-    //        }else if dictProfile?.status == "processing"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = true
-    //            self.btnStatus.backgroundColor = UIColor.white
-    //            self.btnStatus.setTitleColor(.black, for: .normal)
-    //            self.btnStatus.setTitle("Your artist is start to perform!", for: .normal)
-    //        }else if dictProfile?.status == "completed"{
-    //            self.btnStatus.isHidden = false
-    //            self.btnChat.isHidden = true
-    //            self.btnChat.setTitle("You artist completed his performance", for: .normal)
-    //            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
-    //            self.btnStatus.setTitleColor(.white, for: .normal)
-    //            self.btnStatus.setTitle("Rate your artist", for: .normal)
-    //        }
-    //        self.btnRateArtistAction(self.btnStatus)
-    //
-    //    }
     
     func setInitialData(dataItem :BookingDetailsModel?)  {
         lblNewStatus.text = "\(dataItem?.status?.capitalized ?? "")"
@@ -559,11 +456,15 @@ class BookingDetailVC: UIViewController {
                 self.btnStatus.setTitle("Artist will reach at your location", for: .normal)
             }
         }else if dataItem?.status == "processing"{
-            self.btnStatus.isHidden = false
+//            self.btnStatus.isHidden = false
+//            self.viewContainerRating.isHidden = true
+//            self.btnChatTopBar.isHidden = false
             self.viewContainerRating.isHidden = true
+                       
+                       self.btnStatus.isHidden = false
+                       self.btnChatTopBar.isHidden = false
             
             lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
-            self.btnChatTopBar.isHidden = true
             self.btnStatus.backgroundColor = UIColor.white
             self.btnStatus.setTitleColor(.black, for: .normal)
             self.btnStatus.setTitle("Your artist is start to perform!", for: .normal)
@@ -584,6 +485,15 @@ class BookingDetailVC: UIViewController {
             self.btnChatTopBar.isHidden = true
             self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = "Reason:- \(dataItem?.reportReason?.report ?? "")"
+        }else if dataItem?.status == "payment_failed"{
+            self.viewContainerRating.isHidden = true
+            
+            self.btnStatus.isHidden = false
+            self.btnChatTopBar.isHidden = false
+            lblPaymentStatus.text = "Not paid"
+            self.btnStatus.setTitle("Pay Now", for: .normal)
+            self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
+            self.btnStatus.setTitleColor(.white, for: .normal)
         }
     }
 }
@@ -592,7 +502,20 @@ class BookingDetailVC: UIViewController {
 extension BookingDetailVC :BookingDetailsModelViewDelegate{
     func cancelBookingApiResponse(message: String, isError: Bool) {
         if isError == false{
-            self.back()
+            
+            if isComingFrom == "Payment"{
+                for controller in (self.navigationController?.viewControllers ?? []) as Array {
+                    if controller.isKind(of: BookingVC.self) {
+                        self.navigationController!.popToViewController(controller, animated: true)
+                        break
+                    }else{
+                        self.setInitialHome()
+                        
+                    }
+                }
+            }else{
+                self.back()
+            }
         }else{
         }
     }
@@ -635,15 +558,13 @@ extension BookingDetailVC: UIPickerViewDataSource, UIPickerViewDelegate {
         }else if resonReport == "Artist Denied Duty"{
             
         }
-       if self.arrayReport[row] == "Other"{
+        if self.arrayReport[row] == "Other"{
             self.viewPicker.isHidden = false
             self.viewContainer.isHidden = false
             self.viewPicker.isHidden = false
             self.viewOtherResons.isHidden = false
         }
-        
-        
-    }
+   }
 }
 
 extension BookingDetailVC : UITextViewDelegate{

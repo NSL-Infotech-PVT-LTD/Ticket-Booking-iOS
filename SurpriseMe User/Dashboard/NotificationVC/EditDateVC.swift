@@ -15,8 +15,15 @@ class EditDateVC: UIViewController {
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var lblDay: UILabel!
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var dateListCollectionView:
-    UICollectionView!
+    @IBOutlet weak var dateListCollectionView:UICollectionView!
+    @IBOutlet var btnBack: UIButton!
+    @IBOutlet var lblArtistNotAvai: UILabel!
+    @IBOutlet var lblMainTitle: UILabel!
+    @IBOutlet var lblSubTitle: UILabel!
+    @IBOutlet var btnClearAll: UIButton!
+    @IBOutlet var lblAvailable: UILabel!
+    @IBOutlet var lblUnavailable: UILabel!
+    @IBOutlet var btnProceed: UIButton!
     
     //MARK:- Variable -
     var screenSize: CGRect!
@@ -29,7 +36,7 @@ class EditDateVC: UIViewController {
     var aarayTimeSplitSecond = ["00:00:00","01:00:00","02:00:00","03:00:00","04:00:00","05:00:00","06:00:00","07:00:00","08:00:00","09:00:00","10:00:00","11:00:00","12:00:00","13:00:00","14:00:00","15:00:00","16:00:00","17:00:00","18:00:00","19:00:00","20:00:00","21:00:00","22:00:00","23:00:00"]
     
     
-    @IBOutlet var btnProceed: UIButton!
+    
     @IBOutlet weak var viewNoData: UIView!
     var firstTime = String()
     var secondTime = String()
@@ -50,6 +57,15 @@ class EditDateVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        lblArtistNotAvai.text = "choose_another_date".localized()
+        btnBack.setTitle("back".localized(), for: .normal)
+        lblMainTitle.text = "select_time_booking".localized()
+        lblSubTitle.text = "multiple_slot".localized()
+        lblAvailable.text = "available".localized()
+        lblUnavailable.text = "unavailable".localized()
+        btnClearAll.setTitle("clear_all".localized(), for: .normal)
+        btnProceed.setTitle("proceed_checkout".localized(), for: .normal)
+        
         self.setInitialSetup()
         print(aarayTime.count)
         print(aarayTimeSecond.count)
@@ -523,6 +539,11 @@ extension EditDateVC : BookingStoreViewModelProtocol{
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Booking Successfull", btnOkTitle: "Done") {
                 userArtistID = 0
+                
+                
+                
+                self.tabBarController?.selectedIndex = 1
+                
                 for controller in (self.navigationController?.viewControllers ?? []) as Array {
                     if controller.isKind(of: HOmeViewController.self) {
                         self.navigationController!.popToViewController(controller, animated: true)

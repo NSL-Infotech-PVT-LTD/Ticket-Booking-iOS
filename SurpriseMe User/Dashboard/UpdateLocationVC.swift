@@ -35,7 +35,6 @@ class UpdateLocationVC: UIViewController {
     var isEdit = Bool()
     var modelObjectDict = ManageAddressModel()
     var locationManager = CLLocationManager()
-
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
@@ -46,18 +45,23 @@ class UpdateLocationVC: UIViewController {
         self.viewHeader.addBottomShadow()
         self.btnCross.isHidden = true
         
-        if isEdit == true{
-            let location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
-            mapView.camera = location
-            self.tfAddress.text =  ""
+//        if isEdit == true{
+//            let location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
+//                mapView.camera = location
+//
+//            print("check Lattitude = \(modelObjectDict.lat)")
+//            print("check Longitude = \(modelObjectDict.long)")
+//            self.tfAddress.text =  ""
+//            set address from api response
+            setAddressInTextField()
             
-        }else{
+//        }else{
             if cameFrom == false{
                 self.currentLocationGet()
             }else{
                 self.setMarkerCustomLocation()
             }
-        }
+//        }
         self.mapView.delegate = self
         self.otherAddressTF.isHidden = true
         self.objectViewModel.delegate = self
@@ -65,13 +69,11 @@ class UpdateLocationVC: UIViewController {
     }
     
     
-    
     @IBAction func btnCrossAction(_ sender: UIButton) {
         self.otherAddressTF.isHidden = true
         self.btnCross.isHidden = true
         addressType = ""
     }
-    
     
     func getAddress(address:String){
         
@@ -107,37 +109,45 @@ class UpdateLocationVC: UIViewController {
     }
     
     func currentLocationGet(){
-          //Mark:- Get current Lat/Long.
-          if (CLLocationManager.locationServicesEnabled()) {
-              self.locationManager.delegate = self
-              self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-              self.locationManager.distanceFilter = 10.0
-              self.locationManager.requestAlwaysAuthorization()
-              self.locationManager.requestWhenInUseAuthorization()
-              self.locationManager.startUpdatingLocation()
-              let getLatLong = locationManager.location
-              print("Location services are not enabled");
+        //Mark:- Get current Lat/Long.
+        if (CLLocationManager.locationServicesEnabled()) {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.distanceFilter = 10.0
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingLocation()
+            let getLatLong = locationManager.location
+            var location = GMSCameraPosition()
+            print("Location services are not enabled");
             
-              currentLat = getLatLong?.coordinate.latitude ?? 0.0
-               currentLong = getLatLong?.coordinate.longitude ?? 0.0
-              let location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
-                             mapView.camera = location
-                             self.tfAddress.text =  ""
-             
-              
-          } else {
-              print("Location services are not enabled");
-          }
-          
-      }
-    
+            currentLat = getLatLong?.coordinate.latitude ?? 0.0
+            currentLong = getLatLong?.coordinate.longitude ?? 0.0
+            
+            if isEdit == true {
+                location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
+            }else{
+                location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
+            }
+            
+//            print("check Lattitude = \(modelObjectDict.lat)")
+//            print("check Longitude = \(modelObjectDict.long)")
+            
+            mapView.camera = location
+//            self.tfAddress.text =  ""
+            
+            
+        } else {
+            print("Location services are not enabled");
+        }
+        
+    }
     
     
     @IBAction func btnOtherAction(_ sender: UIButton) {
         addressType = "Other"
         self.otherAddressTF.isHidden = false
         self.btnCross.isHidden = false
-        
     }
     
     @IBAction func btnWorkAction(_ sender: UIButton) {
@@ -145,7 +155,6 @@ class UpdateLocationVC: UIViewController {
         self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
         self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
         self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-        
     }
     
     @IBAction func btnHomeAction(_ sender: UIButton) {
@@ -153,25 +162,37 @@ class UpdateLocationVC: UIViewController {
         self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
         self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
         self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-        
-        
     }
     
     func setAddress()  {
+        LoaderClass.shared.loadAnimation()
+
         var dictParam = [String : Any]()
         if addressType == "Other"{
             
+            if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            }
+                
+                
+            else{
+                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            }
             
             
-            dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
         }else{
-            dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+            dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
         }
         self.objectViewModel.getParamForAddAddress(param: dictParam)
     }
     
     
     func setEditAddress()  {
+        LoaderClass.shared.loadAnimation()
         var dictParam = [String : Any]()
         if addressType == "Other"{
             dictParam = ["name":otherAddressTF.text!,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
@@ -186,13 +207,13 @@ class UpdateLocationVC: UIViewController {
         
         if isEdit == true{
             
-            if self.tfLandMark.text! == "" {
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
-            }else if self.tfHouserNumber.text! == ""{
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
-            }
-                
-            else if addressType == "" {
+            //            if self.tfLandMark.text! == "" {
+            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
+            //            }else if self.tfHouserNumber.text! == ""{
+            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
+            //            }
+            
+            if addressType == "" {
                 Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
             }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
                 Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
@@ -201,12 +222,13 @@ class UpdateLocationVC: UIViewController {
                 self.setEditAddress()
             }
         }else{
-            if self.tfLandMark.text! == "" {
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
-            }else if self.tfHouserNumber.text! == ""{
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
-            }
-            else if addressType == "" {
+            //            if self.tfLandMark.text! == "" {
+            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
+            //            }else if self.tfHouserNumber.text! == ""{
+            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
+            //            }
+            //            else
+            if addressType == "" {
                 Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
             }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
                 Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
@@ -215,8 +237,6 @@ class UpdateLocationVC: UIViewController {
                 self.setAddress()
             }
         }
-        
-        
         
     }
     
@@ -245,45 +265,56 @@ class UpdateLocationVC: UIViewController {
                 print(error)
             }
         }
-        
-        
-        
     }
-    
 }
+
 extension UpdateLocationVC : GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         print(position.target.latitude)
         
-        if isEdit == true{
-            print("the edit address is \(position.target.latitude)")
-            tfAddress.text = modelObjectDict.street_address ?? ""
-            self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude )", withLongitude: "\(position.target.longitude )")
-            self.tfLandMark.text = modelObjectDict.country ?? ""
-            self.tfHouserNumber.text = modelObjectDict.state ?? ""
+//        if isEdit == true{
+            //            print("the edit address is \(position.target.latitude)")
+            //            tfAddress.text = modelObjectDict.street_address ?? ""
+            //            self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude)", withLongitude: "\(position.target.longitude)")
+            //
+            //            if modelObjectDict.country ?? "" == "self.tfLandMark.text" || modelObjectDict.country ?? "" == ""{
+            //
+            //            }else{
+            //                self.tfLandMark.text = modelObjectDict.country ?? ""
+            //
+            //            }
+            //
+            //
+            //            if modelObjectDict.state ?? "" == "self.tfHouserNumber.text" || modelObjectDict.state ?? "" == ""{
+            //
+            //            }else{
+            //                self.tfLandMark.text = modelObjectDict.state ?? ""
+            //
+            //            }
+            //
+            //            addressLat = "\(position.target.latitude )"
+            //            addressLong = "\(position.target.longitude )"
+            //
+            //            if modelObjectDict.name == "Home"{
+            //                self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            //                self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            //                self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            //            }else if modelObjectDict.name == "Work"{
+            //                self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            //                self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            //                self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            //            }else{
+            //
+            //                self.otherAddressTF.isHidden = false
+            //                self.otherAddressTF.text = modelObjectDict.name ?? ""
+            //
+            //            }
+//        }else{
+            self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude )", withLongitude: "\(position.target.longitude)")
             addressLat = "\(position.target.latitude )"
             addressLong = "\(position.target.longitude )"
-            
-            if modelObjectDict.name == "Home"{
-                self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
-                self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-                self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-            }else if modelObjectDict.name == "Work"{
-                self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
-                self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-                self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-            }else{
-                
-                self.otherAddressTF.isHidden = false
-                self.otherAddressTF.text = modelObjectDict.name ?? ""
-                
-            }
-        }else{
-            self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude )", withLongitude: "\(position.target.longitude )")
-            addressLat = "\(position.target.latitude )"
-            addressLong = "\(position.target.longitude )"
-        }
+//        }
         
         
     }
@@ -336,32 +367,21 @@ extension UpdateLocationVC : CLLocationManagerDelegate{
     func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double) {
         
         let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(pdblLatitude),\(pdblLongitude)&key=\("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")"
-
+        
         Alamofire.request(url).validate().responseJSON { response in
             switch response.result {
             case .success:
-
+                
                 let responseJson = response.result.value! as! NSDictionary
                 print("the location is \(responseJson)")
                 if let results = responseJson.object(forKey: "results")! as? [NSDictionary] {
                     if results.count > 0 {
                         if let addressComponents = results[0]["address_components"]! as? [NSDictionary] {
                             print("the location is value \(results[0]["formatted_address"] as? String)")
-//                            self.locationTf.text = results[0]["formatted_address"] as? String
+                            //                            self.locationTf.text = results[0]["formatted_address"] as? String
                             for component in addressComponents {
                                 if let temp = component.object(forKey: "types") as? [String] {
-//                                    if (temp[0] == "postal_code") {
-//                                        self.pincode = component["long_name"] as? String
-//                                    }
-//                                    if (temp[0] == "locality") {
-//                                        self.city = component["long_name"] as? String
-//                                    }
-//                                    if (temp[0] == "administrative_area_level_1") {
-//                                        self.state = component["long_name"] as? String
-//                                    }
-//                                    if (temp[0] == "country") {
-//                                        self.country = component["long_name"] as? String
-//                                    }
+                                    //
                                 }
                             }
                         }
@@ -372,7 +392,7 @@ extension UpdateLocationVC : CLLocationManagerDelegate{
             }
         }
         
-       
+        
         
     }
     
@@ -390,5 +410,44 @@ extension UpdateLocationVC : CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error while requesting new coordinates")
+    }
+}
+
+//set address in textfields
+extension UpdateLocationVC {
+    
+    func setAddressInTextField() {
+        
+        tfAddress.text = modelObjectDict.street_address ?? ""
+        
+        if modelObjectDict.country ?? "" == "self.tfLandMark.text!" || modelObjectDict.country ?? "" == ""{
+            
+        }else{
+            self.tfLandMark.text = modelObjectDict.country ?? ""
+            
+        }
+        
+        
+        if modelObjectDict.state ?? "" == "self.tfHouserNumber.text!" || modelObjectDict.state ?? "" == ""{
+            
+        }else{
+            self.tfLandMark.text = modelObjectDict.state ?? ""
+            
+        }
+        
+        if modelObjectDict.name == "Home"{
+            self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+        }else if modelObjectDict.name == "Work"{
+            self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+        }else{
+            
+            self.otherAddressTF.isHidden = false
+            self.otherAddressTF.text = modelObjectDict.name ?? ""
+            
+        }
     }
 }

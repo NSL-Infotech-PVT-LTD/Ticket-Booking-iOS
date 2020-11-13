@@ -1,0 +1,108 @@
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "2Y4-gq-OLZ"; */
+"2Y4-gq-OLZ.placeholder" = "type here...";
+
+/* Class = "UILabel"; text = "Confirm Password"; ObjectID = "4jF-IQ-Fxb"; */
+"4jF-IQ-Fxb.text" = "Confirm Password";
+
+/* Class = "UILabel"; text = "Signup with facebook"; ObjectID = "A3M-dA-ArW"; */
+"A3M-dA-ArW.text" = "Signup with facebook";
+
+/* Class = "UILabel"; text = "Register with us in surpriseme."; ObjectID = "BGo-YI-XIj"; */
+"BGo-YI-XIj.text" = "Register with us in surpriseme.";
+
+/* Class = "UILabel"; text = "E-mail Address"; ObjectID = "DPq-4b-e9I"; */
+"DPq-4b-e9I.text" = "E-mail Address";
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "EII-E3-5hc"; */
+"EII-E3-5hc.placeholder" = "type here...";
+
+/* Class = "UILabel"; text = "E-mail Address"; ObjectID = "EcV-Zx-9nU"; */
+"EcV-Zx-9nU.text" = "E-mail Address";
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "Eiu-1j-iqv"; */
+"Eiu-1j-iqv.placeholder" = "type here...";
+
+/* Class = "UIButton"; normalTitle = "Register Now"; ObjectID = "Gen-nm-m1C"; */
+"Gen-nm-m1C.normalTitle" = "Register Now";
+
+/* Class = "UILabel"; text = "Choose your preffered \nlanguage"; ObjectID = "Kjo-HJ-WVt"; */
+"Kjo-HJ-WVt.text" = "Choose your preffered \nlanguage";
+
+/* Class = "UILabel"; text = "Remember me"; ObjectID = "MBi-F8-7pc"; */
+"MBi-F8-7pc.text" = "Remember me";
+
+/* Class = "UILabel"; text = "Signup with Apple"; ObjectID = "NST-rB-rKx"; */
+"NST-rB-rKx.text" = "Signup with Apple";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "Nai-AV-hVL"; */
+"Nai-AV-hVL.normalTitle" = "Next";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "QAz-pJ-NL4"; */
+"QAz-pJ-NL4.text" = "Password";
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "Sbo-Wg-Oy7"; */
+"Sbo-Wg-Oy7.placeholder" = "type here...";
+
+/* Class = "UILabel"; text = "English"; ObjectID = "TIH-vw-ldu"; */
+"TIH-vw-ldu.text" = "English";
+
+/* Class = "UILabel"; text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem \nIpsum has been the industry's standard dummy text ever"; ObjectID = "VYb-BY-lxV"; */
+"VYb-BY-lxV.text" = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem \nIpsum has been the industry's standard dummy text ever";
+
+/* Class = "UILabel"; text = "Are you new?"; ObjectID = "WBa-J0-pWd"; */
+"WBa-J0-pWd.text" = "Are you new?";
+
+/* Class = "UILabel"; text = "we will served on the basis of your selection."; ObjectID = "Xjv-ED-sAi"; */
+"Xjv-ED-sAi.text" = "we will served on the basis of your selection.";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password? "; ObjectID = "bID-jn-tTn"; */
+"bID-jn-tTn.normalTitle" = "Forgot Password? ";
+
+/* Class = "UILabel"; text = "E-mail Address"; ObjectID = "dj1-dl-qJU"; */
+"dj1-dl-qJU.text" = "E-mail Address";
+
+/* Class = "UILabel"; text = "Are your new?"; ObjectID = "euf-Rd-8gL"; */
+"euf-Rd-8gL.text" = "Are your new?";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "ez2-wD-7uh"; */
+"ez2-wD-7uh.text" = "Username";
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "kbf-u8-I5K"; */
+"kbf-u8-I5K.placeholder" = "type here...";
+
+/* Class = "UILabel"; text = "Back to login"; ObjectID = "oR4-Kr-NCy"; */
+"oR4-Kr-NCy.text" = "Back to login";
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "qOy-zj-CBb"; */
+"qOy-zj-CBb.placeholder" = "type here...";
+
+/* Class = "UILabel"; text = "or"; ObjectID = "rzo-Ml-A1D"; */
+"rzo-Ml-A1D.text" = "or";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "s0S-2T-Ybq"; */
+"s0S-2T-Ybq.normalTitle" = "Continue";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "sbL-au-DjE"; */
+"sbL-au-DjE.normalTitle" = "Log In";
+
+/* Class = "UITextView"; text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ing versions of Lorem Ipsum"; ObjectID = "tBy-e5-3C6"; */
+"tBy-e5-3C6.text" = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ing versions of Lorem Ipsum";
+
+/* Class = "UILabel"; text = "Terms & Conditions"; ObjectID = "tLx-Oc-iry"; */
+"tLx-Oc-iry.text" = "Terms & Conditions";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "w1B-OB-0og"; */
+"w1B-OB-0og.text" = "Password";
+
+/* Class = "UITextField"; placeholder = "type here..."; ObjectID = "x3O-rR-Lq0"; */
+"x3O-rR-Lq0.placeholder" = "type here...";
+
+/* Class = "UILabel"; text = "Signup with Email"; ObjectID = "xgq-T7-B5A"; */
+"xgq-T7-B5A.text" = "Signup with Email";
+
+/* Class = "UIButton"; normalTitle = "Get Started"; ObjectID = "z1k-KE-mvo"; */
+"z1k-KE-mvo.normalTitle" = "Get Started";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zfN-HL-Ygm"; */
+"zfN-HL-Ygm.text" = "Label";

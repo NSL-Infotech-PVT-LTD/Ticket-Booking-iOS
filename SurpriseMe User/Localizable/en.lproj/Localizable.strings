@@ -1,0 +1,99 @@
+/* 
+  Localizable.strings
+  SurpriseMe User
+
+  Created by NetScape Labs on 11/11/20.
+  Copyright © 2020 Pankaj Mac. All rights reserved.
+*/
+
+//Language_VC
+
+"CHOOSE_PREFFERED"                  = "Choose your preffered language";
+"CHOOSE_YOUR_LAGUAGE_SUBTITTEL"     = "we will served on the basis of your selection.";
+"next"                              = "Next";
+
+//WalkThrough
+
+"GET_STARTED"           = "Get Started";
+"BIRTHDAY_SURPRISE"     = "Birthday Surprise";
+
+//Login
+"EMAIL_ADDRESS"         = "E-mail Address";
+"PASSWORD"              = "Password";
+"TYPE_HERE"             = "Type here...";
+"WELCOME"               = "Welcome";
+"SIGN_TO_CONTINUE"      = "Sign In To Continue";
+"DONT_HAVE_ACCOUNT"     = "Don't have account yet?";
+"SIGN_UP"               = "Sign up";
+"remember_me"           = "Remember me";
+"forget_password"       = "Forgot Password?";
+"login"                 = "Log In";
+
+//Social Login
+"register_title"        = "Register with us in surpriseme.";
+"are_you_new"           = "Are you new?";
+"signup_with_email"     = "Signup with Email";
+"or"                    = "or";
+"signup_with_facebook"  = "Signup with facebook";
+"signup_with_apple"     = "Signup with Apple";
+"back_to_login"         = "Back to login";
+"by_signup"             = "By signing up,you are agree with our";
+"terms_condition"       = "Terms & Conditions";
+
+//SignUp
+"back"                  = "Back";
+"fillup_detail"         = "Fill up details";
+"register_with"         = "Register with us in surpriseme";
+"TYPE_HERE"             = "Type here...";
+"username"              = "Username";
+"EMAIL_ADDRESS"         = "E-mail Address";
+"PASSWORD"              = "Password";
+"c_password"            = "Confirm Password";
+"register_now"          = "Register Now";
+"back_to_login"         = "Back to login";
+
+//Forget Password
+"back"                  = "Back";
+"EMAIL_ADDRESS"         = "E-mail Address";
+"TYPE_HERE"             = "Type here...";
+"continue"              = "Continue";
+
+//Terms & Conditions
+"back"                  = "Back";
+"terms_title"           = "Terms & Conditions";
+
+//Home VC
+"view_profile"          = "View Profile";
+"your_location"         = "Your Location";
+"search_for_artist"     = "Search for Artist, Singer etc.";
+"book_artist_title"     = "Book Artist You Listen";
+"see_artist_profile"    = "See Artist Profile";
+"book"                  = "Book";
+
+//Schuedule booking
+"back"                  = "Back";
+"select_way_booking"    = "Select Way Of Booking";
+"check_availabilty"     = "To check availabilty of artist on your selected date";
+"live_booking"          = "Live Show Booking";
+"digital_booking"       = "Digital Show Booking";
+"Proceed"               = "Proceed";
+"book_now"              = "Book Now";
+
+"live_booking_detail"   = "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming platform.";
+
+"digital_booking_detail"= "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming platform.";
+
+//Calander
+"back"                  = "Back";
+"select_date_booking"   = "Select Date of booking";
+"check_availabilty"     = "To check availabilty of artist on your selected date";
+
+//Edit Date
+"back"                  = "Back";
+"select_time_booking"   = "Select time of booking";
+"multiple_slot"         = "you may select multiple slot in a row.";
+"choose_another_date"   = "Artist is not available on this date . Please Choose another date";
+"clear_all"             = "Clear All";
+"available"             = "Available";
+"unavailable"           = "Unavailable";
+"proceed_checkout"      = "Proceed to checkout";

@@ -11,7 +11,11 @@ import UIKit
 class ForgetPasswordVC: UIViewController {
     
     //MARK:- Outlets -
+    
+    @IBOutlet var btnBack: UIButton!
+    @IBOutlet var lblEmail: UILabel!
     @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet var btnContinue: UIButton!
     @IBOutlet weak var viewForget: UIView!
     @IBOutlet weak var viewHeader: UIView!
     
@@ -28,6 +32,10 @@ class ForgetPasswordVC: UIViewController {
         objectViewModel.delegate = self
         self.viewForget.addBottomShadow()
         
+        self.btnBack.setTitle("back".localized(), for: .normal)
+        self.lblEmail.text = "EMAIL_ADDRESS".localized()
+        self.tfEmail.placeholder = "TYPE_HERE".localized()
+        self.btnContinue.setTitle("continue".localized(), for: .normal)
     }
     
     

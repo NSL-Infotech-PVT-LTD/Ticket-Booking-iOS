@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OSS-Fw-VW7">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pe3-r7-8gc">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,13 +35,13 @@
         <!--Walk ThroughVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="WalkThroughVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WalkThroughVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WalkThroughVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="WalkThroughVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jUZ-vt-wqq">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iQG-dG-sYt">
                                     <size key="itemSize" width="408" height="697"/>
@@ -50,8 +50,8 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="dfX-hs-kVm" customClass="CustomWalkThroughCell" customModule="SurpriseMe_User" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-37" width="408" height="697"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="dfX-hs-kVm" customClass="CustomWalkThroughCell" customModule="SurpriseMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="-86.5" width="408" height="697"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3hV-nm-XZ6">
                                             <rect key="frame" x="0.0" y="0.0" width="408" height="697"/>
@@ -115,7 +115,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 </connections>
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-b3-fkS">
-                                <rect key="frame" x="112.5" y="548" width="150" height="37"/>
+                                <rect key="frame" x="85" y="449" width="150" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="QrR-ub-VVb"/>
                                     <constraint firstAttribute="width" constant="150" id="j8i-jN-ZaU"/>
@@ -124,7 +124,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 <color key="currentPageIndicatorTintColor" red="0.91764705879999997" green="0.039215686270000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1k-KE-mvo">
-                                <rect key="frame" x="40" y="587" width="295" height="50"/>
+                                <rect key="frame" x="40" y="488" width="240" height="50"/>
                                 <color key="backgroundColor" red="0.86274509803921573" green="0.047058823529411764" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cuI-tT-wIB"/>
@@ -166,39 +166,39 @@ Ipsum has been the industry's standard dummy text ever</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015.9420289855075" y="112.50000000000001"/>
+            <point key="canvasLocation" x="2061" y="115"/>
         </scene>
         <!--Social LoginVC-->
         <scene sceneID="o01-6O-ZGf">
             <objects>
-                <viewController storyboardIdentifier="SocialLoginVC" id="Zxg-Tk-gd0" customClass="SocialLoginVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SocialLoginVC" id="Zxg-Tk-gd0" customClass="SocialLoginVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kvo-MR-0nO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redesign signup" translatesAutoresizingMaskIntoConstraints="NO" id="RW2-Er-75d">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-0h-edK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="89u-Hk-qWn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="732"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="732"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redesign signup" translatesAutoresizingMaskIntoConstraints="NO" id="VaQ-oP-rqy">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="732"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="732"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login logo With shadow" translatesAutoresizingMaskIntoConstraints="NO" id="K2n-tr-tL6">
-                                                <rect key="frame" x="139.5" y="72" width="96" height="100"/>
+                                                <rect key="frame" x="112" y="72" width="96" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="9KP-ML-5ep"/>
                                                     <constraint firstAttribute="width" constant="96" id="Nk3-Ih-pAQ"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register with us in surpriseme." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGo-YI-XIj">
-                                                <rect key="frame" x="36" y="193" width="303" height="21"/>
+                                                <rect key="frame" x="36" y="193" width="248" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="2ag-JY-3XO"/>
                                                 </constraints>
@@ -207,10 +207,10 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWg-VU-JQn">
-                                                <rect key="frame" x="20" y="240" width="335" height="400"/>
+                                                <rect key="frame" x="20" y="240" width="280" height="400"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you new?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-J0-pWd">
-                                                        <rect key="frame" x="97.5" y="30" width="140.5" height="30"/>
+                                                        <rect key="frame" x="57.5" y="30" width="165.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="CQF-Tn-Gh4"/>
                                                         </constraints>
@@ -219,7 +219,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wA-rH-MRE">
-                                                        <rect key="frame" x="30" y="73" width="275" height="50"/>
+                                                        <rect key="frame" x="30" y="73" width="220" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signup_surpriseme" translatesAutoresizingMaskIntoConstraints="NO" id="r7r-zh-c6R">
                                                                 <rect key="frame" x="12" y="8" width="49" height="34"/>
@@ -229,7 +229,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Signup with Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgq-T7-B5A">
-                                                                <rect key="frame" x="69" y="14.5" width="194" height="21"/>
+                                                                <rect key="frame" x="69" y="14.5" width="139" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="giL-Vu-0R7"/>
                                                                 </constraints>
@@ -266,7 +266,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn9-Wb-Vpy">
-                                                        <rect key="frame" x="67.5" y="320" width="200" height="50"/>
+                                                        <rect key="frame" x="40" y="320" width="200" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back to login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oR4-Kr-NCy">
                                                                 <rect key="frame" x="50" y="15" width="100" height="20"/>
@@ -295,7 +295,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCB-1j-UWb">
-                                                        <rect key="frame" x="30" y="165" width="275" height="50"/>
+                                                        <rect key="frame" x="30" y="165" width="220" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fb" translatesAutoresizingMaskIntoConstraints="NO" id="Nl9-tn-lPA">
                                                                 <rect key="frame" x="11" y="8" width="32" height="34"/>
@@ -336,7 +336,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzo-Ml-A1D">
-                                                        <rect key="frame" x="152.5" y="129" width="30" height="30"/>
+                                                        <rect key="frame" x="125" y="129" width="30" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="HHl-8k-Egl"/>
                                                             <constraint firstAttribute="width" constant="30" id="YfQ-Mv-SM1"/>
@@ -346,7 +346,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxJ-22-JQt">
-                                                        <rect key="frame" x="30" y="230" width="275" height="50"/>
+                                                        <rect key="frame" x="30" y="230" width="220" height="50"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1220336-32" translatesAutoresizingMaskIntoConstraints="NO" id="yid-V8-u9W">
                                                                 <rect key="frame" x="13" y="8" width="32" height="34"/>
@@ -423,7 +423,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-ck-GaP">
-                                                <rect key="frame" x="30" y="675" width="315" height="22"/>
+                                                <rect key="frame" x="30" y="675" width="260" height="22"/>
                                                 <state key="normal" image="By signing up, you are agree with our Terms &amp; Conditions-1"/>
                                                 <connections>
                                                     <action selector="btnTerConditionAction:" destination="Zxg-Tk-gd0" eventType="touchUpInside" id="W2y-r2-XbR"/>
@@ -487,6 +487,13 @@ Ipsum has been the industry's standard dummy text ever</string>
                     </view>
                     <navigationItem key="navigationItem" id="k2y-pe-Cmy"/>
                     <connections>
+                        <outlet property="lblAreYouNew" destination="WBa-J0-pWd" id="GBh-WF-TBq"/>
+                        <outlet property="lblBackToLogin" destination="oR4-Kr-NCy" id="kKI-ry-eVV"/>
+                        <outlet property="lblMainTitle" destination="BGo-YI-XIj" id="u0y-w7-mf2"/>
+                        <outlet property="lblOr" destination="rzo-Ml-A1D" id="V4b-2p-QNF"/>
+                        <outlet property="lblSignUpWithEmail" destination="xgq-T7-B5A" id="fcw-V4-soW"/>
+                        <outlet property="lblSignupWithApple" destination="NST-rB-rKx" id="fIs-7P-Gmj"/>
+                        <outlet property="lblSignupWithFacebook" destination="A3M-dA-ArW" id="nFQ-Ub-j48"/>
                         <outlet property="lblTermsCondition" destination="euf-Rd-8gL" id="5MZ-Tg-FQZ"/>
                         <outlet property="viewApple" destination="PxJ-22-JQt" id="Yiv-0V-nhf"/>
                         <outlet property="viewBackTOLogin" destination="wn9-Wb-Vpy" id="Uio-KT-A1f"/>
@@ -496,7 +503,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qno-KO-jos" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3444.375" y="115.14084507042254"/>
+            <point key="canvasLocation" x="3566" y="115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qo5-zx-UdT">
@@ -504,7 +511,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OSS-Fw-VW7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QLd-no-ITo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -519,31 +526,31 @@ Ipsum has been the industry's standard dummy text ever</string>
         <!--LoginVC-->
         <scene sceneID="QRd-zh-xgX">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" id="19W-ON-k5f" customClass="LoginVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="19W-ON-k5f" customClass="LoginVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iak-XB-80Y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDM-Ih-DAV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLX-pb-H4O">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="PIN-Fy-tk2">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="393"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="393"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login logo With shadow" translatesAutoresizingMaskIntoConstraints="NO" id="JTx-r2-4E3">
-                                                <rect key="frame" x="122.5" y="30" width="130" height="106"/>
+                                                <rect key="frame" x="95" y="30" width="130" height="106"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="130" id="Nj0-uT-zla"/>
                                                     <constraint firstAttribute="height" constant="106" id="T5v-LC-mD0"/>
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Rn-BO-BnL">
-                                                <rect key="frame" x="0.0" y="149" width="375" height="51"/>
+                                                <rect key="frame" x="0.0" y="149" width="320" height="62"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="0pq-TV-kXb">
+                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="0pq-TV-kXb">
                                                         <rect key="frame" x="36" y="0.0" width="112" height="34"/>
                                                         <color key="tintColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
@@ -551,7 +558,27 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                             <constraint firstAttribute="height" constant="34" id="hSr-31-nIx"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sign In to Continue" translatesAutoresizingMaskIntoConstraints="NO" id="mmd-zi-YMo">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In to Continue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfx-17-oHc">
+                                                        <rect key="frame" x="40" y="37" width="252" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="252" id="VhM-oo-FsF"/>
+                                                            <constraint firstAttribute="height" constant="21" id="hmS-o6-LrO"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
+                                                        <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeP-AT-ipP">
+                                                        <rect key="frame" x="36" y="5" width="265" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="MuP-Y6-JZE"/>
+                                                            <constraint firstAttribute="width" constant="265" id="yuf-tQ-cN4"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="22"/>
+                                                        <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sign In to Continue" translatesAutoresizingMaskIntoConstraints="NO" id="mmd-zi-YMo">
                                                         <rect key="frame" x="36" y="35" width="112" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="tzT-hg-Ydq"/>
@@ -561,19 +588,29 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="mmd-zi-YMo" secondAttribute="bottom" constant="-4" id="5hg-fL-xXA"/>
+                                                    <constraint firstAttribute="bottom" secondItem="mmd-zi-YMo" secondAttribute="bottom" constant="7" id="5hg-fL-xXA"/>
                                                     <constraint firstItem="0pq-TV-kXb" firstAttribute="leading" secondItem="1Rn-BO-BnL" secondAttribute="leading" constant="36" id="8fQ-bu-PtK"/>
-                                                    <constraint firstAttribute="height" constant="51" id="R5w-hL-D14"/>
+                                                    <constraint firstItem="Zfx-17-oHc" firstAttribute="leading" secondItem="1Rn-BO-BnL" secondAttribute="leading" constant="40" id="HN0-oa-a38"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Zfx-17-oHc" secondAttribute="bottom" constant="4" id="KuE-ae-UmC"/>
+                                                    <constraint firstItem="UeP-AT-ipP" firstAttribute="leading" secondItem="1Rn-BO-BnL" secondAttribute="leading" constant="36" id="Lju-ih-icK"/>
+                                                    <constraint firstAttribute="height" constant="62" id="R5w-hL-D14"/>
+                                                    <constraint firstItem="UeP-AT-ipP" firstAttribute="top" secondItem="1Rn-BO-BnL" secondAttribute="top" constant="5" id="WEk-iY-ANl"/>
                                                     <constraint firstItem="mmd-zi-YMo" firstAttribute="top" secondItem="0pq-TV-kXb" secondAttribute="bottom" constant="1" id="Z4V-gl-OLA"/>
                                                     <constraint firstItem="0pq-TV-kXb" firstAttribute="top" secondItem="1Rn-BO-BnL" secondAttribute="top" id="eb8-uw-0vl"/>
                                                     <constraint firstItem="mmd-zi-YMo" firstAttribute="leading" secondItem="0pq-TV-kXb" secondAttribute="leading" id="vll-nh-0sZ"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="0pq-TV-kXb"/>
+                                                        <exclude reference="mmd-zi-YMo"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cV-I9-mCy">
-                                                <rect key="frame" x="0.0" y="230" width="375" height="197"/>
+                                                <rect key="frame" x="0.0" y="230" width="320" height="197"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-oN-eQU">
-                                                        <rect key="frame" x="12" y="12" width="351" height="63"/>
+                                                        <rect key="frame" x="12" y="12" width="296" height="63"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="ICB-SU-sdF">
                                                                 <rect key="frame" x="15" y="6" width="18" height="15"/>
@@ -585,7 +622,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dj1-dl-qJU">
-                                                                <rect key="frame" x="41" y="8" width="302" height="19"/>
+                                                                <rect key="frame" x="41" y="8" width="247" height="19"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="19" id="m65-oy-eND"/>
                                                                 </constraints>
@@ -594,7 +631,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="type here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kbf-u8-I5K">
-                                                                <rect key="frame" x="41" y="28" width="302" height="32"/>
+                                                                <rect key="frame" x="41" y="28" width="247" height="32"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="32" id="xyM-zu-obN"/>
                                                                 </constraints>
@@ -628,7 +665,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-qu-iqd">
-                                                        <rect key="frame" x="12" y="102" width="351" height="63"/>
+                                                        <rect key="frame" x="12" y="102" width="296" height="63"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="Gmj-nq-l7t">
                                                                 <rect key="frame" x="15" y="6" width="18" height="15"/>
@@ -638,7 +675,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1B-OB-0og">
-                                                                <rect key="frame" x="41" y="6" width="259" height="20"/>
+                                                                <rect key="frame" x="41" y="6" width="204" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="kBP-qp-omI"/>
                                                                 </constraints>
@@ -647,13 +684,13 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="type here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EII-E3-5hc">
-                                                                <rect key="frame" x="41" y="27.5" width="259" height="32"/>
+                                                                <rect key="frame" x="41" y="27.5" width="204" height="32"/>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erP-Ds-9de">
-                                                                <rect key="frame" x="315" y="14" width="24" height="30"/>
+                                                                <rect key="frame" x="260" y="14" width="24" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="24" id="RUi-M0-Yh9"/>
                                                                     <constraint firstAttribute="height" constant="30" id="XtT-SN-kHh"/>
@@ -704,7 +741,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZ5-XB-kyB">
-                                                <rect key="frame" x="0.0" y="512" width="375" height="28"/>
+                                                <rect key="frame" x="0.0" y="446" width="320" height="28"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCD-pO-E9M">
                                                         <rect key="frame" x="36" y="4" width="20" height="20"/>
@@ -730,21 +767,21 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-F8-7pc">
-                                                        <rect key="frame" x="64" y="4" width="92.5" height="20"/>
+                                                        <rect key="frame" x="64" y="4" width="86" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="q7O-ke-8jf"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="13"/>
                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bID-jn-tTn">
-                                                        <rect key="frame" x="226" y="4" width="134" height="20"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bID-jn-tTn">
+                                                        <rect key="frame" x="171" y="4" width="134" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Bzh-lq-Ej8"/>
                                                             <constraint firstAttribute="width" constant="134" id="dWM-0u-X8R"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="14"/>
                                                         <state key="normal" title="Forgot Password? ">
                                                             <color key="titleColor" red="0.83137254900000002" green="0.078431372550000003" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
@@ -758,13 +795,14 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <constraint firstItem="bID-jn-tTn" firstAttribute="centerY" secondItem="VCD-pO-E9M" secondAttribute="centerY" id="1KE-yf-EnV"/>
                                                     <constraint firstAttribute="trailing" secondItem="bID-jn-tTn" secondAttribute="trailing" constant="15" id="L8W-va-3ZK"/>
                                                     <constraint firstAttribute="bottom" secondItem="VCD-pO-E9M" secondAttribute="bottom" constant="4" id="Zdu-oL-RKE"/>
+                                                    <constraint firstItem="VCD-pO-E9M" firstAttribute="leading" secondItem="KZ5-XB-kyB" secondAttribute="leading" constant="36" id="awo-xZ-Rff"/>
                                                     <constraint firstItem="MBi-F8-7pc" firstAttribute="centerY" secondItem="VCD-pO-E9M" secondAttribute="centerY" id="el2-M1-2Sx"/>
                                                     <constraint firstItem="MBi-F8-7pc" firstAttribute="leading" secondItem="VCD-pO-E9M" secondAttribute="trailing" constant="8" id="kvI-nl-6Z2"/>
                                                     <constraint firstAttribute="height" constant="28" id="xxC-T7-L7N"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbL-au-DjE">
-                                                <rect key="frame" x="36" y="554" width="303" height="40"/>
+                                                <rect key="frame" x="36" y="488" width="248" height="40"/>
                                                 <color key="backgroundColor" red="0.83137254901960778" green="0.078431372549019607" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Wc9-sP-spI"/>
@@ -782,49 +820,90 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <action selector="btnLoginAction:" destination="19W-ON-k5f" eventType="touchUpInside" id="V1F-XW-WeW"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96y-9F-ibn">
-                                                <rect key="frame" x="36" y="617" width="303" height="20"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96y-9F-ibn">
+                                                <rect key="frame" x="222" y="541" width="98" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="fng-mf-ucx"/>
+                                                    <constraint firstAttribute="width" constant="98" id="i44-Y8-DMW"/>
+                                                    <constraint firstAttribute="height" constant="20" id="zcN-AW-Xb1"/>
                                                 </constraints>
-                                                <state key="normal" image="Don't have account yet  Sign up"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
+                                                <state key="normal" title="Signup">
+                                                    <color key="titleColor" red="0.92549019610000005" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="btnSignupAction:" destination="19W-ON-k5f" eventType="touchUpInside" id="Z8A-x1-FtN"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="iPz-e8-fMV">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="393"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="393"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="393" id="Ifi-ZQ-CV7"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have account yet ? " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCk-sV-Mbx">
+                                                <rect key="frame" x="42" y="542" width="180" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="it3-b7-qup"/>
+                                                    <constraint firstAttribute="width" constant="180" id="wO1-KA-FP3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
+                                                <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-D8-ys5">
+                                                <rect key="frame" x="238" y="33" width="72" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="Ar1-TK-YXJ"/>
+                                                    <constraint firstAttribute="width" constant="72" id="Qum-ob-KuV"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
+                                                <state key="normal" title="Change">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="btnChangeLanguageAction:" destination="19W-ON-k5f" eventType="touchUpInside" id="t8F-Oj-nNg"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="translate" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-jK-uSw">
+                                                <rect key="frame" x="208" y="27" width="40" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="DPs-MI-Gr9"/>
+                                                    <constraint firstAttribute="width" constant="40" id="qbY-aI-ovO"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="96y-9F-ibn" firstAttribute="leading" secondItem="sbL-au-DjE" secondAttribute="leading" id="1KO-Yg-4oh"/>
                                             <constraint firstAttribute="trailing" secondItem="7cV-I9-mCy" secondAttribute="trailing" id="5bv-z7-i1C"/>
+                                            <constraint firstItem="96y-9F-ibn" firstAttribute="leading" secondItem="BCk-sV-Mbx" secondAttribute="trailing" id="7BX-3P-8Gu"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fqf-D8-ys5" secondAttribute="trailing" constant="10" id="8IE-20-HeJ"/>
                                             <constraint firstItem="PIN-Fy-tk2" firstAttribute="top" secondItem="vLX-pb-H4O" secondAttribute="top" id="9Ar-vc-fhZ"/>
                                             <constraint firstAttribute="trailing" secondItem="iPz-e8-fMV" secondAttribute="trailing" id="B2E-9C-s8R"/>
-                                            <constraint firstItem="96y-9F-ibn" firstAttribute="top" secondItem="sbL-au-DjE" secondAttribute="bottom" constant="23" id="CE8-Yt-IUL"/>
+                                            <constraint firstItem="XUd-jK-uSw" firstAttribute="centerY" secondItem="Fqf-D8-ys5" secondAttribute="centerY" id="CaV-mP-8pY"/>
                                             <constraint firstItem="JTx-r2-4E3" firstAttribute="top" secondItem="vLX-pb-H4O" secondAttribute="top" constant="30" id="GTP-dI-VfG"/>
                                             <constraint firstItem="VCD-pO-E9M" firstAttribute="leading" secondItem="0pq-TV-kXb" secondAttribute="leading" id="GX6-5f-PJM"/>
+                                            <constraint firstItem="Fqf-D8-ys5" firstAttribute="top" secondItem="vLX-pb-H4O" secondAttribute="top" constant="33" id="IeF-KD-rxu"/>
                                             <constraint firstItem="sbL-au-DjE" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" constant="36" id="KYx-9n-uxi"/>
                                             <constraint firstItem="7cV-I9-mCy" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" id="KkS-OP-Pct"/>
                                             <constraint firstAttribute="trailing" secondItem="1Rn-BO-BnL" secondAttribute="trailing" id="KsL-an-sPU"/>
                                             <constraint firstItem="sbL-au-DjE" firstAttribute="top" secondItem="KZ5-XB-kyB" secondAttribute="bottom" constant="14" id="OcN-Jv-fkI"/>
                                             <constraint firstItem="KZ5-XB-kyB" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" id="PGs-a8-bqd"/>
-                                            <constraint firstAttribute="bottom" secondItem="96y-9F-ibn" secondAttribute="bottom" constant="30" id="Rae-p3-lbh"/>
+                                            <constraint firstItem="KZ5-XB-kyB" firstAttribute="top" secondItem="7cV-I9-mCy" secondAttribute="bottom" constant="19" id="Q7I-A1-Mb6"/>
                                             <constraint firstItem="iPz-e8-fMV" firstAttribute="top" secondItem="vLX-pb-H4O" secondAttribute="top" id="Scm-xz-EqI"/>
+                                            <constraint firstItem="XUd-jK-uSw" firstAttribute="top" secondItem="Fqf-D8-ys5" secondAttribute="bottom" constant="-24" id="TO7-Yz-NSk"/>
                                             <constraint firstAttribute="trailing" secondItem="KZ5-XB-kyB" secondAttribute="trailing" id="Xd9-wg-VUR"/>
                                             <constraint firstItem="iPz-e8-fMV" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" id="dGT-Ov-Yc6"/>
+                                            <constraint firstItem="BCk-sV-Mbx" firstAttribute="centerX" secondItem="vLX-pb-H4O" secondAttribute="centerX" constant="-28" id="dKo-Nl-vc1"/>
                                             <constraint firstItem="1Rn-BO-BnL" firstAttribute="top" secondItem="JTx-r2-4E3" secondAttribute="bottom" constant="13" id="e2B-dz-jcb"/>
-                                            <constraint firstItem="7cV-I9-mCy" firstAttribute="top" secondItem="1Rn-BO-BnL" secondAttribute="bottom" constant="30" id="kjY-5e-sSF"/>
+                                            <constraint firstItem="96y-9F-ibn" firstAttribute="centerY" secondItem="BCk-sV-Mbx" secondAttribute="centerY" id="f2X-s9-VvK"/>
+                                            <constraint firstItem="7cV-I9-mCy" firstAttribute="top" secondItem="1Rn-BO-BnL" secondAttribute="bottom" constant="19" id="kjY-5e-sSF"/>
                                             <constraint firstItem="PIN-Fy-tk2" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" id="lRf-iJ-sdS"/>
                                             <constraint firstItem="1Rn-BO-BnL" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" id="nqR-O1-jTl"/>
                                             <constraint firstAttribute="trailing" secondItem="PIN-Fy-tk2" secondAttribute="trailing" id="qCb-kG-Rzc"/>
                                             <constraint firstItem="JTx-r2-4E3" firstAttribute="centerX" secondItem="vLX-pb-H4O" secondAttribute="centerX" id="qYv-Ks-eok"/>
+                                            <constraint firstAttribute="trailing" secondItem="XUd-jK-uSw" secondAttribute="trailing" constant="72" id="s7w-VC-beq"/>
                                             <constraint firstAttribute="trailing" secondItem="sbL-au-DjE" secondAttribute="trailing" constant="36" id="w1L-JD-HGv"/>
-                                            <constraint firstItem="96y-9F-ibn" firstAttribute="trailing" secondItem="sbL-au-DjE" secondAttribute="trailing" id="zsB-wR-lDd"/>
+                                            <constraint firstItem="BCk-sV-Mbx" firstAttribute="top" secondItem="sbL-au-DjE" secondAttribute="bottom" constant="14" id="zeQ-6o-P88"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -849,18 +928,27 @@ Ipsum has been the industry's standard dummy text ever</string>
                     </view>
                     <navigationItem key="navigationItem" id="Hrj-9Y-XNb"/>
                     <connections>
+                        <outlet property="btnForget" destination="bID-jn-tTn" id="W9J-6g-e6F"/>
+                        <outlet property="btnLogin" destination="sbL-au-DjE" id="k0b-9K-kv8"/>
+                        <outlet property="btnSign" destination="96y-9F-ibn" id="bRJ-YR-bdk"/>
+                        <outlet property="lblDontHaveAccount" destination="BCk-sV-Mbx" id="BWV-3O-plv"/>
+                        <outlet property="lblEmail" destination="dj1-dl-qJU" id="kkT-iU-lVq"/>
+                        <outlet property="lblPassword" destination="w1B-OB-0og" id="c3o-dv-XVy"/>
+                        <outlet property="lblRemember" destination="MBi-F8-7pc" id="jxY-nF-UuF"/>
+                        <outlet property="lblSignInToContinue" destination="Zfx-17-oHc" id="oT9-8y-pa0"/>
+                        <outlet property="lblWelcome" destination="UeP-AT-ipP" id="qwJ-Wf-aZl"/>
                         <outlet property="tfEmail" destination="kbf-u8-I5K" id="7MC-Kz-t3h"/>
                         <outlet property="tfPassword" destination="EII-E3-5hc" id="IPr-XO-Gse"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7r-z4-nIA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2738.4000000000001" y="111.0944527736132"/>
+            <point key="canvasLocation" x="2816.25" y="114.08450704225352"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="wpA-qR-ooX">
             <objects>
-                <viewController storyboardIdentifier="SignupVC" id="oxo-fD-w5Y" customClass="SignupVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupVC" id="oxo-fD-w5Y" customClass="SignupVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y4n-5X-BS9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -869,12 +957,16 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-fb-MnL">
-                                        <rect key="frame" x="18" y="44" width="60" height="24"/>
+                                        <rect key="frame" x="18" y="44" width="100" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="gYd-WS-ir7"/>
-                                            <constraint firstAttribute="width" constant="60" id="l93-iQ-9dz"/>
+                                            <constraint firstAttribute="width" constant="100" id="l93-iQ-9dz"/>
                                         </constraints>
-                                        <state key="normal" image="Back-1"/>
+                                        <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-35" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackAction:" destination="oxo-fD-w5Y" eventType="touchUpInside" id="Mex-Ga-SAa"/>
                                         </connections>
@@ -1230,6 +1322,12 @@ Ipsum has been the industry's standard dummy text ever</string>
                     <navigationItem key="navigationItem" id="OxH-bl-ZKc"/>
                     <size key="freeformSize" width="414" height="755"/>
                     <connections>
+                        <outlet property="btnBack" destination="tgD-fb-MnL" id="7s2-RA-mrh"/>
+                        <outlet property="btnRegister" destination="Gen-nm-m1C" id="baE-Yk-fPB"/>
+                        <outlet property="lblCPassword" destination="4jF-IQ-Fxb" id="Niq-tc-BTG"/>
+                        <outlet property="lblEmailAddress" destination="EcV-Zx-9nU" id="gBS-hR-8yi"/>
+                        <outlet property="lblPassword" destination="QAz-pJ-NL4" id="MZF-fY-zhK"/>
+                        <outlet property="lblUsername" destination="ez2-wD-7uh" id="Xd2-SC-H5Z"/>
                         <outlet property="tfConfirmPassword" destination="2Y4-gq-OLZ" id="5cq-DZ-byf"/>
                         <outlet property="tfEmail" destination="x3O-rR-Lq0" id="gsH-66-eRa"/>
                         <outlet property="tfPassword" destination="Eiu-1j-iqv" id="IQD-Py-gYM"/>
@@ -1239,26 +1337,30 @@ Ipsum has been the industry's standard dummy text ever</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXY-rg-qr4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4152" y="151.57421289355324"/>
+            <point key="canvasLocation" x="4444" y="382"/>
         </scene>
         <!--Terms ProfileVC-->
         <scene sceneID="DUc-9Y-0gn">
             <objects>
-                <viewController storyboardIdentifier="TermsProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOz-sc-t0b" customClass="TermsProfileVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MOz-sc-t0b" customClass="TermsProfileVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6YC-8f-pwL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Td5-Fb-WrK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyK-8O-meH">
-                                        <rect key="frame" x="18" y="32" width="60" height="24"/>
+                                        <rect key="frame" x="18" y="32" width="100" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="NSA-Xt-aCd"/>
-                                            <constraint firstAttribute="width" constant="60" id="g4E-rj-gjS"/>
+                                            <constraint firstAttribute="width" constant="100" id="g4E-rj-gjS"/>
                                         </constraints>
-                                        <state key="normal" image="Back-1"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackOnPress:" destination="MOz-sc-t0b" eventType="touchUpInside" id="Y2e-U6-vSC"/>
                                         </connections>
@@ -1272,10 +1374,10 @@ Ipsum has been the industry's standard dummy text ever</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CWD-bB-0cO">
-                                <rect key="frame" x="20" y="100" width="335" height="527"/>
+                                <rect key="frame" x="20" y="100" width="280" height="428"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLx-Oc-iry">
-                                        <rect key="frame" x="0.0" y="0.0" width="315" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="260" height="33"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="PbL-kB-8z3"/>
                                         </constraints>
@@ -1284,7 +1386,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tBy-e5-3C6">
-                                        <rect key="frame" x="0.0" y="37" width="335" height="497"/>
+                                        <rect key="frame" x="0.0" y="37" width="280" height="497"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="497" id="HvC-tC-VVZ"/>
@@ -1322,32 +1424,37 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                         <viewLayoutGuide key="safeArea" id="G1s-BQ-rbV"/>
                     </view>
                     <connections>
+                        <outlet property="btnBack" destination="JyK-8O-meH" id="L4t-zY-1Er"/>
                         <outlet property="headerLbl" destination="tLx-Oc-iry" id="RGN-Jn-u81"/>
                         <outlet property="viewHeader" destination="Td5-Fb-WrK" id="AJH-8Q-c0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XxI-nb-BFq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4871" y="116"/>
+            <point key="canvasLocation" x="2818" y="825"/>
         </scene>
         <!--Forget PasswordVC-->
         <scene sceneID="KJD-d4-hfH">
             <objects>
-                <viewController storyboardIdentifier="ForgetPasswordVC" id="3t6-Lx-oeq" customClass="ForgetPasswordVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgetPasswordVC" id="3t6-Lx-oeq" customClass="ForgetPasswordVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U03-dV-gbL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRH-eG-M0p">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bew-vc-6fg">
-                                        <rect key="frame" x="18" y="26" width="62" height="30"/>
+                                        <rect key="frame" x="18" y="26" width="100" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="62" id="KUU-4I-Hg5"/>
+                                            <constraint firstAttribute="width" constant="100" id="KUU-4I-Hg5"/>
                                             <constraint firstAttribute="height" constant="30" id="RIo-b3-TdA"/>
                                         </constraints>
-                                        <state key="normal" image="Back-1"/>
+                                        <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackAction:" destination="3t6-Lx-oeq" eventType="touchUpInside" id="euW-xl-LZd"/>
                                         </connections>
@@ -1361,20 +1468,20 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg" translatesAutoresizingMaskIntoConstraints="NO" id="nsh-hw-6DX">
-                                <rect key="frame" x="0.0" y="71" width="375" height="259"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="259"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="259" id="a60-hf-7rY"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login logo With shadow" translatesAutoresizingMaskIntoConstraints="NO" id="vkK-Fs-THs">
-                                <rect key="frame" x="59.5" y="120" width="256" height="128"/>
+                                <rect key="frame" x="32" y="120" width="256" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="256" id="Chr-0T-tIp"/>
                                     <constraint firstAttribute="height" constant="128" id="K8y-D8-gEd"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEN-9L-aCz">
-                                <rect key="frame" x="40" y="329" width="295" height="68"/>
+                                <rect key="frame" x="40" y="329" width="240" height="68"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="bfS-rh-iMU">
                                         <rect key="frame" x="7" y="7" width="18" height="15"/>
@@ -1384,7 +1491,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="type here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sbo-Wg-Oy7">
-                                        <rect key="frame" x="37" y="34" width="225" height="20"/>
+                                        <rect key="frame" x="37" y="34" width="170" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="pip-cG-uoQ"/>
                                         </constraints>
@@ -1393,7 +1500,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPq-4b-e9I">
-                                        <rect key="frame" x="31" y="4" width="246" height="20"/>
+                                        <rect key="frame" x="31" y="4" width="191" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="I3Q-Kx-gUi"/>
                                         </constraints>
@@ -1427,7 +1534,7 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0S-2T-Ybq">
-                                <rect key="frame" x="40" y="572" width="295" height="45"/>
+                                <rect key="frame" x="40" y="473" width="240" height="45"/>
                                 <color key="backgroundColor" red="0.91764705879999997" green="0.039215686270000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="WhE-jq-9WR"/>
@@ -1466,6 +1573,9 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                         <viewLayoutGuide key="safeArea" id="KzK-pX-3CJ"/>
                     </view>
                     <connections>
+                        <outlet property="btnBack" destination="Bew-vc-6fg" id="wwc-r7-kCr"/>
+                        <outlet property="btnContinue" destination="s0S-2T-Ybq" id="VsH-xc-4rb"/>
+                        <outlet property="lblEmail" destination="DPq-4b-e9I" id="pXM-Bn-HVc"/>
                         <outlet property="tfEmail" destination="Sbo-Wg-Oy7" id="LsW-Ah-GaO"/>
                         <outlet property="viewForget" destination="sRH-eG-M0p" id="1rK-9H-bZe"/>
                         <outlet property="viewHeader" destination="sRH-eG-M0p" id="wm8-gr-ImE"/>
@@ -1473,14 +1583,14 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALZ-xj-849" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5559.1999999999998" y="113.79310344827587"/>
+            <point key="canvasLocation" x="3568" y="825"/>
         </scene>
         <!--Dashboard Tab Bar Controller-->
         <scene sceneID="ehp-xL-AZs">
             <objects>
-                <viewController storyboardIdentifier="DashboardTabBarController" id="ZDY-Ki-2T9" customClass="DashboardTabBarController" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DashboardTabBarController" id="ZDY-Ki-2T9" customClass="DashboardTabBarController" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="seI-cD-NOh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="cFw-Ub-6V3"/>
@@ -1488,42 +1598,46 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89P-IG-Rfw" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="495" y="116"/>
+            <point key="canvasLocation" x="570" y="114"/>
         </scene>
         <!--LanguageVC-->
         <scene sceneID="2ye-Te-j1H">
             <objects>
-                <viewController storyboardIdentifier="LanguageVC" id="UVz-RN-EA4" customClass="LanguageVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LanguageVC" id="UVz-RN-EA4" customClass="LanguageVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lqu-go-FMd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3XX-9T-fUk">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1080" translatesAutoresizingMaskIntoConstraints="NO" id="smB-cf-xPe">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XL6-Fi-YOh">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1079" translatesAutoresizingMaskIntoConstraints="NO" id="geB-7b-6qf">
-                                                <rect key="frame" x="137.5" y="8" width="100" height="100"/>
+                                                <rect key="frame" x="110" y="52" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="STQ-IB-T0G"/>
                                                     <constraint firstAttribute="height" constant="100" id="gr8-rw-MQ7"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjo-HJ-WVt">
-                                                <rect key="frame" x="30" y="118" width="277.5" height="59"/>
+                                                <rect key="frame" x="20" y="162" width="280" height="59"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="59" id="DqG-Ap-2l7"/>
+                                                </constraints>
                                                 <string key="text">Choose your preffered 
 language</string>
                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we will served on the basis of your selection." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-ED-sAi">
-                                                <rect key="frame" x="30" y="182" width="247" height="13"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="we will served on the basis of your selection." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-ED-sAi">
+                                                <rect key="frame" x="30" y="226" width="247" height="13"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1531,16 +1645,15 @@ language</string>
                                         </subviews>
                                         <color key="backgroundColor" red="0.91764705879999997" green="0.039215686270000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="Kjo-HJ-WVt" firstAttribute="leading" secondItem="XL6-Fi-YOh" secondAttribute="leading" constant="30" id="0wv-PT-YOY"/>
+                                            <constraint firstItem="Kjo-HJ-WVt" firstAttribute="top" secondItem="geB-7b-6qf" secondAttribute="bottom" constant="10" id="1eX-J1-zjS"/>
                                             <constraint firstItem="geB-7b-6qf" firstAttribute="centerX" secondItem="XL6-Fi-YOh" secondAttribute="centerX" id="5fW-pc-bEK"/>
-                                            <constraint firstItem="Kjo-HJ-WVt" firstAttribute="top" secondItem="geB-7b-6qf" secondAttribute="bottom" constant="10" id="BvS-fN-HcR"/>
-                                            <constraint firstItem="Xjv-ED-sAi" firstAttribute="top" secondItem="Kjo-HJ-WVt" secondAttribute="bottom" constant="5" id="Dd3-E5-XRu"/>
-                                            <constraint firstItem="Xjv-ED-sAi" firstAttribute="leading" secondItem="Kjo-HJ-WVt" secondAttribute="leading" id="TCd-aK-hx5"/>
+                                            <constraint firstItem="Kjo-HJ-WVt" firstAttribute="leading" secondItem="XL6-Fi-YOh" secondAttribute="leading" constant="20" id="6BM-m3-Dyf"/>
                                             <constraint firstAttribute="height" constant="250" id="ggX-is-L5q"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kjo-HJ-WVt" secondAttribute="trailing" constant="20" id="ier-N2-cfV"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-AV-hVL">
-                                        <rect key="frame" x="30" y="582" width="315" height="60"/>
+                                        <rect key="frame" x="30" y="483" width="260" height="60"/>
                                         <color key="backgroundColor" red="0.92549019610000005" green="0.0" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Gqc-4D-Krl"/>
@@ -1559,18 +1672,18 @@ language</string>
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WDV-FT-Mym">
-                                        <rect key="frame" x="0.0" y="250" width="375" height="322"/>
+                                        <rect key="frame" x="0.0" y="250" width="320" height="223"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LanguageTableCell" rowHeight="92" id="iz2-dt-t3R" customClass="LanguageTableCell" customModule="SurpriseMe_Artist" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="375" height="92"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LanguageTableCell" rowHeight="92" id="iz2-dt-t3R" customClass="LanguageTableCell" customModule="SurpriseMe" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="320" height="92"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iz2-dt-t3R" id="sh2-FV-VnS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4b-9b-p3r">
-                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIH-vw-ldu">
                                                                     <rect key="frame" x="36" y="35" width="68.5" height="22"/>
@@ -1579,7 +1692,7 @@ language</string>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u8M-nU-hEb">
-                                                                    <rect key="frame" x="325" y="36" width="20" height="20"/>
+                                                                    <rect key="frame" x="270" y="36" width="20" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="9Pq-Ve-8Jx"/>
                                                                         <constraint firstAttribute="width" constant="20" id="Y1n-iw-9Kb"/>
@@ -1640,6 +1753,7 @@ language</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gen-qd-Bjs"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Xed-iB-yIT"/>
                     <connections>
                         <outlet property="btnNext" destination="Nai-AV-hVL" id="a2S-do-Njo"/>
                         <outlet property="lblChooselanguage" destination="Kjo-HJ-WVt" id="o05-Px-jrl"/>
@@ -1649,14 +1763,30 @@ language</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yc7-Mr-OyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2682.608695652174" y="794.86607142857144"/>
+            <point key="canvasLocation" x="2093" y="825"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="60V-Id-opL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pe3-r7-8gc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U9u-IC-jtR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UVz-RN-EA4" kind="relationship" relationship="rootViewController" id="56v-Y1-DNW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v6a-MJ-j4W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1326" y="825"/>
         </scene>
     </scenes>
     <resources>
         <image name="1220336-32" width="32" height="32"/>
-        <image name="Back-1" width="58" height="19"/>
         <image name="By signing up, you are agree with our Terms &amp; Conditions-1" width="304" height="16"/>
-        <image name="Don't have account yet  Sign up" width="250" height="20"/>
         <image name="Fill up details" width="161" height="33"/>
         <image name="Group 1079" width="144" height="81"/>
         <image name="Group 1080" width="16" height="16"/>
@@ -1665,6 +1795,7 @@ language</string>
         <image name="Register with us in surpriseme." width="201" height="18"/>
         <image name="Sign In to Continue" width="125" height="18"/>
         <image name="Welcome" width="114" height="33"/>
+        <image name="down-arrow" width="7.5" height="14.5"/>
         <image name="email" width="64" height="64"/>
         <image name="fb" width="64" height="64"/>
         <image name="login logo With shadow" width="662" height="662"/>
@@ -1674,6 +1805,7 @@ language</string>
         <image name="signup_surpriseme" width="64" height="64"/>
         <image name="tick_selected" width="64" height="64"/>
         <image name="tick_unselect" width="68" height="68"/>
+        <image name="translate" width="15.5" height="15.5"/>
         <image name="username" width="12" height="14.5"/>
     </resources>
 </document>

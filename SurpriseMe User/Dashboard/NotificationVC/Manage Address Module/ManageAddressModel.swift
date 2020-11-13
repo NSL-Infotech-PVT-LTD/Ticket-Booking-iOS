@@ -31,8 +31,9 @@ class ManageAddressModel: NSObject {
         street_address = json[ManageAddressModelKey.street_address].stringValue
         state = json[ManageAddressModelKey.state].stringValue
         name = json[ManageAddressModelKey.name].stringValue
-        lat = json[ManageAddressModelKey.longitude].doubleValue
-        long = json[ManageAddressModelKey.latitude].doubleValue
+        long = json[ManageAddressModelKey.longitude].doubleValue
+        lat = json[ManageAddressModelKey.latitude].doubleValue
+        
     }
     
     struct ManageAddressModelKey {

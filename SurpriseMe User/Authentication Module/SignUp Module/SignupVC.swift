@@ -14,6 +14,14 @@ class SignupVC: UIViewController {
     lazy var viewModelObject = SignUpViewModel()
     
     //MARK:- Outlets -
+    
+    
+    @IBOutlet var btnBack: UIButton!
+    @IBOutlet var lblUsername: UILabel!
+    @IBOutlet var lblEmailAddress: UILabel!
+    @IBOutlet var lblPassword: UILabel!
+    @IBOutlet var lblCPassword: UILabel!
+    @IBOutlet var btnRegister: UIButton!
     @IBOutlet weak var tfUserName: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
@@ -25,6 +33,22 @@ class SignupVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         viewModelObject.delegate = self
         self.viewHeader.addBottomShadow()
+        
+        self.btnBack.setTitle("back".localized(), for: .normal)
+        
+        self.lblUsername.text = "username".localized()
+        self.tfUserName.placeholder = "TYPE_HERE".localized()
+        
+        self.lblEmailAddress.text = "EMAIL_ADDRESS".localized()
+        self.tfEmail.placeholder = "TYPE_HERE".localized()
+        
+        self.lblPassword.text = "PASSWORD".localized()
+        self.tfPassword.placeholder = "TYPE_HERE".localized()
+        
+        self.lblCPassword.text = "c_password".localized()
+        self.tfConfirmPassword.placeholder = "TYPE_HERE".localized()
+        
+        self.btnRegister.setTitle("register_now".localized(), for: .normal)
     }
     
     override func viewDidLoad() {

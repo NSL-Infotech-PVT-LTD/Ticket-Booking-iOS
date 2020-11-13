@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Stripe.setDefaultPublishableKey(StringFile.Publish_Key)
 
-
+        self.checkUserLogin()
         return true
     }
     
@@ -97,23 +97,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //MARK:- Funtion check whether user is login or not -
     func checkUserLogin()  {
-        
-        
-        if let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool{
-            if isLogin == true{
-                let vc = UIStoryboard(name: "Main", bundle: nil)
-                let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
-                let navigationController = UINavigationController(rootViewController: vc1)
-                navigationController.isNavigationBarHidden = true
-                UIApplication.shared.windows.first?.rootViewController = navigationController
-                UIApplication.shared.windows.first?.makeKeyAndVisible()
-            }else{
-                let vc = UIStoryboard(name: "Main", bundle: nil)
-                let vc1 = vc.instantiateViewController(withIdentifier: "WalkThroughVC")
-                let navigationController = UINavigationController(rootViewController: vc1)
-                navigationController.isNavigationBarHidden = true
-                UIApplication.shared.windows.first?.rootViewController = navigationController
-                UIApplication.shared.windows.first?.makeKeyAndVisible()
+        let lang = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
+        if lang == nil || lang == "" || lang.isEmpty == true {
+            let story = UIStoryboard(name: "Main", bundle:nil)
+            let vc = story.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
+            let navigationController = UINavigationController(rootViewController: vc)
+            navigationController.isNavigationBarHidden = true
+            UIApplication.shared.windows.first?.rootViewController = navigationController
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+            
+        }else{
+            if let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool{
+                if isLogin == true{
+                    let vc = UIStoryboard(name: "Main", bundle: nil)
+                    let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
+                    let navigationController = UINavigationController(rootViewController: vc1)
+                    navigationController.isNavigationBarHidden = true
+                    UIApplication.shared.windows.first?.rootViewController = navigationController
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
+               
+                }else{
+                    let vc = UIStoryboard(name: "Main", bundle: nil)
+                    let vc1 = vc.instantiateViewController(withIdentifier: "LanguageVC")
+                    let navigationController = UINavigationController(rootViewController: vc1)
+                    navigationController.isNavigationBarHidden = true
+                    UIApplication.shared.windows.first?.rootViewController = navigationController
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
+                }
             }
         }
     }
@@ -222,7 +232,39 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         completionHandler([[.alert, .sound]])
     }
     
-    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+              let stripeHandled = Stripe.handleURLCallback(with: url)
+              if stripeHandled {
+               let urlString = url.absoluteString
+               let string = urlString
+               if string.range(of:"failed") != nil {
+                   print("exists")
+                   idealPaymentFailed = true
+                   let vc = UIStoryboard(name: "Dashboard", bundle: nil)
+                   let vc1 = vc.instantiateViewController(withIdentifier: "LoaderVC")
+                   let navigationController = UINavigationController(rootViewController: vc1)
+                   navigationController.isNavigationBarHidden = true
+                   UIApplication.shared.windows.first?.rootViewController = navigationController
+                   UIApplication.shared.windows.first?.makeKeyAndVisible()
+               }else{
+                   print("hello")
+                   idealPaymentFailed = false
+                   let vc = UIStoryboard(name: "Dashboard", bundle: nil)
+                   let vc1 = vc.instantiateViewController(withIdentifier: "LoaderVC")
+                   let navigationController = UINavigationController(rootViewController: vc1)
+                   navigationController.isNavigationBarHidden = true
+                   UIApplication.shared.windows.first?.rootViewController = navigationController
+                   UIApplication.shared.windows.first?.makeKeyAndVisible()
+               }
+
+                  return true
+              }
+           
+           
+          
+      
+              return false
+          }
     
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,

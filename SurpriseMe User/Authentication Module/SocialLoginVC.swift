@@ -12,6 +12,16 @@ import FBSDKLoginKit
 class SocialLoginVC: UIViewController {
     
     //MARK:- Outlets -
+    
+    @IBOutlet var lblMainTitle: UILabel!
+    @IBOutlet var lblAreYouNew: UILabel!
+    @IBOutlet var lblSignUpWithEmail: UILabel!
+    @IBOutlet var lblOr: UILabel!
+    @IBOutlet var lblSignupWithFacebook: UILabel!
+    @IBOutlet var lblSignupWithApple: UILabel!
+    @IBOutlet var lblBackToLogin: UILabel!
+    
+    
     @IBOutlet weak var viewFacebook: UIView!
     @IBOutlet weak var viewBackTOLogin: UIView!
     @IBOutlet weak var viewSignWithEmail: UIView!
@@ -27,6 +37,16 @@ class SocialLoginVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.setInitialSetUp()
         self.loginViewModel.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.lblMainTitle.text = "register_title".localized()
+        self.lblAreYouNew.text = "are_you_new".localized()
+        self.lblSignUpWithEmail.text = "signup_with_email".localized()
+        self.lblOr.text = "or".localized()
+        self.lblSignupWithFacebook.text = "signup_with_facebook".localized()
+        self.lblSignupWithApple.text = "signup_with_apple".localized()
+        self.lblBackToLogin.text = "back_to_login".localized()
     }
     
     //MARK:- Initial Setup Function -

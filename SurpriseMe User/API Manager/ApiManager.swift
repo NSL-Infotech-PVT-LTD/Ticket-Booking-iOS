@@ -26,8 +26,11 @@ var arrayCategorySelected = [Int]()
 var arrayCategorySelectedName = [String]()
 var sendReceiveTime = String()
 var bookingPaymentID : Int?
+var idealPaymentFailed = Bool()
 
 var arrayCardListCommom = [GetCardModel]()
+var idealPayment = Bool()
+
 
 let googleKey = "AIzaSyAkWmuRRj9I9d5fyr4RqM61QDuIwOAZzvA"
 
@@ -77,6 +80,10 @@ struct ViewControllers {
     static let ManageAddressVC = "ManageAddressVC"
     static let UpdateLocationVC = "UpdateLocationVC"
     static let ScheduleBookingVC = "ScheduleBookingVC"
+    
+    
+    
+    
     static let SeleteDate = "SelectDateVC"
     static let EditDateVC = "EditDateVC"
     static let ManualAddressVC = "ManualAddressVC"
@@ -136,6 +143,7 @@ struct Api {
 
     static let artistGetArtistRating    = basePublicUrl + "customer/getartistrating"
     static let artistAvailableSlot    = basePublicUrl + "customer/bookslot/list-date"
+    static let idelPayment           = basePublicUrl + "customer/create-payment-intent"
 
 
     

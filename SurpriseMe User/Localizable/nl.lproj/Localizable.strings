@@ -1,0 +1,99 @@
+/* 
+  Localizable.strings
+  SurpriseMe User
+
+  Created by NetScape Labs on 11/11/20.
+  Copyright © 2020 Pankaj Mac. All rights reserved.
+*/
+
+//Language_VC
+
+"CHOOSE_PREFFERED"                  = "Kies uw voorkeurstaal";
+"CHOOSE_YOUR_LAGUAGE_SUBTITTEL"     = "wij serveren op basis van uw selectie.";
+"next"                              = "De volgende";
+
+//WalkThrough
+
+"GET_STARTED"           = "Begin";
+"BIRTHDAY_SURPRISE"     = "Verjaardagsverrassing";
+
+//Login
+"EMAIL_ADDRESS"         = "E-mailadres";
+"PASSWORD"              = "Wachtwoord";
+"TYPE_HERE"             = "Typ hier ...";
+"WELCOME"               = "Welkom";
+"SIGN_TO_CONTINUE"      = "Log in om door te gaan";
+"DONT_HAVE_ACCOUNT"     = "Nog geen account?";
+"SIGN_UP"               = "Aanmelden";
+"remember_me"           = "Onthoud me";
+"forget_password"       = "Wachtwoord vergeten?";
+"login"                 = "Log in";
+
+//Social Login
+"register_title"        = "Schrijf je bij ons in in surpriseme.";
+"are_you_new"           = "Ben je nieuw?";
+"signup_with_email"     = "Aanmelden met e-mail";
+"or"                    = "of";
+"signup_with_facebook"  = "Aanmelden met Facebook";
+"signup_with_apple"     = "Aanmelden bij Apple";
+"back_to_login"         = "Terug naar Inloggen";
+"by_signup"             = "Door u aan te melden, gaat u akkoord met onze";
+"terms_condition"       = "algemene voorwaarden";
+
+//SignUp
+"back"                  = "Terug";
+"fillup_detail"         = "Vul details in";
+"register_with"         = "Schrijf je bij ons in in surpriseme";
+"TYPE_HERE"             = "Typ hier ...";
+"username"              = "Gebruikersnaam";
+"EMAIL_ADDRESS"         = "E-mailadres";
+"PASSWORD"              = "Wachtwoord";
+"c_password"            = "bevestig wachtwoord";
+"register_now"          = "Registreer nu";
+"back_to_login"         = "Terug naar Inloggen";
+
+//Forget Password
+"back"                  = "Terug";
+"EMAIL_ADDRESS"         = "E-mailadres";
+"TYPE_HERE"             = "Typ hier ...";
+"continue"              = "Doorgaan met";
+
+//Terms & Conditions
+"back"                  = "Terug";
+"terms_title"           = "algemene voorwaarden";
+
+//Home VC
+"view_profile"          = "Bekijk profiel";
+"your_location"         = "Uw locatie";
+"search_for_artist"     = "Zoek naar artiest, zanger etc";
+"book_artist_title"     = "Boek Artist You Listen";
+"see_artist_profile"    = "Zie Artist Profile";
+"book"                  = "Boek";
+
+//Schuedule booking
+"back"                  = "Terug";
+"select_way_booking"    = "Selecteer Manier van boeken";
+"check_availabilty"     = "Om de beschikbaarheid van de artiest op de door u geselecteerde datum te controleren";
+"live_booking"          = "Live show boeken";
+"digital_booking"       = "Digitale showboeking";
+"Proceed"               = "Doorgaan";
+"book_now"              = "Boek nu";
+
+"live_booking_detail"   = "We zijn nu klaar met de volgende golf van entertainment. Met trots kondigen we ons in-house online streamingplatform aan.";
+
+"digital_booking_detail"= "We zijn nu klaar met de volgende golf van entertainment. Met trots kondigen we ons in-house online streamingplatform aan.";
+
+//Calander
+"back"                  = "Terug";
+"select_date_booking"   = "Selecteer Datum van boeking";
+"check_availabilty"     = "Om de beschikbaarheid van de artiest op de door u geselecteerde datum te controleren";
+
+//Edit Date
+"back"                  = "Back";
+"select_time_booking"   = "Select time of booking";
+"multiple_slot"         = "you may select multiple slot in a row.";
+"choose_another_date"   = "Artist is not available on this date . Please Choose another date";
+"clear_all"             = "Wis alles";
+"available"             = "Beschikbaar";
+"unavailable"           = "Niet beschikbaar";
+"proceed_checkout"      = "Ga naar de kassa";

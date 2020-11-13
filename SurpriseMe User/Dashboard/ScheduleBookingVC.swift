@@ -15,6 +15,12 @@ class ScheduleBookingVC: UIViewController {
     @IBOutlet weak var btnDigitalAction: UIButton!
     @IBOutlet weak var btnLive: UIButton!
     
+    @IBOutlet var btnBack: UIButton!
+    @IBOutlet var lblMainTitleDetail: UILabel!
+    @IBOutlet var lblLiveBooking: UILabel!
+    @IBOutlet var lblDigitalBooking: UILabel!
+    @IBOutlet var btnProceed: UIButton!
+    
     //MARK:- Variables -
     var isSelected = Bool()
     
@@ -25,6 +31,11 @@ class ScheduleBookingVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewHeader.addBottomShadow()
+        btnBack.setTitle("back".localized(), for: .normal)
+        lblMainTitleDetail.text = "check_availabilty".localized()
+        lblLiveBooking.text = "live_booking".localized()
+        lblDigitalBooking.text = "digital_booking".localized()
+        btnProceed.setTitle("Proceed".localized(), for: .normal)
     }
     
    @IBAction func btnLiveActionValue(_ sender: UIButton) {

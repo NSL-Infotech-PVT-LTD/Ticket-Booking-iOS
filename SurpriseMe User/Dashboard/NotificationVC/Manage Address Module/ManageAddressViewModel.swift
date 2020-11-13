@@ -50,6 +50,7 @@ class ManageAddressViewModel {
                            if Reachability.isConnectedToNetwork() {
                             ApiManeger.sharedInstance.callApiWithHeader(url: Api.addressUpdate, method: .post, param: param, header: headerToken) { (response, error) in
                                                print(response)
+                                LoaderClass.shared.stopAnimation()
                                                if error == nil {
                                                    let result = response
                                                    if let status = result["status"] as? Bool {
@@ -85,6 +86,8 @@ class ManageAddressViewModel {
                        if Reachability.isConnectedToNetwork() {
                         ApiManeger.sharedInstance.callApiWithHeader(url: Api.addressStore, method: .post, param: param, header: headerToken) { (response, error) in
                                            print(response)
+                            LoaderClass.shared.stopAnimation()
+
                                            if error == nil {
                                                let result = response
                                                if let status = result["status"] as? Bool {

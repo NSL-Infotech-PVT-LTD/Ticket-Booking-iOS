@@ -46,7 +46,13 @@ class RatingVC: UIViewController {
     @IBAction func btnSubmitAction(_ sender: UIButton) {
         
         if reviewTxtView.text == "" || reviewTxtView.text == "Write a review..."{
-        }else{
+            
+            self.showToast(message: "Write your review", font: .systemFont(ofSize: 12.0))
+
+        }else if cosmoRating.rating == 0.0{
+            self.showToast(message: "Give your Rating", font: .systemFont(ofSize: 12.0))
+        }
+        else{
             self.giveRatingToYourArtist()
         }
         
@@ -85,7 +91,16 @@ extension RatingVC : RatingViewModelProtocol{
                     self.navigationController!.popToViewController(controller, animated: true)
                     break
                 }else{
-                    self.navigationController?.popToRootViewController(animated: true)
+                    
+                    let vc = UIStoryboard(name: "Main", bundle: nil)
+                           let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
+                           let navigationController = UINavigationController(rootViewController: vc1)
+                           navigationController.isNavigationBarHidden = true
+                           UIApplication.shared.windows.first?.rootViewController = navigationController
+                           UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    
+                    
+//                    self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }

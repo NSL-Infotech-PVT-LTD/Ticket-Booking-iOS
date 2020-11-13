@@ -23,6 +23,8 @@ class NotificationVC: UIViewController {
     var isLoadMore = Bool()
     var refreshControl = UIRefreshControl()
 
+    @IBOutlet weak var noImage: UIImageView!
+    @IBOutlet weak var lblNoData: UILabel!
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
@@ -79,28 +81,116 @@ class NotificationVC: UIViewController {
     
     func hideTable()  {
         
-        let dictParam = ["limit":"20" , "page":1] as [String : Any]
-        objectViewModel.delegate = self
-        objectViewModel.getParamForNotification(param: dictParam , page : 1)
+        self.notificationListData(page: 1)
     }
+    
+    
+      func notificationListData(page : Int) {
+            
+            let dictParam = ["limit":"20" , "page":page] as [String : Any]
+            let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+            
+            if Reachability.isConnectedToNetwork() {
+                LoaderClass.shared.loadAnimation()
+                
+                ApiManeger.sharedInstance.callApiWithHeader(url: Api.getNotification, method: .post, param: dictParam, header: headerToken) { (response, error) in
+                    print(response)
+                    LoaderClass.shared.stopAnimation()
+                    if error == nil {
+                        let result = response
+                        if let status = result["status"] as? Bool {
+                            if status ==  true{
+                                        if page == 1{
+                                    print("the notification list is \(response)")
+                                                            
+                                                            self.arrayNotification.removeAll()
+
+                                                            let dataDict = result["data"] as? [String : Any]
+                                                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                                                for index in dataArray{
+                                                                   
+                                                                    let dataDict = NotificationModel.init(resposne: index)
+                                                                    self.arrayNotification.append(dataDict)
+                                                                }
+                                                            }
+                                        }else{
+                                            
+
+                                                                                                       let dataDict = result["data"] as? [String : Any]
+                                                                                                       if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                                                                                        
+                                                                                                        self.arrayNotificationLoadMore.removeAll()
+
+                                                                                                           for index in dataArray{
+                                                                                                              
+                                                                                                               let dataDict = NotificationModel.init(resposne: index)
+                                                                                                               self.arrayNotificationLoadMore.append(dataDict)
+                                                                                                           }
+                                                                                                        self.arrayNotification = self.arrayNotification + self.arrayNotificationLoadMore
+                                                                                                        if (self.arrayNotificationLoadMore.count == 0){
+                                                                                                            self.isLoadMore = true
+                                                                                                        }else{
+                                                                                                            self.isLoadMore = false
+                                                                                                        }
+                                                   }
+                                            
+                                }
+                                if self.arrayNotification.count > 0 {
+                                    self.NotificationTableView.isHidden = false
+                                    self.viewNoData.isHidden = true
+                                }else{
+                                    self.NotificationTableView.isHidden = true
+                                    self.viewNoData.isHidden = false
+                                }
+                                self.NotificationTableView.reloadData()
+                           }else{
+                                
+                            }
+                        }
+                        else {
+                            if let error_message = response["error"] as? [String:Any] {
+                                if (error_message["error_message"] as? String) != nil {
+                                }
+                            }
+                        }
+                    }else{
+                        
+                    }
+                }}
+            else{
+                self.NotificationTableView.isHidden = true
+                self.viewNoData.isHidden = false
+                self.lblNoData.text = "No Internet Connection"
+          }
+        }
+    
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         self.back()
     }
     
+    
+    @IBAction func btnTryAgainAction(_ sender: UIButton) {
+        self.hideTable()
+
+    }
+    
+ 
     //Pagination
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if ((NotificationTableView.contentOffset.y + NotificationTableView.frame.size.height) >= NotificationTableView.contentSize.height)
-//        {
-//            print("scrollViewDidEndDragging")
-//            if isLoadMore == false{
-//                self.pageInt = self.pageInt + 1
-//                print("scrollViewDidEndDragging page number is \(self.pageInt)")
-//                let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
-//                objectViewModel.getParamForNotification(param: dictParam, page: self.pageInt)
-//            }
-//        }
-//    }
+       func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+           if ((NotificationTableView.contentOffset.y + NotificationTableView.frame.size.height) >= NotificationTableView.contentSize.height)
+           {
+               print("scrollViewDidEndDragging")
+               print("scrollViewDidEndDragging page number is \(self.pageInt)")
+                   self.pageInt = self.pageInt + 1
+                   let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
+               if isLoadMore == true{
+                   self.showToast(message: "No More Data", font: .systemFont(ofSize: 12.0))
+               }else{
+                self.notificationListData(page: self.pageInt)
+               }
+           }
+       }
     
 }
 
@@ -168,6 +258,16 @@ extension NotificationVC: NotificationViewModelProtocol {
             self.arrayNotification.removeAll()
             self.arrayNotification = response.map({$0})
         }
+        
+        
+        if self.arrayNotification.count > 0 {
+            NotificationTableView.isHidden = false
+            viewNoData.isHidden = true
+        }else{
+            NotificationTableView.isHidden = true
+            viewNoData.isHidden = false
+        }
+        
         self.NotificationTableView.reloadData()
 
     }

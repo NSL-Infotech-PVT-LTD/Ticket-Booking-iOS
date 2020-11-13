@@ -27,9 +27,8 @@ pod 'Firebase'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'Stripe'
-pod 'NYTPhotoViewer'
 pod 'HSCycleGalleryView'
-pod 'iCarousel'
+pod 'DropDown'
 
 
 

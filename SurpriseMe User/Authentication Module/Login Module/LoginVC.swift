@@ -13,8 +13,20 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     
     //MARK:- Outlets -
     
+    @IBOutlet var btnLogin: UIButton!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet var lblEmail: UILabel!
+    @IBOutlet var lblPassword: UILabel!
+    
+    @IBOutlet var lblRemember: UILabel!
+    @IBOutlet var btnForget: UIButton!
+    
+    @IBOutlet var btnSign: UIButton!
+    @IBOutlet var lblDontHaveAccount: UILabel!
+    @IBOutlet var lblWelcome: UILabel!
+    @IBOutlet var lblSignInToContinue: UILabel!
+    
     
     //MARK:- Varaibles -
     var loginViewModel = LoginViewModel()
@@ -22,18 +34,51 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.tfEmail.text = "rav@me.com"
+        self.tfPassword.text = "12345678"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         loginViewModel.delegate = self
-       
-       
+        
+        self.lblWelcome.text = "WELCOME".localized()
+        self.lblSignInToContinue.text = "SIGN_TO_CONTINUE".localized()
+        
+        self.lblEmail.text = "EMAIL_ADDRESS".localized()
+        self.tfEmail.placeholder = "TYPE_HERE".localized()
+        self.lblPassword.text = "PASSWORD".localized()
+        self.tfPassword.placeholder = "TYPE_HERE".localized()
+        
+        self.lblRemember.text = "remember_me".localized()
+        btnForget.setTitle("forget_password".localized(), for: .normal)
+        
+        self.lblDontHaveAccount.text = "DONT_HAVE_ACCOUNT".localized()
+        btnSign.setTitle("SIGN_UP".localized(), for: .normal)
+        self.btnLogin.setTitle("login".localized(), for: .normal)
     }
     
     //MARK:- Custom button's Action -
     @IBAction func btnSignupAction(_ sender: UIButton) {
         self.presentViewController(viewController : "SocialLoginVC", value: "Main")
+    }
+    
+    
+    
+    @IBAction func btnChangeLanguageAction(_ sender: UIButton) {
+//        let story = UIStoryboard(name: "Main", bundle:nil)
+//                   let vc = story.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
+//        let navController = UINavigationController(rootViewController: vc)
+//                vc.modalPresentationStyle = .overCurrentContext
+//               vc.hidesBottomBarWhenPushed = true
+//        navController.pushViewController(vc, animated: true)
+        
+        self.presentViewController(viewController : "LanguageVC", value: "Main")
+
+
+        
     }
     
     @IBAction func btnRemberAction(_ sender: UIButton) {
