@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import StepSlider
 
 
 protocol SendDataPrevoius {
@@ -26,6 +26,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var lblFromDate: UILabel!
     
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var ascendingNameLblOut: UILabel!
     @IBOutlet weak var slider_out: UISlider!
@@ -39,6 +40,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var viewSelectArtist: UIView!
     
     
+    @IBOutlet weak var lblDistance: UILabel!
     @IBOutlet weak var secondDatePicker: UIDatePicker!
     
     @IBOutlet weak var lblArtistCategpry: UILabel!
@@ -54,52 +56,24 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var viewDateContainer: UIView!
     @IBOutlet weak var toView_out: UIView!
     
+    @IBOutlet weak var ratingSlider: StepSlider!
+    @IBOutlet weak var distanceSlider: UISlider!
     var delegate :SendDataPrevoius?
     var objectViewModel = FilterArtistDataViewModel()
     var arrayHomeArtistList = [SearchArtistModel]()
-    
     var startDate = String()
     var endDate = String()
     var fromDate = false
-    
+    var selectedRating = 4.5
+    var distance = 200
+    var sortByValue = String()
     @IBOutlet weak var countLbl_OUt: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Buttons Border Colors and Width
-        electronicBtn_out.layer.borderColor = UIColor.lightGray.cgColor
-        electronicBtn_out.layer.borderWidth = 1
-        electronicBtn_out.layer.cornerRadius = 10
-        hiphop_out.layer.borderColor = UIColor.lightGray.cgColor
-        hiphop_out.layer.borderWidth = 1
-        hiphop_out.layer.cornerRadius = 10
-        bollywoodBtn_out.layer.borderColor = UIColor.lightGray.cgColor
-        bollywoodBtn_out.layer.borderWidth = 1
-        bollywoodBtn_out.layer.cornerRadius = 10
-        jazzBtn_out.layer.borderColor = UIColor.lightGray.cgColor
-        jazzBtn_out.layer.borderWidth = 1
-        jazzBtn_out.layer.cornerRadius = 10
-        operaBtn_out.layer.borderColor = UIColor.lightGray.cgColor
-        operaBtn_out.layer.borderWidth = 1
-        operaBtn_out.layer.cornerRadius = 10
-        classicalBtn_out.layer.borderColor = UIColor.lightGray.cgColor
-        classicalBtn_out.layer.borderWidth = 1
-        classicalBtn_out.layer.cornerRadius = 10
-        hollywoodBtn_out.layer.borderColor = UIColor.lightGray.cgColor
-        hollywoodBtn_out.layer.borderWidth = 1
-        hollywoodBtn_out.layer.cornerRadius = 10
-        
-        
-        
-        
-        //View Setup
-        //        fromView_out.layer.borderColor = UIColor.lightGray.cgColor
-        //        fromView_out.layer.borderWidth = 1
-        //        fromView_out.layer.cornerRadius = 6
-        //        toView_out.layer.borderColor = UIColor.lightGray.cgColor
-        //        toView_out.layer.borderWidth = 1
-        //        toView_out.layer.cornerRadius = 6
-        
+        ratingSlider.labels = ["5","4.5","4.0","3.5","Any"]
+        self.headerView.roundCorners(corners: [.topLeft,.topRight], radius: 25.0)
+        ratingSlider.setIndex(4, animated: true)
         countLbl_OUt.layer.borderColor = UIColor.lightGray.cgColor
         countLbl_OUt.layer.borderWidth = 1
         countLbl_OUt.layer.cornerRadius = 6
@@ -128,9 +102,6 @@ class FilterViewController: UIViewController {
         startDate = formatter.string(from: datePicker.date)
         print(startDate)
         self.lblFromDate.text = startDate
-        
-        //         txtDatePicker.text = formatter.string(from: datePicker.date)
-        //dismiss date picker dialog
         self.view.endEditing(true)
     }
     
@@ -172,9 +143,8 @@ class FilterViewController: UIViewController {
             lblArtistCategpry.font = lblArtistCategpry.font.withSize(12)
             lblArtistCategpry.text = arrayCategorySelectedName.joined(separator: ",")
         }else{
-            lblArtistCategpry.font = lblArtistCategpry.font.withSize(16)
+            lblArtistCategpry.font = lblArtistCategpry.font.withSize(14)
             lblArtistCategpry.text = "Click to choose category"
-            
         }
         
         
@@ -210,7 +180,7 @@ class FilterViewController: UIViewController {
     @IBAction func btnSecondAction(_ sender: UIButton) {
         btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick"), for: .normal)
-        
+        sortByValue = "asc"
     }
     
     
@@ -252,16 +222,60 @@ class FilterViewController: UIViewController {
     @IBAction func hollywoodTapBtn(_ sender: Any) {
     }
     
+    @IBAction func ratingSLiderOnSlide(_ sender: StepSlider) {
+        print(sender.index)
+        if sender.index == 0{
+            
+        }else if sender.index == 1{
+            self.selectedRating = 4.5
+        }else if sender.index == 2{
+            self.selectedRating = 4.0
+        }else if sender.index == 3{
+            self.selectedRating = 3.5
+        }else if sender.index == 4{
+            self.selectedRating = 0.0
+        }
+    }
+    
+    @IBAction func distanceSliderOnSLide(_ sender: UISlider) {
+        print(sender.value)
+        self.lblDistance.text = "\(Int(sender.value))km"
+        self.distance = Int(sender.value)
+    }
+    
     @IBAction func applySearchBtn(_ sender: Any) {
         
-        let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":"","category_ids":"\(arrayCategorySelected)","sort_by":"asc","show_type":"live","from_date":startDate,"to_date":endDate] as [String : Any]
-        self.objectViewModel.getParamForGetProfile(param: dataParam)
+        if   whicShowTypeDigital == false{
+//                                               self.isDigital = true
+//                                               self.getDataBookingList(pageNumber: 1)
+//                                               self.viewUpdateLocation.isUserInteractionEnabled = false
+            
+            let dataParam = ["limit":"20","search":"","category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+            print(dataParam)
+            self.objectViewModel.getParamForGetProfile(param: dataParam)
+                                               
+                                           }else{
+//                                               self.isDigital = false
+//                                               self.getDataBookingList(pageNumber: 1)
+//                                               self.viewUpdateLocation.isUserInteractionEnabled = true
+            
+            
+            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":"","category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+                   print(dataParam)
+                   self.objectViewModel.getParamForGetProfile(param: dataParam)
+            
+            
+            
+                                           }
+        
+       
     }
     
     
     @IBAction func btnFirstAction(_ sender: UIButton) {
         btnFirst.setImage(UIImage(named: "tick"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
+        sortByValue = "desc"
     }
     
     

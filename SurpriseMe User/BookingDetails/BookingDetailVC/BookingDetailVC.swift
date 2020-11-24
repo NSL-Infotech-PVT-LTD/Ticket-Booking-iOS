@@ -194,7 +194,11 @@ class BookingDetailVC: UIViewController {
             
             print("the id is \(bookingIDNotification)")
             bookingPaymentID = userArtistIDBooking as? Int
-        }else{
+        }else  if isComingFrom == "Notification"{
+                   
+                   bookingPaymentID = bookingID as? Int
+        }
+        else{
             bookingPaymentID = bookingID
         }
         controller.hidesBottomBarWhenPushed = true

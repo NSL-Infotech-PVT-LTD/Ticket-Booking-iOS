@@ -37,11 +37,7 @@ lblDesc.text = "You can pay again from booking detail Screen"
             statusIcon.image = UIImage.init(named: "success")
             lblDesc.text = "Hurray you can get ready for show"
              viewContainer.backgroundColor = UIColor.init(red: 240/255, green: 0/255, blue: 87/255, alpha: 1)
-
-            
-            
-            
-        }
+      }
         gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
 
     }

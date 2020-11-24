@@ -18,15 +18,14 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet var lblEmail: UILabel!
     @IBOutlet var lblPassword: UILabel!
-    
     @IBOutlet var lblRemember: UILabel!
     @IBOutlet var btnForget: UIButton!
-    
     @IBOutlet var btnSign: UIButton!
     @IBOutlet var lblDontHaveAccount: UILabel!
     @IBOutlet var lblWelcome: UILabel!
     @IBOutlet var lblSignInToContinue: UILabel!
     
+    @IBOutlet weak var btnRememberMe: UIButton!
     
     //MARK:- Varaibles -
     var loginViewModel = LoginViewModel()
@@ -35,9 +34,9 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        self.tfEmail.text = "rav@me.com"
-        self.tfPassword.text = "12345678"
+//        
+//        self.tfEmail.text = "rav@me.com"
+//        self.tfPassword.text = "12345678"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +57,23 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         self.lblDontHaveAccount.text = "DONT_HAVE_ACCOUNT".localized()
         btnSign.setTitle("SIGN_UP".localized(), for: .normal)
         self.btnLogin.setTitle("login".localized(), for: .normal)
+        
+        if let boolValue = UserDefaults.standard.bool(forKey: "RememberMe") as? Bool {
+            if boolValue == true{
+                self.tfEmail.text = UserDefaults.standard.string(forKey: "UserName")
+                self.tfPassword.text = UserDefaults.standard.string(forKey: "Password")
+                btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .normal)
+
+            }else{
+                btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
+
+            }
+        }else{
+            btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
+
+        }
+        
+        
     }
     
     //MARK:- Custom button's Action -
@@ -82,8 +98,30 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     }
     
     @IBAction func btnRemberAction(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-    }
+        
+        
+        if sender.isSelected{
+            print("selected")
+            
+              UserDefaults.standard.set(false, forKey: "RememberMe")
+                        UserDefaults.standard.set("", forKey: "UserName")
+                        UserDefaults.standard.set("", forKey: "Password")
+            
+            
+                          btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
+            
+            
+        }else{
+            print("Unselected")
+                        UserDefaults.standard.set(true, forKey: "RememberMe")
+            btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .selected)
+
+
+
+        }
+       sender.isSelected = !sender.isSelected
+
+  }
     
     @IBAction func btnForgetAction(_ sender: UIButton) {
         self.presentViewController(viewController : "ForgetPasswordVC", value: "Main")
@@ -102,6 +140,11 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     }
     
     @IBAction func btnLoginAction(_ sender: UIButton) {
+        
+        print(tfEmail.text?.count)
+        print(tfEmail.text!)
+
+        
         guard tfEmail.text?.count ?? 0 > 0 else {
                    Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your email", btnOkTitle: "Done") {
                    }
@@ -118,6 +161,11 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         let deviceToken = UserDefaults.standard.value(forKey: "device_token")
         print("the device token is \(deviceToken)")
         param = ["email":tfEmail.text! , "password" : tfPassword.text! , "device_type":"ios","device_token": deviceToken ?? ""]
+        
+        
+        UserDefaults.standard.set(self.tfEmail.text!, forKey: "UserName")
+        UserDefaults.standard.set(self.tfPassword.text!, forKey: "Password")
+        
         loginViewModel.getParamForLogin(param: param)
     }
     

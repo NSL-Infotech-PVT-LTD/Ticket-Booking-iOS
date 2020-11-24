@@ -15,6 +15,9 @@ class cardPaymentList: UIViewController {
     var arrayIndex = [Int]()
     var cardID = String()
     var arraySelectedzIndex = -1
+    var arraySelectedzIndexCVV = -1
+
+    
     @IBOutlet weak var btnPayNow: UIButton!
     
     @IBOutlet weak var noData: UILabel!

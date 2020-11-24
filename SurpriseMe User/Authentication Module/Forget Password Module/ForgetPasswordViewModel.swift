@@ -39,8 +39,8 @@ class ForgetPasswordViewModel {
                     if code == 1{
                         self?.delegate?.forgetPasswordApiResponse(message: dictData?["message"]  as! String, response: dictData ?? [:], isError: false)
                     }else{
-                         let errorMssg = result["errors"] as? [String:Any]
-                        self?.delegate?.forgetPasswordApiResponse(message: errorMssg?["email"] as! String , response:  [:], isError: true)
+                         let errorMssg = result["error"] as? String
+                        self?.delegate?.forgetPasswordApiResponse(message: errorMssg ?? "" , response:  [:], isError: true)
                     }
                    }else{
                     self?.delegate?.forgetPasswordApiResponse(message: error!.localizedDescription, response:  [:], isError: true)

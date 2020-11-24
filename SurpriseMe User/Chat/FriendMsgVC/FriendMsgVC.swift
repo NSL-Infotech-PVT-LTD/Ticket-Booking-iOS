@@ -29,6 +29,7 @@ class FriendMsgVC: UIViewController {
     var userImage = String()
     var comingFrom = String()
     var recieverIDHistoryList = Int()
+    var arrayDateString = [String]()
     
     
     //MARK:- View's Life Cycle -

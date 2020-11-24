@@ -30,6 +30,13 @@ var idealPaymentFailed = Bool()
 
 var arrayCardListCommom = [GetCardModel]()
 var idealPayment = Bool()
+var idealPaymentAppDelegate = Bool()
+var locationCurrentTitle = String()
+var showTypeTrueOrFalse = Bool()
+var whicShowTypeDigital = Bool()
+
+
+
 
 
 let googleKey = "AIzaSyAkWmuRRj9I9d5fyr4RqM61QDuIwOAZzvA"
@@ -61,16 +68,8 @@ struct StringFile {
     static let Enter_Password = "Enter your password"
     static let Enter_Email = "Enter your email"
     static let Enter_UserName = "Enter your user name"
-    
     static let Publish_Key = "pk_test_51HcYaaDVPC7KpoaUBqxarUUagXrI14GRCicyaZt8NztibJ4G9Y7KMtunrcWTg5PDm3PzcuBe1zkFFJiJRt1mXs8s009njabz8l"
 
-    
-    
-    
-    
-    
-    
-    
 }
 
 
@@ -108,6 +107,7 @@ struct Api {
     static let imageURL = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/customer/"
     
     static let imageURLArtist = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/artist/"
+    static let videoUrl = "https://dev.netscapelabs.com/surpriseme/public/uploads/artist/videos/"
     
     static let login                  = baseUrl + "login"
     static let Register               = baseUrl + "register"
@@ -156,7 +156,45 @@ struct Api {
 class ApiManeger : NSObject{
     
     static let sharedInstance = ApiManeger()
+    
+    func callApiWithInternet(url:String,controller:UIViewController,method:HTTPMethod,param:[String:Any],completion:@escaping ([String:Any],NSError?)->()){
+          
+          
+//        if Reachability.isConnectedToNetwork(){
+//            controller.view.addSubview(<#T##view: UIView##UIView#>)
+//        }else{
+//            
+//        }
+          
+          
+          Alamofire.request(url, method: method, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+              if response.result.error?.localizedDescription != nil{
+                  completion([:], (response.result.error?.localizedDescription as? NSError))
+                  
+                  return
+              }
+              if let result = response.result.value as? [String:Any]{
+                  if let status = result["status"] as? Bool{
+                      if status == true  {
+                          completion(result, nil)
+                      }else{
+                          completion(result, response.result.error?.localizedDescription as? NSError )
+                      }
+                  }else{
+                      completion(result, nil)
+                  }
+              }
+          }
+      }
+    
+    
+    
+    
     func callApi(url:String,method:HTTPMethod,param:[String:Any],completion:@escaping ([String:Any],NSError?)->()){
+        
+        
+        
+        
         
         Alamofire.request(url, method: method, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             if response.result.error?.localizedDescription != nil{

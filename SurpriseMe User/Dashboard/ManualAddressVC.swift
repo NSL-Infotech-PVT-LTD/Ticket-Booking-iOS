@@ -42,20 +42,7 @@ class ManualAddressVC: UIViewController {
         func getAutoSuggestName(searchName : String)  {
             let urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(searchName)&types=establishment|geocode&location=%@,%@&radius=500&language=en&key=AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA"
 
-    //                Alamofire.request(url).validate().responseJSON { response in
-    //                    switch response.result {
-    //                    case .success:
-    //
-    //                        let responseJson = response.result.value! as! NSDictionary
-    //                        print("the location is \(responseJson)")
-    ////                        if let results = responseJson.object(forKey: "results")! as? [NSDictionary] {
-    ////                        }
-    //                    case .failure(let error):
-    //                        print(error)
-    //                    }
-    //                }
-            
-            
+    
            
           
             let defaultConfigObject = URLSessionConfiguration.default

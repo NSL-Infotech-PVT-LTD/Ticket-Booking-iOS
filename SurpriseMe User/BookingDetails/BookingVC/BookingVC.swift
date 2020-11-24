@@ -36,7 +36,7 @@ class BookingVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         pageInt = 1
         
-        if idealPayment == true{
+        if idealPayment == true && idealPaymentAppDelegate == true{
             
         }else{
             self.hideTable()
@@ -50,7 +50,7 @@ class BookingVC: UIViewController {
         
     func checkIdealPayment(notification:Notification) -> Void {
         guard let idealPayment = notification.userInfo!["idealPayment"] as? Bool else { return }
-        if idealPayment == true {
+        if idealPayment == true  {
 //
         }else{
             self.hideTable()

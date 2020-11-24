@@ -16,6 +16,8 @@ import NVActivityIndicatorView
 import YoutubePlayer_in_WKWebView
 import AVKit
 import AVFoundation
+import youtube_ios_player_helper
+import Cosmos
 
 class ViewProfileVC: UIViewController {
     
@@ -47,8 +49,13 @@ class ViewProfileVC: UIViewController {
     @IBOutlet weak var txtViewAbout: UITextView!
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var btnCrossImage: UIButton!
+    @IBOutlet weak var youTubePlayer: YTPlayerView!
+    
+    @IBOutlet weak var lblNewBrandArtist: UILabel!
     
     
+    @IBOutlet weak var viewImageViewContainer: UIView!
+    @IBOutlet weak var viewCosmoRating: CosmosView!
     //MARK:- Variable -
     var getProfileVMObject = GetArtistProfileViewModel()
     var getArtistProfile : GetArtistModel?
@@ -56,7 +63,7 @@ class ViewProfileVC: UIViewController {
     var youtubeID = String()
     var VideoLink = String()
     var photo = [UIImage]()
-   
+   var localVideoUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -73,6 +80,9 @@ class ViewProfileVC: UIViewController {
         imgViewUserPreview.isHidden = true
         btnCrossImage.isHidden = true
 
+        viewImageViewContainer.isHidden = true
+
+        
         
         //Mark: CollectionView Delegate
         serviceCollectionView.delegate = self
@@ -99,12 +109,7 @@ class ViewProfileVC: UIViewController {
         let height = serviceCollectionView.collectionViewLayout.collectionViewContentSize.height
         serviceCollectionViewHeight.constant = height
         self.view.layoutIfNeeded()
-        
-        
-        
-        
-        
-    }
+  }
     
     
     
@@ -112,6 +117,8 @@ class ViewProfileVC: UIViewController {
         viewContainerPreview.isHidden = true
          imgViewUserPreview.isHidden = true
          btnCrossImage.isHidden = true
+        viewImageViewContainer.isHidden = true
+
         
     }
     
@@ -128,15 +135,30 @@ class ViewProfileVC: UIViewController {
                 imgViewUserPreview.layer.add(transition, forKey: kCATransition)
         viewContainerPreview.isHidden = false
         imgViewUserPreview.isHidden = false
+        viewImageViewContainer.isHidden = false
         btnCrossImage.isHidden = false
         imgViewUserPreview.image = imgProfile.image
        }
 
-    
-    
     @IBAction func btnPlayVideoAction(_ sender: UIButton) {
-        playerView.load(withVideoId: youtubeID )
-        print(youtubeID)
+        if youtubeID == "" || youtubeID.isEmpty == true{
+            let url = URL(string: localVideoUrl)!
+
+            playVideo(url: url)
+        }else{
+//        playerView.load(withVideoId: youtubeID)
+//        print(c)
+
+            
+        }
+    }
+    func playVideo(url: URL) {
+        let player = AVPlayer(url: url)
+
+        let vc = AVPlayerViewController()
+        vc.player = player
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true) { vc.player?.play() }
     }
     
     //MARK: Youtuve Viedo URL ID get and convert thumnail banner
@@ -150,15 +172,44 @@ class ViewProfileVC: UIViewController {
             youtubeID = (link as NSString).substring(with: (result?.range)!)
             
             print(youtubeID)
-            youtubeImageUrl = "https://img.youtube.com/vi/\(youtubeID)/0.jpg"
-            //MARK: Image banner
-            let urlImg = URL(string: youtubeImageUrl)
-            imgViedoPlay.sd_setImage(with: urlImg)
-            return youtubeID
+            if youtubeID == "" || youtubeID.isEmpty == true{
+                self.playerView.isHidden = false
+                self.youTubePlayer.isHidden = true
+            }else{
+                youtubeImageUrl = "https://img.youtube.com/vi/\(youtubeID)/0.jpg"
+                //MARK: Image banner
+                youTubePlayer.load(withVideoId: youtubeID)
+                let urlImg = URL(string: youtubeImageUrl)
+                imgViedoPlay.sd_setImage(with: urlImg)
+                self.playerView.isHidden = true
+                self.youTubePlayer.isHidden = false
+                return youtubeID
+            }
+        }else{
+            let url = URL(string: Api.videoUrl + link)!
+            self.localVideoUrl = Api.videoUrl + link
+            if let thumbnailImage = getThumbnailImage(forUrl: url) {
+                imgViedoPlay.image =  thumbnailImage
+                self.playerView.isHidden = false
+                self.youTubePlayer.isHidden = true
+            }
         }
         return ""
     }
     
+    func getThumbnailImage(forUrl url: URL) -> UIImage? {
+        let asset: AVAsset = AVAsset(url: url)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+
+        do {
+            let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60) , actualTime: nil)
+            return UIImage(cgImage: thumbnailImage)
+        } catch let error {
+            print(error)
+        }
+
+        return nil
+    }
     
     @IBAction func btnReviewonPress(_ sender: UIButton) {
                 let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
@@ -263,6 +314,16 @@ class ViewProfileVC: UIViewController {
         self.lblName.text = profile?.name ?? ""
         self.lblLiveShowPrice.text = "\(profile?.currency ?? "")\(" ")\(      profile?.live_price_per_hr ?? 0)"
         
+        if profile?.ratingValue == 0{
+            self.viewCosmoRating.isHidden = true
+            self.lblNewBrandArtist.isHidden = false
+ }else{
+            self.viewCosmoRating.isHidden = false
+            self.lblNewBrandArtist.isHidden = true
+            self.viewCosmoRating.rating = Double("\(profile?.ratingValue ?? 0)") ?? 0.0
+
+        }
+
         
         self.lblDigitalShowPrice.text = "\(profile?.currency ?? "")\(" ")\(    profile?.digital_price_per_hr ?? 0)"
         var urlSting : String = "\(Api.imageURLArtist)\(profile?.image ?? "")"
@@ -327,8 +388,8 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             }
             
         }else{
-            if self.getArtistProfile?.category?.count ?? 0 != 0{
-                return self.getArtistProfile?.category?.count ?? 0
+            if self.getArtistProfile?.categoryArtist.count ?? 0 != 0{
+                return self.getArtistProfile?.categoryArtist.count ?? 0
             }else{
                 return 0
             }
@@ -339,7 +400,10 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
         
         if collectionView == self.serviceCollectionView {
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCollectionViewCell", for: indexPath) as! serviceCollectionViewCell
-            cell1.lblService.text = "\( getArtistProfile?.category?[indexPath.row] ?? "")"
+            
+          
+            
+            cell1.lblService.text = "\( getArtistProfile?.categoryArtist[indexPath.row].category_name ?? "")"
             return cell1
             
         }else {

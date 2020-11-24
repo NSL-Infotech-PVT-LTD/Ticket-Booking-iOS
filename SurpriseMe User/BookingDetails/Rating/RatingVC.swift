@@ -32,13 +32,32 @@ class RatingVC: UIViewController {
         self.setInitial()
     }
     
+    
+    @IBAction func laterBtnAction(_ sender: UIButton) {
+        self.back()
+    }
+    
     func setInitial()  {
-        lblName.text = artistName
-        let urlSting : String = "\(Api.imageURLArtist)\(userImg ?? "")"
-        let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        print(urlStringaa)
-        let urlImage = URL(string: urlStringaa)!
-        self.imgAgentPic.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        self.cosmoRating.rating = 1.0
+        self.imgAgentPic.image = UIImage.init(named: "1")
+        cosmoRating.didTouchCosmos = { rating in
+            print("the rating is \(rating)")
+            if rating == 1.0{
+                self.imgAgentPic.image = UIImage.init(named: "1")
+            }else if rating == 2.0{
+                self.imgAgentPic.image = UIImage.init(named: "2")
+            }else if rating == 3.0{
+                self.imgAgentPic.image = UIImage.init(named: "3")
+
+            }else if rating == 4.0{
+                self.imgAgentPic.image = UIImage.init(named: "4")
+
+            }else{
+                self.imgAgentPic.image = UIImage.init(named: "5")
+            }
+        }
+
+        
     }
     
     

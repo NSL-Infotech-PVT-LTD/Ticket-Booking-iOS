@@ -105,7 +105,7 @@ extension SearchArtistVC :UITableViewDataSource,UITableViewDelegate{
         
         let dataItem = arrayHomeArtistList[indexPath.row]
         cell.nameArtist.text = dataItem.name ?? ""
-        cell.lblCat.text = "\(dataItem.category?.map({$0}) ?? [] )"
+      //  cell.lblCat.text = "\(dataItem.category?.map({$0}) ?? [] )"
         var urlSting : String = "\(Api.imageURLArtist)\(dataItem.image ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
         print(urlStringaa)
@@ -162,7 +162,7 @@ extension SearchArtistVC : UITextFieldDelegate{
             self.tblSearchArtist.isHidden = true
         }else{
             let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search": tfSearch.text! + string ] as [String : Any]
-                   self.objectViewModel.getParamForGetProfile(param: dataParam)
+            self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
         }
 
         
@@ -172,6 +172,10 @@ extension SearchArtistVC : UITextFieldDelegate{
 }
 
 extension SearchArtistVC : SearchArtistViewModelProtocol{
+    func getProfileApiResponse(message: String, response: [SearchArtistModel], isError: Bool, isLoadMore: Bool) {
+        
+    }
+    
     func getProfileApiResponse(message: String, response: [SearchArtistModel], isError: Bool) {
         if isError == true{
             Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {

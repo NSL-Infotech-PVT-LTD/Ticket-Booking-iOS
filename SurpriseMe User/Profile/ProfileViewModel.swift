@@ -66,7 +66,12 @@ class ProfileViewModel {
         if Reachability.isConnectedToNetwork() {
             LoaderClass.shared.loadAnimation()
             
-            ApiManeger.sharedInstance.callApiWithHeader(url: Api.logout, method: .get, param: [:], header: headerToken) { (response, error) in
+            let deviceToken = UserDefaults.standard.value(forKey: "device_token")
+                   print("the device token is \(deviceToken)")
+//                   param = ["email":tfEmail.text! , "password" : tfPassword.text! , "device_type":"ios","device_token": deviceToken ?? ""]
+            let dictParam = ["device_token":deviceToken ?? "" ,"device_type": "iOS"]
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.logout, method: .post, param: dictParam, header: headerToken) { (response, error) in
                 print(response)
                 if error == nil {
                     let result = response

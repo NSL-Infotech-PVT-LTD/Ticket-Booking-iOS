@@ -25,7 +25,7 @@
         <!--ProfileVC-->
         <scene sceneID="qDt-Eh-C7Q">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" id="Fki-1M-DNr" customClass="ProfileVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" id="Fki-1M-DNr" customClass="ProfileVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JmV-N4-EdH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,7 +447,7 @@
         <!--Change PasswordVC-->
         <scene sceneID="g7B-hw-1C1">
             <objects>
-                <viewController storyboardIdentifier="ChangePasswordVC" id="odp-VD-et9" customClass="ChangePasswordVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePasswordVC" id="odp-VD-et9" customClass="ChangePasswordVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GWV-L6-Eac">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -707,7 +707,7 @@
         <!--SettingVC-->
         <scene sceneID="d5W-HR-WkZ">
             <objects>
-                <viewController storyboardIdentifier="SettingVC" id="wsG-95-cZh" customClass="SettingVC" customModule="SurpriseMe_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingVC" id="wsG-95-cZh" customClass="SettingVC" customModule="SurpriseMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5x3-Qu-nMz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -878,6 +878,48 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4I-fp-FMk">
+                                <rect key="frame" x="40" y="311" width="295" height="44"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="Ltb-Nu-vzD">
+                                        <rect key="frame" x="7" y="14.5" width="18" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="K8a-vC-8rn"/>
+                                            <constraint firstAttribute="height" constant="15" id="ojc-WJ-TxH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lv-kw-yba">
+                                        <rect key="frame" x="31" y="12" width="115" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="5Jg-38-Xsk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="44" id="05F-uY-5Y4"/>
+                                    <constraint firstItem="Ltb-Nu-vzD" firstAttribute="centerY" secondItem="a4I-fp-FMk" secondAttribute="centerY" id="1GM-ZC-Ukz"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Sje-s8-Civ"/>
+                                    <constraint firstItem="Ltb-Nu-vzD" firstAttribute="leading" secondItem="a4I-fp-FMk" secondAttribute="leading" constant="7" id="Xl1-ZQ-jNj"/>
+                                    <constraint firstItem="1Lv-kw-yba" firstAttribute="centerY" secondItem="a4I-fp-FMk" secondAttribute="centerY" id="end-cz-P0M"/>
+                                    <constraint firstItem="1Lv-kw-yba" firstAttribute="leading" secondItem="Ltb-Nu-vzD" secondAttribute="trailing" constant="6" id="fDL-eS-dU9"/>
+                                    <constraint firstAttribute="height" constant="44" id="jWt-Es-CSK"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.82745098039999998" green="0.82745098039999998" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -887,6 +929,7 @@
                             <constraint firstItem="NXe-gM-D9c" firstAttribute="trailing" secondItem="zd3-3Y-Nbd" secondAttribute="trailing" id="Ane-vV-87i"/>
                             <constraint firstItem="A8g-rO-Sbi" firstAttribute="leading" secondItem="zd3-3Y-Nbd" secondAttribute="leading" constant="40" id="B5c-QQ-9Tx"/>
                             <constraint firstItem="C5i-eA-rHW" firstAttribute="top" secondItem="UnF-yW-lEM" secondAttribute="bottom" constant="15" id="EAU-KS-LZ5"/>
+                            <constraint firstItem="zd3-3Y-Nbd" firstAttribute="trailing" secondItem="a4I-fp-FMk" secondAttribute="trailing" constant="40" id="Hq0-hj-FJR"/>
                             <constraint firstItem="9nn-zz-Vkq" firstAttribute="leading" secondItem="zd3-3Y-Nbd" secondAttribute="leading" constant="40" id="Hvn-4O-jDN"/>
                             <constraint firstItem="zd3-3Y-Nbd" firstAttribute="trailing" secondItem="UnF-yW-lEM" secondAttribute="trailing" constant="40" id="IEB-e6-WLF"/>
                             <constraint firstItem="zd3-3Y-Nbd" firstAttribute="bottom" secondItem="A8g-rO-Sbi" secondAttribute="bottom" constant="50" id="Jkf-cv-aAO"/>
@@ -895,8 +938,10 @@
                             <constraint firstItem="zd3-3Y-Nbd" firstAttribute="trailing" secondItem="9nn-zz-Vkq" secondAttribute="trailing" constant="40" id="OYm-CZ-i24"/>
                             <constraint firstItem="UnF-yW-lEM" firstAttribute="leading" secondItem="zd3-3Y-Nbd" secondAttribute="leading" constant="40" id="T1c-Vq-E0w"/>
                             <constraint firstItem="NXe-gM-D9c" firstAttribute="top" secondItem="zd3-3Y-Nbd" secondAttribute="top" id="UDq-o8-sW5"/>
+                            <constraint firstItem="a4I-fp-FMk" firstAttribute="leading" secondItem="zd3-3Y-Nbd" secondAttribute="leading" constant="40" id="g2f-uj-Xp7"/>
                             <constraint firstItem="INd-5y-m40" firstAttribute="top" secondItem="NXe-gM-D9c" secondAttribute="bottom" constant="10" id="maz-YI-J3U"/>
                             <constraint firstItem="C5i-eA-rHW" firstAttribute="leading" secondItem="zd3-3Y-Nbd" secondAttribute="leading" constant="40" id="mcT-wo-d7s"/>
+                            <constraint firstItem="a4I-fp-FMk" firstAttribute="top" secondItem="C5i-eA-rHW" secondAttribute="bottom" constant="18" id="qUu-D7-G32"/>
                             <constraint firstItem="zd3-3Y-Nbd" firstAttribute="trailing" secondItem="A8g-rO-Sbi" secondAttribute="trailing" constant="40" id="v9f-W8-qyf"/>
                             <constraint firstItem="INd-5y-m40" firstAttribute="trailing" secondItem="zd3-3Y-Nbd" secondAttribute="trailing" id="xgS-tv-K7B"/>
                         </constraints>

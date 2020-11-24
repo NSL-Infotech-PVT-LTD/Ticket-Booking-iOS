@@ -20,13 +20,28 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         return UIViewController()
     }
     
-    
     //MARK:- Outlets -
     
     @IBOutlet var btnViewProfile: UIButton!
     @IBOutlet var lblYourLocation: UILabel!
     @IBOutlet var lblBookArtistTitle: UILabel!
+    @IBOutlet weak var lblYourLocationLblTitle: UILabel!
+    @IBOutlet weak var viewPopupContainer: UIView!
+    @IBOutlet weak var viewPopupSubview: UIView!
+    var showTyepValue = String()
     
+    
+    
+    @IBOutlet weak var btnLiveTop: UIButton!
+    
+    
+    @IBOutlet weak var btnDigitalTop: UIButton!
+    
+    
+    @IBOutlet weak var lblShowTypeSettingUp: UILabel!
+    @IBOutlet weak var imgShowTypeSetting: UIImageView!
+    
+    @IBOutlet weak var viewSettingUpShowType: UIView!
     
     @IBOutlet weak var viewUpdateLocation: UIView!
     @IBOutlet weak var searchHeaderView: KJNavigationViewAnimation!
@@ -40,6 +55,8 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     @IBOutlet weak var noDataFound: UIView!
     @IBOutlet weak var locationTf: UILabel!
     
+    @IBOutlet weak var lblShowTypeValueArtist: UILabel!
+    
     //MARK:- Variable -
     var viewModelObject  = HomeScreenViewModel()
     var arrayHomeArtistList = [GetArtistListHomeModel]()
@@ -49,48 +66,258 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     var pageInt = 1
     var isLoadMore = Bool()
     var animalList = [AnyObject]()
-    
+    var gameTimer: Timer?
+    var mobelObject =  [ManageAddressModel]()
+    var isDigital = Bool()
     
     
     //MARK:- View's Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.btnViewProfile.setTitle("view_profile".localized(), for: .normal)
-        self.lblYourLocation.text = "your_location".localized()
+        //self.lblYourLocation.text = "your_location".localized()
         self.searchTxt.placeholder = "search_for_artist".localized()
         self.lblBookArtistTitle.text = "book_artist_title".localized()
         
         print("the user custom address is \(currentAddress)")
-        
-if idealPayment == true{
-           idealPayment = false
-           self.tabBarController?.selectedIndex = 1
-       }else{
-           self.setDashLine()
-           self.SetInitialSetup()
-           self.tableView_out.isHidden = true
-           self.noDataFound.isHidden = true
-           self.tabBarController?.tabBar.isHidden = false
-           topHeaderView.layer.cornerRadius = 1
-           topHeaderView.layer.shadowColor = UIColor.darkGray.cgColor
-           topHeaderView.layer.shadowOpacity = 1
-           topHeaderView.layer.shadowRadius = 1
-           //MARK:- Shade a view
-           topHeaderView.layer.shadowOpacity = 0.5
-           topHeaderView.layer.shadowOffset = CGSize(width: 1.0, height: 0.5)
-           topHeaderView.layer.masksToBounds = false
-           
-           let tapviewimgUserProfile = UITapGestureRecognizer(target: self, action: #selector(self.handletaptapviewimgUserProfile(_:)))
-           imgUserProfile.isUserInteractionEnabled = true
-           imgUserProfile.addGestureRecognizer(tapviewimgUserProfile)
+        self.viewPopupSubview.isHidden = true
+        self.viewSettingUpShowType.isHidden = true
+        self.viewPopupContainer.isHidden = true
 
-       }
+        
+        getManageAddressData(param: [:])
+        
+        self.viewModelObject.delegate = self
+        self.objectViewModel.delegate = self
+        self.objectViewModel.getParamForGetProfile(param: [:])
+        print("the digital type value is \(whicShowTypeDigital)")
+
+        
+        
+        if idealPayment == true{
+            idealPayment = false
+            self.tabBarController?.selectedIndex = 1
+        }else{
+            self.setDashLine()
+            self.SetInitialSetup()
+            self.tableView_out.isHidden = true
+            self.noDataFound.isHidden = true
+            self.tabBarController?.tabBar.isHidden = false
+            topHeaderView.layer.cornerRadius = 1
+            topHeaderView.layer.shadowColor = UIColor.darkGray.cgColor
+            topHeaderView.layer.shadowOpacity = 1
+            topHeaderView.layer.shadowRadius = 1
+            //MARK:- Shade a view
+            topHeaderView.layer.shadowOpacity = 0.5
+            topHeaderView.layer.shadowOffset = CGSize(width: 1.0, height: 0.5)
+            topHeaderView.layer.masksToBounds = false
+            
+            let tapviewimgUserProfile = UITapGestureRecognizer(target: self, action: #selector(self.handletaptapviewimgUserProfile(_:)))
+            imgUserProfile.isUserInteractionEnabled = true
+            imgUserProfile.addGestureRecognizer(tapviewimgUserProfile)
+            
+        }
     }
+    
+    
+    func showPopupContainer()  {
+        
+        self.viewPopupSubview.isHidden = false
+        self.viewSettingUpShowType.isHidden = true
+        self.viewPopupContainer.isHidden = false
+        
+        
+    }
+    
+    func getManageAddressData(param: [String: Any]) {
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        LoaderClass.shared.loadAnimation()
+        
+        if Reachability.isConnectedToNetwork() {
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.addresslist, method: .get, param: [:], header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            self.mobelObject.removeAll()
+                            if let data = response["data"] as? NSArray {
+                                data.forEach({ (indexvalue) in
+                                    if let getData = indexvalue as? [String: Any] {
+                                        self.mobelObject.append(ManageAddressModel.init(resposne: getData))
+                                    }
+                                })
+                            }
+                            //                                            self.delegate?.manageAddressApiResponse(message: "Success", modelArray: self.mobelObject, isError: false)
+                            
+                            
+                            
+                            if self.mobelObject.count > 0{
+                                self.tabBarController?.tabBar.isUserInteractionEnabled = false
+                                
+                                
+                                
+                                
+                                if customAddress == false{
+                                    // self.currentLocationGet()
+                                    
+                                    self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
+                                    
+                                    self.locationTf.text = self.mobelObject[0].street_address ?? ""
+                                    
+                                    currentLat = self.mobelObject[0].lat ?? 0.0
+                                    
+                                    currentLong = self.mobelObject[0].long ?? 0.0
+                                    currentAddress =  self.lblYourLocationLblTitle.text!
+                                    
+                                    
+                                }else{
+                                    let dict = ["latitude":currentLat ,"longitude":currentLong ]
+                                    print("the dictionary is \(dict)")
+                                    self.viewModelObject.getParamForBookingList(param: dict)
+                                    self.locationTf.text = currentAddress
+                                }
+                                
+                             if showTypeTrueOrFalse == false{
+                                    self.showPopupContainer()
+                                }else{
+                                
+                                
+                                print("the digital type value is \(whicShowTypeDigital)")
+                                    if whicShowTypeDigital == false{
+                                        self.isDigital = true
+                                        self.getDataBookingList(pageNumber: 1)
+                                        self.viewUpdateLocation.isUserInteractionEnabled = false
+                                        print("the abhishek type value is \(whicShowTypeDigital)")
+
+                                        
+                                    }else{
+                                        self.isDigital = false
+                                        self.getDataBookingList(pageNumber: 1)
+                                        self.viewUpdateLocation.isUserInteractionEnabled = true
+                                        print("the humgama type value is \(whicShowTypeDigital)")
+
+                                    }
+                                    
+                                }
+                                
+                                
+                            }else{
+                                let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
+                                let transition = CATransition()
+                                transition.duration = 0.5
+                                transition.timingFunction = CAMediaTimingFunction(name: .default)
+                                transition.type = .fade
+                                transition.subtype = .fromRight
+                                controller.hidesBottomBarWhenPushed = true
+                                self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+                                self.navigationController?.pushViewController(controller, animated: false)
+                            }
+                            
+                        }
+                            
+                            
+                            
+                            
+                        else{
+                            //                                            self.delegate?.manageAddressApiResponse(message: "Error", modelArray: self.mobelObject, isError: true)
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if let message = error_message["error_message"] as? String {
+                                //                                self.delegate?.exploreErrorAlert(errorTitle: Alerts.Error, errorMessage: message)
+                            }
+                        }
+                    }
+                }
+                else {
+                    //                    self.delegate?.exploreErrorAlert(errorTitle: Alerts.Error, errorMessage: error as! String)
+                    //                                    self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            LoaderClass.shared.stopAnimation()
+            
+            //                self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+    }
+    
+    
+    @IBAction func btnLiveAction(_ sender: UIButton) {
+        showTyepValue = "Live"
+        self.SetFinalType()
+        isDigital = false
+        whicShowTypeDigital = true
+        
+        
+    }
+    
+    @IBAction func btnDigital(_ sender: UIButton) {
+        showTyepValue = "Digital"
+        self.SetFinalType()
+        isDigital = true
+        whicShowTypeDigital = false
+        
+        
+        
+        
+    }
+    
+    func SetFinalType(){
+        self.viewPopupSubview.isHidden = true
+        self.viewSettingUpShowType.isHidden = false
+        if showTyepValue == "Digital"{
+            imgShowTypeSetting.image = UIImage.init(named: "digital")
+            self.lblShowTypeValueArtist.text = "Virtual Show"
+            
+        }else{
+            imgShowTypeSetting.image = UIImage.init(named: "live")
+            self.lblShowTypeValueArtist.text = "In-person Show"
+        }
+        gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+    }
+    
+    @objc func runTimedCode() {
+        self.viewPopupSubview.isHidden = true
+        self.viewSettingUpShowType.isHidden = true
+        self.viewPopupContainer.isHidden = true
+        showTypeTrueOrFalse = true
+        if showTyepValue == "Digital"{
+            self.lblShowTypeValueArtist.text = "Virtual Show"
+            imgShowTypeSetting.image = UIImage.init(named: "digital")
+            self.btnDigitalTop.setImage(UIImage.init(named: "digital_active"), for: .normal)
+            self.btnLiveTop.setImage(UIImage.init(named: "Live_unactive"), for: .normal)
+            self.lblYourLocationLblTitle.isHidden = true
+            self.locationTf.isHidden = true
+            self.getDataBookingList(pageNumber: 1)
+            self.viewUpdateLocation.isUserInteractionEnabled = false
+            
+            
+            
+        }else{
+            imgShowTypeSetting.image = UIImage.init(named: "live")
+            self.btnDigitalTop.setImage(UIImage.init(named: "digital_unactive"), for: .normal)
+            self.lblShowTypeValueArtist.text = "In-person Show"
+            self.btnLiveTop.setImage(UIImage.init(named: "live_active"), for: .normal)
+            self.lblYourLocationLblTitle.isHidden = false
+            self.locationTf.isHidden = false
+            self.getDataBookingList(pageNumber: 1)
+            self.viewUpdateLocation.isUserInteractionEnabled = true
+
+        }
+        self.tabBarController?.tabBar.isUserInteractionEnabled = true
+        
+    }
+    
     
     @objc func handletaptapviewimgUserProfile(_ sender: UITapGestureRecognizer? = nil) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
@@ -101,11 +328,11 @@ if idealPayment == true{
     
     //MARK:- Setting tap gesture -
     func SetInitialSetup() {
-        upperAnimatedView.setupFor(Tableview: tableView_out,
-                                   viewController: self)
-        upperAnimatedView.topbarMinimumSpace = .custom
-        upperAnimatedView.isBlurrBackground = false
-        upperAnimatedView.topbarMinimumSpaceCustomValue = 8
+        //        upperAnimatedView.setupFor(Tableview: tableView_out,
+        //                                   viewController: self)
+        //        upperAnimatedView.topbarMinimumSpace = .custom
+        //        upperAnimatedView.isBlurrBackground = false
+        //        upperAnimatedView.topbarMinimumSpaceCustomValue = 8
         tabBarController?.tabBarItem.selectedImage = UIImage.init(named: "artist_navbar")
         self.searchTxt.isUserInteractionEnabled = false
         self.viewSearch.isUserInteractionEnabled = true
@@ -113,22 +340,23 @@ if idealPayment == true{
         viewSearch.addGestureRecognizer(tapviewFacebook)
         let viewTapUpdateLocation = UITapGestureRecognizer(target: self, action: #selector(self.handletapLocation(_:)))
         viewUpdateLocation.addGestureRecognizer(viewTapUpdateLocation)
-        if customAddress == false{
-            self.currentLocationGet()
-        }else{
-            let dict = ["latitude":currentLat ,"longitude":currentLong ]
-            print("the dictionary is \(dict)")
-            self.viewModelObject.getParamForBookingList(param: dict)
-            self.locationTf.text = currentAddress
-        }
-        viewModelObject.delegate = self
-        objectViewModel.delegate = self
-        objectViewModel.getParamForGetProfile(param: [:])
+        self.lblYourLocationLblTitle.text = locationCurrentTitle
+        
+        
+        
+        
+        
     }
     
     func getDataBookingList(pageNumber : Int )  {
-        let dict = ["latitude":currentLat ,"longitude":currentLong , "limit" : "20" , "page" : pageNumber ] as [String : Any]
-        self.viewModelObject.getParamForBookingList(param: dict)
+        self.arrayHomeArtistList.removeAll()
+        if isDigital == true{
+            let dict = ["limit" : "20" , "page" : pageNumber ] as [String : Any]
+            self.viewModelObject.getParamForBookingList(param: dict)
+        }else{
+            let dict = ["latitude":currentLat ,"longitude":currentLong , "limit" : "20" , "page" : pageNumber ] as [String : Any]
+            self.viewModelObject.getParamForBookingList(param: dict)
+        }
     }
     
     
@@ -151,6 +379,72 @@ if idealPayment == true{
             print("the user custom address is \(self.locationTf.text!)")
             
             
+        } else {
+            print("Location services are not enabled");
+        }
+    }
+    
+    
+    @IBAction func btnDigitalTopAction(_ sender: UIButton) {
+        //        tableView_out.isHidden = true
+        self.btnDigitalTop.setImage(UIImage.init(named: "digital_active"), for: .normal)
+        self.btnLiveTop.setImage(UIImage.init(named: "Live_unactive"), for: .normal)
+        self.lblYourLocationLblTitle.isHidden = true
+        self.locationTf.isHidden = true
+        self.tableView_out.isHidden = true
+
+        isDigital = true
+        whicShowTypeDigital = false
+         self.viewUpdateLocation.isUserInteractionEnabled = false
+        
+        self.getDataBookingList(pageNumber: 1)
+        
+        
+        //              }else{
+        //                   imgShowTypeSetting.image = UIImage.init(named: "live")
+        //                   self.btnDigitalTop.setImage(UIImage.init(named: "digital_unactive"), for: .normal)
+        //                   self.lblShowTypeSettingUp.text = "Live Show"
+        //                   self.btnLiveTop.setImage(UIImage.init(named: "live_active"), for: .normal)
+        //                   self.lblYourLocationLblTitle.isHidden = false
+        //                   self.locationTf.isHidden = false
+        //        }
+        
+    }
+    
+    
+    @IBAction func btnLiveTopAction(_ sender: UIButton) {
+        self.btnDigitalTop.setImage(UIImage.init(named: "digital_unactive"), for: .normal)
+        //                   self.lblShowTypeSettingUp.text = "Live Show"
+        self.btnLiveTop.setImage(UIImage.init(named: "live_active"), for: .normal)
+        self.lblYourLocationLblTitle.isHidden = false
+        self.locationTf.isHidden = false
+        isDigital = false
+        whicShowTypeDigital = true
+        self.tableView_out.isHidden = true
+
+        self.getDataBookingList(pageNumber: 1)
+        self.viewUpdateLocation.isUserInteractionEnabled = true
+
+        
+    }
+    
+    
+    func currentLocationGetAgain(){
+        //Mark:- Get current Lat/Long.
+        if (CLLocationManager.locationServicesEnabled()) {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.distanceFilter = 10.0
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.startUpdatingLocation()
+            let getLatLong = locationManager.location
+            print("Location services are not enabled");
+            self.getAddressFromLatLon(pdblLatitude: getLatLong?.coordinate.latitude ?? 0.0, withLongitude: getLatLong?.coordinate.longitude ?? 0.0)
+            currentLat = getLatLong?.coordinate.latitude ?? 0.0
+            currentLong = getLatLong?.coordinate.longitude ?? 0.0
+            print("the user custom address is \(currentAddress)")
+            print("the user custom address is \(self.locationTf.text!)")
         } else {
             print("Location services are not enabled");
         }
@@ -217,17 +511,17 @@ if idealPayment == true{
     
     @objc func btnBookAction(sender:UIButton)  {
         userArtistID = arrayHomeArtistList[sender.tag].id ?? 0
-//        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+        //        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-               let controller = storyboard.instantiateViewController(withIdentifier: "SchueduleVC") as! SchueduleVC
-               let transition = CATransition()
-               transition.duration = 0.5
-               transition.timingFunction = CAMediaTimingFunction(name: .default)
-               transition.type = .fade
-               transition.subtype = .fromRight
-               controller.hidesBottomBarWhenPushed = true
-               navigationController?.view.layer.add(transition, forKey: kCATransition)
-               navigationController?.pushViewController(controller, animated: false)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SchueduleVC") as! SchueduleVC
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: .default)
+        transition.type = .fade
+        transition.subtype = .fromRight
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.view.layer.add(transition, forKey: kCATransition)
+        navigationController?.pushViewController(controller, animated: false)
         
     }
     
@@ -277,15 +571,29 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.bookBtn_out.setTitle("book".localized(), for: .normal)
         cell.lblSeeArtistProfile.text = "see_artist_profile".localized()
         
-        if dataItem.category?.count ?? 0 == 0{
-            cell.RolePlayLbl_out.text = ""
+        
+        if dataItem.categoryArtist.count > 0{
+            cell.RolePlayLbl_out.text = "\(dataItem.categoryArtist.map({$0.category_name}))"
         }else{
-            cell.RolePlayLbl_out.text = "\(dataItem.category?.map({$0}) ?? [] )"
+            cell.RolePlayLbl_out.text = "No Skill"
         }
         
-        if dataItem.ratingValue == "<null>"{
-            cell.cosmoView.rating = 0.0
+        if whicShowTypeDigital == false{
+            cell.lblPriceArtist.text = "Price" + " " + "\(dataItem.currencyValue)" + " " + "\(dataItem.priceDigital)"
         }else{
+            cell.lblPriceArtist.text = "Price" + " " + "\(dataItem.currencyValue)" + " " + "\(dataItem.priceLive)"
+        }
+        
+        if dataItem.rating == 0{
+            cell.cosmoView.rating = 0.0
+            cell.cosmoView.isHidden = true
+            print("the rating is zero")
+            cell.lblNoRatingAvail.isHidden = false
+            
+            
+        }else{
+            cell.cosmoView.isHidden = false
+            cell.lblNoRatingAvail.isHidden = true
             cell.cosmoView.rating = Double("\(dataItem.rating ?? 0)") ?? 0.0
         }
         
@@ -342,13 +650,15 @@ class homeTableCell: UITableViewCell {
     @IBOutlet weak var descriptionLbl_out: UILabel!
     @IBOutlet weak var RolePlayLbl_out: UILabel!
     @IBOutlet weak var ratingView_out: UIView!
-    
-    
+    @IBOutlet weak var lblNoRatingAvail: UILabel!
     @IBOutlet weak var cosmoView: CosmosView!
     @IBOutlet weak var VIEWOUTERCONTAINER: UIView!
     @IBOutlet weak var bookBtn_out: UIButton!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet var lblSeeArtistProfile: UILabel!
+    @IBOutlet weak var lblPriceArtist: UILabel!
+    
+    
 }
 
 
@@ -391,6 +701,18 @@ extension HOmeViewController: HomeViewModelProtocol ,ProfileViewModelProtocol{
                 if arrayHomeArtistListLoadMore.count == 0{
                     isLoadMore = true
                 }
+//
+//                if whicShowTypeDigital == false{
+//
+//                                                       self.viewUpdateLocation.isUserInteractionEnabled = true
+//
+//                                                   }else{
+//
+//                                                       self.viewUpdateLocation.isUserInteractionEnabled = false
+//
+//                                                   }
+                
+                
                 
                 print("the page number is arrayHomeArtistListLoadMore\(arrayHomeArtistListLoadMore )")
                 
@@ -470,6 +792,10 @@ extension HOmeViewController : CLLocationManagerDelegate{
                     if results.count > 0 {
                         if let addressComponents = results[0]["address_components"]! as? [NSDictionary] {
                             self.locationTf.text = results[0]["formatted_address"] as? String
+                            if self.locationTf.text == ""{
+                                self.currentLocationGetAgain()
+                            }
+                            
                             currentAddress = self.locationTf.text!
                         }
                     }

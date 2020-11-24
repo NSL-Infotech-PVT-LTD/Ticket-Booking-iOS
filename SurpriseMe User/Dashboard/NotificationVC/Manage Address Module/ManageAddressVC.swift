@@ -149,6 +149,7 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataItem = modelObject[indexPath.row]
         currentAddress = dataItem.street_address ?? ""
+        locationCurrentTitle = dataItem.name ?? ""
         customAddress = true
         currentLat = dataItem.lat ?? 0.0
         currentLong = dataItem.long ?? 0.0

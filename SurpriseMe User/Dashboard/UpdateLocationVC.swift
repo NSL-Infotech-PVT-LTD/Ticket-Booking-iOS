@@ -90,16 +90,22 @@ class UpdateLocationVC: UIViewController {
                 print(dictArray)
                 let dictArrayValue  = dictArray["results"] as! [[String:Any]]
                 print(dictArrayValue)
-                let gemotry = dictArrayValue[0]
-                let gemortyDict = gemotry["geometry"] as! [String:Any]
-                let dictLocation = gemortyDict["location"] as! [String : Any]
-                print(dictLocation["lat"] ?? 0.0)
-                let latitude = dictLocation["lat"] as! Double
-                let lognitude = dictLocation["lng"] as! Double
+              if dictArrayValue.count > 0{
+                    let gemotry = dictArrayValue[0]
+                                  let gemortyDict = gemotry["geometry"] as! [String:Any]
+                                  let dictLocation = gemortyDict["location"] as! [String : Any]
+                                  print(dictLocation["lat"] ?? 0.0)
+                                  let latitude = dictLocation["lat"] as! Double
+                                  let lognitude = dictLocation["lng"] as! Double
+                                  
+                                  let location = GMSCameraPosition.camera(withLatitude:latitude, longitude: lognitude, zoom: 19.0)
+                                  self.mapView.camera = location
+                                  self.tfAddress.text =  address
+                }else{
+                    
+                }
                 
-                let location = GMSCameraPosition.camera(withLatitude:latitude, longitude: lognitude, zoom: 19.0)
-                self.mapView.camera = location
-                self.tfAddress.text =  address
+              
             }
         }
     }
@@ -185,7 +191,14 @@ class UpdateLocationVC: UIViewController {
             
             
         }else{
-            dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            
+            if addressType == ""{
+                 dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            }else{
+                 dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+            }
+            
+           
         }
         self.objectViewModel.getParamForAddAddress(param: dictParam)
     }
@@ -194,10 +207,10 @@ class UpdateLocationVC: UIViewController {
     func setEditAddress()  {
         LoaderClass.shared.loadAnimation()
         var dictParam = [String : Any]()
-        if addressType == "Other"{
+        if addressType == "other"{
             dictParam = ["name":otherAddressTF.text!,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
         }else{
-            dictParam = ["name":addressType,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
+            dictParam = ["name":"other","longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
         }
         self.objectViewModel.getParamForEditAddress(param: dictParam)
     }
@@ -207,20 +220,15 @@ class UpdateLocationVC: UIViewController {
         
         if isEdit == true{
             
-            //            if self.tfLandMark.text! == "" {
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
-            //            }else if self.tfHouserNumber.text! == ""{
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
-            //            }
-            
-            if addressType == "" {
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
-            }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
-                Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
-            }
-            else{
+        
+//            if addressType == "" {
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
+//            }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
+//            }
+//            else{
                 self.setEditAddress()
-            }
+//            }
         }else{
             //            if self.tfLandMark.text! == "" {
             //                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
@@ -228,14 +236,14 @@ class UpdateLocationVC: UIViewController {
             //                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
             //            }
             //            else
-            if addressType == "" {
-                Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
-            }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
-                Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
-            }
-            else{
+//            if addressType == "" {
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
+//            }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
+//                Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
+//            }
+//            else{
                 self.setAddress()
-            }
+            //}
         }
         
     }

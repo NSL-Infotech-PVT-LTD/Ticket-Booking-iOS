@@ -17,10 +17,10 @@ class GetArtistListHomeModel: NSObject {
     var id: Int?
     var rating: Int?
     var ratingValue: String?
-
-
-    
-
+    var currencyValue = String()
+    var priceLive = Int()
+    var priceDigital = Int()
+    var categoryArtist = [SearchCategoryHome]()
     var category : [JSON]?
   
     convenience init(resposne : [String:Any]) {
@@ -30,13 +30,19 @@ class GetArtistListHomeModel: NSObject {
         artistDescription = json[HomeScreenModelModelKey.description].stringValue
         image = json[HomeScreenModelModelKey.image].stringValue
         ratingValue = json[HomeScreenModelModelKey.rating].stringValue
-        
+        currencyValue = json[HomeScreenModelModelKey.currency].stringValue
+
+        priceLive = json[HomeScreenModelModelKey.live_price_per_hr].intValue
+        priceDigital = json[HomeScreenModelModelKey.digital_price_per_hr].intValue
+
         rating = json[HomeScreenModelModelKey.rating].intValue
-
-
         id = json[HomeScreenModelModelKey.id].intValue
-
         category = json[HomeScreenModelModelKey.category_id_details].array
+        let categories = json["category_id_details"].arrayValue
+               for indexValue in categories {
+                  let dictValue = SearchCategoryHome.init(resposne: indexValue)
+                   categoryArtist.append(dictValue)
+               }
      
     }
     
@@ -46,10 +52,30 @@ class GetArtistListHomeModel: NSObject {
         static let image = "image"
         static let id = "id"
         static let rating = "rating"
+        
+        static let currency = "currency"
+        static let digital_price_per_hr = "digital_price_per_hr"
+
+        static let live_price_per_hr = "live_price_per_hr"
 
 
+        
         static let category_id_details = "category_id_details"
 
+    }
+}
+
+class SearchCategoryHome: NSObject {
+    var category_name = String()
+    
+   convenience init(resposne : JSON) {
+        self.init()
+        let json = JSON(resposne)
+        category_name = json[HomeScreenModelModelKey.category_name].stringValue
+    }
+    
+    struct HomeScreenModelModelKey {
+        static let category_name = "category_name"
     }
     
 }

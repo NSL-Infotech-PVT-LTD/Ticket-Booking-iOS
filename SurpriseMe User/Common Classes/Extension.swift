@@ -296,3 +296,13 @@ extension UIView {
     }
     
 }
+
+class CustomSlide: UISlider {
+
+     @IBInspectable var trackHeight: CGFloat = 2
+
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+         //set your bounds here
+        return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: trackHeight))
+       }
+}

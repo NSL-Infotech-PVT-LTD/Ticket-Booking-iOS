@@ -44,6 +44,8 @@ class ReviewVC: UIViewController {
         self.ReviewTableView.refreshControl = refreshControl
         self.refreshControl.addTarget(self, action:#selector(methodPullToRefresh), for: .valueChanged)
         self.ReviewTableView.addSubview(self.refreshControl)
+        ReviewTableView.rowHeight = UITableView.automaticDimension
+            ReviewTableView.estimatedRowHeight = 44
         
     }
     
@@ -102,6 +104,9 @@ extension ReviewVC : UITableViewDelegate,UITableViewDataSource {
         let dateConvertedCreate = self.convertDateToStringCreate(profile: indexData.createdAt ?? "")
         cell.lblDate.text = "\(dateConvertedCreate )"
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
 

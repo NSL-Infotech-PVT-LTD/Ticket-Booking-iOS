@@ -33,7 +33,7 @@ class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate 
         controllerNavigationController = UINavigationController(rootViewController: controller)
         controllerNavigationController.tabBarItem.image = UIImage.init(named: "Home-1")
         controllerNavigationController.tabBarItem.selectedImage = UIImage.init(named: "artist_navbar")
-        controllerNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        controllerNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -10, right: 0)
         
         let storyboardBooking = UIStoryboard(name: "BookingDetail", bundle: nil)
         let controllerBooking = storyboardBooking.instantiateViewController(withIdentifier: "BookingVC") as! BookingVC
@@ -62,7 +62,7 @@ extension UIImage {
     func createSelectionIndicator(color: UIColor, size: CGSize, lineHeight: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
-        UIRectFill(CGRect(origin: CGPoint(x :0,y: 0), size: CGSize(width: size.width, height: lineHeight)))
+        UIRectFill(CGRect(origin: CGPoint(x :0,y: -1), size: CGSize(width: size.width, height: lineHeight)))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!

@@ -10,6 +10,8 @@ import UIKit
 import SDWebImage
 import Alamofire
 import AlamofireImage
+import AVFoundation
+import AVKit
 
 class ProfileVC: UIViewController {
     
@@ -30,6 +32,8 @@ class ProfileVC: UIViewController {
     var objectViewModel = ProfileViewModel()
     var imagePicker = UIImagePickerController()
     var picker: UIImagePickerController = UIImagePickerController()
+    var isUpdateProfile = Bool()
+    
     
     //MARK:- View's Life cycle -
     override func viewDidLoad() {
@@ -39,7 +43,10 @@ class ProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.setInitialSetup()
         self.viewHeader.addBottomShadow()
+      
+       
     }
+    
     
     //MARK:- Setup View and Calling Api's -
     func setInitialSetup()  {
@@ -74,6 +81,14 @@ class ProfileVC: UIViewController {
         let alert = UIAlertController(title: "Alert", message: "Do you want to logout?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
             self.objectViewModel.logout()
+//            let app = UIApplication.shared.delegate as! UIApplication
+//
+//            app.applicationIconBadgeNumber = 0
+//            app.can
+            
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
+            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -86,17 +101,21 @@ class ProfileVC: UIViewController {
     //MARK:- Back Action -
     @IBAction func btnBackAction(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "Alert!", message: "Do you want to save your profile?", preferredStyle: UIAlertController.Style.alert)
-       alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+        if isUpdateProfile == true{
+            let alert = UIAlertController(title: "Alert!", message: "Do you want to save your profile?", preferredStyle: UIAlertController.Style.alert)
+                  alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
 
-        }))
-        
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
-            self.back()
-              }))
-         self.present(alert, animated: true, completion: nil)
-        
-    }
+                   }))
+                   
+                   alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+                       self.back()
+                         }))
+                    self.present(alert, animated: true, completion: nil)
+        }else{
+//            self.btnUpdateProfileAction(self.updateBtn)
+             self.back()
+        }
+  }
     
     @IBAction func btnEditAction(_ sender: UIButton) {
         let alert = UIAlertController(title: "", message: "Please Select an Option", preferredStyle: .actionSheet)
@@ -156,6 +175,7 @@ class ProfileVC: UIViewController {
         self.tfUserName.isUserInteractionEnabled = false
         self.tfEmail.isUserInteractionEnabled = false
         objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
+        isUpdateProfile = false
     }
     
     @IBAction func btnEditProfile(_ sender: UIButton) {
@@ -164,6 +184,7 @@ class ProfileVC: UIViewController {
         self.updateBtn.isHidden = false
         self.tfUserName.isUserInteractionEnabled = true
         self.tfEmail.isUserInteractionEnabled = false
+        isUpdateProfile = true
         self.tfUserName.becomeFirstResponder()
     }
     

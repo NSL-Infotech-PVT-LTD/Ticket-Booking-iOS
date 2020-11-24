@@ -19,6 +19,7 @@ class SelectDateVC: UIViewController {
     
     var arrayAvailDate = [GetArtistDateList]()
     var arrayAvailDate2 = [String]()
+    var arrayNoOfEvent = [String]()
 
     
     //MARK:- View's Life Cycle -
@@ -32,6 +33,8 @@ class SelectDateVC: UIViewController {
         
         let dict = ["artist_id":userArtistID]
         self.getAvailableSlot(dict: dict)
+        calenderView.appearance.todaySelectionColor = UIColor.systemPink
+
 
     }
     
@@ -68,7 +71,7 @@ class SelectDateVC: UIViewController {
                                         
                                     }
                                 }
-                                self.calenderView.reloadData()
+//                                self.calenderView.reloadData()
                                 
                               
                                 
@@ -83,6 +86,8 @@ class SelectDateVC: UIViewController {
                                 }
                             }
                         }
+                        self.calenderView.reloadData()
+
                     }
                     else {
                         //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
@@ -169,6 +174,10 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance,  titleDefaultColorFor date: Date) -> UIColor? {
 
         print(date)
+        
+        
+        calendar.appearance.todaySelectionColor = UIColor.systemPink
+        
                let currentDate = self.covertDate(date :date)
                print(currentDate)
         if self.arrayAvailDate2.contains(currentDate)
@@ -176,10 +185,9 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
             return UIColor.white
         }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
             return UIColor.lightGray
-
         }
        else{
-            return UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+            return UIColor.lightGray
         }
     }
 
@@ -189,19 +197,31 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
                       let currentDate = self.covertDate(date :date)
                       print(currentDate)
         if self.arrayAvailDate2.contains(currentDate) {
+            arrayNoOfEvent.append(currentDate)
             return 1
+        }else{
+            return 0
+
         }
-        return 0
+
     }
 
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         print(date)
-                             let currentDate = self.covertDate(date :date)
-                             print(currentDate)
+        
+        let currentDateValue = Date()
+          let currentDate = self.covertDate(date :date)
+          print(currentDate)
         
         
         if self.arrayAvailDate2.contains(currentDate) {
-            return UIColor.init(red: 236/255, green: 0/255.0, blue: 80/255.0, alpha: 1)
+            return UIColor.init(red: 217/255, green: 240/255.0, blue: 229/255.0, alpha: 1)
+        }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
+            return UIColor.clear
+        }
+        
+        else{
+            return UIColor.init(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
         }
         return UIColor.clear
     }
@@ -210,7 +230,12 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
         let currentDate = self.covertDate(date :date)
         print(currentDate)
         if self.arrayAvailDate2.contains(currentDate) {
-            return UIColor.init(red: 236/255, green: 0/255.0, blue: 80/255.0, alpha: 1)
+            return UIColor.init(red: 217/255, green: 240/255.0, blue: 229/255.0, alpha: 1)
+        }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
+            return UIColor.clear
+        }else{
+            return UIColor.init(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+
         }
         return appearance.subtitleWeekendColor
     }

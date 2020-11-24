@@ -36,7 +36,6 @@ class HomeScreenViewModel {
                        if Reachability.isConnectedToNetwork() {
                         LoaderClass.shared.loadAnimation()
                         ApiManeger.sharedInstance.callApiWithHeader(url: Api.artistList, method: .post, param: param, header: headerToken) { (response, error) in
-                                           print(response)
                             LoaderClass.shared.stopAnimation()
                                            if error == nil {
                                                let result = response
@@ -47,7 +46,7 @@ class HomeScreenViewModel {
                                                     let dataDict = result["data"] as? [String : Any]
                                                    if let dataArray = dataDict?["data"] as? [[String : Any]]{
                                                         for index in dataArray{
-                                                            print("the index value is \(index)")
+                                                          
                                                                                                               let dataDict = GetArtistListHomeModel.init(resposne: index)
                                                             self.arrayObject.append(dataDict)
                                                                                                           }

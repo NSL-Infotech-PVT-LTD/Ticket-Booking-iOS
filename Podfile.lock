@@ -1,4 +1,5 @@
 PODS:
+  - AARatingBar (1.1)
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
@@ -23,6 +24,9 @@ PODS:
     - FirebaseAnalytics (= 6.8.2)
   - Firebase/CoreOnly (6.32.2):
     - FirebaseCore (= 6.10.2)
+  - Firebase/Crashlytics (6.32.2):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 4.6.0)
   - Firebase/Messaging (6.32.2):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.6.2)
@@ -44,6 +48,12 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30906.0)
+  - FirebaseCrashlytics (4.6.0):
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleDataTransport (~> 7.2)
+    - nanopb (~> 1.30906.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (1.7.0):
     - FirebaseCore (~> 6.10)
     - GoogleUtilities/Environment (~> 6.7)
@@ -120,12 +130,16 @@ PODS:
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
   - Starscream (3.0.6)
+  - StepSlider (1.3.0)
   - Stripe (20.0.0)
   - SwiftyJSON (5.0.0)
   - TagListView (1.4.0)
+  - TTRangeSlider (1.0.6)
+  - youtube-ios-player-helper (1.0.2)
   - YoutubePlayer-in-WKWebView (0.3.4)
 
 DEPENDENCIES:
+  - AARatingBar
   - Alamofire (~> 4.0)
   - AlamofireImage
   - Cosmos (~> 22.1)
@@ -133,6 +147,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase
   - Firebase/Analytics
+  - Firebase/Crashlytics
   - Firebase/Messaging
   - FSCalendar
   - GooglePlacePicker
@@ -143,13 +158,17 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - SDWebImage (~> 5.0)
   - Starscream (~> 3.0.6)
+  - StepSlider (~> 1.3.0)
   - Stripe
   - SwiftyJSON
   - TagListView (~> 1.0)
+  - TTRangeSlider
+  - youtube-ios-player-helper
   - YoutubePlayer-in-WKWebView
 
 SPEC REPOS:
   trunk:
+    - AARatingBar
     - Alamofire
     - AlamofireImage
     - Cosmos
@@ -160,6 +179,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
@@ -180,12 +200,16 @@ SPEC REPOS:
     - Protobuf
     - SDWebImage
     - Starscream
+    - StepSlider
     - Stripe
     - SwiftyJSON
     - TagListView
+    - TTRangeSlider
+    - youtube-ios-player-helper
     - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
+  AARatingBar: 62f56244aaa436c0379dc54e398e90d337f097b8
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
@@ -196,6 +220,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
   FirebaseCore: 1d697bb944bf2af5fc248f1a66e165c9dd88bf97
   FirebaseCoreDiagnostics: 7415bfb3883b3500c5a95c42b6ba66baae78f600
+  FirebaseCrashlytics: eea40d2a33f01b927b9f6f00ef305baa22a6a58e
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
   FirebaseInstanceID: 84f5f5762f1bee94ca2254f693bbf5aec6666504
   FirebaseMessaging: 82d75b3770a78bbce470769a6980429608b4c407
@@ -216,11 +241,14 @@ SPEC CHECKSUMS:
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  StepSlider: c54e471186f29c6535260c9866178a3900f787e9
   Stripe: 339e8c50d3a27dcbe9a4f35b98c260fb9715d962
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TagListView: 987b0bdbb16cd9d9e7c0e2ec32aff37ecba8b173
+  TTRangeSlider: 78188bea83f6471a06f75adbc88da5e990baeafe
+  youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 2ffe4f42526ad8a43caad611463e52ad5ef3b75f
+PODFILE CHECKSUM: f90c80e4c034aff5835ea02946bdda3f8b6f0055
 
 COCOAPODS: 1.8.4

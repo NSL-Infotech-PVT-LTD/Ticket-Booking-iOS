@@ -41,7 +41,7 @@ class WalkThroughVC: UIViewController {
     
     @IBAction func btnGetStartedAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        let controller = storyboard.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
         navigationController?.pushViewController(controller, animated: true)
     }
     

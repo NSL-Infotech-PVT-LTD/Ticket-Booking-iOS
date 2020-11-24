@@ -29,8 +29,12 @@ pod 'Firebase/Messaging'
 pod 'Stripe'
 pod 'HSCycleGalleryView'
 pod 'DropDown'
-
-
+pod 'Firebase/Crashlytics'
+pod 'Firebase/Analytics'
+pod 'AARatingBar'
+pod "TTRangeSlider"
+pod 'StepSlider', '~> 1.3.0'
+pod "youtube-ios-player-helper"
 
 
 end

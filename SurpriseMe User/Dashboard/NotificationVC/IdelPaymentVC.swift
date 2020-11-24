@@ -102,6 +102,7 @@ class IdelPaymentVC: UIViewController {
     var bookingID = Int()
     var bankName = ["ABN AMRO", "ASN Bank", "Bunq","Handlesbanken","ING","Knab","Moneyou","Rabobank","RegioBank","SNS Bank (De Volksbank)","Triodos Bank","Van Lanschot"]
     var bankStripeCode = ["abn_amro","asn_bank","bunq","handelsbanken","ing","knab","moneyou","rabobank","regiobank","sns_bank","triodos_bank","van_lanschot"]
+    
     var bankCode = ""
     var isNext = Bool()
     
@@ -206,8 +207,7 @@ class IdelPaymentVC: UIViewController {
         paymentIntentParams.paymentMethodParams = STPPaymentMethodParams(iDEAL: iDEALParams,
                                                                          billingDetails: billingDetails,
                                                                          metadata: nil)
-                paymentIntentParams.returnURL = "surpriseme://stripe-redirect" //original
-//        paymentIntentParams.returnURL = "smartsafezone://stripe-redirect" //testing by jujhar
+       paymentIntentParams.returnURL = "surpriseme://stripe-redirect"
         
         STPPaymentHandler.shared().confirmPayment(withParams: paymentIntentParams,
                                                   authenticationContext: self)
@@ -217,18 +217,6 @@ class IdelPaymentVC: UIViewController {
                 idealPayment = true
                 var param = ["booking_id":bookingPaymentID ?? 0 , "status": "confirmed" , "payment_method": "ideal"] as [String : Any]
                 param["payment_params"] = ["clientSecret":paymentIntent?.clientSecret ?? "" as Any ,"paymentMethodId":paymentIntent?.paymentMethodId ?? "","created":paymentIntent?.created ?? ""]
-//                let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-//                let navController = UINavigationController(rootViewController: VC1)
-//                navController.modalPresentationStyle = .overCurrentContext
-//                navController.isNavigationBarHidden = true
-//                idealPayment = true
-//
-//                self.navigationController?.pushViewController(navController, animated: true)
-//
-                
-                //                                self.present(navController, animated:true, completion: nil)
-                //                self.getPaymentForBooking(param: param)
-                
             case .canceled:
                 self.displayAlert(title: "Canceled",
                                   message: error?.localizedDescription ?? "",
@@ -298,16 +286,7 @@ extension IdelPaymentVC:IdelViewModelProtocol{
                     let result = response
                     if let status = result["status"] as? Bool {
                         if status ==  true{
-                            //
-//                            let dictData = result["data"] as? [String:Any]
-//                            let userProfile = dictData?["user"] as? [String:Any]
-//                            let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-//                            let navController = UINavigationController(rootViewController: VC1)
-//                            navController.modalPresentationStyle = .overCurrentContext
-//                            navController.isNavigationBarHidden = true
-//                            idealPayment = true
-//                            self.navigationController?.present(navController, animated: true, completion: nil)
-//                            self.navigationController?.pushViewController(navController, animated: true)
+                            
                             NotificationCenter.default.post(name: .myNotificationKey, object: self.index, userInfo: ["idealPayment": true])
                             
                         }
