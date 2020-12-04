@@ -19,6 +19,8 @@ class ManageAddressVC: UIViewController {
     //MARK:- Variables -
     var objectViewModel = ManageAddressViewModel()
     var modelObject = [ManageAddressModel]()
+    var index = -1
+    var selectedIndex = Int()
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
@@ -46,7 +48,7 @@ class ManageAddressVC: UIViewController {
     //MARk:- Custom Button's Action -
     @IBAction func btnAddAddress(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SelectAddressTypeVC") as! SelectAddressTypeVC
+        let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
         navigationController?.pushViewController(controller, animated: false)
         
     }
@@ -66,14 +68,44 @@ class ManageAddressVC: UIViewController {
                let controller = storyboard.instantiateViewController(withIdentifier: "UpdateLocationVC") as! UpdateLocationVC
         controller.isEdit = true
         controller.modelObjectDict = modelData
+        modelObjectAdress = modelData
                navigationController?.pushViewController(controller, animated: false)
         
         
     }
     
+    
+    
+    
+    @objc func btnBookAction(_ sender: UIButton){
+        
+        let dataItem = modelObject[sender.tag]
+        currentAddress = dataItem.street_address ?? ""
+        locationCurrentTitle = dataItem.name ?? ""
+        customAddress = true
+        currentLat = dataItem.lat ?? 0.0
+        currentLong = dataItem.long ?? 0.0
+        index = sender.tag
+        self.tblAddress.reloadData()
+        
+        let when = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: when){
+          // your code with delay
+            
+            self.back()
+
+        }
+        
+
+    }
+    
+    
     @objc func btnDeleteTapped(_ sender: UIButton){
       // use the tag of button as index
       let modelData = modelObject[sender.tag]
+        
+        selectedIndex = sender.tag
+        
         let param = ["id":modelData.id]
         
         let alert = UIAlertController(title: "Alert", message: "Do you want to delete?", preferredStyle: UIAlertController.Style.alert)
@@ -116,6 +148,14 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         cell.lblAddress.text = " \(data.street_address ?? "") "
         cell.btnEdit.tag = indexPath.row
         cell.btnDelete.tag = indexPath.row
+        cell.btnSeeArtist12.tag = indexPath.row
+        if index == indexPath.row{
+            cell.checkImage.image = UIImage.init(named: "tick")
+        }else{
+            cell.checkImage.image = UIImage.init(named: "untick")
+
+        }
+        
         if data.name == "Home"{
             cell.addressTypeImg.image = UIImage.init(named: "Mask Group 71")
         }else if data.name == "Work"{
@@ -125,6 +165,9 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         }
         cell.btnEdit.addTarget(self, action: #selector(btnEditTapped(_:)), for: .touchUpInside)
        cell.btnDelete.addTarget(self, action: #selector(btnDeleteTapped(_:)), for: .touchUpInside)
+        
+        cell.btnSeeArtist12.tag = indexPath.row
+        cell.btnSeeArtist12.addTarget(self, action: #selector(btnBookAction), for: .touchUpInside)
         
         cell.viewContainer.layer.cornerRadius = 8
                       cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
@@ -147,13 +190,33 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataItem = modelObject[indexPath.row]
-        currentAddress = dataItem.street_address ?? ""
-        locationCurrentTitle = dataItem.name ?? ""
-        customAddress = true
-        currentLat = dataItem.lat ?? 0.0
-        currentLong = dataItem.long ?? 0.0
-        self.back()
+        
+//         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomManageAddressCell
+//
+//        cell.alpha = 0
+//        cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
+//        UIView.animate(withDuration: 0.4) {
+//            cell.alpha = 1
+//            cell.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, 1, 1)
+//        }
+//        let dataItem = modelObject[indexPath.row]
+//        currentAddress = dataItem.street_address ?? ""
+//        locationCurrentTitle = dataItem.name ?? ""
+//        customAddress = true
+//        currentLat = dataItem.lat ?? 0.0
+//        currentLong = dataItem.long ?? 0.0
+//        index = indexPath.row
+//        self.tblAddress.reloadData()
+//
+//        let when = DispatchTime.now() + 1
+//        DispatchQueue.main.asyncAfter(deadline: when){
+//          // your code with delay
+//
+//            self.back()
+//
+//        }
+//
+        
     }
     
 }
@@ -169,7 +232,11 @@ extension ManageAddressVC: ManageAddressViewModelProtocol {
         
         if from == false{
             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: successMessage, btnOkTitle: "OK") {
-                self.objectViewModel.getParamForManageAddress(param: [:])
+                
+                
+                self.modelObject.remove(at: self.selectedIndex)
+                self.tblAddress.reloadData()
+//                self.objectViewModel.getParamForManageAddress(param: [:])
                       }
         }
         

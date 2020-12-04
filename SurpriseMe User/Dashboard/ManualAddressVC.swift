@@ -40,7 +40,7 @@ class ManualAddressVC: UIViewController {
     
         
         func getAutoSuggestName(searchName : String)  {
-            let urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(searchName)&types=establishment|geocode&location=%@,%@&radius=500&language=en&key=AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA"
+            let urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=\(searchName)&types=establishment|geocode&location=%@,%@&radius=500&language=en&key=\(googleKey)"
 
     
            

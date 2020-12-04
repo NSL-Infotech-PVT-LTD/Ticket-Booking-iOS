@@ -53,6 +53,11 @@ class FilterViewController: UIViewController {
     
     @IBOutlet weak var viewFirstBtn: UIView!
     
+    
+    @IBOutlet weak var distanceView: UIView!
+    
+    
+    @IBOutlet weak var distanceLblTitle: UILabel!
     @IBOutlet weak var viewDateContainer: UIView!
     @IBOutlet weak var toView_out: UIView!
     
@@ -72,7 +77,7 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
         
         ratingSlider.labels = ["5","4.5","4.0","3.5","Any"]
-        self.headerView.roundCorners(corners: [.topLeft,.topRight], radius: 25.0)
+//        self.headerView.roundCorners(corners: [.topLeft,.topRight], radius: 25.0)
         ratingSlider.setIndex(4, animated: true)
         countLbl_OUt.layer.borderColor = UIColor.lightGray.cgColor
         countLbl_OUt.layer.borderWidth = 1
@@ -126,6 +131,16 @@ class FilterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.viewDateContainer.isHidden = true
         
+        if whicShowTypeDigital == true{
+            distanceView.isHidden = false
+            distanceLblTitle.isHidden = false
+        }else{
+            distanceView.isHidden = true
+            distanceLblTitle.isHidden = true
+
+        }
+        
+        
         
         datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
@@ -133,12 +148,16 @@ class FilterViewController: UIViewController {
         secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         secondDatePicker.addTarget(self, action: #selector(seconddateChanged(_:)), for: .valueChanged)
         
+//        self.btnSecondAction(self.btnSecond)
+        
+        sortByValue = "asc"
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchHappen(_:)))
         fromView_out.addGestureRecognizer(tap)
         fromView_out.isUserInteractionEnabled = true
-        
-        btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
-        btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
+//
+//        btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
+//        btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
         if arrayCategorySelectedName.count > 0{
             lblArtistCategpry.font = lblArtistCategpry.font.withSize(12)
             lblArtistCategpry.text = arrayCategorySelectedName.joined(separator: ",")
@@ -180,7 +199,7 @@ class FilterViewController: UIViewController {
     @IBAction func btnSecondAction(_ sender: UIButton) {
         btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick"), for: .normal)
-        sortByValue = "asc"
+        sortByValue = "desc"
     }
     
     
@@ -245,6 +264,9 @@ class FilterViewController: UIViewController {
     
     @IBAction func applySearchBtn(_ sender: Any) {
         
+        
+        pageForFilter = true
+        
         if   whicShowTypeDigital == false{
 //                                               self.isDigital = true
 //                                               self.getDataBookingList(pageNumber: 1)
@@ -275,7 +297,7 @@ class FilterViewController: UIViewController {
     @IBAction func btnFirstAction(_ sender: UIButton) {
         btnFirst.setImage(UIImage(named: "tick"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
-        sortByValue = "desc"
+        sortByValue = "asc"
     }
     
     

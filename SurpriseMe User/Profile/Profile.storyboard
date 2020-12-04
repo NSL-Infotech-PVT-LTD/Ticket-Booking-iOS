@@ -954,6 +954,7 @@
                     </view>
                     <connections>
                         <outlet property="viewAboutUs" destination="C5i-eA-rHW" id="9dU-sj-b1l"/>
+                        <outlet property="viewChangeLag" destination="a4I-fp-FMk" id="Hjb-n6-nvq"/>
                         <outlet property="viewHeader" destination="NXe-gM-D9c" id="SNk-lW-KU1"/>
                         <outlet property="viewPP" destination="UnF-yW-lEM" id="5YG-Gc-itP"/>
                         <outlet property="viewTAndC" destination="9nn-zz-Vkq" id="LGI-Hw-qWH"/>

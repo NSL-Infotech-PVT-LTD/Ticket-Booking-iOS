@@ -19,6 +19,10 @@ class RatingVC: UIViewController {
     @IBOutlet weak var cosmoRating: CosmosView!
     @IBOutlet weak var viewHeader: UIView!
     
+    
+    @IBOutlet weak var btnSubmitAction: UIButton!
+    
+    
     //MARK:- Variables -
     var artistName : String?
     var userImg : String?
@@ -99,44 +103,88 @@ extension RatingVC : UITextViewDelegate{
         if textView.text == ""{
             textView.text = "Write a review..."
         } }
+    
+     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        print("chars \(textView.text.count) \( text)")
+
+        if(textView.text.count > 35 && range.length == 0 ) {
+            print("Please summarize in 20 characters or less")
+            self.btnSubmitAction.isUserInteractionEnabled  = true
+            self.btnSubmitAction.backgroundColor = UIColor.init(red: 240/225, green: 0/255, blue: 87/255, alpha: 1)
+
+        }else{
+            self.btnSubmitAction.isUserInteractionEnabled  = false
+            self.btnSubmitAction.backgroundColor = UIColor.init(red: 174/225, green: 174/255, blue: 174/255, alpha: 1)
+
+        }
+        return true
+    }
+    
 }
 
 
 extension RatingVC : RatingViewModelProtocol{
     func getCompletedRatedApiResponse(message: String, isError: Bool) {
         if isError == false{
-            for controller in (self.navigationController?.viewControllers ?? []) as Array {
-                if controller.isKind(of: BookingVC.self) {
-                    self.navigationController!.popToViewController(controller, animated: true)
-                    break
-                }else{
-                    
-                    let vc = UIStoryboard(name: "Main", bundle: nil)
-                           let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
-                           let navigationController = UINavigationController(rootViewController: vc1)
-                           navigationController.isNavigationBarHidden = true
-                           UIApplication.shared.windows.first?.rootViewController = navigationController
-                           UIApplication.shared.windows.first?.makeKeyAndVisible()
-                    
-                    
-//                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            }
+            
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil)
+                   let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
+                   
+                   
+                   whicShowTypeDigital = false
+                   let navigationController = UINavigationController(rootViewController: vc1)
+                   navigationController.isNavigationBarHidden = true
+                   UIApplication.shared.windows.first?.rootViewController = navigationController
+                   UIApplication.shared.windows.first?.makeKeyAndVisible()
+            
+            
+//            for controller in (self.navigationController?.viewControllers ?? []) as Array {
+//                if controller.isKind(of: BookingVC.self) {
+//                    self.navigationController!.popToViewController(controller, animated: true)
+//                    break
+//                }else{
+//
+//                    let vc = UIStoryboard(name: "Main", bundle: nil)
+//                           let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
+//                           let navigationController = UINavigationController(rootViewController: vc1)
+//                           navigationController.isNavigationBarHidden = true
+//                           UIApplication.shared.windows.first?.rootViewController = navigationController
+//                           UIApplication.shared.windows.first?.makeKeyAndVisible()
+//
+//
+////                    self.navigationController?.popToRootViewController(animated: true)
+//                }
+//            }
         }
         
     }
     
     func getRatingApiResponse(message: String, isError: Bool) {
         
-        for controller in (self.navigationController?.viewControllers ?? []) as Array {
-            if controller.isKind(of: BookingVC.self) {
-                self.navigationController!.popToViewController(controller, animated: true)
-                break
-            }else{
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+        
+        
+        if isError == false{
+            let vc = UIStoryboard(name: "Main", bundle: nil)
+                              let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
+                              
+                              
+                              whicShowTypeDigital = false
+                              let navigationController = UINavigationController(rootViewController: vc1)
+                              navigationController.isNavigationBarHidden = true
+                              UIApplication.shared.windows.first?.rootViewController = navigationController
+                              UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
         
+//        for controller in (self.navigationController?.viewControllers ?? []) as Array {
+//            if controller.isKind(of: BookingVC.self) {
+//                self.navigationController!.popToViewController(controller, animated: true)
+//                break
+//            }else{
+//                self.navigationController?.popToRootViewController(animated: true)
+//            }
+//        }
+//        
         let param = ["booking_id":bookingID ?? 0,"status":"completed_review"] as [String : Any]
               //self.objectViewModel.getCompletedBooking(param: param)
     }

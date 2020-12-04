@@ -325,7 +325,16 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             let urlImage = URL(string: urlStringaa)!
             cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            cell.lblSkill.text = dataItem.type ?? ""
+            
+            if dataItem.type == "live"{
+                cell.lblSkill.text = "In-Person"
+
+                   }else{
+                cell.lblSkill.text = "Virtual"
+
+                   }
+            
+            
             cell.viewBookingBorderDash.layer.cornerRadius = 8
             cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
             cell.viewBookingBorderDash.layer.shadowOpacity = 1
@@ -359,7 +368,16 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             let urlImage = URL(string: urlStringaa)!
             cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            cell.lblSkill.text = dataItem.type ?? ""
+            
+            if dataItem.type == "live"{
+                           cell.lblSkill.text = "In-Person"
+
+                              }else{
+                           cell.lblSkill.text = "Virtual"
+
+                              }
+            
+            
             cell.viewBookingBorderDash.layer.cornerRadius = 8
             cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
             cell.viewBookingBorderDash.layer.shadowOpacity = 1

@@ -13,10 +13,14 @@ class CustomManageAddressCell: UITableViewCell {
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAddressType: UILabel!
     @IBOutlet weak var addressTypeImg: UIImageView!
-    
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
+    @IBOutlet weak var btnSeeArtist: UIButton!
+    
+    @IBOutlet weak var checkImage: UIImageView!
+    
+    @IBOutlet weak var btnSeeArtist12: ZFRippleButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

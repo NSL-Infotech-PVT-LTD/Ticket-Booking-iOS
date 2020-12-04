@@ -58,11 +58,37 @@ class FriendMsgVC: UIViewController {
     }
     
     
+    @IBAction func btnSeeProfileAction(_ sender: UIButton) {
+        
+       if comingFrom == "NotificationTabs"{
+            userArtistID = recieverIDHistoryList
+        }else{
+            if reciverData.receiver_id ?? 0 == 0{
+                
+                var userID = userArtistID
+                userArtistID = userID
+            }else{
+                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                 if userName == reciverData.receiver_name ?? ""{
+                      userArtistID = reciverData.sender_id ?? 0
+                  
+                }else{
+                    userArtistID = reciverData.receiver_id ?? 0
+                }
+            }
+        }
+          let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ViewProfileVC") as! ViewProfileVC
+        navigationController?.pushViewController(controller, animated: false)
+        
+        
+    }
+    
+    
     func changeTimeFormate(date: String)-> String {
         if date == "" || date == nil {
             return ""
         } else {
-            
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
@@ -76,57 +102,18 @@ class FriendMsgVC: UIViewController {
             } else {
                 return "Unknown date"
             }
-            
-            
-            
-            
-            
-            
-            //            let formatter = DateFormatter()
-            //            // initially set the format based on your datepicker date / server String
-            //            formatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
-            //            formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-            //
-            //            //        let myString = formatter.string(from: Date()) // string purpose I add here
-            //            // convert your string to date
-            //            let yourDate = formatter.date(from: date)
-            //            //then again set the date format whhich type of output you need
-            //            formatter.dateFormat = "HH:mm"
-            //            // again convert your date to string
-            //            let myStringafd = formatter.string(from: yourDate ?? Date())
-            //            print(myStringafd)
-            //            return myStringafd
-            
-            //           let dateFormatter = DateFormatter()
-            //           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            //           let val_Date = dateFormatter.date(from: date)
-            //           dateFormatter.dateFormat = "HH:mm"
-            //               if val_Date != nil {
-            //                return dateFormatter.string(from: val_Date!)
-            //               }
-            //           return ""
         }
     }
     
     
     @IBAction func btnBookAction(_ sender: UIButton) {
         
-        
-        
         if reciverData.receiver_id ?? 0 == 0{
-            
-            
-            
-        }else{
+         }else{
             
             let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-            
-            
             if userName == reciverData.receiver_name ?? ""{
-                
                 userArtistID =  reciverData.sender_id ?? 0
-                
-                
             }else{
                 
                 userArtistID =  reciverData.receiver_id ?? 0
@@ -283,6 +270,25 @@ class FriendMsgVC: UIViewController {
         picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
     }
     
+    
+    //Pagination
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if ((msgTableView.contentOffset.y + msgTableView.frame.size.height) >= msgTableView.contentSize.height)
+        {
+            print("scrollViewDidEndDragging")
+            print("scrollViewDidEndDragging page number is ")
+
+        }
+        
+//        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+//               {
+//
+//                print("hello i am abhishek")
+//               }
+//
+        
+        
+    }
     
     func scrollToBottom(){
         

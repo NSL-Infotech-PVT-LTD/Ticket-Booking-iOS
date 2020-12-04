@@ -49,36 +49,59 @@ class SchueduleVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
        // lblTittelSehudeule.text = "check_availabilty".localized()
        // lblSubTittelSehuedule.text = "check_availabilty".localized()
-        
-//        lblLiveShowBooking.text = "live_booking".localized()
+        //lblLiveShowBooking.text = "live_booking".localized()
 //        lblLiveDetail.text = "live_booking_detail".localized()
-//
 //        lblDigitalShow.text = "digital_booking".localized()
 //        lblDigitalDetail.text = "digital_booking_detail".localized()
-//
 //        btnProcess.setTitle("Proceed".localized(), for: .normal)
 //        btnBookNowLive.setTitle("book_now".localized(), for: .normal)
 //        btnBookNowDigital.setTitle("book_now".localized(), for: .normal)
-//
-//        self.btnDigital.backgroundColor = UIColor.white //MARK: When View appear btn are reset
+//       self.btnDigital.backgroundColor = UIColor.white
+        //MARK: When View appear btn are reset
 //        self.btnOffline.backgroundColor = UIColor.white
       
+        if  whicShowTypeDigital == false{
+            self.btnBookNowLive.isUserInteractionEnabled = false
+            
+            
+            print("digital")
+            
+            self.btnBookNowLive.backgroundColor = UIColor.lightGray
+            self.btnBookNowDigital.isUserInteractionEnabled = true
+                       self.btnBookNowLive.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255, alpha: 1)
+            
+        }else{
+            print("live")
+
+            self.btnBookNowLive.isUserInteractionEnabled = true
+                       self.btnBookNowDigital.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+                       self.btnBookNowDigital.isUserInteractionEnabled = false
+                                  self.btnBookNowLive.backgroundColor = UIColor.lightGray
+        }
+        
+        
         
         
         //MARK: When View appear btn are reset
     }
     
     @IBAction func btnOfflineOnPress(_ sender: UIButton) {
-        isSelected = true
-        selectedType = "live"
-     self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
+        
+        
+            self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
+        
+     isSelected = true
+    
 
     }
     
     @IBAction func btnDigitalOnPress(_ sender: UIButton){
+        
+        
+       
+                 self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
+        
         selectedType = "digital"
-
-               self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
 
 }
 

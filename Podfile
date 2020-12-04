@@ -35,6 +35,6 @@ pod 'AARatingBar'
 pod "TTRangeSlider"
 pod 'StepSlider', '~> 1.3.0'
 pod "youtube-ios-player-helper"
-
+pod 'AMDots'
 
 end

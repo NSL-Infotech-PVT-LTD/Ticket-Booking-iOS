@@ -43,6 +43,11 @@ class ProfileVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.setInitialSetup()
         self.viewHeader.addBottomShadow()
+        logoutView.isHidden = false
+        viewAboutUs.isHidden = false
+
+        viewChangePassword.isHidden = false
+
       
        
     }
@@ -86,7 +91,7 @@ class ProfileVC: UIViewController {
 //            app.applicationIconBadgeNumber = 0
 //            app.can
             
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+//            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
 
             
         }))
@@ -169,19 +174,34 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func btnUpdateProfileAction(_ sender: UIButton) {
-        self.editProfileBtn.isHidden = false
-        self.editImgBtn.isHidden = true
-        self.updateBtn.isHidden = true
-        self.tfUserName.isUserInteractionEnabled = false
-        self.tfEmail.isUserInteractionEnabled = false
-        objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
-        isUpdateProfile = false
+        
+        
+        if self.tfUserName.text == ""{
+            self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
+        }else{
+            self.editProfileBtn.isHidden = false
+                   self.editImgBtn.isHidden = true
+                   self.updateBtn.isHidden = true
+                   isUpdateProfile = false
+                          logoutView.isHidden = false
+                                 viewAboutUs.isHidden = false
+                                 viewChangePassword.isHidden = false
+                   self.tfUserName.isUserInteractionEnabled = false
+                   self.tfEmail.isUserInteractionEnabled = false
+                   objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
+        }
+        
+       
+       
     }
     
     @IBAction func btnEditProfile(_ sender: UIButton) {
         self.editProfileBtn.isHidden = true
         self.editImgBtn.isHidden = false
         self.updateBtn.isHidden = false
+        logoutView.isHidden = true
+        viewAboutUs.isHidden = true
+        viewChangePassword.isHidden = true
         self.tfUserName.isUserInteractionEnabled = true
         self.tfEmail.isUserInteractionEnabled = false
         isUpdateProfile = true
@@ -213,6 +233,10 @@ extension ProfileVC: ProfileViewModelProtocol {
             UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
             UserDefaults.standard.set(false, forKey: UserdefaultKeys.isLogin)
             LoaderClass.shared.stopAnimation()
+            showTypeTrueOrFalse = false
+            let center = UNUserNotificationCenter.current()
+            center.removeAllDeliveredNotifications() // To remove all delivered notifications
+            center.removeAllPendingNotificationRequests() 
             self.goToLogin()
         }
         
@@ -244,7 +268,27 @@ extension ProfileVC: ProfileViewModelProtocol {
     }
     
     func errorAlert(errorTitle: String, errorMessage: String) {
-        Helper.showOKAlert(onVC: self, title: errorTitle, message: errorMessage)
+        
+        if errorMessage == "Invalid AUTH Token"{
+                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
+                                               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
+
+                                                                                                               // do something like...
+                                                   UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
+                                                              UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
+                                                              UserDefaults.standard.set(false, forKey: UserdefaultKeys.isLogin)
+            self.goToLogin()
+                                                                                                           }))
+                                                                                                           alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                                                                                                           
+
+                                                                                                           // show the alert
+                                                                                                           self.present(alert, animated: true, completion: nil)
+        }else{
+            Helper.showOKAlert(onVC: self, title: errorTitle, message: errorMessage)
+
+        }
+        
     }
 }
 

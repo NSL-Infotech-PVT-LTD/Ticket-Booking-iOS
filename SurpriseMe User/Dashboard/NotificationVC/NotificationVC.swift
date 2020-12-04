@@ -14,6 +14,7 @@ class NotificationVC: UIViewController {
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var NotificationTableView: UITableView!
     @IBOutlet weak var viewNoData: UIView!
+    @IBOutlet weak var btnSwitch: UISwitch!
     
     //MARK:- Variable -
     var objectViewModel = NotificationViewModel()
@@ -106,6 +107,21 @@ class NotificationVC: UIViewController {
                                                             self.arrayNotification.removeAll()
 
                                                             let dataDict = result["data"] as? [String : Any]
+                                            
+                                            let isNotifiy = dataDict?["is_notify"] as? String
+                                            print("the notification status is \(isNotifiy)")
+                                            
+                                            if isNotifiy ?? "" == "1"{
+                                                self.btnSwitch.isOn = true
+                                            }else{
+                                                self.btnSwitch.isOn = false
+
+                                            }
+                                            
+                                            
+                                            
+                                            
+                                            
                                                             if let dataArray = dataDict?["data"] as? [[String : Any]]{
                                                                 for index in dataArray{
                                                                    

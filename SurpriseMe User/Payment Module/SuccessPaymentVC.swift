@@ -46,8 +46,7 @@ lblDesc.text = "You can pay again from booking detail Screen"
     @objc func runTimedCode() {
          let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
                                    let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
-                                   
-                                   
+                                  
                                    controller.isComingFrom = "Payment"
                                    
                                    controller.bookingID = bookingPaymentID ?? 0

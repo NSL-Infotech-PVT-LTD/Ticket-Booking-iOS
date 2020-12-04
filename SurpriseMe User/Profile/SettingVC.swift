@@ -21,6 +21,7 @@ class SettingVC: UIViewController, STPAuthenticationContext {
     @IBOutlet weak var viewPP: UIView!
     @IBOutlet weak var viewTAndC: UIView!
     
+    @IBOutlet weak var viewChangeLag: UIView!
     
     
     override func viewDidLoad() {
@@ -35,12 +36,30 @@ class SettingVC: UIViewController, STPAuthenticationContext {
         let tapviewPP = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewPP(_:)))
                viewPP.addGestureRecognizer(tapviewPP)
         
+        let tapviewCL = UITapGestureRecognizer(target: self, action: #selector(self.handletapChangeLag(_:)))
+        viewChangeLag.addGestureRecognizer(tapviewCL)
+        
     }
+    
+    @objc func handletapChangeLag(_ sender: UITapGestureRecognizer? = nil) {
+//    selectedIdentifier = "About Us"
+    
+    isCameFromCL = "Setting"
+    self.presentViewController(viewController : "LanguageVC", value: "Main")
+
+    
+    
+      }
     
     
        @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
         selectedIdentifier = "About Us"
          self.presentViewController(viewController : ViewControllers.TermsProfileVC , value : Storyboard.Main)
+        
+        self.presentViewController(viewController : "LanguageVC", value: "Main")
+
+        
+        
           }
     
     @objc func handletapviewTAndC(_ sender: UITapGestureRecognizer? = nil) {

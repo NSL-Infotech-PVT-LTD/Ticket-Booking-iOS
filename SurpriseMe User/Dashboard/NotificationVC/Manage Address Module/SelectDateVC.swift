@@ -215,7 +215,7 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
         
         
         if self.arrayAvailDate2.contains(currentDate) {
-            return UIColor.init(red: 217/255, green: 240/255.0, blue: 229/255.0, alpha: 1)
+            return UIColor.systemPink
         }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
             return UIColor.clear
         }
@@ -230,7 +230,7 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
         let currentDate = self.covertDate(date :date)
         print(currentDate)
         if self.arrayAvailDate2.contains(currentDate) {
-            return UIColor.init(red: 217/255, green: 240/255.0, blue: 229/255.0, alpha: 1)
+            return UIColor.systemPink
         }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
             return UIColor.clear
         }else{

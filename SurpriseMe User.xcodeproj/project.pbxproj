@@ -68,6 +68,7 @@
 		83511CF425145D0000E9C501 /* showCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF025145D0000E9C501 /* showCollectionViewCell.swift */; };
 		83511CF625146F1200E9C501 /* GetArtistCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */; };
 		83682EA4255BF8FC00C87A45 /* SchueduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */; };
+		838D0114257A5D8700F1062F /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D0113257A5D8600F1062F /* ZFRippleButton.swift */; };
 		8391ACD924FCEABA008C04D3 /* customTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACD824FCEABA008C04D3 /* customTabBar.swift */; };
 		8391ACDD24FD194B008C04D3 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDC24FD194B008C04D3 /* InternetConnection.swift */; };
 		8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDE24FD1AAE008C04D3 /* SignupViewModel.swift */; };
@@ -229,7 +230,9 @@
 		83511CEF25145D0000E9C501 /* imageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageCollectionViewCell.swift; sourceTree = "<group>"; };
 		83511CF025145D0000E9C501 /* showCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showCollectionViewCell.swift; sourceTree = "<group>"; };
 		83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistCategoryModel.swift; sourceTree = "<group>"; };
+		83517502256FBBC700406FC2 /* SurpriseMeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SurpriseMeRelease.entitlements; sourceTree = "<group>"; };
 		83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchueduleVC.swift; sourceTree = "<group>"; };
+		838D0113257A5D8600F1062F /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
 		8391ACD824FCEABA008C04D3 /* customTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTabBar.swift; sourceTree = "<group>"; };
 		8391ACDC24FD194B008C04D3 /* InternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		8391ACDE24FD1AAE008C04D3 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -380,6 +383,7 @@
 		832A3597251B1CE600587D8A /* Socket Manager */ = {
 			isa = PBXGroup;
 			children = (
+				838D0113257A5D8600F1062F /* ZFRippleButton.swift */,
 				830CDDDC251DB58B002B9752 /* Extension + Date.swift */,
 				83A3A992251B603C00269F55 /* SocketConnectionManager.swift */,
 			);
@@ -416,6 +420,7 @@
 		832C887824F4ED6C0003B10B /* SurpriseMe User */ = {
 			isa = PBXGroup;
 			children = (
+				83517502256FBBC700406FC2 /* SurpriseMeRelease.entitlements */,
 				0D5D5908255BFF82009D9623 /* Localizable */,
 				8317D9E72534BD9600F1086D /* SurpriseMe UserDebug.entitlements */,
 				832A3597251B1CE600587D8A /* Socket Manager */,
@@ -985,6 +990,7 @@
 				833C8C34255E4C7E00C88430 /* GetCardModel.swift in Sources */,
 				8325DAAC250F63EB00A606DD /* GetBookingListModel.swift in Sources */,
 				833F14E5252C681F0031FE67 /* BookingDetailsModelView.swift in Sources */,
+				838D0114257A5D8700F1062F /* ZFRippleButton.swift in Sources */,
 				83B2F28624FBA6680041A762 /* FilterVC.swift in Sources */,
 				83511CF225145D0000E9C501 /* serviceCollectionViewCell.swift in Sources */,
 				83511CDA25135E2700E9C501 /* ChangePasswordVC.swift in Sources */,
@@ -1205,7 +1211,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMe UserDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
@@ -1227,9 +1233,10 @@
 			baseConfigurationReference = 8D79C18DFC0374C660B69917 /* Pods-SurpriseMe User.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMeRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
