@@ -95,8 +95,8 @@ class ViewProfileVC: UIViewController {
         showCollectionView.dataSource = self
         self.showCollectionView.reloadData()
         //Mark: UIView border dash
-        self.viewLiveShow.viewLiveShowDashline()
-        self.viewDigitalShow.viewLiveShowDashline()
+//        self.viewLiveShow.viewLiveShowDashline()
+//        self.viewDigitalShow.viewLiveShowDashline()
         
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
               imgProfile.addGestureRecognizer(tapviewAboutUs)
@@ -292,20 +292,8 @@ class ViewProfileVC: UIViewController {
     @IBAction func btnBookAction(_ sender: UIButton) {
         
         userArtistID =  getArtistProfile?.id ?? 0
-//        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
-        
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-               let controller = storyboard.instantiateViewController(withIdentifier: "SchueduleVC") as! SchueduleVC
-               let transition = CATransition()
-               transition.duration = 0.5
-               transition.timingFunction = CAMediaTimingFunction(name: .default)
-               transition.type = .fade
-               transition.subtype = .fromRight
-               controller.hidesBottomBarWhenPushed = true
-               navigationController?.view.layer.add(transition, forKey: kCATransition)
-               navigationController?.pushViewController(controller, animated: false)
-
-        
+//
+        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
         
     }
     
@@ -441,6 +429,18 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             return cell2
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//         if collectionView == self.serviceCollectionView {
+//            
+//            
+//            
+//         }else{
+//            
+//        }
+//    }
+    
+    
 }
 
 extension UIView {

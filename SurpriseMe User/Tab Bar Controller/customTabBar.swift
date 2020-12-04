@@ -31,7 +31,7 @@ class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate 
         let storyboardHome = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboardHome.instantiateViewController(withIdentifier: "HOmeViewController") as! HOmeViewController
         controllerNavigationController = UINavigationController(rootViewController: controller)
-        controllerNavigationController.tabBarItem.image = UIImage.init(named: "Home-1")
+        controllerNavigationController.tabBarItem.image = UIImage.init(named: "Home-2")
         controllerNavigationController.tabBarItem.selectedImage = UIImage.init(named: "artist_navbar")
         controllerNavigationController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -10, right: 0)
         
@@ -47,7 +47,7 @@ class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate 
         
         if let secondViewController = storyboard.instantiateViewController(withIdentifier: "FriendListVC") as? FriendListVC {
             navgitaionController1 = UINavigationController(rootViewController: secondViewController)
-            navgitaionController1.tabBarItem.image = UIImage.init(named: "ChatNew")
+            navgitaionController1.tabBarItem.image = UIImage.init(named: "Chat-2")
             navgitaionController1.tabBarItem.selectedImage = UIImage.init(named: "chat_navbar")
             navgitaionController1.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
             var array = self.viewControllers
@@ -62,7 +62,7 @@ extension UIImage {
     func createSelectionIndicator(color: UIColor, size: CGSize, lineHeight: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
-        UIRectFill(CGRect(origin: CGPoint(x :0,y: -1), size: CGSize(width: size.width, height: lineHeight)))
+        UIRectFill(CGRect(origin: CGPoint(x :0,y: -2), size: CGSize(width: size.width, height: lineHeight)))
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!

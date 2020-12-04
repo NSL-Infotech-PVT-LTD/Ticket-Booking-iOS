@@ -35,6 +35,9 @@ class EditDateVC: UIViewController {
     var aarayTimeSecond = ["00:00 - 01:00","01:00 - 02:00","02:00 - 03:00","03:00 - 04:00","04:00 - 05:00","05:00 - 06:00","06:00 - 07:00","07:00 - 08:00","08:00 - 09:00","09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00","13:00 - 14:00","14:00 - 15:00","15:00 - 16:00","16:00 - 17:00","17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","20:00 - 21:00","21:00 - 22:00","22:00 - 23:00","23:00 - 00:00"]
     var aarayTimeSplitSecond = ["00:00:00","01:00:00","02:00:00","03:00:00","04:00:00","05:00:00","06:00:00","07:00:00","08:00:00","09:00:00","10:00:00","11:00:00","12:00:00","13:00:00","14:00:00","15:00:00","16:00:00","17:00:00","18:00:00","19:00:00","20:00:00","21:00:00","22:00:00","23:00:00"]
     
+    var arrayInteger = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+    var arrNotSelect = [Int]()
+    var arrNotSelectCombine = [Int]()
     
     
     @IBOutlet weak var viewNoData: UIView!
@@ -42,11 +45,15 @@ class EditDateVC: UIViewController {
     var secondTime = String()
     var arrayAvailTime = [String]()
     var arrayBookingSlot = [Int]()
+    var arrayBookingSlotSelection = [Int]()
+    var bookingID : Int?
     var arraySelectedIndex = [Int]()
-
+    
     var arrayBookingSlotStatus = [Int:Int]()
     var arrayBookingSlotStatusValue = [Int]()
     
+    var numsArray = [Int]()
+    var numsArraySelection = [Int]()
     
     
     var arrayTestingData = [[String : [[String : Any]]]]()
@@ -135,25 +142,25 @@ class EditDateVC: UIViewController {
                             
                             if self.arrayAvailTime.count > 0{
                                 for index in 0...self.arrayAvailTime.count - 1{
-                                                               let indexValuePath = self.arrayAvailTime[index]
-                                                               let indexValuePathStatus = self.arrayBookingSlotStatusValue[index]
-                                                               let index = self.aarayTimeSplitSecond.firstIndex(of: indexValuePath)
-                                                               self.arrayBookingSlotStatus[index ?? 0] = indexValuePathStatus
-                                                           }
-                                                           
-                                                           for index in self.arrayAvailTime{
-                                                            
-                                                            
-                                                            
-                                                            
-                                                               let index = self.aarayTimeSplitSecond.firstIndex(of: index)
-                                                               self.arrayBookingSlot.append(index ?? 0)
-                                                           }
+                                    let indexValuePath = self.arrayAvailTime[index]
+                                    let indexValuePathStatus = self.arrayBookingSlotStatusValue[index]
+                                    let index = self.aarayTimeSplitSecond.firstIndex(of: indexValuePath)
+                                    self.arrayBookingSlotStatus[index ?? 0] = indexValuePathStatus
+                                }
+                                
+                                for index in self.arrayAvailTime{
+                                    
+                                    
+                                    
+                                    
+                                    let index = self.aarayTimeSplitSecond.firstIndex(of: index)
+                                    self.arrayBookingSlot.append(index ?? 0)
+                                }
                             }else{
                                 
                             }
                             
-                         if self.arrayBookingSlot.count > 0{
+                            if self.arrayBookingSlot.count > 0{
                                 self.dateListCollectionView.isHidden = false
                                 self.viewNoData.isHidden = true
                             }else{
@@ -224,67 +231,113 @@ class EditDateVC: UIViewController {
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
         
+                    if self.first != -1 && self.second == -1{
+                        let inputString = self.aarayTimeSecond[self.first]
+                                    let splits = inputString.components(separatedBy: " - ")
+                                    self.firstTime = splits[0]
+                                    self.secondTime = splits[1]
+
+    }else if self.first == -1 && self.second == -1{
+                    Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Please select Any Slot", btnOkTitle: "Done") {
+                    }
+                    }else{
+                          let inputString = self.aarayTimeSecond[self.first]
+                                        let splits = inputString.components(separatedBy: " - ")
+                                        self.firstTime = splits[0]
+                        
+                        
+                                        let inputString2 = self.aarayTimeSecond[self.second]
+                                        let splits2 = inputString2.components(separatedBy: " - ")
+                                        self.secondTime = splits2[1]
+                        
+        }
+        
+        print("the selected elemt is \(self.firstTime)")
+        print("the selected secondTime is \(self.secondTime)")
+        print("the selected secondTime is \(self.numsArraySelection)")
+
+        
+          if selectedType == "digital"{
+                           let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID] as [String : Any]
+                           print("the dict param is \(dataParam)")
+       
+                           self.viewModelObject.getParamForBookingStore(param: dataParam)
+       
+                       }else{
+                           let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
+                           self.viewModelObject.getParamForBookingStore(param: dataParam)
+                           print("the dict param is \(dataParam)")
+       
+                       }
+        
+        
+        
+        //         create the alert
+//        let alert = UIAlertController(title: "", message: "Do you want to book this Artist", preferredStyle: UIAlertController.Style.alert)
 //
-//        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-//                  let controller = storyboard.instantiateViewController(withIdentifier: "SelectPayMentTypeVC") as! SelectPayMentTypeVC
-//                  controller.hidesBottomBarWhenPushed = true
-//                  navigationController?.pushViewController(controller, animated: true)
+//        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
+//
+//            // do something like...
+//
+//            print("the array selection is \(self.numsArraySelection)")
+//
+//
+//            if self.first != -1 && self.second == -1{
+//
+//                let inputString = self.aarayTimeSecond[self.first]
+//                let splits = inputString.components(separatedBy: " - ")
+//                self.firstTime = splits[0]
+//                self.secondTime = splits[1]
+//
+//                if selectedType == "digital"{
+//                    let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID] as [String : Any]
+//                    print("the dict param is \(dataParam)")
+//
+//                    self.viewModelObject.getParamForBookingStore(param: dataParam)
+//
+//                }else{
+//                    let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
+//                    self.viewModelObject.getParamForBookingStore(param: dataParam)
+//                    print("the dict param is \(dataParam)")
+//
+//                }
+//
+//
+//
+//
+//
+//
+//            }else if self.first == -1 && self.second == -1{
+//                Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Please select Any Slot", btnOkTitle: "Done") {
+//                }
+//            }
+//
+//            else   {
+//
+//                let inputString = self.aarayTimeSecond[self.first]
+//                let splits = inputString.components(separatedBy: " - ")
+//                self.firstTime = splits[0]
+//
+//
+//                let inputString2 = self.aarayTimeSecond[self.second]
+//                let splits2 = inputString2.components(separatedBy: " - ")
+//                self.secondTime = splits2[1]
+//                let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
+//
+//                print("the dict param is \(dataParam)")
+//
+//                self.viewModelObject.getParamForBookingStore(param: dataParam)
+//            }
+//
+//        }))
+//        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+//
+//
+//        // show the alert
+//        self.present(alert, animated: true, completion: nil)
         
         
-        
-//         create the alert
-        let alert = UIAlertController(title: "", message: "Do you want to book this Artist", preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
-            
-            // do something like...
-            
-            
-            
-            
-            if self.first != -1 && self.second == -1{
-                
-                let inputString = self.aarayTimeSecond[self.first]
-                let splits = inputString.components(separatedBy: " - ")
-                self.firstTime = splits[0]
-                self.secondTime = splits[1]
-                let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
-                
-                print("the dict param is \(dataParam)")
-                
-                self.viewModelObject.getParamForBookingStore(param: dataParam)
-                
-            }else if self.first == -1 && self.second == -1{
-                Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Please select Any Slot", btnOkTitle: "Done") {
-                }
-            }
-                
-            else   {
-                
-                let inputString = self.aarayTimeSecond[self.first]
-                let splits = inputString.components(separatedBy: " - ")
-                self.firstTime = splits[0]
-                
-                
-                let inputString2 = self.aarayTimeSecond[self.second]
-                let splits2 = inputString2.components(separatedBy: " - ")
-                self.secondTime = splits2[1]
-                let dataParam = ["type":selectedType,"date":selectedDate,"from_time":self.firstTime,"to_time":self.secondTime,"artist_id":userArtistID,"address":currentAddress] as [String : Any]
-                
-                print("the dict param is \(dataParam)")
-                
-                self.viewModelObject.getParamForBookingStore(param: dataParam)
-            }
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-        
-        
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-        
-        
-//        
+        //
         
         
         
@@ -296,12 +349,9 @@ class EditDateVC: UIViewController {
         
         first = -1
         second = -1
-        
-        
-        
-        
-        
-        
+        numsArraySelection.removeAll()
+        numsArray.removeAll()
+        btnProceed.backgroundColor = UIColor.init(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
         self.dateListCollectionView.reloadData()
         
     }
@@ -312,18 +362,163 @@ class EditDateVC: UIViewController {
     }
     @IBAction func btnSaveOnPress(_ sender: UIButton) {
     }
+    
+    
+    
+    func setSlotReservation(variable : Int ,  variable2 : Int){
+        
+        print("the first var is \(variable)")
+        print("the variable2 var is \(variable2)")
+        
+        
+        
+    }
+    
+    
+    func fizzinAndBuzzin(start: Int, end: Int) -> Bool
+    {
+        //Create an empty array of Any
+        
+        
+//        numsArray.removeAll()
+        
+        print("the array after before value last \(numsArray)")
+        print("the array after start value last \(start)")
+        print("the array after start value last \(first)")
+        print("the array after start value last \(second)")
+
+        print("the array end end value last \(end)")
+        if second < first{
+            
+            return true
+
+        }else{
+            let sortArray = Set(numsArray)
+                   numsArray = sortArray.map({$0})
+                   
+                    numsArray = numsArray.sorted(by: <)
+            var removeValue = Int()
+            
+            
+            if numsArray.last == second{
+                   if numsArray.contains(end){
+                       
+                       
+                       let last1 = numsArray.popLast()
+                       if last1 == 0{
+                           
+                       }else{
+                           removeValue = last1 ?? -1
+
+                       }
+                       
+                   }
+
+            }else{
+                
+                numsArray.removeAll()
+                
+                for number in start...end
+                {
+                    numsArray.append(number)
+                    
+                }
+                let sortArrayValue = Set(numsArray)
+                numsArray = sortArrayValue.map({$0})
+                
+                 numsArray = numsArray.sorted(by: <)
+                
+                
+            }
+            
+            for number in start...end
+            {
+                numsArray.append(number)
+            }
+            let fruitsSet = Set(numsArray)
+            let vegSet = Set(arrNotSelectCombine)
+            let output = Array(fruitsSet.intersection(vegSet))
+            let sortArrayValue = Set(numsArray)
+            numsArray = sortArrayValue.map({$0})
+            numsArray = numsArray.sorted(by: <)
+         
+            if output.count > 0{
+                
+                print("the value is numsArray sorted\(numsArray)")
+
+                
+            let element = numsArray.first ?? 0
+                
+                
+                print("the value is sortArray sorted\(element)")
+
+            numsArraySelection.append(element)
+                
+                let alert = UIAlertController(title: "", message: "You cannot book because slot is already book in this range", preferredStyle: .alert)
+                self.present(alert, animated: true, completion: nil)
+                // change to desired number of seconds (in this case 5 seconds)
+                let when = DispatchTime.now() + 3
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    // your code with delay
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                
+                second = -1
+                return true
+                
+            }else {
+                
+                
+                
+                let indexValue = numsArray.firstIndex(of: removeValue) ?? -1
+                
+                print("the value is numsArray after removing\(indexValue)")
+                if indexValue == 0 || indexValue == -1{
+                    
+                }else{
+                    
+                    
+                    
+                    numsArray.remove(at: indexValue)
+
+                }
+                
+                
+                let numArray = Set(numsArray)
+                
+                numsArray = numArray.map({$0})
+                numsArray = numsArray.sorted(by: <)
+                 print("the value is sortArray sorted\(numsArray)")
+                print("the num array is removing\(numsArray)")
+                numsArraySelection = numsArray
+                
+                return false
+            }
+
+        }
+        
+
+        
+        
+    }
+    
+    
+    
+    
+    
+    
     func checkRange(num: Int) -> Bool {
         
         if first < second{
             if first...second ~= num && arrayBookingSlot.contains(num){
                 if self.arrayBookingSlotStatus[num] == 1{
                     return false
-
+                    
                 }else{
                     return true
-
+                    
                 }
-
+                
             }else{
                 return false
             }
@@ -331,10 +526,10 @@ class EditDateVC: UIViewController {
             if second...first ~= num && arrayBookingSlot.contains(num) {
                 if self.arrayBookingSlotStatus[num] == 1{
                     return false
-
+                    
                 }else{
                     return true
-
+                    
                 }
             }else{
                 return false
@@ -354,76 +549,121 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateListCollectionViewCell", for: indexPath) as! dateListCollectionViewCell
         cell.lblTimeSelect.text = aarayTime[indexPath.row]
+        cell.viewCell.borderColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        cell.viewCell.layer.masksToBounds = true
         
-                
-        if first != -1 && second != -1{
-            if checkRange(num: indexPath.row){
-                cell.viewCell.backgroundColor = UIColor.init(red: 11/255, green: 172/255, blue: 43/255, alpha: 1)
-                cell.lblTimeSelect.textColor = UIColor.white
-            }else{
-                if arrayBookingSlot.contains(indexPath.item){
-                    if self.arrayBookingSlotStatus[indexPath.item] == 1{
-                        cell.viewCell.borderColor = UIColor.clear
-                                       cell.viewCell.layer.masksToBounds = true
-                                       cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
-                                       cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
-                    }else{
-//
-                        
-                        
-                        cell.viewCell.backgroundColor = UIColor.white
-                                          cell.viewCell.borderColor = UIColor.clear
-                                           cell.viewCell.layer.masksToBounds = true
-                                           
-                                           cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
-                        
-                        
-                        
-                    }
-                    
-                    
-                }else{
-//
-                    
-                    cell.viewCell.borderColor = UIColor.clear
-                                  
-                                  cell.viewCell.layer.masksToBounds = true
-
-                                  cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
-                                  cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
-                    
-                }
-                
-            }
-        }else if first != -1 && first == indexPath.row{
+        if numsArraySelection.contains(indexPath.row){
             cell.viewCell.backgroundColor = UIColor.init(red: 11/255, green: 172/255, blue: 43/255, alpha: 1)
             cell.lblTimeSelect.textColor = UIColor.white
+            
         }else{
             if arrayBookingSlot.contains(indexPath.item){
+                print("the number is abhishek mishra3")
                 
                 if self.arrayBookingSlotStatus[indexPath.item] == 1{
-                    cell.viewCell.borderColor = UIColor.clear
-                                   cell.viewCell.layer.masksToBounds = true
-                                   cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
-                                   cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
-
-
+                    
+                    arrayBookingSlotSelection.append(indexPath.item)
+                    
+                    
+                    cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
+                    cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+                    
+                    
                 }else{
                     cell.viewCell.backgroundColor = UIColor.white
-                   cell.viewCell.borderColor = UIColor.clear
-                    cell.viewCell.layer.masksToBounds = true
+                    
                     
                     cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
                 }
                 
             }else{
-                cell.viewCell.borderColor = UIColor.clear
-                cell.viewCell.layer.masksToBounds = true
+                
                 cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
                 cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+                
+                
+                
+                
             }
-            
         }
+        
+        
+        //
+        //        if first != -1 && second != -1{
+        //
+        //            print("the number is abhishek mishra")
+        //
+        //            if checkRange(num: indexPath.row){
+        //                cell.viewCell.backgroundColor = UIColor.init(red: 11/255, green: 172/255, blue: 43/255, alpha: 1)
+        //                cell.lblTimeSelect.textColor = UIColor.white
+        //            }else{
+        //                if arrayBookingSlot.contains(indexPath.item){
+        //                    if self.arrayBookingSlotStatus[indexPath.item] == 1{
+        //                        cell.viewCell.borderColor = UIColor.clear
+        //                                       cell.viewCell.layer.masksToBounds = true
+        //                                       cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
+        //                                       cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        //                    }else{
+        ////
+        //
+        //
+        //                        cell.viewCell.backgroundColor = UIColor.white
+        //                                          cell.viewCell.borderColor = UIColor.clear
+        //                                           cell.viewCell.layer.masksToBounds = true
+        //
+        //                                           cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        //
+        //
+        //
+        //                    }
+        //
+        //
+        //                }else{
+        ////
+        //
+        //                    cell.viewCell.borderColor = UIColor.clear
+        //
+        //                                  cell.viewCell.layer.masksToBounds = true
+        //
+        //                                  cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
+        //                                  cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        //
+        //                }
+        //
+        //            }
+        //        }else if first != -1 && first == indexPath.row{
+        //            cell.viewCell.backgroundColor = UIColor.init(red: 11/255, green: 172/255, blue: 43/255, alpha: 1)
+        //
+        //            print("the number is abhishek mishra2")
+        //
+        //            cell.lblTimeSelect.textColor = UIColor.white
+        //        }else{
+        //            if arrayBookingSlot.contains(indexPath.item){
+        //                print("the number is abhishek mishra3")
+        //
+        //                if self.arrayBookingSlotStatus[indexPath.item] == 1{
+        //                    cell.viewCell.borderColor = UIColor.clear
+        //                                   cell.viewCell.layer.masksToBounds = true
+        //                                   cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
+        //                                   cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        //
+        //
+        //                }else{
+        //                    cell.viewCell.backgroundColor = UIColor.white
+        //                   cell.viewCell.borderColor = UIColor.clear
+        //                    cell.viewCell.layer.masksToBounds = true
+        //
+        //                    cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        //                }
+        //
+        //            }else{
+        //                cell.viewCell.borderColor = UIColor.clear
+        //                cell.viewCell.layer.masksToBounds = true
+        //                cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
+        //                cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
+        //            }
+        //
+        //        }
         //
         //
         
@@ -431,17 +671,63 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        
+        
+        
+        for i in 0...arrayInteger.count - 1{
+            
+            print(arrayInteger[i])
+            if arrayBookingSlot.contains(arrayInteger[i]){
+                
+            }else{
+                arrNotSelect.append(arrayInteger[i])
+            }
+            
+        }
+        
+        
+        //        let arrayNot = Set(arrNotSelect)
+        //
+        //        arrNotSelect = arrayNot.map({$0})
+        print("the array is not is \(arrNotSelect)")
+        
+        
+        let arrNotSelectSet = Set(arrNotSelect)
+        
+        arrNotSelect = arrNotSelectSet.map({$0})
+        //
+        //
         let dataItem = aarayTimeSecond[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateListCollectionViewCell", for: indexPath) as! dateListCollectionViewCell
         cell.lblTimeSelect.text = aarayTime[indexPath.row]
         
         
-       
+        
+        let arraySelect = arrayBookingSlotSelection
+        
+        arrayBookingSlotSelection = arraySelect.map({$0})
         
         
-//
+        let arraySlotSelet = Set(arrayBookingSlotSelection)
+        
+        arrayBookingSlotSelection = arraySlotSelet.map({$0})
+        
+        
+        
+        arrNotSelectCombine = arrNotSelect + arrayBookingSlotSelection
+        
+        
+        
+        //
         if arrayBookingSlot.contains(indexPath.item) {
+            
+            
+            
+            
+            
             if self.arrayBookingSlotStatus[indexPath.item] == 1{
+                
+                
                 let alert = UIAlertController(title: "", message: "Artist is already booked", preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
                 // change to desired number of seconds (in this case 5 seconds)
@@ -451,57 +737,60 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
                     alert.dismiss(animated: true, completion: nil)
                 }
             }else{
-//                 if arraySelectedIndex.count > 0{
-//
-//                    if arraySelectedIndex.contains(indexPath.row){
-//
-//                        let indexOfElement = arraySelectedIndex.firstIndex(of: arraySelectedIndex[indexPath.row]) ?? 0
-//                        arraySelectedIndex.remove(at: indexOfElement)
-//
-//                    }else{
-//                        arraySelectedIndex =  arraySelectedIndex.sorted{ $0 < $1 }
-//                                                 let min = arraySelectedIndex.first ?? 0
-//                                                 let max = arraySelectedIndex.last ?? 0
-//                                                 if min + 1 == indexPath.row {
-//                                                   arraySelectedIndex.append(indexPath.row)
-//                                                 }
-//                                                 else if min - 1 == indexPath.row {
-//                                                     arraySelectedIndex.append(indexPath.row)
-//                                                 }else if max - 1 == indexPath.row{
-//                                                     arraySelectedIndex.append(indexPath.row)
-//
-//                                                 }else if max + 1 == indexPath.row{
-//                                                     arraySelectedIndex.append(indexPath.row)
-//                                                 }
-//                    }
-//
-//
-//                        }else{
-//                            arraySelectedIndex.append(indexPath.row)
-//
-//                        }
-//                        print("not valid array index\(arraySelectedIndex)")
-
+             
                 if first == -1{
                     first = indexPath.row
+                    numsArraySelection.append(indexPath.row)
+                    
                 }else if first < indexPath.row{
                     second = indexPath.row
                 }else if first == indexPath.row{
+                    first = -1
+                    numsArraySelection.removeAll()
+                }else if first == second{
+                    second = -1
                     first = -1
                 }
                 else{
                     let temp = first
                     first = indexPath.row
                     second = temp
+               }
+                
+               
+                
+                if first != -1 && second != -1{
+                    let boolValue =  self.fizzinAndBuzzin(start: first, end: second)
+                    print("the bool value is \(boolValue)")
+                    if boolValue == false{
+                        
+                    }else{
+                        
+                    }
+                    
                 }
-                btnProceed.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255, alpha: 1)
+                
+                if numsArraySelection.count > 0{
+                    btnProceed.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255, alpha: 1)
+                }else{
+                    first = -1
+                    second = -1
+                    btnProceed.backgroundColor = UIColor.init(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
+                }
+                
+                
+                
+                
+               
+                
+                
             }
         }else{
-
-
+            
+            
             let alert = UIAlertController(title: "", message: "Artist is not available", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
-
+            
             // change to desired number of seconds (in this case 5 seconds)
             let when = DispatchTime.now() + 3
             DispatchQueue.main.asyncAfter(deadline: when){
@@ -509,7 +798,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
                 alert.dismiss(animated: true, completion: nil)
             }
         }
-        print("the index array is \(indxArr)")
         self.dateListCollectionView.reloadData()
     }
 }
@@ -517,42 +805,53 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
 
 extension EditDateVC : BookingStoreViewModelProtocol{
     func bookingStoreApiResponse(message: String, response: [String : Any], isError: Bool) {
+        
+        print("the respons is \(response)")
+        let dictValue = response["data"] as? [String:Any]
+        let dictAddress = response["address"] as? [String:Any]
+        
         if isError == true{
             
-            print("the respons is \(response)")
-            
-            if let errorDict = response["message"] as? String{
+          if let errorDict = response["message"] as? String{
                 print(errorDict)
                 let alert = UIAlertController(title: "", message: errorDict, preferredStyle: .alert)
-                          self.present(alert, animated: true, completion: nil)
-                          
-                          // change to desired number of seconds (in this case 5 seconds)
-                          let when = DispatchTime.now() + 5
-                          DispatchQueue.main.asyncAfter(deadline: when){
-                              // your code with delay
-                              alert.dismiss(animated: true, completion: nil)
-                          }
+                self.present(alert, animated: true, completion: nil)
+                
+                // change to desired number of seconds (in this case 5 seconds)
+                let when = DispatchTime.now() + 5
+                DispatchQueue.main.asyncAfter(deadline: when){
+                    // your code with delay
+                    alert.dismiss(animated: true, completion: nil)
+                }
                 
                 
                 
             }
         }else{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Booking Successfull", btnOkTitle: "Done") {
-                userArtistID = 0
+//            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Booking Successfull", btnOkTitle: "Done") {
                 
+          
                 
+                       let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                       let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
+                       let transition = CATransition()
+                       transition.duration = 0.5
+                       transition.timingFunction = CAMediaTimingFunction(name: .default)
+                       transition.type = .fade
+                       transition.subtype = .fromRight
+            
+            
+            print("the booking id is \(dictAddress?["id"])")
+            
+            bookingID = dictAddress?["id"] as? Int
+            
+            bookingPaymentID = dictAddress?["id"] as? Int
+                       controller.hidesBottomBarWhenPushed = true
+                       self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+                       self.navigationController?.pushViewController(controller, animated: false)
                 
-                self.tabBarController?.selectedIndex = 1
-                
-                for controller in (self.navigationController?.viewControllers ?? []) as Array {
-                    if controller.isKind(of: HOmeViewController.self) {
-                        self.navigationController!.popToViewController(controller, animated: true)
-                        break
-                    }else{
-                        self.navigationController?.popToRootViewController(animated: true)
-                    }
-                }
-            }
+       
+//            }
         }
     }
     

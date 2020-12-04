@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
+  - AMDots (1.0.2)
   - Cosmos (22.1.0)
   - DropDown (2.3.13)
   - FBSDKCoreKit (7.0.0):
@@ -142,6 +143,7 @@ DEPENDENCIES:
   - AARatingBar
   - Alamofire (~> 4.0)
   - AlamofireImage
+  - AMDots
   - Cosmos (~> 22.1)
   - DropDown
   - FBSDKLoginKit
@@ -171,6 +173,7 @@ SPEC REPOS:
     - AARatingBar
     - Alamofire
     - AlamofireImage
+    - AMDots
     - Cosmos
     - DropDown
     - FBSDKCoreKit
@@ -212,6 +215,7 @@ SPEC CHECKSUMS:
   AARatingBar: 62f56244aaa436c0379dc54e398e90d337f097b8
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  AMDots: 11298aaac1c98820c31c4cc85abf9ab46f922294
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
@@ -249,6 +253,6 @@ SPEC CHECKSUMS:
   youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: f90c80e4c034aff5835ea02946bdda3f8b6f0055
+PODFILE CHECKSUM: 0c6168b27dd305c9600e92a7f69f797e412a2232
 
 COCOAPODS: 1.8.4

@@ -115,6 +115,8 @@ class ProfileViewModel {
             
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.getProfile, method: .post, param: [:], header: headerToken) { (response, error) in
                 print(response)
+                LoaderClass.shared.stopAnimation()
+
                 if error == nil {
                     let result = response
                     if let status = result["status"] as? Bool {
@@ -127,6 +129,18 @@ class ProfileViewModel {
                             
                         }
                         else{
+                             let error_message = response["error"] as? String
+                            if error_message == "Invalid AUTH Token"{
+                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error_message as? String ?? "")
+                            }else{
+                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error_message as? String ?? "")
+                            }
+
+
+                          
+
+                            
+                            
                         }
                     }
                     else {

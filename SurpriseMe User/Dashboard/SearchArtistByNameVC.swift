@@ -65,14 +65,35 @@ class SearchArtistByNameVC: UIViewController {
              print("scrollViewDidEndDragging")
              print("scrollViewDidEndDragging page number is \(self.pageInt)")
             
-self.pageInt = self.pageInt + 1
-                 if isLoadMore == true{
-                                 self.showToast(message: "No More Data", font: .systemFont(ofSize: 12.0))
-                             }else{
-                                let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":searchTextValue] as [String : Any]
-                                self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: self.pageInt)
-                                
-                             }
+                 self.pageInt = self.pageInt + 1
+            
+            if pageForFilter == true{
+                
+            }else{
+                if isLoadMore == true{
+                                                self.showToast(message: "No More Data", font: .systemFont(ofSize: 12.0))
+                                            }else{
+                    
+                    if whicShowTypeDigital == false{
+                                                      let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":searchTextValue] as [String : Any]
+                                                                                                    self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: self.pageInt)
+                    }else{
+                        
+                        let dataParam = ["limit":"8","search":searchTextValue] as [String : Any]
+                                                                      self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: self.pageInt)
+                        
+                    }
+                    
+                    
+                                               let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":searchTextValue] as [String : Any]
+                                               self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: self.pageInt)
+                                               
+                                            }
+            }
+            
+            
+            
+                
 //
          }
      }
@@ -100,6 +121,15 @@ extension SearchArtistByNameVC :UITableViewDataSource,UITableViewDelegate{
         
         let dataItem = arrayHomeArtistList[indexPath.row]
         cell.lblName.text = dataItem.name ?? ""
+        
+        
+        
+        
+        if whicShowTypeDigital == true{
+            cell.lblDistance.isHidden = false
+        }else{
+            cell.lblDistance.isHidden = true
+        }
         cell.lblDistance.text = "Miles: " + String(format: "%.2f", dataItem.distance ?? 0.0)
         cell.lblDescription.text = dataItem.descriptionValue ?? ""
         
@@ -164,10 +194,7 @@ extension SearchArtistByNameVC : SendDataPrevoius{
         
         
             
-            for index in 1..<5 {
-                
-                
-            }
+        
         
         
         arrayHomeArtistList = response.map({$0})
@@ -208,9 +235,20 @@ extension SearchArtistByNameVC : UITextFieldDelegate{
         let newString = (userEnteredString! as NSString).replacingCharacters(in: range, with: string) as NSString
         if  newString != ""{
             
-            searchTextValue = "\(searchTf.text!)\(string)"
-            let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":"\(searchTf.text!)\(string)"] as [String : Any]
-            self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
+                                                 if whicShowTypeDigital == true{
+                                                    print("the live")
+                                                    searchTextValue = "\(searchTf.text!)\(string)"
+                                                               let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":"\(searchTf.text!)\(string)"] as [String : Any]
+                                                               self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
+                                                 }else{
+                                                    print("the virtual")
+
+                                                    searchTextValue = "\(searchTf.text!)\(string)"
+                                                               let dataParam = ["limit":"8","search":"\(searchTf.text!)\(string)"] as [String : Any]
+                                                               self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
+            }
+            
+           
             
         } else {
             searchTextValue = ""
@@ -237,6 +275,10 @@ extension SearchArtistByNameVC : SearchArtistViewModelProtocol{
                     }
                     
                     arrayHomeArtistList = response.map({$0})
+                    let arrayValue = Set(arrayHomeArtistList)
+                    arrayHomeArtistList = arrayValue.map({$0})
+                    
+                    
                     
                     if arrayHomeArtistList.count > 0{
                         self.tblArtist.isHidden = false

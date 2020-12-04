@@ -29,17 +29,37 @@ class LanguageVC: UIViewController {
     @IBOutlet weak var lblSubTittelChooseLanhguage: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var btnBack: UIButton!
+    
+//    @IBOutlet weak var btnNext: UIButton!
+    
+    
+    
     var language = "en"
     var languageArray = ["English (US)","Dutch","German","Spanish"]
     var languageCodeArray = ["en","nl","de","es"]
     var selectedIndex = 0
    var selectedLanguage = String()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
+        
+        if isCameFromCL == "Setting"{
+            self.btnBack.isHidden = false
+            self.btnNext.isHidden = true
+
+        }else{
+            self.btnBack.isHidden = true
+            self.btnNext.isHidden = false
+
+        }
+        
         
        let language = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
         if language == "en"{
@@ -72,6 +92,17 @@ class LanguageVC: UIViewController {
             self.lblSubTittelChooseLanhguage.text = "CHOOSE_YOUR_LAGUAGE_SUBTITTEL".localized()
             self.btnNext.setTitle("next".localized(), for: .normal)
             self.language = "en"
+        }
+    }
+    
+    
+    
+    @IBAction func btnBackAction(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+            isCameFromCL = ""
+            Bundle.setLanguage(lang: self.language)
+            UserDefaults.standard.setValue(self.language, forKey: "app_lang")
+
         }
     }
     

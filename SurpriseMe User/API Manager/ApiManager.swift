@@ -32,14 +32,15 @@ var arrayCardListCommom = [GetCardModel]()
 var idealPayment = Bool()
 var idealPaymentAppDelegate = Bool()
 var locationCurrentTitle = String()
-var showTypeTrueOrFalse = Bool()
+var showTypeTrueOrFalse = false
 var whicShowTypeDigital = Bool()
+var isCameFromCL = String()
+var pageForFilter = false
+var isEditAddress = false
+var modelObjectAdress = ManageAddressModel()
 
 
-
-
-
-let googleKey = "AIzaSyAkWmuRRj9I9d5fyr4RqM61QDuIwOAZzvA"
+let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"
 
 struct Storyboard {
     static let Main = "Main"

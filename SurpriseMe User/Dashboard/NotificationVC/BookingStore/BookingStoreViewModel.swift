@@ -35,13 +35,19 @@ class BookingStoreViewModel {
                           if Reachability.isConnectedToNetwork() {
                            ApiManeger.sharedInstance.callApiWithHeader(url: Api.bookingStore, method: .post, param: param, header: headerToken) { (response, error) in
                                               print(response)
+                            
+                          
+                            
                             LoaderClass.shared.stopAnimation()
                                               if error == nil {
                                                   let result = response
                                                   if let status = result["status"] as? Bool {
                                                       if status ==  true{
+                                                        
+                                                        let dictValue = response["data"] as? [String:Any]
+                                                        
                                                      
-                                                        self.delegate?.bookingStoreApiResponse(message: "Booking Success", response: [:], isError: false)
+                                                        self.delegate?.bookingStoreApiResponse(message: "Booking Success", response: dictValue ?? [:], isError: false)
                                                       }
                                                       else{
                                                         

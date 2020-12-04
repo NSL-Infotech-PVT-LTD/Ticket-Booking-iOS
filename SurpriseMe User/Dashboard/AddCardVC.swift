@@ -84,14 +84,12 @@ class AddCardVC: UIViewController {
                     if let status = result["status"] as? Bool {
                         if status ==  true{
                             
-//                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
-//                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
                             
                             
-                            //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
                             
-                            //                                                        controller.bookingID = bookingDict.id ?? 0
-//                            self.navigationController?.pushViewController(controller1, animated: true)
+                           self.navigationController?.pushViewController(controller1, animated: true)
                             self.dismiss(animated: true, completion: nil)
                             
                             

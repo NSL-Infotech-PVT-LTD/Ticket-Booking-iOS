@@ -112,8 +112,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = self.window ?? UIWindow()
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().shouldResignOnTouchOutside = true
-        GMSServices.provideAPIKey("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")
-        GMSPlacesClient.provideAPIKey("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")
+        GMSServices.provideAPIKey(googleKey)
+        GMSPlacesClient.provideAPIKey(googleKey)
         self.checkUserLogin()
         SocketConnectionManager.shared.socket.connect()
     }
@@ -207,6 +207,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         }
         print("the bookking id iswithCompletionHandler \(userInfo["target_id"] ?? 0)")
                userArtistIDBooking = userInfo["target_id"] as? Int
+        
+        let targetID = userInfo["target_id"] as? String ?? ""
+        // setStoryBoardVC(type: "Booking", id: targetID)
+        let id = ["target_id":targetID]
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("BookingNotification"), object: nil,userInfo: id)
 
                
                
