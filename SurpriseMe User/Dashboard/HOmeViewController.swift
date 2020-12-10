@@ -14,6 +14,7 @@ import Alamofire
 import Cosmos
 import Stripe
 import AMDots
+import Toast_Swift
 
 class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAuthenticationContext {
     func authenticationPresentingViewController() -> UIViewController {
@@ -140,6 +141,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         self.viewPopupContainer.isHidden = false
         
         
+        
     }
     
     func getManageAddressData(param: [String: Any]) {
@@ -230,8 +232,13 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                          print("the abhishek type value is \(whicShowTypeDigital)")
                                         whicShowTypeDigital = false
                                         
+                                        var style = ToastStyle()
+
+                                        // this is just one of many style options
+                                        style.messageColor = .white
                                         
-                                        self.showSimpleAlert(Title: "", message: "There is no address found switching to the list of Virtual Artist ", inClass: self)
+                                        self.view.makeToast("There is no address found switching to the list of Virtual Artist ", duration: 3.0, position: .bottom, style: style)
+
                                         
                                        
                                         
@@ -413,10 +420,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                     //self.viewModelObject.getParamForBookingList(param: dict)
                     self.locationTf.text = currentAddress
                 }
-                
-       
-                
-                
+                  
             }else{
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
@@ -424,6 +428,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 transition.duration = 0.5
                 transition.timingFunction = CAMediaTimingFunction(name: .default)
                 transition.type = .fade
+                controller.selectedAddress = self.locationTf.text ?? ""
                 transition.subtype = .fromRight
                 controller.hidesBottomBarWhenPushed = true
                 self.navigationController?.view.layer.add(transition, forKey: kCATransition)
@@ -557,6 +562,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             transition.duration = 0.5
             transition.timingFunction = CAMediaTimingFunction(name: .default)
             transition.type = .fade
+            controller.selectedAddress = self.locationTf.text ?? ""
             transition.subtype = .fromRight
             controller.hidesBottomBarWhenPushed = true
             self.navigationController?.view.layer.add(transition, forKey: kCATransition)
@@ -627,6 +633,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: .default)
         transition.type = .fade
+        controller.selectedAddress = self.locationTf.text ?? ""
         transition.subtype = .fromRight
         controller.hidesBottomBarWhenPushed = true
         navigationController?.view.layer.add(transition, forKey: kCATransition)
@@ -706,15 +713,15 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
         
         print("the value is \(dataItem.categoryArtist.map({$0.category_name}))")
         if dataItem.categoryArtist.count > 0{
-            cell.RolePlayLbl_out.text = "\(dataItem.categoryArtist.map({$0.category_name}))"
+            cell.RolePlayLbl_out.text = "\(dataItem.categoryArtist.map({$0.category_name}).minimalDescription)"
         }else{
             cell.RolePlayLbl_out.text = "No Skill"
         }
         
         if whicShowTypeDigital == false{
-            cell.lblPriceArtist.text = "Hourly" + " " + "\(dataItem.currencyValue)" + " " + "\(dataItem.priceDigital)"
+            cell.lblPriceArtist.text =  "\(dataItem.currencyValue)" + " " + "\(dataItem.priceDigital)"  + "/" + "hr"
         }else{
-            cell.lblPriceArtist.text = "Hourly" + " " + "\(dataItem.currencyValue)" + " " + "\(dataItem.priceLive)"
+            cell.lblPriceArtist.text =  "\(dataItem.currencyValue)" + " " + "\(dataItem.priceLive)" + "/" + "hr"
         }
         
         if dataItem.rating == 0{
@@ -723,17 +730,13 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
             print("the rating is zero")
             cell.lblNoRatingAvail.isHidden = false
             
-            
         }else{
             cell.cosmoView.isHidden = false
             cell.lblNoRatingAvail.isHidden = true
             cell.cosmoView.rating = Double("\(dataItem.rating ?? 0)") ?? 0.0
         }
         
-        
-        
-        
-        let urlSting : String = "\(Api.imageURLArtist)\(dataItem.image ?? "")"
+      let urlSting : String = "\(Api.imageURLArtist)\(dataItem.image ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
         let urlImage = URL(string: urlStringaa)!
         cell.bannerImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
@@ -949,10 +952,9 @@ extension HOmeViewController : CLLocationManagerDelegate{
 }
 
 
-extension Array {
-    func randomItem() -> Element? {
-        if isEmpty { return nil }
-        let index = Int(arc4random_uniform(UInt32(self.count)))
-        return self[index]
+
+extension Sequence {
+    var minimalDescription: String {
+        return map { "\($0)" }.joined(separator: " , ")
     }
 }

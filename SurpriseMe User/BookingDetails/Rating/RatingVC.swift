@@ -110,7 +110,8 @@ extension RatingVC : UITextViewDelegate{
         if(textView.text.count > 35 && range.length == 0 ) {
             print("Please summarize in 20 characters or less")
             self.btnSubmitAction.isUserInteractionEnabled  = true
-            self.btnSubmitAction.backgroundColor = UIColor.init(red: 240/225, green: 0/255, blue: 87/255, alpha: 1)
+            self.btnSubmitAction.backgroundColor = UIColor.systemBlue
+//            self.btnSubmitAction.backgroundColor = UIColor.init(red: 240/225, green: 0/255, blue: 87/255, alpha: 1)
 
         }else{
             self.btnSubmitAction.isUserInteractionEnabled  = false

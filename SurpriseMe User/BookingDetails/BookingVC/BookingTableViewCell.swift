@@ -21,14 +21,11 @@ class BookingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblBookDate: UILabel!
     @IBOutlet weak var lblBookingTime: UILabel!
     
+    @IBOutlet weak var tittelView: UIView!
     @IBOutlet weak var lblBookingStatus: UILabel!
     
     @IBOutlet weak var lblSkill: UILabel!
-    
-    
     @IBOutlet weak var lblRatedAddress: UILabel!
-    
-    
     @IBOutlet weak var viewCosmo: CosmosView!
     @IBOutlet weak var lblReview: UILabel!
     
@@ -36,6 +33,7 @@ class BookingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.tittelView.roundCorners(corners: [.bottomLeft,.topRight], radius: 20.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -45,11 +45,7 @@ class ProfileVC: UIViewController {
         self.viewHeader.addBottomShadow()
         logoutView.isHidden = false
         viewAboutUs.isHidden = false
-
         viewChangePassword.isHidden = false
-
-      
-       
     }
     
     
@@ -110,6 +106,22 @@ class ProfileVC: UIViewController {
             let alert = UIAlertController(title: "Alert!", message: "Do you want to save your profile?", preferredStyle: UIAlertController.Style.alert)
                   alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
 
+                    if self.tfUserName.text == ""{
+                               self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
+                    }else{
+                        self.editProfileBtn.isHidden = false
+                        self.editImgBtn.isHidden = true
+                        self.updateBtn.isHidden = true
+                        self.isUpdateProfile = false
+                        self.logoutView.isHidden = false
+                        self.viewAboutUs.isHidden = false
+                        self.viewChangePassword.isHidden = false
+                        self.tfUserName.isUserInteractionEnabled = false
+                        self.tfEmail.isUserInteractionEnabled = false
+                        self.objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
+                    }
+                    
+                    
                    }))
                    
                    alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
@@ -174,25 +186,20 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func btnUpdateProfileAction(_ sender: UIButton) {
-        
-        
         if self.tfUserName.text == ""{
             self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
         }else{
             self.editProfileBtn.isHidden = false
-                   self.editImgBtn.isHidden = true
-                   self.updateBtn.isHidden = true
-                   isUpdateProfile = false
-                          logoutView.isHidden = false
-                                 viewAboutUs.isHidden = false
-                                 viewChangePassword.isHidden = false
-                   self.tfUserName.isUserInteractionEnabled = false
-                   self.tfEmail.isUserInteractionEnabled = false
-                   objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
+            self.editImgBtn.isHidden = true
+            self.updateBtn.isHidden = true
+            isUpdateProfile = false
+            logoutView.isHidden = false
+            viewAboutUs.isHidden = false
+            viewChangePassword.isHidden = false
+            self.tfUserName.isUserInteractionEnabled = false
+            self.tfEmail.isUserInteractionEnabled = false
+            objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
         }
-        
-       
-       
     }
     
     @IBAction func btnEditProfile(_ sender: UIButton) {
@@ -248,7 +255,7 @@ extension ProfileVC: ProfileViewModelProtocol {
             }
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "profile has been updated succesfully", btnOkTitle: "Done") {
-                self.objectViewModel.getParamForGetProfile(param: [:])
+                //self.objectViewModel.getParamForGetProfile(param: [:])
             }
         }
     }
@@ -270,23 +277,23 @@ extension ProfileVC: ProfileViewModelProtocol {
     func errorAlert(errorTitle: String, errorMessage: String) {
         
         if errorMessage == "Invalid AUTH Token"{
-                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
-                                               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
-
-                                                                                                               // do something like...
-                                                   UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
-                                                              UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
-                                                              UserDefaults.standard.set(false, forKey: UserdefaultKeys.isLogin)
-            self.goToLogin()
-                                                                                                           }))
-                                                                                                           alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-                                                                                                           
-
-                                                                                                           // show the alert
-                                                                                                           self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { action in
+                
+                // do something like...
+                UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
+                UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
+                UserDefaults.standard.set(false, forKey: UserdefaultKeys.isLogin)
+                self.goToLogin()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }else{
             Helper.showOKAlert(onVC: self, title: errorTitle, message: errorMessage)
-
+            
         }
         
     }

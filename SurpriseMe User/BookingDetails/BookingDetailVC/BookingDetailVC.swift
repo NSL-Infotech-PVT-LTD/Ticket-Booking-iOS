@@ -9,6 +9,7 @@
 import UIKit
 import TagListView
 import Cosmos
+import SDWebImage
 
 class BookingDetailVC: UIViewController {
     
@@ -47,6 +48,10 @@ class BookingDetailVC: UIViewController {
     @IBOutlet weak var viewOtherResons: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var viewPicker: UIView!
+    
+    
+    @IBOutlet weak var lblReviewTitleHeader: UILabel!
+    @IBOutlet var reportImageICon: UIImageView!
     
     
     @IBOutlet weak var thediCornerImage: NSLayoutConstraint!
@@ -319,21 +324,55 @@ class BookingDetailVC: UIViewController {
         }else if buttonTitle ?? "" == "Go To Home"{
             self.setInitialHome()
         }else if buttonTitle ?? "" == "Did Artist reach at your location?"{
-            let alert = UIAlertController(title: "", message: "Are you sure?", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
-                self.viewOtp.isHidden = false
-                self.viewContainer.isHidden = false
-                self.lblOtpNumber.isHidden = false
-                self.lblOtpNumber.text = "Your OTP is: \(self.dictProfile?.otp ?? 0)\n Share your OTP with your Artist"
-            }))
             
-            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
-                self.viewContainer.isHidden = false
-                self.viewPicker.isHidden = false
-                
-            }))
-    // show the alert
-            self.present(alert, animated: true, completion: nil)
+            
+            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Are you sure Artist Reach At Your Location ?", message: "", preferredStyle: .actionSheet)
+
+                let cancelActionButton = UIAlertAction(title: "Yes , Reached", style: .default) { _ in
+                    print("Cancel")
+                    
+                    self.viewOtp.isHidden = false
+                    self.viewContainer.isHidden = false
+                    self.lblOtpNumber.isHidden = false
+                    self.lblOtpNumber.text = "Your OTP is: \(self.dictProfile?.otp ?? 0)\n Share your OTP with your Artist"
+                    
+                }
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+
+                let saveActionButton = UIAlertAction(title: "No , Want to Report", style: .default)
+                    { _ in
+                       print("Save")
+                    self.viewContainer.isHidden = false
+                    self.viewPicker.isHidden = false
+                }
+                actionSheetControllerIOS8.addAction(saveActionButton)
+
+                let deleteActionButton = UIAlertAction(title: "Cancel", style: .cancel)
+                    { _ in
+                        print("Delete")
+                }
+                actionSheetControllerIOS8.addAction(deleteActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            
+            
+            
+            
+            
+//            let alert = UIAlertController(title: "", message: "Are you sure?", preferredStyle: UIAlertController.Style.alert)
+//            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+//                self.viewOtp.isHidden = false
+//                self.viewContainer.isHidden = false
+//                self.lblOtpNumber.isHidden = false
+//                self.lblOtpNumber.text = "Your OTP is: \(self.dictProfile?.otp ?? 0)\n Share your OTP with your Artist"
+//            }))
+//
+//            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+//                self.viewContainer.isHidden = false
+//                self.viewPicker.isHidden = false
+//
+//            }))
+//    // show the alert
+//            self.present(alert, animated: true, completion: nil)
         }else if buttonTitle ?? "" == "Rate your artist"{
             userArtistID =  dictProfile?.artist_detail?.ID ?? 0
             let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
@@ -436,13 +475,21 @@ class BookingDetailVC: UIViewController {
     func setInitialData(dataItem :BookingDetailsModel?)  {
         lblNewStatus.text = "\(dataItem?.status?.capitalized ?? "")"
         
-      
+        let urlStingProfile : String = "\(Api.imageURLArtist)\(dataItem?.artist_detail?.imageProfile ?? "")"
+        let urlStringaaProfile = urlStingProfile.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let urlImage = URL(string: urlStringaaProfile)!
+        imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        imgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
         
         dictProfile = dataItem
         if dataItem?.status == "completed_review"{
             
-            
+            lblReviewTitleHeader.text = "Rating & Review"
             self.btnReadMore.isHidden = false
+            self.lblRatingArtist.isHidden = false
+            reportImageICon.image = UIImage.init(named: "Group 1277")
+
+
             
                        if #available(iOS 11.0, *) {
                 if UIDevice.current.hasNotch {
@@ -467,7 +514,7 @@ class BookingDetailVC: UIViewController {
                                btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
                                viewHeightLocation.constant = 55
                                lblLocationValue.isHidden = false
-                         thediCornerImage.constant = 30
+                         thediCornerImage.constant = 12
                     }else{
                                viewHeightLocation.constant = 0
                                lblLocationValue.isHidden = true
@@ -484,7 +531,7 @@ class BookingDetailVC: UIViewController {
                                      btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
                                      viewHeightLocation.constant = 55
                                      lblLocationValue.isHidden = false
-                               thediCornerImage.constant = 30
+                               thediCornerImage.constant = 12
                           }else{
                                      viewHeightLocation.constant = 0
                                      lblLocationValue.isHidden = true
@@ -535,8 +582,8 @@ class BookingDetailVC: UIViewController {
         //        self.lblShowType.text = "Show type :- \(dataItem?.type ?? "")"
         let urlSting : String = "\(Api.imageURLArtist)\(dataItem?.artist_detail?.imageProfile ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let urlImage = URL(string: urlStringaa)!
-        self.imgArtsitRating.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        let urlImagee = URL(string: urlStringaa)!
+        self.imgArtsitRating.sd_setImage(with: urlImagee, placeholderImage: UIImage(named: "user (1)"))
         lblDate.text = self.convertDateToStringBook(profile: dataItem?.dateInString ?? "")
         let fromTime = self.convertTimeInto24(timeData: dataItem?.from_time ?? "")
         let toTime = self.convertTimeInto24(timeData: dataItem?.to_time ?? "")
@@ -987,6 +1034,110 @@ class BookingDetailVC: UIViewController {
             self.btnStatus.setTitleColor(.white, for: .normal)
             self.btnStatus.setTitle("Rate your artist", for: .normal)
         }else if dataItem?.status == "report"{
+            cosmoViewRating.isHidden = true
+            lblReviewTitleHeader.text = "Report"
+             
+            
+            if dataItem?.reportReason?.report == "denyied"{
+                self.btnReadMore.isHidden = true
+
+                
+            }else if dataItem?.reportReason?.report == "unreachable"{
+                self.btnReadMore.isHidden = true
+
+                
+            }else if dataItem?.reportReason?.report == "denyied"{
+                self.btnReadMore.isHidden = true
+
+                
+            }else{
+                self.btnReadMore.isHidden = false
+
+            }
+            
+
+            reportImageICon.image = UIImage.init(named: "download-1")
+                      
+                                 if #available(iOS 11.0, *) {
+                          if UIDevice.current.hasNotch {
+                              //... consider notch
+                            
+                                         if dataItem?.type == "live"{
+                                                   btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                                                   viewHeightLocation.constant = 55
+                                                   lblLocationValue.isHidden = false
+                                             thediCornerImage.constant = 30
+                                        }else{
+                                                   viewHeightLocation.constant = 0
+                                                   lblLocationValue.isHidden = true
+                                                   btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                                             thediCornerImage.constant = 145
+                                             
+                                                  }
+
+                          } else {
+                            
+                               if dataItem?.type == "live"{
+                                         btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                                         viewHeightLocation.constant = 55
+                                         lblLocationValue.isHidden = false
+                                   thediCornerImage.constant = 10
+                              }else{
+                                         viewHeightLocation.constant = 0
+                                         lblLocationValue.isHidden = true
+                                         btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                                   thediCornerImage.constant = 60
+                                   
+                                        }
+
+                          }
+                      } else {
+                          // Fallback on earlier versions
+                          
+                                     if dataItem?.type == "live"{
+                                               btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                                               viewHeightLocation.constant = 55
+                                               lblLocationValue.isHidden = false
+                                         thediCornerImage.constant = 10
+                                    }else{
+                                               viewHeightLocation.constant = 0
+                                               lblLocationValue.isHidden = true
+                                               btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                                         thediCornerImage.constant = 120
+                                         
+                                              }
+                      }
+                      
+
+                      
+                      self.viewContainerRating.isHidden = false
+                      viewHeaderNameHeight.constant = 77
+                      self.btnStatus.isHidden = true
+                      self.btnChatTopBar.isHidden = true
+                      self.reportReasonLbl.isHidden = false
+            self.reportReasonLbl.text = dataItem?.reportReason?.report ?? ""
+
+                      self.lblReviewRating.text = dataItem?.reportReason?.report ?? ""
+                      lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            self.lblRatingArtist.isHidden = true
+                      self.lblRatingArtist.text = "\(dataItem?.rate_detail?.rate ?? 0)"
+                      
+                      //            chatTopOutlet.constant = 160
+                      self.viewCosmo.isHidden = false
+                      //            self.ratingDesc.isHidden = false
+                      self.viewCosmo.isUserInteractionEnabled = false
+                      //            self.ratingDesc.isUserInteractionEnabled = false
+                      //            self.ratingDesc.text = dataItem?.rate_detail?.review ?? ""
+                      self.viewCosmo.rating = Double(dataItem?.rate_detail?.rate ?? 0)
+                      self.cosmoViewRating.isUserInteractionEnabled = false
+
+                      self.cosmoViewRating.rating = Double(dataItem?.rate_detail?.rate ?? 0)
+            
+            
+            
+            
+            
+            
             self.btnStatus.isHidden = true
                        if #available(iOS 11.0, *) {
                 if UIDevice.current.hasNotch {
@@ -1011,7 +1162,7 @@ class BookingDetailVC: UIViewController {
                                btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
                                viewHeightLocation.constant = 55
                                lblLocationValue.isHidden = false
-                         thediCornerImage.constant = 30
+                         thediCornerImage.constant = 10
                     }else{
                                viewHeightLocation.constant = 0
                                lblLocationValue.isHidden = true
@@ -1028,7 +1179,7 @@ class BookingDetailVC: UIViewController {
                                      btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
                                      viewHeightLocation.constant = 55
                                      lblLocationValue.isHidden = false
-                               thediCornerImage.constant = 30
+                               thediCornerImage.constant = 10
                           }else{
                                      viewHeightLocation.constant = 0
                                      lblLocationValue.isHidden = true

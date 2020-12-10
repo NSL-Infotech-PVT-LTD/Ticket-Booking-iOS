@@ -10,6 +10,7 @@ import UIKit
 
 class CustomManageAddressCell: UITableViewCell {
     
+    @IBOutlet weak var imgSelected: UIImageView!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblAddressType: UILabel!
     @IBOutlet weak var addressTypeImg: UIImageView!

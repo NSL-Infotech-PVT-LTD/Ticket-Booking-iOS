@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "delete.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,11 +10,12 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "iconfinder_icons_delete_1564502.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

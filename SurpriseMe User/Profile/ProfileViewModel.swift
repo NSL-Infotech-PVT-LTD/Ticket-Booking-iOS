@@ -35,9 +35,7 @@ class ProfileViewModel {
     
     
     func updataProfileData(param: [String: Any], image: UIImage) {
-        
         print(param)
-        
         LoaderClass.shared.loadAnimation()
         if Reachability.isConnectedToNetwork() {
             let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]

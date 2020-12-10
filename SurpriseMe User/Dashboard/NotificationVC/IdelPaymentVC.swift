@@ -157,9 +157,6 @@ class IdelPaymentVC: UIViewController {
            self.pay()
         }
         
-        
-        
-        
     }
     
     func startCheckout() {
@@ -302,10 +299,12 @@ extension IdelPaymentVC:IdelViewModelProtocol{
                 }
                 else {
                     //                                             self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
                 }
             }
             
         }else{
+            Helper.showOKAlert(onVC: self, title: "Error", message: "Network Error")
             //                         self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
         }
         

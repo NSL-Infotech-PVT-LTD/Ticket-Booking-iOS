@@ -66,8 +66,30 @@ class ViewProfileVC: UIViewController {
    var localVideoUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        self.imgProfile.isUserInteractionEnabled = true
+        self.imgProfile.addGestureRecognizer(tap)
     }
     
+    @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+
+    @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.viewBack.addBottomShadow()
         
@@ -319,7 +341,14 @@ class ViewProfileVC: UIViewController {
         let urlImage = URL(string: urlStringaa)!
         self.imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
         self.imgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-        self.txtViewAbout.text = profile?.descriptionValue ?? ""
+        
+        
+        let attributedString = NSMutableAttributedString(string: profile?.descriptionValue ?? "")
+               txtViewAbout.linkTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.blue] as [NSAttributedString.Key: Any]?
+        txtViewAbout.attributedText = attributedString
+        
+        
+//        self.txtViewAbout.text = profile?.descriptionValue ?? ""
         self.lblInstagramSubscribers.text = profile?.social_link_insta ?? ""
         self.lblYoutubeSubscribers.text = profile?.social_link_youtube ?? ""
         
@@ -428,6 +457,99 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             
             return cell2
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
+        
+        if indexPath.row == 0{
+            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_1 ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+
+            let transition = CATransition()
+                   transition.duration = 0.5
+                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+                   transition.type = CATransitionType(rawValue: "flip")
+                   transition.type = CATransitionType.push
+           transition.subtype = CATransitionSubtype.fromTop
+                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+           viewContainerPreview.isHidden = false
+           imgViewUserPreview.isHidden = false
+           viewImageViewContainer.isHidden = false
+           btnCrossImage.isHidden = false
+            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        }else if indexPath.row == 1{
+            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_2 ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            let transition = CATransition()
+                   transition.duration = 0.5
+                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+                   transition.type = CATransitionType(rawValue: "flip")
+                   transition.type = CATransitionType.push
+           transition.subtype = CATransitionSubtype.fromTop
+                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+           viewContainerPreview.isHidden = false
+           imgViewUserPreview.isHidden = false
+           viewImageViewContainer.isHidden = false
+           btnCrossImage.isHidden = false
+            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            
+        }else if indexPath.row == 2{
+            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_3 ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            
+            let transition = CATransition()
+                   transition.duration = 0.5
+                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+                   transition.type = CATransitionType(rawValue: "flip")
+                   transition.type = CATransitionType.push
+           transition.subtype = CATransitionSubtype.fromTop
+                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+           viewContainerPreview.isHidden = false
+           imgViewUserPreview.isHidden = false
+           viewImageViewContainer.isHidden = false
+           btnCrossImage.isHidden = false
+            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            
+        }else{
+            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_4 ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            
+            
+            let transition = CATransition()
+                   transition.duration = 0.5
+                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+                   transition.type = CATransitionType(rawValue: "flip")
+                   transition.type = CATransitionType.push
+           transition.subtype = CATransitionSubtype.fromTop
+                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+           viewContainerPreview.isHidden = false
+           imgViewUserPreview.isHidden = false
+           viewImageViewContainer.isHidden = false
+           btnCrossImage.isHidden = false
+            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        }
+        
+
+        
+        
+       
+        
+        
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

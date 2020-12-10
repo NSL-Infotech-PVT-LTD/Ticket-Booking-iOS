@@ -20,14 +20,10 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var priceHtoLOut: UILabel!
     @IBOutlet weak var priceLtoHLbl: UILabel!
     @IBOutlet weak var desendingNameOut: UILabel!
-    
-    
     @IBOutlet weak var toDateLbl: UILabel!
     @IBOutlet weak var lblFromDate: UILabel!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var headerView: UIView!
-    
     @IBOutlet weak var ascendingNameLblOut: UILabel!
     @IBOutlet weak var slider_out: UISlider!
     @IBOutlet weak var electronicBtn_out: UIButton!
@@ -38,31 +34,26 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var classicalBtn_out: UIButton!
     @IBOutlet weak var hollywoodBtn_out: UIButton!
     @IBOutlet weak var viewSelectArtist: UIView!
-    
-    
     @IBOutlet weak var lblDistance: UILabel!
     @IBOutlet weak var secondDatePicker: UIDatePicker!
-    
     @IBOutlet weak var lblArtistCategpry: UILabel!
+    
+    
+    @IBOutlet var lblTOpVirtualConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var fromView_out: UIView!
-    
     @IBOutlet weak var viewSecondBtn: UIView!
-    
     @IBOutlet weak var btnSecond: UIButton!
     @IBOutlet weak var btnFirst: UIButton!
-    
     @IBOutlet weak var viewFirstBtn: UIView!
-    
-    
     @IBOutlet weak var distanceView: UIView!
-    
-    
     @IBOutlet weak var distanceLblTitle: UILabel!
     @IBOutlet weak var viewDateContainer: UIView!
     @IBOutlet weak var toView_out: UIView!
-    
     @IBOutlet weak var ratingSlider: StepSlider!
     @IBOutlet weak var distanceSlider: UISlider!
+    
+    
     var delegate :SendDataPrevoius?
     var objectViewModel = FilterArtistDataViewModel()
     var arrayHomeArtistList = [SearchArtistModel]()
@@ -78,7 +69,6 @@ class FilterViewController: UIViewController {
         
         ratingSlider.labels = ["5","4.5","4.0","3.5","Any"]
 //        self.headerView.roundCorners(corners: [.topLeft,.topRight], radius: 25.0)
-        ratingSlider.setIndex(4, animated: true)
         countLbl_OUt.layer.borderColor = UIColor.lightGray.cgColor
         countLbl_OUt.layer.borderWidth = 1
         countLbl_OUt.layer.cornerRadius = 6
@@ -131,25 +121,60 @@ class FilterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.viewDateContainer.isHidden = true
         
+        
         if whicShowTypeDigital == true{
             distanceView.isHidden = false
             distanceLblTitle.isHidden = false
-        }else{
+            lblTOpVirtualConstraint.constant = 160
+       }else{
             distanceView.isHidden = true
             distanceLblTitle.isHidden = true
+            lblTOpVirtualConstraint.constant = 28
 
         }
+                
+        if  dictFilter.count > 0{
+            
+            let distance = dictFilter["distance"] as? Int
+            self.lblDistance.text = "\(distance ?? 0)km"
+            distanceSlider.setValue(Float(distance ?? 0), animated: true)
+            let sliderValue = dictFilter["rating"] as? Double
+            
+            
+            if sliderValue == 4.5{
+                ratingSlider.setIndex(1, animated: true)
+
+            }else if sliderValue == 4.0{
+                ratingSlider.setIndex(2, animated: true)
+
+            }else if sliderValue == 3.5{
+                ratingSlider.setIndex(3, animated: true)
+
+            }else {
+                ratingSlider.setIndex(4, animated: true)
+
+            }
+           let selectionValue = dictFilter["selection"] as? String
+            if  selectionValue == "desc"{
+                btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
+                btnSecond.setImage(UIImage(named: "tick"), for: .normal)
+                sortByValue = "desc"
+            }else{
+                btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
+                btnFirst.setImage(UIImage(named: "tick"), for: .normal)
+                sortByValue = "asc"
+            }
+       }else{
+            ratingSlider.setIndex(4, animated: true)
+        }
+        
         
         
         
         datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        
         secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         secondDatePicker.addTarget(self, action: #selector(seconddateChanged(_:)), for: .valueChanged)
-        
-//        self.btnSecondAction(self.btnSecond)
-        
         sortByValue = "asc"
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchHappen(_:)))
@@ -171,9 +196,7 @@ class FilterViewController: UIViewController {
     
     @objc func touchHappen(_ sender: UITapGestureRecognizer) {
         print("Hello Dear you are here")
-        
-        
-    }
+   }
     
     
     
@@ -200,6 +223,7 @@ class FilterViewController: UIViewController {
         btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick"), for: .normal)
         sortByValue = "desc"
+
     }
     
     
@@ -247,17 +271,24 @@ class FilterViewController: UIViewController {
             
         }else if sender.index == 1{
             self.selectedRating = 4.5
+
         }else if sender.index == 2{
             self.selectedRating = 4.0
+
         }else if sender.index == 3{
             self.selectedRating = 3.5
+
         }else if sender.index == 4{
             self.selectedRating = 0.0
+
         }
+        
+        
     }
     
     @IBAction func distanceSliderOnSLide(_ sender: UISlider) {
         print(sender.value)
+
         self.lblDistance.text = "\(Int(sender.value))km"
         self.distance = Int(sender.value)
     }
@@ -268,27 +299,22 @@ class FilterViewController: UIViewController {
         pageForFilter = true
         
         if   whicShowTypeDigital == false{
-//                                               self.isDigital = true
-//                                               self.getDataBookingList(pageNumber: 1)
-//                                               self.viewUpdateLocation.isUserInteractionEnabled = false
-            
+//
             let dataParam = ["limit":"20","search":"","category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
             print(dataParam)
+            
+            
             self.objectViewModel.getParamForGetProfile(param: dataParam)
                                                
                                            }else{
-//                                               self.isDigital = false
-//                                               self.getDataBookingList(pageNumber: 1)
-//                                               self.viewUpdateLocation.isUserInteractionEnabled = true
-            
-            
             let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":"","category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
                    print(dataParam)
                    self.objectViewModel.getParamForGetProfile(param: dataParam)
             
-            
-            
-                                           }
+               }
+        
+        dictFilter = ["distance":distance , "rating" : selectedRating , "selection":sortByValue ]
+
         
        
     }
@@ -298,6 +324,9 @@ class FilterViewController: UIViewController {
         btnFirst.setImage(UIImage(named: "tick"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
         sortByValue = "asc"
+        
+        
+        
     }
     
     

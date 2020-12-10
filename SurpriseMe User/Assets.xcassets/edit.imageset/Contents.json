@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "iconfinder_ic_mode_edit_48px_352547.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,11 +10,12 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "iconfinder_write_126582.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   }
 }

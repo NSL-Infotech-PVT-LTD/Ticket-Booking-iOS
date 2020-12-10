@@ -20,8 +20,10 @@ class ManageAddressVC: UIViewController {
     var objectViewModel = ManageAddressViewModel()
     var modelObject = [ManageAddressModel]()
     var index = -1
-    var selectedIndex = Int()
     
+    var indexSelected = -1
+    var selectedIndex = Int()
+    var selectedAddress = ""
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +41,7 @@ class ManageAddressVC: UIViewController {
         self.noDataFound.isHidden = true
 
         tblAddress.tableFooterView = view
-        tblAddress.estimatedRowHeight = 75.0
+        tblAddress.estimatedRowHeight = 120.0
         tblAddress.rowHeight = UITableView.automaticDimension
         objectViewModel.delegate = self
         objectViewModel.getParamForManageAddress(param: [:])
@@ -149,14 +151,19 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         cell.btnEdit.tag = indexPath.row
         cell.btnDelete.tag = indexPath.row
         cell.btnSeeArtist12.tag = indexPath.row
-        if index == indexPath.row{
-            cell.checkImage.image = UIImage.init(named: "tick")
+        if data.street_address == selectedAddress{
+            cell.imgSelected.image = #imageLiteral(resourceName: "Selected")
         }else{
-            cell.checkImage.image = UIImage.init(named: "untick")
+            cell.imgSelected.image = #imageLiteral(resourceName: "Ellipse 111")
 
         }
         
-        if data.name == "Home"{
+        if indexSelected == indexPath.row{
+            cell.viewContainer.backgroundColor = #colorLiteral(red: 0.5490196078, green: 0.5579355955, blue: 0.6253077388, alpha: 0.2)
+        }else{
+            cell.viewContainer.backgroundColor = UIColor.white
+        }
+         if data.name == "Home"{
             cell.addressTypeImg.image = UIImage.init(named: "Mask Group 71")
         }else if data.name == "Work"{
             cell.addressTypeImg.image = UIImage.init(named: "Mask Group 72")
@@ -191,32 +198,36 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomManageAddressCell
-//
-//        cell.alpha = 0
-//        cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
-//        UIView.animate(withDuration: 0.4) {
-//            cell.alpha = 1
-//            cell.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, 1, 1)
-//        }
-//        let dataItem = modelObject[indexPath.row]
-//        currentAddress = dataItem.street_address ?? ""
-//        locationCurrentTitle = dataItem.name ?? ""
-//        customAddress = true
-//        currentLat = dataItem.lat ?? 0.0
-//        currentLong = dataItem.long ?? 0.0
-//        index = indexPath.row
-//        self.tblAddress.reloadData()
-//
-//        let when = DispatchTime.now() + 1
-//        DispatchQueue.main.asyncAfter(deadline: when){
-//          // your code with delay
-//
-//            self.back()
-//
-//        }
-//
-        
+         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomManageAddressCell
+
+        cell.alpha = 0
+        cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
+        UIView.animate(withDuration: 0.4) {
+            cell.alpha = 1
+            cell.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, 1, 1)
+        }
+        cell.viewContainer.cornerRadius = 1
+        cell.viewContainer.layer.borderWidth = 1
+//        cell.viewContainer.layer.borderColor = UIColor.red.cgColor
+        cell.viewContainer.layer.borderColor = UIColor.lightGray.cgColor
+        cell.viewContainer.layer.masksToBounds = true
+//        cell.viewContainer.backgroundColor = UIColor.init(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        cell.viewContainer.backgroundColor = .lightGray
+        let dataItem = modelObject[indexPath.row]
+        currentAddress = dataItem.street_address ?? ""
+        locationCurrentTitle = dataItem.name ?? ""
+        customAddress = true
+        currentLat = dataItem.lat ?? 0.0
+        currentLong = dataItem.long ?? 0.0
+        index = indexPath.row
+        indexSelected = indexPath.row
+        self.tblAddress.reloadData()
+
+        let when = DispatchTime.now() + 1
+        DispatchQueue.main.asyncAfter(deadline: when){
+          // your code with delay
+            self.back()
+        }
     }
     
 }

@@ -57,10 +57,8 @@ var artist_detail  : ArtistDetailModels?
         static let type = "type"
         static let id = "id"
         static let status = "status"
-
         static let address = "address"
-
-
+        
     }
     
 }

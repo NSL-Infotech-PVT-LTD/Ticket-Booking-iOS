@@ -28,7 +28,7 @@ class ManageAddressViewModel {
     
     //MARK:- Method for accepting param -
     func getParamForManageAddress(param: [String: Any]){
-        self.getManageAddressData(param: param)
+        self.getManageAddressDataValue(param: param)
     }
     
     func getParamForAddAddress(param: [String: Any]){
@@ -153,7 +153,7 @@ class ManageAddressViewModel {
             }
     }
     
-    func getManageAddressData(param: [String: Any]) {
+    func getManageAddressDataValue(param: [String: Any]) {
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
         LoaderClass.shared.loadAnimation()

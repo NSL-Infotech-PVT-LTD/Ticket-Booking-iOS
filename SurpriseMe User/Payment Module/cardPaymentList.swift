@@ -85,13 +85,9 @@ class cardPaymentList: UIViewController {
                 LoaderClass.shared.stopAnimation()
                 if error == nil {
                     let result = response
-                    
-                    
                     self.arrayCardList.removeAll()
                     if let status = result["status"] as? Bool {
                         if status ==  true{
-                            
-                            
                             let dataDict = result["data"] as? [String : Any]
                             if let dataArray = dataDict?["data"] as? [[String : Any]]{
                                 for index in dataArray{
@@ -117,19 +113,20 @@ class cardPaymentList: UIViewController {
                         }
                     }
                     else {
-                        if let error_message = response["error"] as? [String:Any] {
-                            if (error_message["error_message"] as? String) != nil {
-                            }
+                        if let error_message = response["error"] as? String {
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
                         }
                     }
                 }
                 else {
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
                     //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                 }
             }
             
         }else{
             // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+            Helper.showOKAlert(onVC: self, title: "Error", message: "Please Check your Internet Connection")
         }
     }
     
@@ -159,19 +156,19 @@ class cardPaymentList: UIViewController {
                             
                             
                             
-                                                       
-                                                       
-                                                       
-                                                       let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
-                                                       let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
-                                                       
-                                                       
-                                                       //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
-                                                       
-                                                       //                                                        controller.bookingID = bookingDict.id ?? 0
-                                                       self.navigationController?.pushViewController(controller1, animated: true)
+                            
+                            
+                            
+                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                            
+                            
+                            //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
+                            
+                            //                                                        controller.bookingID = bookingDict.id ?? 0
+                            self.navigationController?.pushViewController(controller1, animated: true)
                             self.dismiss(animated: true, completion: nil)
-
+                            
                             
                             
                         }
@@ -179,13 +176,13 @@ class cardPaymentList: UIViewController {
                         }
                     }
                     else {
-                        if let error_message = response["error"] as? [String:Any] {
-                            if (error_message["error_message"] as? String) != nil {
-                            }
+                        if let error_message = response["error"] as? String {
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
                         }
                     }
                 }
                 else {
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
                     //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                 }
             }
@@ -282,11 +279,26 @@ extension cardPaymentList : UITableViewDelegate,UITableViewDataSource {
         
         // cell.viewContainer.addShadowWithCornerRadius(viewObject: cell.viewContainer)
         let dataItem = arrayCardList[indexPath.row]
-        if arraySelectedzIndex == indexPath.row{
-            cell.img.image = UIImage.init(named: "tick")
+        
+        if arrayCardList.count > 1{
+            if arraySelectedzIndex == indexPath.row{
+                cell.img.image = UIImage.init(named: "tick")
+            }else{
+                cell.img.image = UIImage.init(named: "untick")
+            }
         }else{
-            cell.img.image = UIImage.init(named: "untick")
+            if arrayIndex.contains(indexPath.row){
+                cell.img.image = UIImage.init(named: "tick")
+
+            }else{
+                cell.img.image = UIImage.init(named: "untick")
+
+            }
+            
         }
+        
+        
+        
         cell.viewContainer.layer.cornerRadius = 8
         cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
         cell.viewContainer.layer.shadowOpacity = 1
@@ -309,17 +321,28 @@ extension cardPaymentList : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         arraySelectedzIndex = indexPath.row
         
-        let dataItem = arrayCardList[indexPath.row]
-        cardID = dataItem.id ?? ""
         
-        if arrayIndex.count > 0{
-            
-            let indexOfA = arrayIndex.firstIndex(of: indexPath.row ) ?? 0
-            arrayIndex.remove(at: indexOfA)
+        if arrayCardList.count > 0 && arrayCardList.count < 2{
+            if arrayIndex.count > 0{
+                
+                let indexOfA = arrayIndex.firstIndex(of: indexPath.row ) ?? 0
+                arrayIndex.remove(at: indexOfA)
+                cardID = ""
+                
+            }else{
+                arrayIndex.append(indexPath.row)
+                let dataItem = arrayCardList[0]
+                cardID = dataItem.id ?? ""
+            }
             
         }else{
-            arrayIndex.append(indexPath.row)
+            let dataItem = arrayCardList[indexPath.row]
+            cardID = dataItem.id ?? ""
         }
+        
+       
+        
+       
         self.cardPaymentListTV.reloadData()
         
     }

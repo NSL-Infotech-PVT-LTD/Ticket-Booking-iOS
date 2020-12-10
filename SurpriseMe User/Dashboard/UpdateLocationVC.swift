@@ -165,7 +165,7 @@ class UpdateLocationVC: UIViewController {
         let key : String = googleKey
         let postParameters:[String: Any] = [ "address": address,"key":key]
         let url : String = "https://maps.googleapis.com/maps/api/geocode/json"
-        self.lblAddressTextValue.text =  address
+//        self.lblAddressTextValue.text =  address
         Alamofire.request(url, method: .get, parameters: postParameters, encoding: URLEncoding.default, headers: nil).responseJSON {  response in
             
             if let receivedResults = response.result.value
@@ -188,7 +188,6 @@ class UpdateLocationVC: UIViewController {
                     
                     let location = GMSCameraPosition.camera(withLatitude:latitude, longitude: lognitude, zoom: 19.0)
                     self.mapView.camera = location
-                    self.lblAddressTextValue.text =  address
                 }else{
                     
                 }
@@ -199,6 +198,8 @@ class UpdateLocationVC: UIViewController {
     }
     
     func setMarkerCustomLocation()  {
+        self.lblAddressTextValue.text =  addressSelected
+
         self.getAddress(address: addressSelected)
     }
     
@@ -531,45 +532,6 @@ extension UpdateLocationVC : GMSMapViewDelegate{
     
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         print(position.target.latitude)
-        
-        //        if isEdit == true{
-        //            print("the edit address is \(position.target.latitude)")
-        //            tfAddress.text = modelObjectDict.street_address ?? ""
-        //            self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude)", withLongitude: "\(position.target.longitude)")
-        //
-        //            if modelObjectDict.country ?? "" == "self.tfLandMark.text" || modelObjectDict.country ?? "" == ""{
-        //
-        //            }else{
-        //                self.tfLandMark.text = modelObjectDict.country ?? ""
-        //
-        //            }
-        //
-        //
-        //            if modelObjectDict.state ?? "" == "self.tfHouserNumber.text" || modelObjectDict.state ?? "" == ""{
-        //
-        //            }else{
-        //                self.tfLandMark.text = modelObjectDict.state ?? ""
-        //
-        //            }
-        //
-        //            addressLat = "\(position.target.latitude )"
-        //            addressLong = "\(position.target.longitude )"
-        //
-        //            if modelObjectDict.name == "Home"{
-        //                self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
-        //                self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-        //                self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-        //            }else if modelObjectDict.name == "Work"{
-        //                self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
-        //                self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-        //                self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-        //            }else{
-        //
-        //                self.otherAddressTF.isHidden = false
-        //                self.otherAddressTF.text = modelObjectDict.name ?? ""
-        //
-        //            }
-        //        }else{
         self.getAddressFromLatLon(pdblLatitude: "\(position.target.latitude )", withLongitude: "\(position.target.longitude)")
         addressLat = "\(position.target.latitude )"
         addressLong = "\(position.target.longitude )"
@@ -667,7 +629,7 @@ extension UpdateLocationVC : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         print("the user location is \(locations.first?.coordinate.latitude ?? 0.0)")
-        self.getAddressFromLatLon(pdblLatitude: "\(locations.first?.coordinate.latitude ?? 0.0 )", withLongitude: "\(locations.first?.coordinate.longitude ?? 0.0)")
+       // self.getAddressFromLatLon(pdblLatitude: "\(locations.first?.coordinate.latitude ?? 0.0 )", withLongitude: "\(locations.first?.coordinate.longitude ?? 0.0)")
         addressLat = "\(locations.first?.coordinate.latitude ?? 0.0 )"
         addressLong = "\(locations.first?.coordinate.longitude ?? 0.0)"
         

@@ -226,18 +226,19 @@ class AddCardVC: UIViewController {
                         }
                     }
                     else {
-                        if let error_message = response["error"] as? [String:Any] {
-                            if (error_message["error_message"] as? String) != nil {
-                            }
+                        if let error_message = response["error"] as? String {
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
                         }
                     }
                 }
                 else {
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
                     //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                 }
             }
             
         }else{
+            Helper.showOKAlert(onVC: self, title: "Error", message: "Please Check your Internet Connection")
             // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
         }
         

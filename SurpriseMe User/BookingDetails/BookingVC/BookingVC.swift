@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Toast_Swift
 
 class BookingVC: UIViewController {
     
@@ -26,37 +27,30 @@ class BookingVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        NotificationCenter.default.addObserver(forName: .myNotificationKey,
-//        object: nil,
-//        queue: nil,
-//        using: checkIdealPayment)
+        //        NotificationCenter.default.addObserver(forName: .myNotificationKey,
+        //        object: nil,
+        //        queue: nil,
+        //        using: checkIdealPayment)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         pageInt = 1
-        
         if idealPayment == true && idealPaymentAppDelegate == true{
-            
         }else{
-            self.hideTable()
+        self.hideTable()
         }
-        
-//
-        
-        print("hii i am abhishek")
-        
-        }
-        
+    }
+    
     func checkIdealPayment(notification:Notification) -> Void {
         guard let idealPayment = notification.userInfo!["idealPayment"] as? Bool else { return }
         if idealPayment == true  {
-//
+            //
         }else{
             self.hideTable()
         }
     }
-        
+    
     func navigateToSuccess() {
         let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
@@ -64,12 +58,12 @@ class BookingVC: UIViewController {
         navController.modalPresentationStyle = .overCurrentContext
         navController.isNavigationBarHidden = true
         //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
-
+        
         //                                                        controller.bookingID = bookingDict.id ?? 0
         self.navigationController?.pushViewController(controller1, animated: true)
         
     }
-        
+    
     
     func hideTable()  {
         viewNoData.isHidden = true
@@ -108,7 +102,6 @@ class BookingVC: UIViewController {
     }
     
     func convertDateFormater(date: String) -> String {
-        
         let dateAsString = date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
@@ -151,106 +144,85 @@ class BookingVC: UIViewController {
     
     @objc func btnseeAllDetailsOnPress(sender: UIButton){
         //
-        
         let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
         controller.hidesBottomBarWhenPushed = true
-        
         let bookingDict = self.arrayBookingList[sender.tag]
-        
         controller.bookingID = bookingDict.id ?? 0
         navigationController?.pushViewController(controller, animated: true)
-        
         
     }
     
     
-      func getBookingListData(param: Int) {
-        
+    func getBookingListData(param: Int) {
         let dictParam = ["limit":"20" , "page":param] as [String : Any]
-
-             let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-            print("the token is \(headerToken)")
-            
-                           if Reachability.isConnectedToNetwork() {
-                            LoaderClass.shared.loadAnimation()
-
-                            ApiManeger.sharedInstance.callApiWithHeader(url: Api.bookinglist, method: .post, param: dictParam, header: headerToken) { (response, error) in
-                                print(response)
-                                LoaderClass.shared.stopAnimation()
-                                               if error == nil {
-                                                   let result = response
-                                                   if let status = result["status"] as? Bool {
-                                                       if status ==  true{
-                                                      
-                                                        if param == 1{
-                                                             self.arrayBookingList.removeAll()
-                                                                                                                                    let dataDict = result["data"] as? [String : Any]
-                                                                                 
-                                                            
-                                                                           if let dataArray = dataDict?["data"] as? [[String : Any]]{
-                                                                                                                        for index in dataArray{
-                                                                                                                            print("the index value is \(index)")
-                                                                                                                                                                              let dataDict = GetBookingListModel.init(resposne: index)
-              self.arrayBookingList.append(dataDict)
-                                                                                                                                                                          }
-                                                                            
-                                                                            print("the page number is value is \(param) and count is \(self.arrayBookingList.count)")
-}
-                                                        }else{
-                                                                                                                                            
-
-                                                        let dataDict = result["data"] as? [String : Any]
-                                                         if let dataArray = dataDict?["data"] as? [[String : Any]]{
-                                                                  self.arraySetBookingList.removeAll()
-                                                            for index in dataArray{
-                                                                                                                                                                       print("the index value is \(index)")
-                                                                                                                                                                                                                         let dataDict = GetBookingListModel.init(resposne: index)
-                                                                                                                                                                       self.arraySetBookingList.append(dataDict)
-                                                                                                                                                                                                                     }
-
-                                                                                                                                            self.arrayBookingList = self.arrayBookingList + self.arraySetBookingList
-                                                                                                                                            if (self.arraySetBookingList.count == 0){
-                                                                                                                                                self.isLoadMore = true
-                                                                                                                                            }else{
-                                                                                                                                                self.isLoadMore = false
-                                                                                                                                            }
-                                                                                                                                            print("the number of running fixture is \(self.arraySetBookingList.count)")
-                                                                                                                                        }
-
-                                                       }
-                                                        
-                                                        
-                                                        if self.arrayBookingList.count > 0{
-                                                            self.viewNoData.isHidden = true
-                                                            self.BookingTableView.isHidden = false
-                                                                  }else{
-                                                            print("the page number is no data found\(self.arrayBookingList.count )")
-                                                                      
-                                                            self.viewNoData.isHidden = false
-                                                            self.BookingTableView.isHidden = true
-                                                                  }
-                                                                  self.BookingTableView.reloadData()
-//                                                       else{
-//                                                       }
-                                                   }
-                                                   else {
-                                                       if let error_message = response["error"] as? [String:Any] {
-                                                        if (error_message["error_message"] as? String) != nil {
-                                                           }
-                                                       }
-                                                   }
-                                               }
-                                               else {
-//                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
-                                               }
-                                           }
-
-                            }}
-                            else{
-//                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.bookinglist, method: .post, param: dictParam, header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            if param == 1{
+                                self.arrayBookingList.removeAll()
+                                let dataDict = result["data"] as? [String : Any]
+                                if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                    for index in dataArray{
+                                        print("the index value is \(index)")
+                                        let dataDict = GetBookingListModel.init(resposne: index)
+                                        self.arrayBookingList.append(dataDict)
+                                    }
+                                    print("the page number is value is \(param) and count is \(self.arrayBookingList.count)")
+                                }
+                            }else{
+                                let dataDict = result["data"] as? [String : Any]
+                                if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                    self.arraySetBookingList.removeAll()
+                                    for index in dataArray{
+                                        print("the index value is \(index)")
+                                        let dataDict = GetBookingListModel.init(resposne: index)
+                                        self.arraySetBookingList.append(dataDict)
+                                    }
+                                    self.arrayBookingList = self.arrayBookingList + self.arraySetBookingList
+                                    if (self.arraySetBookingList.count == 0){
+                                        self.isLoadMore = true
+                                    }else{
+                                        self.isLoadMore = false
+                                    }
+                                    print("the number of running fixture is \(self.arraySetBookingList.count)")
+                                }
+                            }
+                         
+                            if self.arrayBookingList.count > 0{
+                                self.viewNoData.isHidden = true
+                                self.BookingTableView.isHidden = false
+                            }else{
+                                print("the page number is no data found\(self.arrayBookingList.count )")
+                                self.viewNoData.isHidden = false
+                                self.BookingTableView.isHidden = true
+                            }
+                            self.BookingTableView.reloadData()
                         }
-     
+                        else {
+                            if let error_message = response["error"] as? [String:Any] {
+                                if (error_message["error_message"] as? String) != nil {
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                    }
+                }
+            }}
+        else{
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+        
     }
     
     
@@ -274,18 +246,20 @@ class BookingVC: UIViewController {
         {
             print("scrollViewDidEndDragging")
             print("scrollViewDidEndDragging page number is \(self.pageInt)")
-                self.pageInt = self.pageInt + 1
-                let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
+            self.pageInt = self.pageInt + 1
+            let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
             if isLoadMore == true{
-                self.showToast(message: "No More Data", font: .systemFont(ofSize: 12.0))
+                var style = ToastStyle()
+                // this is just one of many style options
+                style.messageColor = .white
+                self.view.makeToast("No data found", duration: 3.0, position: .bottom, style: style)
             }else{
                 self.getBookingListData(param: self.pageInt)
             }
         }
     }
-    
-    
 }
+
 extension BookingVC : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -294,47 +268,37 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
         let dataItem = self.arrayBookingList[indexPath.row]
-        
         if dataItem.status == "completed_review"{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CompletedBookingTableViewCell", for: indexPath) as! BookingTableViewCell
             cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
             cell.btnseeAllDetails.tag = indexPath.row
             cell.lblName.text =  dataItem.artist_detail?.name ?? ""
             //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
-            
             let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
-            
             cell.lblDate.text = localTime
-            
             cell.lblReview.text = dataItem.rate_detail?.review ?? ""
             cell.viewCosmo.isUserInteractionEnabled = false
             cell.viewCosmo.rating = Double(dataItem.rate_detail?.rate ?? 0)
-            
             cell.lblBookDate.text = self.convertDateToStringBook(profile: dataItem.dateInString ?? "")
-            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
+            //            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
+            cell.lblBookingStatus.text = "\(dataItem.status?.capitalized ?? "")"
             let timeInto24 = self.convertDateFormater(date: dataItem.from_time ?? "")
             let timeInto24to_time = self.convertDateFormater(date: dataItem.to_time ?? "")
             cell.lblBookingTime.text = "\(timeInto24)" + " to " + "\(timeInto24to_time)"
             cell.lblRatedAddress.text = dataItem.address ?? ""
-            
-            
             let urlSting : String = "\(Api.imageURLArtist)\(dataItem.artist_detail?.imageProfile ?? "")"
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             let urlImage = URL(string: urlStringaa)!
             cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
-            if dataItem.type == "live"{
+            if dataItem.type == "live"
+            {
                 cell.lblSkill.text = "In-Person"
-
-                   }else{
+            }else
+            {
                 cell.lblSkill.text = "Virtual"
-
-                   }
-            
-            
+            }
             cell.viewBookingBorderDash.layer.cornerRadius = 8
             cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
             cell.viewBookingBorderDash.layer.shadowOpacity = 1
@@ -343,23 +307,49 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             cell.viewBookingBorderDash.layer.shadowOpacity = 0.5
             cell.viewBookingBorderDash.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
             cell.viewBookingBorderDash.layer.masksToBounds = false
+            if dataItem.status == "pending"{
+                        
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+            } else if dataItem.status == "rejected" || dataItem.status == "report"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                        
+                    }else if dataItem.status == "cancel"{
+                        
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                    }else if dataItem.status == "accepted"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+
+                    }else if dataItem.status == "confirmed"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                        
+                    }else if dataItem.status == "processing"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+                        
+                    }else if dataItem.status == "completed_review"{
+                        cell.lblBookingStatus.text = "Completed"
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                        
+                    }else if dataItem.status == "completed"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                    }else if dataItem.status == "payment_failed"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                        cell.lblBookingStatus.text = "Failed"
+                    }
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingTableViewCell", for: indexPath) as! BookingTableViewCell
-            
             //        cell.viewBookingBorderDash.addDashedBorder( UIColor(red: 0.78, green: 0.78, blue: 0.78, alpha: 1.00), withWidth: 1, cornerRadius: 6, dashPattern: [5,4])
             cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
             cell.btnseeAllDetails.tag = indexPath.row
             cell.lblName.text =  dataItem.artist_detail?.name ?? ""
+            
             //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
-            
             let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
-            
             cell.lblDate.text = localTime
-            
             cell.lblBookDate.text = self.convertDateToStringBook(profile: dataItem.dateInString ?? "")
             cell.lblAddress.text = dataItem.address ?? ""
-            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
+            //            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
+            cell.lblBookingStatus.text = "\(dataItem.status?.capitalized ?? "")"
             let timeInto24 = self.convertDateFormater(date: dataItem.from_time ?? "")
             let timeInto24to_time = self.convertDateFormater(date: dataItem.to_time ?? "")
             cell.lblBookingTime.text = "\(timeInto24)" + " to " + "\(timeInto24to_time)"
@@ -368,16 +358,11 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             let urlImage = URL(string: urlStringaa)!
             cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
             if dataItem.type == "live"{
-                           cell.lblSkill.text = "In-Person"
-
-                              }else{
-                           cell.lblSkill.text = "Virtual"
-
-                              }
-            
-            
+            cell.lblSkill.text = "In-Person"
+            }else{
+            cell.lblSkill.text = "Virtual"
+            }
             cell.viewBookingBorderDash.layer.cornerRadius = 8
             cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
             cell.viewBookingBorderDash.layer.shadowOpacity = 1
@@ -386,8 +371,54 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             cell.viewBookingBorderDash.layer.shadowOpacity = 0.5
             cell.viewBookingBorderDash.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
             cell.viewBookingBorderDash.layer.masksToBounds = false
-            return cell
             
+//            if dataItem.status == "pending"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+//            } else if dataItem.status == "rejected"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+//            }else if dataItem.status == "cancel"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+//            }else if dataItem.status == "accepted"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//            }else if dataItem.status == "confirmed"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9445464015, green: 0.1723524928, blue: 0.4548521042, alpha: 1)
+//            }else if dataItem.status == "processing"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+//            }else if dataItem.status == "completed_review"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//            }else if dataItem.status == "completed"{
+//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//            }
+            
+            if dataItem.status == "pending"{
+                        
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+            } else if dataItem.status == "rejected" || dataItem.status == "report"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                        
+                    }else if dataItem.status == "cancel"{
+                        
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                    }else if dataItem.status == "accepted"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+
+                    }else if dataItem.status == "confirmed"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                        
+                    }else if dataItem.status == "processing"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+                        
+                    }else if dataItem.status == "completed_review"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                        cell.lblBookingStatus.text = "Completed"
+                    }else if dataItem.status == "completed"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                    }else if dataItem.status == "payment_failed"{
+                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                        cell.lblBookingStatus.text = "Failed"
+                    }
+            
+            return cell
         }
     }
     
@@ -403,17 +434,12 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
         let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
         controller.hidesBottomBarWhenPushed = true
-        
         let bookingDict = self.arrayBookingList[indexPath.row]
-        
         controller.bookingID = bookingDict.id ?? 0
         navigationController?.pushViewController(controller, animated: true)
-        
     }
     
 }
@@ -434,31 +460,23 @@ extension BookingVC: BookingListModelViewDelegate {
                 self.arraySetBookingList.removeAll()
                 arraySetBookingList = response.map({$0})
                 print("the page number is arrayHomeArtistListLoadMore\(arraySetBookingList )")
-                
                 arrayBookingList = arrayBookingList + self.arraySetBookingList
-                
                 if arraySetBookingList.count == 0{
                     isLoadMore = true
                 }
-                
-                
             }
             print("the page number is arrayBookingList\(arrayBookingList )")
-            
-            
             if arrayBookingList.count > 0{
                 viewNoData.isHidden = true
                 BookingTableView.isHidden = false
             }else{
                 print("the page number is no data found\(arrayBookingList.count )")
-                
                 viewNoData.isHidden = false
                 BookingTableView.isHidden = true
             }
             self.BookingTableView.reloadData()
         }
     }
-    
     
     func errorAlert(errorTitle: String, errorMessage: String) {
         Helper.showOKAlert(onVC: self, title: errorTitle, message: errorMessage)
