@@ -95,45 +95,45 @@ class BookingDetailsModelView {
          let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
         print("the token is \(headerToken)")
         
-                       if Reachability.isConnectedToNetwork() {
-                        LoaderClass.shared.loadAnimation()
-
-                        ApiManeger.sharedInstance.callApiWithHeader(url: Api.bookinDetaildById, method: .post, param: param, header: headerToken) { (response, error) in
-                            print(response)
-                            LoaderClass.shared.stopAnimation()
-                                           if error == nil {
-                                               let result = response
-                                               if let status = result["status"] as? Bool {
-                                                   if status ==  true{
-        //
-                                                  
-                                                    
-                                                    
-                                                    let dictData = result["data"] as? [String:Any]
-                                                                              let userProfile = dictData?["user"] as? [String:Any]
-                                                                              self.detailsObject =    BookingDetailsModel.init(resposne: dictData ?? [:])
-                                                                              self.delegate?.bookingDetailsApiResponse(message: "Success", response: self.detailsObject, isError: false)
-                                                    
-                                                    
-//
- //self.delegate?.bookingListApiResponse(message: "", response: self.arrayObject, isError: false)
-                                                   }
-                                                   else{
-                                                   }
-                                               }
-                                               else {
-                                                   if let error_message = response["error"] as? [String:Any] {
-                                                    if (error_message["error_message"] as? String) != nil {
-                                                       }
-                                                   }
-                                               }
-                                           }
-                                           else {
-                                            self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
-                                           }
-                                       }
-
-                       }else{
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.bookinDetaildById, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            //
+                            
+                            
+                            
+                            let dictData = result["data"] as? [String:Any]
+                            let userProfile = dictData?["user"] as? [String:Any]
+                            self.detailsObject =    BookingDetailsModel.init(resposne: dictData ?? [:])
+                            self.delegate?.bookingDetailsApiResponse(message: "Success", response: self.detailsObject, isError: false)
+                            
+                            
+                            //
+                            //self.delegate?.bookingListApiResponse(message: "", response: self.arrayObject, isError: false)
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if (error_message["error_message"] as? String) != nil {
+                            }
+                        }
+                    }
+                }
+                else {
+                    self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
                         self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
                     }
  

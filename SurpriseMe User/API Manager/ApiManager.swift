@@ -114,6 +114,7 @@ struct Api {
     
     static let login                  = baseUrl + "login"
     static let Register               = baseUrl + "register"
+    static let AppleLogin             = baseUrl + "register/apple"
     static let update                 = baseUrl + "update"
     static let changePassword         = baseAuthUrl + "customer/change-password"
     static let resetPassword          = baseAuthUrl + "reset-password"
@@ -194,15 +195,9 @@ class ApiManeger : NSObject{
     
     
     func callApi(url:String,method:HTTPMethod,param:[String:Any],completion:@escaping ([String:Any],NSError?)->()){
-        
-        
-        
-        
-        
-        Alamofire.request(url, method: method, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+         Alamofire.request(url, method: method, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             if response.result.error?.localizedDescription != nil{
                 completion([:], (response.result.error?.localizedDescription as? NSError))
-                
                 return
             }
             if let result = response.result.value as? [String:Any]{

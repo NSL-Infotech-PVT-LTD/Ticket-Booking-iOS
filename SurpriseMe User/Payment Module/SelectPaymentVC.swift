@@ -23,55 +23,54 @@ class SelectPaymentVC: UIViewController {
     }
     
     func getCard() {
-              
-              let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-              
-              
-              if Reachability.isConnectedToNetwork() {
-                  LoaderClass.shared.loadAnimation()
-                  
-                  let dict = ["search":"","limit":"20"]
-                  
-                  ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
-                      print(response)
-                      LoaderClass.shared.stopAnimation()
-                      if error == nil {
-                          let result = response
-                          
-                          
-                          arrayCardListCommom.removeAll()
-                          if let status = result["status"] as? Bool {
-                              if status ==  true{
-                                  
-                                  
-                                  let dataDict = result["data"] as? [String : Any]
-                                  if let dataArray = dataDict?["data"] as? [[String : Any]]{
-                                      for index in dataArray{
-                                          print("the index value is \(index)")
-                                          let dataDict = GetCardModel.init(resposne: index)
-                                          arrayCardListCommom.append(dataDict)
-                                      }
-                                  }
-                              }
-                              else{
-                              }
-                          }
-                          else {
-                              if let error_message = response["error"] as? [String:Any] {
-                                  if (error_message["error_message"] as? String) != nil {
-                                  }
-                              }
-                          }
-                      }
-                      else {
-                          //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
-                      }
-                  }
-                  
-              }else{
-                  // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
-              }
-          }
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            
+            let dict = ["search":"","limit":"20"]
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    
+                    arrayCardListCommom.removeAll()
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            
+                            
+                            let dataDict = result["data"] as? [String : Any]
+                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                for index in dataArray{
+                                    print("the index value is \(index)")
+                                    let dataDict = GetCardModel.init(resposne: index)
+                                    arrayCardListCommom.append(dataDict)
+                                }
+                            }
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if (error_message["error_message"] as? String) != nil {
+                            }
+                        }
+                    }
+                }
+                else {
+                    //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+    }
     
 
     @IBAction func btnIdealAction(_ sender: UIButton) {
@@ -151,11 +150,12 @@ class SelectPaymentVC: UIViewController {
         if arrayCardListCommom.count > 0{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+            controller.isBookingDetails = true
             navigationController?.pushViewController(controller, animated: true)
         }else{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
-            
+            controller.isBookingDetails = true
             controller.isMoreCount = true
             
             navigationController?.pushViewController(controller, animated: true)

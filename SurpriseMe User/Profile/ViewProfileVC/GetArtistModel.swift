@@ -34,8 +34,9 @@ class GetArtistModel: NSObject {
 
     
     var category : [JSON]?
-
-
+    var converted_currency : String?
+    var converted_digital_price: Int?
+    var converted_live_price: Int?
 
 convenience init(resposne : [String:Any]) {
         self.init()
@@ -65,6 +66,11 @@ convenience init(resposne : [String:Any]) {
         social_link_youtube = json[ManageAddressModelKey.social_link_youtube].stringValue
     category = json[ManageAddressModelKey.category_id_details].array
     
+    converted_digital_price = json[ManageAddressModelKey.converted_digital_price].intValue
+    converted_live_price = json[ManageAddressModelKey.converted_live_price].intValue
+    converted_currency = json[ManageAddressModelKey.converted_currency].stringValue
+    
+    
    // categoryArtist = json[HomeScreenModelModelKey.category_id_details].array
     let categories = json["category_id_details"].arrayValue
            for indexValue in categories {
@@ -93,9 +99,9 @@ convenience init(resposne : [String:Any]) {
         static let category_id_details = "category_id_details"
         static let shows_video = "shows_video"
         static let ratingValue = "rating"
-
-
-        
+        static let converted_digital_price = "converted_digital_price"
+        static let converted_live_price = "converted_live_price"
+        static let converted_currency = "converted_currency"
 
     }
 

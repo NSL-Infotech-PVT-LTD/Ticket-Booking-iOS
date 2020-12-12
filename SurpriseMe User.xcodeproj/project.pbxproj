@@ -12,6 +12,7 @@
 		0DAD1BCC2559200B00AFA29A /* LanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAD1BCB2559200A00AFA29A /* LanguageVC.swift */; };
 		0DAD1BCE255933EC00AFA29A /* GetArtistDateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAD1BCD255933EC00AFA29A /* GetArtistDateList.swift */; };
 		0DAD1BD0255950E600AFA29A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DAD1BCF255950E500AFA29A /* GoogleService-Info.plist */; };
+		1868C0F125837C63005E0417 /* ChooseCurrencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1868C0F025837C63005E0417 /* ChooseCurrencyVC.swift */; };
 		61BD5B2F786B2C19D79141B4 /* Pods_SurpriseMe_User.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156C76C3EB7268A2E43496A2 /* Pods_SurpriseMe_User.framework */; };
 		830CDDDD251DB58B002B9752 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830CDDDC251DB58B002B9752 /* Extension + Date.swift */; };
 		830D4BAE251C6EF1002ABAC9 /* GetFreindListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */; };
@@ -172,6 +173,7 @@
 		0DAD1BCF255950E500AFA29A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DB6B2C1255960C40074DF6C /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		156C76C3EB7268A2E43496A2 /* Pods_SurpriseMe_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurpriseMe_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1868C0F025837C63005E0417 /* ChooseCurrencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCurrencyVC.swift; sourceTree = "<group>"; };
 		6B2097EC0D952BA2867A9735 /* Pods-SurpriseMe User.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurpriseMe User.debug.xcconfig"; path = "Target Support Files/Pods-SurpriseMe User/Pods-SurpriseMe User.debug.xcconfig"; sourceTree = "<group>"; };
 		830CDDDC251DB58B002B9752 /* Extension + Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
 		830D4BAD251C6EF1002ABAC9 /* GetFreindListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFreindListViewModel.swift; sourceTree = "<group>"; };
@@ -336,6 +338,14 @@
 				0D5D590D255BFFDF009D9623 /* Localizable.strings */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		1868C0EF25837C42005E0417 /* ChooseCurrencyVC */ = {
+			isa = PBXGroup;
+			children = (
+				1868C0F025837C63005E0417 /* ChooseCurrencyVC.swift */,
+			);
+			path = ChooseCurrencyVC;
 			sourceTree = "<group>";
 		};
 		4D3FE7FEEE2B59DA1C2D1565 /* Frameworks */ = {
@@ -688,6 +698,7 @@
 		83CDC2A924F8F9210020E302 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				1868C0EF25837C42005E0417 /* ChooseCurrencyVC */,
 				83511CE92514005E00E9C501 /* FilterArtistData */,
 				83B2F28924FBB3600041A762 /* NotificationVC */,
 				83CDC2AA24F8F93F0020E302 /* Dashboard.storyboard */,
@@ -997,6 +1008,7 @@
 				8391ACE524FD6A8D008C04D3 /* LoginViewModel.swift in Sources */,
 				833C8C33255E4C7E00C88430 /* SelectPayMentTypeVC.swift in Sources */,
 				833C8C32255E4C7E00C88430 /* SelectPaymentVC.swift in Sources */,
+				1868C0F125837C63005E0417 /* ChooseCurrencyVC.swift in Sources */,
 				8391ACDF24FD1AAE008C04D3 /* SignupViewModel.swift in Sources */,
 				8318DA6524FE250C004F16EF /* ManageAddressModel.swift in Sources */,
 				83B2F29324FC2CB40041A762 /* SelectAddressTypeVC.swift in Sources */,
@@ -1211,7 +1223,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMe UserDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
@@ -1236,7 +1248,7 @@
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMeRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";

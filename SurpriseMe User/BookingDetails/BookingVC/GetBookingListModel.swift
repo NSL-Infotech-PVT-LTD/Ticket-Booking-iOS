@@ -18,13 +18,11 @@ class GetBookingListModel: NSObject {
     var to_time: String?
     var image: String?
     var address: String?
-
     var id: Int?
-
     var dateInString: String?
     var type: String?
     var status: String?
-var artist_detail  : ArtistDetailModels?
+    var artist_detail  : ArtistDetailModels?
     var rate_detail  : RatedetailModels?
 
 

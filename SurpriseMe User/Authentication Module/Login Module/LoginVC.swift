@@ -186,8 +186,8 @@ extension LoginVC: LoginViewModelProtocol {
             print("the user id is \(useriD?["id"] ?? 0)")
             UserDefaults.standard.set(useriD?["id"] ?? 0, forKey:UserdefaultKeys.userID )
             UserDefaults.standard.set(useriD?["name"] ?? "", forKey:UserdefaultKeys.userName )
-
-
+            
+            UserDefaults.standard.set(useriD?["currency"] ?? "", forKey:UserdefaultKeys.userCurrency )
             
             self.stopAnimating()
             self.goToDashBoard()

@@ -37,6 +37,17 @@ class BookingVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         pageInt = 1
         if idealPayment == true && idealPaymentAppDelegate == true{
+            
+        }else if idealPayment == true && idealPaymentAppDelegate == false{
+            let storyboard1 = UIStoryboard(name: "BookingDetail", bundle: nil)
+            let controller1 = storyboard1.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
+//            let navController = UINavigationController(rootViewController: controller1)
+            controller1.bookingID = bookingPaymentID ?? 0
+            idealPaymentAppDelegate = true
+            idealPayment = false
+//            navController.modalPresentationStyle = .overCurrentContext
+            controller1.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(controller1, animated: true)
         }else{
         self.hideTable()
         }
@@ -277,6 +288,7 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
             let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
             cell.lblDate.text = localTime
+            cell.lblOrderID.text = "#\(dataItem.id ?? 0)"
             cell.lblReview.text = dataItem.rate_detail?.review ?? ""
             cell.viewCosmo.isUserInteractionEnabled = false
             cell.viewCosmo.rating = Double(dataItem.rate_detail?.rate ?? 0)
@@ -308,27 +320,21 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             cell.viewBookingBorderDash.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
             cell.viewBookingBorderDash.layer.masksToBounds = false
             if dataItem.status == "pending"{
-                        
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+                
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
             } else if dataItem.status == "rejected" || dataItem.status == "report"{
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                        
                     }else if dataItem.status == "cancel"{
-                        
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
                     }else if dataItem.status == "accepted"{
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-
                     }else if dataItem.status == "confirmed"{
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                        
                     }else if dataItem.status == "processing"{
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-                        
                     }else if dataItem.status == "completed_review"{
                         cell.lblBookingStatus.text = "Completed"
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                        
                     }else if dataItem.status == "completed"{
                         cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
                     }else if dataItem.status == "payment_failed"{
@@ -342,7 +348,7 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
             cell.btnseeAllDetails.tag = indexPath.row
             cell.lblName.text =  dataItem.artist_detail?.name ?? ""
-            
+            cell.lblOrderID.text = "#\(dataItem.id ?? 0)"
             //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
             let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
             cell.lblDate.text = localTime
@@ -359,9 +365,9 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             if dataItem.type == "live"{
-            cell.lblSkill.text = "In-Person"
+                cell.lblSkill.text = "In-Person"
             }else{
-            cell.lblSkill.text = "Virtual"
+                cell.lblSkill.text = "Virtual"
             }
             cell.viewBookingBorderDash.layer.cornerRadius = 8
             cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
@@ -371,52 +377,34 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             cell.viewBookingBorderDash.layer.shadowOpacity = 0.5
             cell.viewBookingBorderDash.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
             cell.viewBookingBorderDash.layer.masksToBounds = false
-            
-//            if dataItem.status == "pending"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-//            } else if dataItem.status == "rejected"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-//            }else if dataItem.status == "cancel"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-//            }else if dataItem.status == "accepted"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-//            }else if dataItem.status == "confirmed"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9445464015, green: 0.1723524928, blue: 0.4548521042, alpha: 1)
-//            }else if dataItem.status == "processing"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-//            }else if dataItem.status == "completed_review"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-//            }else if dataItem.status == "completed"{
-//            cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-//            }
-            
+           
             if dataItem.status == "pending"{
-                        
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+                
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
             } else if dataItem.status == "rejected" || dataItem.status == "report"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                        
-                    }else if dataItem.status == "cancel"{
-                        
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                    }else if dataItem.status == "accepted"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-
-                    }else if dataItem.status == "confirmed"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                        
-                    }else if dataItem.status == "processing"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-                        
-                    }else if dataItem.status == "completed_review"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                        cell.lblBookingStatus.text = "Completed"
-                    }else if dataItem.status == "completed"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                    }else if dataItem.status == "payment_failed"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                        cell.lblBookingStatus.text = "Failed"
-                    }
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                
+            }else if dataItem.status == "cancel"{
+                
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+            }else if dataItem.status == "accepted"{
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                
+            }else if dataItem.status == "confirmed"{
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                
+            }else if dataItem.status == "processing"{
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+                
+            }else if dataItem.status == "completed_review"{
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+                cell.lblBookingStatus.text = "Completed"
+            }else if dataItem.status == "completed"{
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+            }else if dataItem.status == "payment_failed"{
+                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+                cell.lblBookingStatus.text = "Failed"
+            }
             
             return cell
         }

@@ -29,7 +29,7 @@ class BookingDetailsModel: NSObject {
     var artist_detail  : ArtistBookingDetailsData?
     var rate_detail  : RatedDetailsData?
     var reportReason  : ReportResonsArtist?
-
+    var customer_currency : String?
 
 
   convenience init(resposne : [String:Any]) {
@@ -43,6 +43,7 @@ class BookingDetailsModel: NSObject {
         type = json[GetBookingListModelModelModelKey.type].stringValue
         status = json[GetBookingListModelModelModelKey.status].stringValue
     address = json[GetBookingListModelModelModelKey.address].stringValue
+    customer_currency = json[GetBookingListModelModelModelKey.customer_currency].stringValue
 
     
     
@@ -72,6 +73,7 @@ class BookingDetailsModel: NSObject {
         static let address = "address"
         static let otp = "otp"
         static let price = "price"
+        static let customer_currency = "customer_currency"
 
   }
 }
@@ -104,7 +106,9 @@ class ArtistBookingDetailsData: NSObject {
     var name                    : String?
     var imageProfile            : String?
     var currency            : String?
-
+    var converted_currency : String?
+    var converted_digital_price: Int?
+    var converted_live_price: Int?
     
     
     convenience init(resposne : [String:Any]) {
@@ -114,6 +118,9 @@ class ArtistBookingDetailsData: NSObject {
         name                = json[userModelKey.name].stringValue
         imageProfile        = json[userModelKey.imageProfile].stringValue
         currency = json[userModelKey.currency].stringValue
+        converted_digital_price = json[userModelKey.converted_digital_price].intValue
+        converted_live_price = json[userModelKey.converted_live_price].intValue
+        converted_currency = json[userModelKey.converted_currency].stringValue
     }
     
     struct userModelKey {
@@ -122,7 +129,9 @@ class ArtistBookingDetailsData: NSObject {
         static let name                  = "name"
         static let imageProfile          = "image"
         static let currency          = "currency"
-
+        static let converted_digital_price = "converted_digital_price"
+        static let converted_live_price = "converted_live_price"
+        static let converted_currency = "converted_currency"
         
     }
 }

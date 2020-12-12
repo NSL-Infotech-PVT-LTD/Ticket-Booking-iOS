@@ -31,8 +31,13 @@ class BookingDetailVC: UIViewController {
     @IBOutlet weak var viewList: TagListView!
     @IBOutlet weak var chatTopOutlet: NSLayoutConstraint!
    @IBOutlet weak var lblRatingArtist: UILabel!
+    
+    
+    
+    @IBOutlet weak var btnCancel: UIButton!
+    
     @IBOutlet weak var viewContainerRating: UIView!
-   @IBOutlet weak var lblPaymentStatus: UILabel!
+    @IBOutlet weak var lblPaymentStatus: UILabel!
     @IBOutlet weak var viewRating: UILabel!
     @IBOutlet weak var viewCosmo: CosmosView!
     @IBOutlet weak var ratingDesc: UITextView!
@@ -43,7 +48,7 @@ class BookingDetailVC: UIViewController {
     @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var lblOTP: UILabel!
     @IBOutlet weak var lblShowType: UILabel!
-   @IBOutlet weak var reportReasonLbl: UILabel!
+    @IBOutlet weak var reportReasonLbl: UILabel!
     @IBOutlet weak var descriptionTxt: UITextView!
     @IBOutlet weak var viewOtherResons: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
@@ -90,9 +95,11 @@ class BookingDetailVC: UIViewController {
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.viewRatingAndReview.roundCorners(corners: [.topLeft,.topRight], radius: 20.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.getCard()
         // self.viewHeader.addBottomShadow()
         self.setAllData()
         self.viewOtp.isHidden = true
@@ -103,19 +110,10 @@ class BookingDetailVC: UIViewController {
         self.reportReasonLbl.isHidden = true
         self.btnReadMore.isHidden = true
         self.viewRatingAndReview.isHidden = true
-
-        
-        
         self.pickerView.reloadAllComponents()
-        
-//        let nc = NotificationCenter.default
-//        nc.addObserver(self, selector: #selector(userLoggedIn), name: Notification.Name("BookingDetail"), object: nil)
-        
-        
-        
+
         let nc1 = NotificationCenter.default
         nc1.addObserver(self, selector: #selector(userLoggedIn), name: Notification.Name("BookingNotification"), object: nil)
-        
     }
     
     
@@ -241,9 +239,101 @@ class BookingDetailVC: UIViewController {
         
     }
     
+    func getCard() {
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            
+            let dict = ["search":"","limit":"20"]
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
+                print(response)
+//                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    
+                    arrayCardListCommom.removeAll()
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            
+                            
+                            let dataDict = result["data"] as? [String : Any]
+                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                for index in dataArray{
+                                    print("the index value is \(index)")
+                                    let dataDict = GetCardModel.init(resposne: index)
+                                    arrayCardListCommom.append(dataDict)
+                                }
+                            }
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if (error_message["error_message"] as? String) != nil {
+                            }
+                        }
+                    }
+                }
+                else {
+                    //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+    }
+    
+    
     func payNowAction()  {
         
-        
+        let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
+        if currency != "EUR"{
+            if arrayCardListCommom.count > 0{
+                let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+                controller.isBookingDetails = true
+                if  isComingFrom == "NotificationCame"{
+                    
+                    print("the id is \(bookingIDNotification)")
+                    bookingPaymentID = userArtistIDBooking as? Int
+                }else  if isComingFrom == "Notification"{
+                    
+                    bookingPaymentID = bookingID
+                }
+                else{
+                    bookingPaymentID = bookingID
+                }
+                //                bookingID = dictAddress?["id"] as? Int
+                //                bookingPaymentID = dictAddress?["id"] as? Int
+                navigationController?.pushViewController(controller, animated: true)
+            }else{
+                let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+                controller.isBookingDetails = true
+                if  isComingFrom == "NotificationCame"{
+                    
+                    print("the id is \(bookingIDNotification)")
+                    bookingPaymentID = userArtistIDBooking as? Int
+                }else  if isComingFrom == "Notification"{
+                    
+                    bookingPaymentID = bookingID
+                }
+                else{
+                    bookingPaymentID = bookingID
+                }
+                //                bookingID = dictAddress?["id"] as? Int
+                //                bookingPaymentID = dictAddress?["id"] as? Int
+                controller.isMoreCount = true
+                
+                navigationController?.pushViewController(controller, animated: true)
+            }
+        }else{
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
         let transition = CATransition()
@@ -266,7 +356,7 @@ class BookingDetailVC: UIViewController {
         controller.hidesBottomBarWhenPushed = true
         navigationController?.view.layer.add(transition, forKey: kCATransition)
         navigationController?.pushViewController(controller, animated: false)
-        
+        }
     }
     
     
@@ -449,6 +539,80 @@ class BookingDetailVC: UIViewController {
     @IBAction func btnCrossHideRatingView(_ sender: UIButton) {
         self.viewRatingAndReview.isHidden = true
                self.viewContainer.isHidden = true
+//        self.blurView.isHidden = true
+//        self.viewRating.isHidden = true
+//        self.viewBlurContainerView.isHidden = true
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+        transition.type = CATransitionType(rawValue: "flip")
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromBottom
+        viewRatingAndReview.layer.removeAnimation(forKey: kCATransition)
+        viewRatingAndReview.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    
+    
+    
+    @IBAction func btnCancelAction(_ sender: UIButton) {
+        let alert = UIAlertController(title: "If you click yes your booking will be canceled from on hold and other customer can book same slot.", message: "", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "No", style: .default) { (alert) in
+
+        }
+        let confirm = UIAlertAction(title: "Yes", style: .destructive) { [self] (alert) in
+            let param = ["booking_id":bookingID , "status":"cancel"] as [String : Any]
+            LoaderClass.shared.loadAnimation()
+            self.callApiDeletebookingSlot(param: param)
+        }
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+
+        self.present(alert,animated: true)
+        
+    }
+    func callApiDeletebookingSlot(param: [String: Any]){
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        
+        if Reachability.isConnectedToNetwork() {
+            // LoaderClass.shared.loadAnimation()
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+//                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            self.setAllData()
+//                           let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+//                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "DashboardTabBarController") as! DashboardTabBarController
+//
+//                            self.navigationController?.pushViewController(controller1, animated: true)
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        else{
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                        }
+                    }
+                    else {
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    }
+                }
+                else {
+                    //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                }
+            }
+            
+        }else{
+            Helper.showOKAlert(onVC: self, title: "Alert", message: "Please check your internet connection")
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
         
     }
     
@@ -480,6 +644,7 @@ class BookingDetailVC: UIViewController {
         let urlImage = URL(string: urlStringaaProfile)!
         imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
         imgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        self.btnCancel.isHidden = true
         
         dictProfile = dataItem
         if dataItem?.status == "completed_review"{
@@ -551,7 +716,7 @@ class BookingDetailVC: UIViewController {
             self.reportReasonLbl.text = dataItem?.rate_detail?.review ?? ""
 
             self.lblReviewRating.text = dataItem?.rate_detail?.review ?? ""
-            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             
             self.lblRatingArtist.text = "\(dataItem?.rate_detail?.rate ?? 0)"
             
@@ -722,6 +887,7 @@ class BookingDetailVC: UIViewController {
         }else if dataItem?.status == "accepted"{
             self.viewContainerRating.isHidden = true
             
+            
             self.btnStatus.isHidden = false
             self.btnChatTopBar.isHidden = false
             lblPaymentStatus.text = "Not paid"
@@ -845,60 +1011,60 @@ class BookingDetailVC: UIViewController {
         }else if dataItem?.status == "confirmed"{
             self.btnStatus.isHidden = false
             self.viewContainerRating.isHidden = true
-                    if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, *) {
                 if UIDevice.current.hasNotch {
                     //... consider notch
-                  
-                               if dataItem?.type == "live"{
-                                         btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                         viewHeightLocation.constant = 55
-                                         lblLocationValue.isHidden = false
-                                   thediCornerImage.constant = 145
-                              }else{
-                                         viewHeightLocation.constant = 0
-                                         lblLocationValue.isHidden = true
-                                         btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                                   thediCornerImage.constant = 195
-                                   
-                                        }
-
-                } else {
-                  
-                     if dataItem?.type == "live"{
-                               btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                               viewHeightLocation.constant = 55
-                               lblLocationValue.isHidden = false
-                         thediCornerImage.constant = 30
+                    
+                    if dataItem?.type == "live"{
+                        btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                        viewHeightLocation.constant = 55
+                        lblLocationValue.isHidden = false
+                        thediCornerImage.constant = 145
                     }else{
-                               viewHeightLocation.constant = 0
-                               lblLocationValue.isHidden = true
-                               btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                         thediCornerImage.constant = 120
-                         
-                              }
-
+                        viewHeightLocation.constant = 0
+                        lblLocationValue.isHidden = true
+                        btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                        thediCornerImage.constant = 195
+                        
+                    }
+                    
+                } else {
+                    
+                    if dataItem?.type == "live"{
+                        btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                        viewHeightLocation.constant = 55
+                        lblLocationValue.isHidden = false
+                        thediCornerImage.constant = 30
+                    }else{
+                        viewHeightLocation.constant = 0
+                        lblLocationValue.isHidden = true
+                        btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                        thediCornerImage.constant = 120
+                        
+                    }
+                    
                 }
             } else {
                 // Fallback on earlier versions
                 
-                           if dataItem?.type == "live"{
-                                     btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                     viewHeightLocation.constant = 55
-                                     lblLocationValue.isHidden = false
-                               thediCornerImage.constant = 30
-                          }else{
-                                     viewHeightLocation.constant = 0
-                                     lblLocationValue.isHidden = true
-                                     btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                               thediCornerImage.constant = 120
-                               
-                                    }
+                if dataItem?.type == "live"{
+                    btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                    viewHeightLocation.constant = 55
+                    lblLocationValue.isHidden = false
+                    thediCornerImage.constant = 30
+                }else{
+                    viewHeightLocation.constant = 0
+                    lblLocationValue.isHidden = true
+                    btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                    thediCornerImage.constant = 120
+                    
+                }
             }
             
-
+            
             
             self.btnChatTopBar.isHidden = false
-            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
             if returnValue == true{
@@ -915,7 +1081,7 @@ class BookingDetailVC: UIViewController {
                        self.btnStatus.isHidden = false
                        self.btnChatTopBar.isHidden = false
             
-            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.btnStatus.backgroundColor = UIColor.white
             self.btnStatus.setTitleColor(.black, for: .normal)
             
@@ -1028,7 +1194,7 @@ class BookingDetailVC: UIViewController {
 
             
             self.btnChatTopBar.isHidden = true
-            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.btnStatus.setTitle("You artist completed his performance", for: .normal)
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
@@ -1036,102 +1202,106 @@ class BookingDetailVC: UIViewController {
         }else if dataItem?.status == "report"{
             cosmoViewRating.isHidden = true
             lblReviewTitleHeader.text = "Report"
-             
+            
             
             if dataItem?.reportReason?.report == "denyied"{
                 self.btnReadMore.isHidden = true
-
+                
                 
             }else if dataItem?.reportReason?.report == "unreachable"{
                 self.btnReadMore.isHidden = true
-
+                
                 
             }else if dataItem?.reportReason?.report == "denyied"{
                 self.btnReadMore.isHidden = true
-
+                
+                
+            }else if dataItem?.reportReason?.report == "unable to call"{
+                self.btnReadMore.isHidden = true
+                
                 
             }else{
                 self.btnReadMore.isHidden = false
-
+                
             }
             
-
+            
             reportImageICon.image = UIImage.init(named: "download-1")
-                      
-                                 if #available(iOS 11.0, *) {
-                          if UIDevice.current.hasNotch {
-                              //... consider notch
-                            
-                                         if dataItem?.type == "live"{
-                                                   btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                                   viewHeightLocation.constant = 55
-                                                   lblLocationValue.isHidden = false
-                                             thediCornerImage.constant = 30
-                                        }else{
-                                                   viewHeightLocation.constant = 0
-                                                   lblLocationValue.isHidden = true
-                                                   btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                                             thediCornerImage.constant = 145
-                                             
-                                                  }
-
-                          } else {
-                            
-                               if dataItem?.type == "live"{
-                                         btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                         viewHeightLocation.constant = 55
-                                         lblLocationValue.isHidden = false
-                                   thediCornerImage.constant = 10
-                              }else{
-                                         viewHeightLocation.constant = 0
-                                         lblLocationValue.isHidden = true
-                                         btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                                   thediCornerImage.constant = 60
-                                   
-                                        }
-
-                          }
-                      } else {
-                          // Fallback on earlier versions
-                          
-                                     if dataItem?.type == "live"{
-                                               btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                               viewHeightLocation.constant = 55
-                                               lblLocationValue.isHidden = false
-                                         thediCornerImage.constant = 10
-                                    }else{
-                                               viewHeightLocation.constant = 0
-                                               lblLocationValue.isHidden = true
-                                               btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                                         thediCornerImage.constant = 120
-                                         
-                                              }
-                      }
-                      
-
-                      
-                      self.viewContainerRating.isHidden = false
-                      viewHeaderNameHeight.constant = 77
-                      self.btnStatus.isHidden = true
-                      self.btnChatTopBar.isHidden = true
-                      self.reportReasonLbl.isHidden = false
+            
+            if #available(iOS 11.0, *) {
+                if UIDevice.current.hasNotch {
+                    //... consider notch
+                    
+                    if dataItem?.type == "live"{
+                        btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                        viewHeightLocation.constant = 55
+                        lblLocationValue.isHidden = false
+                        thediCornerImage.constant = 30
+                    }else{
+                        viewHeightLocation.constant = 0
+                        lblLocationValue.isHidden = true
+                        btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                        thediCornerImage.constant = 145
+                        
+                    }
+                    
+                } else {
+                    
+                    if dataItem?.type == "live"{
+                        btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                        viewHeightLocation.constant = 55
+                        lblLocationValue.isHidden = false
+                        thediCornerImage.constant = 10
+                    }else{
+                        viewHeightLocation.constant = 0
+                        lblLocationValue.isHidden = true
+                        btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                        thediCornerImage.constant = 60
+                        
+                    }
+                    
+                }
+            } else {
+                // Fallback on earlier versions
+                
+                if dataItem?.type == "live"{
+                    btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                    viewHeightLocation.constant = 55
+                    lblLocationValue.isHidden = false
+                    thediCornerImage.constant = 10
+                }else{
+                    viewHeightLocation.constant = 0
+                    lblLocationValue.isHidden = true
+                    btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                    thediCornerImage.constant = 60
+                    
+                }
+            }
+            
+            
+            
+            self.viewContainerRating.isHidden = false
+            viewHeaderNameHeight.constant = 77
+            self.btnStatus.isHidden = true
+            self.btnChatTopBar.isHidden = true
+            self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = dataItem?.reportReason?.report ?? ""
-
-                      self.lblReviewRating.text = dataItem?.reportReason?.report ?? ""
-                      lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            
+            self.lblReviewRating.text = dataItem?.reportReason?.report ?? ""
+            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.lblRatingArtist.isHidden = true
-                      self.lblRatingArtist.text = "\(dataItem?.rate_detail?.rate ?? 0)"
-                      
-                      //            chatTopOutlet.constant = 160
-                      self.viewCosmo.isHidden = false
-                      //            self.ratingDesc.isHidden = false
-                      self.viewCosmo.isUserInteractionEnabled = false
-                      //            self.ratingDesc.isUserInteractionEnabled = false
-                      //            self.ratingDesc.text = dataItem?.rate_detail?.review ?? ""
-                      self.viewCosmo.rating = Double(dataItem?.rate_detail?.rate ?? 0)
-                      self.cosmoViewRating.isUserInteractionEnabled = false
-
-                      self.cosmoViewRating.rating = Double(dataItem?.rate_detail?.rate ?? 0)
+            self.lblRatingArtist.text = "\(dataItem?.rate_detail?.rate ?? 0)"
+            
+            //            chatTopOutlet.constant = 160
+            self.viewCosmo.isHidden = false
+            //            self.ratingDesc.isHidden = false
+            self.viewCosmo.isUserInteractionEnabled = false
+            //            self.ratingDesc.isUserInteractionEnabled = false
+            //            self.ratingDesc.text = dataItem?.rate_detail?.review ?? ""
+            self.viewCosmo.rating = Double(dataItem?.rate_detail?.rate ?? 0)
+            self.cosmoViewRating.isUserInteractionEnabled = false
+            
+            self.cosmoViewRating.rating = Double(dataItem?.rate_detail?.rate ?? 0)
             
             
             
@@ -1139,64 +1309,64 @@ class BookingDetailVC: UIViewController {
             
             
             self.btnStatus.isHidden = true
-                       if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, *) {
                 if UIDevice.current.hasNotch {
                     //... consider notch
-                  
-                               if dataItem?.type == "live"{
-                                         btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                         viewHeightLocation.constant = 55
-                                         lblLocationValue.isHidden = false
-                                   thediCornerImage.constant = 145
-                              }else{
-                                         viewHeightLocation.constant = 0
-                                         lblLocationValue.isHidden = true
-                                         btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                                   thediCornerImage.constant = 195
-                                   
-                                        }
-
-                } else {
-                  
-                     if dataItem?.type == "live"{
-                               btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                               viewHeightLocation.constant = 55
-                               lblLocationValue.isHidden = false
-                         thediCornerImage.constant = 10
+                    
+                    if dataItem?.type == "live"{
+                        btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                        viewHeightLocation.constant = 55
+                        lblLocationValue.isHidden = false
+                        thediCornerImage.constant = 145
                     }else{
-                               viewHeightLocation.constant = 0
-                               lblLocationValue.isHidden = true
-                               btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                         thediCornerImage.constant = 120
-                         
-                              }
-
+                        viewHeightLocation.constant = 0
+                        lblLocationValue.isHidden = true
+                        btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                        thediCornerImage.constant = 195
+                    }
+                } else {
+                    
+                    if dataItem?.type == "live"{
+                        btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                        viewHeightLocation.constant = 55
+                        lblLocationValue.isHidden = false
+                        thediCornerImage.constant = 10
+                    }else{
+                        viewHeightLocation.constant = 0
+                        lblLocationValue.isHidden = true
+                        btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                        thediCornerImage.constant = 60
+                        
+                    }
                 }
             } else {
                 // Fallback on earlier versions
                 
-                           if dataItem?.type == "live"{
-                                     btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
-                                     viewHeightLocation.constant = 55
-                                     lblLocationValue.isHidden = false
-                               thediCornerImage.constant = 10
-                          }else{
-                                     viewHeightLocation.constant = 0
-                                     lblLocationValue.isHidden = true
-                                     btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                               thediCornerImage.constant = 120
-                               
-                                    }
+                if dataItem?.type == "live"{
+                    btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
+                    viewHeightLocation.constant = 55
+                    lblLocationValue.isHidden = false
+                    thediCornerImage.constant = 10
+                }else{
+                    viewHeightLocation.constant = 0
+                    lblLocationValue.isHidden = true
+                    btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                    thediCornerImage.constant = 60
+                    
+                }
             }
             
-
+            
             self.viewContainerRating.isHidden = true
-            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.artist_detail?.currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
+            lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.btnChatTopBar.isHidden = true
             self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = "Reason:- \(dataItem?.reportReason?.report ?? "")"
         }else if dataItem?.status == "payment_failed"{
             self.viewContainerRating.isHidden = true
+            self.btnCancel.isHidden = false
+            
+
                      if #available(iOS 11.0, *) {
                 if UIDevice.current.hasNotch {
                     //... consider notch
@@ -1242,7 +1412,7 @@ class BookingDetailVC: UIViewController {
                                      viewHeightLocation.constant = 0
                                      lblLocationValue.isHidden = true
                                      btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                               thediCornerImage.constant = 120
+                               thediCornerImage.constant = 60
                                
                                     }
             }
@@ -1251,11 +1421,12 @@ class BookingDetailVC: UIViewController {
             
             self.btnStatus.isHidden = false
             self.btnChatTopBar.isHidden = false
-            lblPaymentStatus.text = "Not paid"
+            lblPaymentStatus.text =  "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.btnStatus.setTitle("Pay Now", for: .normal)
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
         }
+        LoaderClass.shared.stopAnimation()
     }
 }
 

@@ -34,7 +34,6 @@ class ProfileVC: UIViewController {
     var picker: UIImagePickerController = UIImagePickerController()
     var isUpdateProfile = Bool()
     
-    
     //MARK:- View's Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,14 +81,6 @@ class ProfileVC: UIViewController {
         let alert = UIAlertController(title: "Alert", message: "Do you want to logout?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
             self.objectViewModel.logout()
-//            let app = UIApplication.shared.delegate as! UIApplication
-//
-//            app.applicationIconBadgeNumber = 0
-//            app.can
-            
-//            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-
-            
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -238,6 +229,8 @@ extension ProfileVC: ProfileViewModelProtocol {
         }else{
             UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
             UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
+            UserDefaults.standard.removeObject(forKey: UserdefaultKeys.userCurrency)
+            UserDefaults.standard.setValue("", forKey: UserdefaultKeys.userCurrency)
             UserDefaults.standard.set(false, forKey: UserdefaultKeys.isLogin)
             LoaderClass.shared.stopAnimation()
             showTypeTrueOrFalse = false
@@ -246,7 +239,6 @@ extension ProfileVC: ProfileViewModelProtocol {
             center.removeAllPendingNotificationRequests() 
             self.goToLogin()
         }
-        
     }
     
     func getUpdateProfileApiResponse(message: String , isError : Bool){

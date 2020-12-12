@@ -90,7 +90,7 @@ class SignupVC: UIViewController {
             let deviceToken = UserDefaults.standard.value(forKey: "device_token")
 
             param = [StringFile.Name:tfUserName.text! , StringFile.Email : tfEmail.text! , StringFile.Password : tfPassword.text! , StringFile.device_type:StringFile.iOS,StringFile.device_token:deviceToken ?? "","lang":"en"]
-                         viewModelObject.getParamForSignUp(param: param)
+            viewModelObject.getParamForSignUp(param: param, url: Api.Register)
                }
         
         
@@ -106,9 +106,7 @@ class SignupVC: UIViewController {
 //Error handling Signup Api Here:-
 extension SignupVC: SignUpViewModelProtocol {
     func signupApiResponse(message: String, response: [String : Any], isError: Bool) {
-      
-
-        LoaderClass.shared.stopAnimation()
+      LoaderClass.shared.stopAnimation()
         if isError == true{
             Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: message, btnOkTitle: StringFile.OK) {
             }

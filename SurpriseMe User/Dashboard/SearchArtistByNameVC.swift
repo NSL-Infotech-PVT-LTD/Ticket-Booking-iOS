@@ -128,9 +128,9 @@ extension SearchArtistByNameVC :UITableViewDataSource,UITableViewDelegate{
         }
         cell.lblDescription.text = dataItem.descriptionValue ?? ""
         if whicShowTypeDigital == false{
-            cell.lblPrice.text = "\(dataItem.currency ?? "")" + " " + "\(dataItem.digitalPrice ?? 0)" + " / " + "hr"
+            cell.lblPrice.text = "\(dataItem.converted_currency ?? "")" + " " + "\(dataItem.converted_digital_price ?? 0)" + " / " + "hr"
         }else{
-            cell.lblPrice.text =  "\(dataItem.currency ?? "")" + " " + "\(dataItem.livePrice ?? 0)" + " / " + "hr"
+            cell.lblPrice.text =  "\(dataItem.converted_currency ?? "")" + " " + "\(dataItem.converted_live_price ?? 0)" + " / " + "hr"
         }
         
         if dataItem.rate_detail.count > 0{

@@ -14,20 +14,21 @@ class GetProfileModel: NSObject {
     var email: String?
     var name: String?
     var image: String?
-  
+    var currency : String?
     convenience init(resposne : [String:Any]) {
         self.init()
         let json = JSON(resposne)
         email = json[ManageAddressModelKey.email].stringValue
         name = json[ManageAddressModelKey.name].stringValue
         image = json[ManageAddressModelKey.image].stringValue
-     
+        currency = json[ManageAddressModelKey.currency].stringValue
     }
     
     struct ManageAddressModelKey {
         static let email = "email"
         static let name = "name"
         static let image = "image"
+        static let currency = "currency"
     }
     
 }

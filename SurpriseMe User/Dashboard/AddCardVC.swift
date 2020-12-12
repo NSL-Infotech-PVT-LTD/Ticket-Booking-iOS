@@ -27,7 +27,7 @@ class AddCardVC: UIViewController {
     var year = String()
     var isMoreCount = Bool()
     var isPaymenrt = Bool()
-    
+    var isBookingDetails = false
     
     
     override func viewDidLoad() {
@@ -78,6 +78,7 @@ class AddCardVC: UIViewController {
             
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
                 print(response)
+                self.dismiss(animated: true, completion: nil)
                 LoaderClass.shared.stopAnimation()
                 if error == nil {
                     let result = response
@@ -87,15 +88,20 @@ class AddCardVC: UIViewController {
                             let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
                             let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
                             
-                            
-                            
-                           self.navigationController?.pushViewController(controller1, animated: true)
+                            self.navigationController?.pushViewController(controller1, animated: true)
                             self.dismiss(animated: true, completion: nil)
-                            
-                            
-                            
+   
                         }
                         else{
+//                            if let error_message = response["error"] as? String {
+//                                Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
+//                            }
+                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                            idealPaymentFailed = true
+                            self.navigationController?.pushViewController(controller1, animated: true)
+                            
+                            
                         }
                     }
                     else {
@@ -178,7 +184,47 @@ class AddCardVC: UIViewController {
         
         
     }
-    
+    func callApiDeletebookingSlot(param: [String: Any]){
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        
+        if Reachability.isConnectedToNetwork() {
+            // LoaderClass.shared.loadAnimation()
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                           let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "DashboardTabBarController") as! DashboardTabBarController
+                            
+                            self.navigationController?.pushViewController(controller1, animated: true)
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        else{
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                        }
+                    }
+                    else {
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    }
+                }
+                else {
+                    //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                }
+            }
+            
+        }else{
+            Helper.showOKAlert(onVC: self, title: "Alert", message: "Please check your internet connection")
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+        
+    }
     
     func addCardApi(token : String)  {
         print("the token is \(token)")
@@ -215,14 +261,11 @@ class AddCardVC: UIViewController {
                                 let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
                                 self.navigationController?.pushViewController(controller, animated: true)
                             }
-                            
-                            
-                            
-                            // self.back()
-                            
-                            
                         }
                         else{
+                            if let error_message = response["error"] as? String {
+                                Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
+                            }
                         }
                     }
                     else {
@@ -245,7 +288,21 @@ class AddCardVC: UIViewController {
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
+        if isBookingDetails == true{
         self.back()
+        }else{
+        let alert = UIAlertController(title: "If you click yes your booking will be canceled from on hold and other customer can book same slot.", message: "", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "No", style: .default) { (alert) in
+        }
+        let confirm = UIAlertAction(title: "Yes", style: .destructive) { (alert) in
+            let param = ["booking_id":bookingPaymentID ?? 0 , "status":"cancel"] as [String : Any]
+            LoaderClass.shared.loadAnimation()
+            self.callApiDeletebookingSlot(param: param)
+        }
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        self.present(alert,animated: true)
+        }
     }
     
     

@@ -24,13 +24,13 @@ class SignUpViewModel {
     var delegate: SignUpViewModelProtocol?
     
     //MARK:- Method for accepting param -
-    func getParamForSignUp(param: [String: Any]){
-        self.getSignupData(param: param)
+    func getParamForSignUp(param: [String: Any],url:String){
+        self.getSignupData(param: param, url: url)
     }
     
-    func getSignupData(param: [String: Any]) {
+    func getSignupData(param: [String: Any],url : String) {
            if Reachability.isConnectedToNetwork() {
-               ApiManeger.sharedInstance.callApi(url: Api.Register, method: .post, param: param) { [weak self] (response, error)  in
+               ApiManeger.sharedInstance.callApi(url: url, method: .post, param: param) { [weak self] (response, error)  in
                    print(response)
                    if error == nil {
                        let result = response

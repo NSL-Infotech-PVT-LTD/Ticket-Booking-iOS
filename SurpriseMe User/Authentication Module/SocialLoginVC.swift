@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKLoginKit
+import AuthenticationServices
 
 class SocialLoginVC: UIViewController {
     
@@ -47,6 +48,16 @@ class SocialLoginVC: UIViewController {
         self.lblSignupWithFacebook.text = "signup_with_facebook".localized()
         self.lblSignupWithApple.text = "signup_with_apple".localized()
         self.lblBackToLogin.text = "back_to_login".localized()
+        
+        if #available(iOS 13, *) {
+            self.viewApple.isHidden = false
+            self.viewApple.isUserInteractionEnabled = true
+            let tapviewApple = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAppleLogin(_:)))
+            viewApple.addGestureRecognizer(tapviewApple)
+        }else{
+            self.viewApple.isHidden = true
+            self.viewApple.isUserInteractionEnabled = false
+        }
     }
     
     //MARK:- Initial Setup Function -
@@ -71,6 +82,8 @@ class SocialLoginVC: UIViewController {
         let tapviewFacebook = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewFacebook(_:)))
         viewFacebook.addGestureRecognizer(tapviewFacebook)
         
+        
+        
         let tapviewEmail = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewEmail(_:)))
         viewSignWithEmail.addGestureRecognizer(tapviewEmail)
         
@@ -78,6 +91,7 @@ class SocialLoginVC: UIViewController {
         viewBackTOLogin.addGestureRecognizer(tapviewLogin)
         
     }
+    
     
     //MARK:- Tap Gesture Action -
     @objc func handletapviewFacebook(_ sender: UITapGestureRecognizer? = nil) {
@@ -95,9 +109,10 @@ class SocialLoginVC: UIViewController {
                                     var paramDict = [String : Any]()
                                     paramDict = result as? [String : Any] ?? [:]
                                     print(result!)
+                                    let deviceToken = UserDefaults.standard.value(forKey: "device_token") as? String
                                     LoaderClass.shared.loadAnimation()
-                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "password" : paramDict["id"] ?? "" , "device_type":"ios","device_token":"ios"]
-                                    self.loginViewModel.getParamForSignUp(param: param)
+                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "password" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? ""]
+                                    self.loginViewModel.getParamForSignUp(param: param, url: Api.Register)
                                 }
                             })
                         }
@@ -107,6 +122,7 @@ class SocialLoginVC: UIViewController {
         }
     }
     
+   
     
     @IBAction func btnTerConditionAction(_ sender: UIButton) {
         selectedIdentifier = "Terms And Conditions"
@@ -130,8 +146,14 @@ class SocialLoginVC: UIViewController {
 //Error handling Signup Api Here:-
 extension SocialLoginVC: SignUpViewModelProtocol {
     func signupApiResponse(message: String, response: [String : Any], isError: Bool) {
-        UserDefaults.standard.set(response["token"], forKey: UserdefaultKeys.token)
+        UserDefaults.standard.set(response["token"] ?? "", forKey: UserdefaultKeys.token)
         UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
+        if let data = response["user"] as? [String:Any]{
+            if let currancy = data["currency"] as? String{
+                UserDefaults.standard.set(currancy, forKey: UserdefaultKeys.userCurrency)
+            }
+        }
+        
         LoaderClass.shared.stopAnimation()
         if !isError{
             self.goToDashBoard()
@@ -146,3 +168,82 @@ extension SocialLoginVC: SignUpViewModelProtocol {
         Helper.showOKAlert(onVC: self, title: errorTitle, message: errorMessage)
     }
 }
+
+@available(iOS 13, *)
+extension SocialLoginVC:ASAuthorizationControllerDelegate{
+    @objc func handletapviewAppleLogin(_ sender: UITapGestureRecognizer? = nil) {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        LoaderClass.shared.loadAnimation()
+        if let appleIDCredential = authorization.credential as?  ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+                    appleIDProvider.getCredentialState(forUserID: userIdentifier) {  (credentialState, error) in
+                         switch credentialState {
+                            case .authorized:
+                                // The Apple ID credential is valid.
+                                print("Done")
+                                let _ = appleIDCredential.fullName
+                                let _ = appleIDCredential.email
+                                let JWT = appleIDCredential.identityToken!
+                                let str = String(decoding: JWT, as: UTF8.self)
+                                let data = self.decode(str)
+                                print(data)
+                                let deviceToken = UserDefaults.standard.value(forKey: "device_token") as? String
+                                let param = ["email": "\(appleIDCredential.email ?? "")" ,"apple_id":"\(userIdentifier)" ,"name":"\(appleIDCredential.fullName?.givenName ?? "")" ,"device_type":"ios","device_token":deviceToken ?? "","lang":"en"] as [String : Any]
+                                
+                                self.loginViewModel.getParamForSignUp(param: param, url: Api.AppleLogin)
+                                break
+                            case .revoked:
+                                // The Apple ID credential is revoked.
+                                print("revoked")
+                                LoaderClass.shared.stopAnimation()
+                                break
+                         case .notFound:
+                            LoaderClass.shared.stopAnimation()
+                            print("No credential")
+                            break
+                                // No credential was found, so show the sign-in UI.
+                            default:
+                                break
+                         }
+                    }
+        }
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+    
+    func decode(_ token: String) -> [String: AnyObject]? {
+      let string = token.components(separatedBy: ".")
+      let toDecode = string[1] as String
+
+
+      var stringtoDecode: String = toDecode.replacingOccurrences(of: "-", with: "+") // 62nd char of encoding
+      stringtoDecode = stringtoDecode.replacingOccurrences(of: "_", with: "/") // 63rd char of encoding
+      switch (stringtoDecode.utf16.count % 4) {
+      case 2: stringtoDecode = "\(stringtoDecode)=="
+      case 3: stringtoDecode = "\(stringtoDecode)="
+      default: // nothing to do stringtoDecode can stay the same
+          print("")
+      }
+      let dataToDecode = Data(base64Encoded: stringtoDecode, options: [])
+      let base64DecodedString = NSString(data: dataToDecode!, encoding: String.Encoding.utf8.rawValue)
+
+      var values: [String: AnyObject]?
+      if let string = base64DecodedString {
+          if let data = string.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: true) {
+              values = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String : AnyObject]
+          }
+      }
+      return values
+  }
+}
+

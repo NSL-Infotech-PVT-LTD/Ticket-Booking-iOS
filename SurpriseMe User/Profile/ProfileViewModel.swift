@@ -59,6 +59,34 @@ class ProfileViewModel {
         }
     }
     
+    func updataCurrancy(param: [String: Any]) {
+        print(param)
+        LoaderClass.shared.loadAnimation()
+        if Reachability.isConnectedToNetwork() {
+            let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerUpdate, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            self.delegate?.getUpdateProfileApiResponse(message: "Update Successfully", isError: false)
+                        }else{
+                            if let error = result["error"] as? String{
+                            self.delegate?.getUpdateProfileApiResponse(message: error, isError: true)
+                            }
+                        }}
+                }else{
+                    self.delegate?.getUpdateProfileApiResponse(message: "Error", isError: true)
+                }
+            }
+        }else{
+            
+        }
+    }
+    
+    
+    
     func logout()  {
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
         if Reachability.isConnectedToNetwork() {

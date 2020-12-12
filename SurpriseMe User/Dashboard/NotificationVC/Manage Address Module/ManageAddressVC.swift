@@ -13,8 +13,10 @@ class ManageAddressVC: UIViewController {
     //MARK:- Outlets -
     @IBOutlet weak var tblAddress: UITableView!
     @IBOutlet weak var viewHeader: UIView!
+    @IBOutlet weak var btnAddadress: ZFRippleButton!
     
     
+    @IBOutlet weak var btnPlus: UIButton!
     @IBOutlet weak var noDataFound: UIView!
     //MARK:- Variables -
     var objectViewModel = ManageAddressViewModel()
@@ -52,16 +54,11 @@ class ManageAddressVC: UIViewController {
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
         navigationController?.pushViewController(controller, animated: false)
-        
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.back()
     }
-    
-    
-    
-    
     
     @objc func btnEditTapped(_ sender: UIButton){
     // use the tag of button as index
@@ -72,12 +69,7 @@ class ManageAddressVC: UIViewController {
         controller.modelObjectDict = modelData
         modelObjectAdress = modelData
                navigationController?.pushViewController(controller, animated: false)
-        
-        
     }
-    
-    
-    
     
     @objc func btnBookAction(_ sender: UIButton){
         
@@ -93,14 +85,9 @@ class ManageAddressVC: UIViewController {
         let when = DispatchTime.now() + 1
         DispatchQueue.main.asyncAfter(deadline: when){
           // your code with delay
-            
             self.back()
-
         }
-        
-
     }
-    
     
     @objc func btnDeleteTapped(_ sender: UIButton){
       // use the tag of button as index
@@ -151,18 +138,17 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         cell.btnEdit.tag = indexPath.row
         cell.btnDelete.tag = indexPath.row
         cell.btnSeeArtist12.tag = indexPath.row
-        if data.street_address == selectedAddress{
+        if data.street_address == selectedAddress || index == indexPath.row{
             cell.imgSelected.image = #imageLiteral(resourceName: "Selected")
         }else{
             cell.imgSelected.image = #imageLiteral(resourceName: "Ellipse 111")
-
         }
         
-        if indexSelected == indexPath.row{
-            cell.viewContainer.backgroundColor = #colorLiteral(red: 0.5490196078, green: 0.5579355955, blue: 0.6253077388, alpha: 0.2)
-        }else{
-            cell.viewContainer.backgroundColor = UIColor.white
-        }
+//        if indexSelected == indexPath.row{
+//            cell.viewContainer.backgroundColor = #colorLiteral(red: 0.5490196078, green: 0.5579355955, blue: 0.6253077388, alpha: 0.2)
+//        }else{
+//            cell.viewContainer.backgroundColor = UIColor.white
+//        }
          if data.name == "Home"{
             cell.addressTypeImg.image = UIImage.init(named: "Mask Group 71")
         }else if data.name == "Work"{
@@ -199,7 +185,7 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
          let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomManageAddressCell
-
+        selectedAddress = ""
         cell.alpha = 0
         cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
         UIView.animate(withDuration: 0.4) {
@@ -262,8 +248,11 @@ extension ManageAddressVC: ManageAddressViewModelProtocol {
             if modelObject.count == 0{
                 self.tblAddress.isHidden = true
                 self.noDataFound.isHidden = false
-
+                self.btnAddadress.isHidden = false
+                self.btnPlus.isHidden = true
             }else{
+                self.btnAddadress.isHidden = true
+                self.btnPlus.isHidden = false
                 self.tblAddress.isHidden = false
                 self.noDataFound.isHidden = true
             }

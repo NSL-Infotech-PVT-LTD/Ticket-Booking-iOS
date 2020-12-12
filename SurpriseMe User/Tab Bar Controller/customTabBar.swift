@@ -26,6 +26,7 @@ class DashboardTabBarController: UITabBarController, UITabBarControllerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       
         
         let storyboard = UIStoryboard(name: "Chat", bundle: nil)
         let storyboardHome = UIStoryboard(name: "Dashboard", bundle: nil)

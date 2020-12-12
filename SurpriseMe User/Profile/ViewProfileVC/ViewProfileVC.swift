@@ -23,6 +23,7 @@ class ViewProfileVC: UIViewController {
     
     //MARK:- Outlets -
 
+    @IBOutlet weak var crossBack: UIView!
     @IBOutlet weak var showCollectionView: UICollectionView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
     @IBOutlet weak var serviceCollectionViewHeight: NSLayoutConstraint!
@@ -101,7 +102,7 @@ class ViewProfileVC: UIViewController {
         viewContainerPreview.isHidden = true
         imgViewUserPreview.isHidden = true
         btnCrossImage.isHidden = true
-
+        crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
 
         
@@ -139,9 +140,8 @@ class ViewProfileVC: UIViewController {
         viewContainerPreview.isHidden = true
          imgViewUserPreview.isHidden = true
          btnCrossImage.isHidden = true
+        crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
-
-        
     }
     
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
@@ -159,19 +159,18 @@ class ViewProfileVC: UIViewController {
         imgViewUserPreview.isHidden = false
         viewImageViewContainer.isHidden = false
         btnCrossImage.isHidden = false
+        crossBack.isHidden = false
         imgViewUserPreview.image = imgProfile.image
        }
 
     @IBAction func btnPlayVideoAction(_ sender: UIButton) {
         if youtubeID == "" || youtubeID.isEmpty == true{
-            let url = URL(string: localVideoUrl)!
-
-            playVideo(url: url)
+            if  let url = URL(string: localVideoUrl) {
+                playVideo(url: url)
+            }
         }else{
 //        playerView.load(withVideoId: youtubeID)
 //        print(c)
-
-            
         }
     }
     func playVideo(url: URL) {
@@ -322,20 +321,20 @@ class ViewProfileVC: UIViewController {
     func profileData(profile :GetArtistModel?)  {
         let imageUrl = Api.imageURLArtist
         self.lblName.text = profile?.name ?? ""
-        self.lblLiveShowPrice.text = "\(profile?.currency ?? "")\(" ")\(      profile?.live_price_per_hr ?? 0)"
+        self.lblLiveShowPrice.text = "\(profile?.converted_currency ?? "")\(" ")\(      profile?.converted_live_price ?? 0)"
         
         if profile?.ratingValue == 0{
             self.viewCosmoRating.isHidden = true
             self.lblNewBrandArtist.isHidden = false
- }else{
+        }else{
             self.viewCosmoRating.isHidden = false
             self.lblNewBrandArtist.isHidden = true
             self.viewCosmoRating.rating = Double("\(profile?.ratingValue ?? 0)") ?? 0.0
-
+            
         }
-
         
-        self.lblDigitalShowPrice.text = "\(profile?.currency ?? "")\(" ")\(    profile?.digital_price_per_hr ?? 0)"
+//        UserDefaults.standard.setValue(profile?.currency ?? "", forKey: UserdefaultKeys.userCurrency)
+        self.lblDigitalShowPrice.text = "\(profile?.converted_currency ?? "")\(" ")\(    profile?.converted_digital_price ?? 0)"
         var urlSting : String = "\(Api.imageURLArtist)\(profile?.image ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
         let urlImage = URL(string: urlStringaa)!
@@ -344,11 +343,11 @@ class ViewProfileVC: UIViewController {
         
         
         let attributedString = NSMutableAttributedString(string: profile?.descriptionValue ?? "")
-               txtViewAbout.linkTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.blue] as [NSAttributedString.Key: Any]?
+        txtViewAbout.linkTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.blue] as [NSAttributedString.Key: Any]?
         txtViewAbout.attributedText = attributedString
         
         
-//        self.txtViewAbout.text = profile?.descriptionValue ?? ""
+        //        self.txtViewAbout.text = profile?.descriptionValue ?? ""
         self.lblInstagramSubscribers.text = profile?.social_link_insta ?? ""
         self.lblYoutubeSubscribers.text = profile?.social_link_youtube ?? ""
         
@@ -358,17 +357,17 @@ class ViewProfileVC: UIViewController {
         //MARK:Viedo play and URL banner set
         self.extractYoutubeId(fromLink: VideoLink)
         
-                if profile?.shows_video ?? "" == "" {
-                    imgViedoPlay.isHidden = true
-                    novideoLbl.isHidden = false
-                    playerView.isUserInteractionEnabled = false
-                }else{
-                    imgViedoPlay.isHidden = false
-                    novideoLbl.isHidden = true
-                    playerView.isUserInteractionEnabled = true
-
-        
-                }
+        if profile?.shows_video ?? "" == "" {
+            imgViedoPlay.isHidden = true
+            novideoLbl.isHidden = false
+            playerView.isUserInteractionEnabled = false
+        }else{
+            imgViedoPlay.isHidden = false
+            novideoLbl.isHidden = true
+            playerView.isUserInteractionEnabled = true
+            
+            
+        }
         self.serviceCollectionView.reloadData()
         if profile?.shows_image_1 == "" && profile?.shows_image_2 == "" && profile?.shows_image_3 == "" && profile?.shows_image_4 == ""{
             heightConstant.constant = 0
@@ -482,6 +481,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
            imgViewUserPreview.isHidden = false
            viewImageViewContainer.isHidden = false
            btnCrossImage.isHidden = false
+            crossBack.isHidden = false
             imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
         }else if indexPath.row == 1{
             let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_2 ?? "")"
@@ -500,6 +500,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
            imgViewUserPreview.isHidden = false
            viewImageViewContainer.isHidden = false
            btnCrossImage.isHidden = false
+            crossBack.isHidden = false
             imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             
         }else if indexPath.row == 2{
@@ -520,6 +521,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
            imgViewUserPreview.isHidden = false
            viewImageViewContainer.isHidden = false
            btnCrossImage.isHidden = false
+            crossBack.isHidden = false
             imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             
         }else{
@@ -541,6 +543,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
            imgViewUserPreview.isHidden = false
            viewImageViewContainer.isHidden = false
            btnCrossImage.isHidden = false
+            crossBack.isHidden = false
             imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
         }
         

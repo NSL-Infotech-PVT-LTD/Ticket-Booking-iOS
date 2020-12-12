@@ -22,27 +22,23 @@ class cardPaymentList: UIViewController {
     
     @IBOutlet weak var noData: UILabel!
     @IBOutlet var viewHeader: UIView!
-    
+    var isBookingDetails = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Mark:tableview delegate/datasource
         self.getCard()
         self.viewHeader.addBottomShadow()
-        
         noData.isHidden = true
         cardPaymentListTV.isHidden = true
-        
     }
-    
-    
     
     @IBAction func btnAddCardAction(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+        controller.isBookingDetails = true
         navigationController?.pushViewController(controller, animated: true)
     }
-    
     
     
     @IBAction func btnPayNowAction(_ sender: UIButton) {
@@ -64,8 +60,6 @@ class cardPaymentList: UIViewController {
                 self.present(navController, animated:true, completion: nil)
                 self.getPaymentForBooking(param: param)
             }
-            
-            
             
         }
         
@@ -135,11 +129,27 @@ class cardPaymentList: UIViewController {
     
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
+        if isBookingDetails == true{
         self.back()
+        }else{
+        let alert = UIAlertController(title: "If you click yes your booking will be canceled from on hold and other customer can book same slot.", message: "", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "No", style: .default) { (alert) in
+
+        }
+        let confirm = UIAlertAction(title: "Yes", style: .destructive) { (alert) in
+            let param = ["booking_id":bookingPaymentID ?? 0 , "status":"cancel"] as [String : Any]
+            LoaderClass.shared.loadAnimation()
+            self.callApiDeletebookingSlot(param: param)
+        }
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+
+        self.present(alert,animated: true)
+        }
     }
     
-    
-    func getPaymentForBooking(param: [String: Any]) {
+    func callApiDeletebookingSlot(param: [String: Any]){
+        
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
         print("the token is \(headerToken)")
         
@@ -153,32 +163,62 @@ class cardPaymentList: UIViewController {
                     let result = response
                     if let status = result["status"] as? Bool {
                         if status ==  true{
+                           let storyboard1 = UIStoryboard(name: "Main", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "DashboardTabBarController") as! DashboardTabBarController
                             
-                            
-                            
-                            
-                            
-                            
-                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
-                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
-                            
-                            
-                            //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
-                            
-                            //                                                        controller.bookingID = bookingDict.id ?? 0
                             self.navigationController?.pushViewController(controller1, animated: true)
                             self.dismiss(animated: true, completion: nil)
-                            
-                            
-                            
                         }
                         else{
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
                         }
                     }
                     else {
-                        if let error_message = response["error"] as? String {
-                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    }
+                }
+                else {
+                    //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                }
+            }
+            
+        }else{
+            Helper.showOKAlert(onVC: self, title: "Alert", message: "Please check your internet connection")
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+        
+    }
+    
+    func getPaymentForBooking(param: [String: Any]) {
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        
+        if Reachability.isConnectedToNetwork() {
+            // LoaderClass.shared.loadAnimation()
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                self.dismiss(animated: true, completion: nil)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                            idealPayment = true
+                            self.navigationController?.pushViewController(controller1, animated: true)
+                            self.dismiss(animated: true, completion: nil)
                         }
+                        else{
+                            if let error_message = response["error"] as? String {
+                                Helper.showOKAlert(onVC: self, title: error_message, message: "")
+                            }
+                        }
+                    }
+                    else {
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
                     }
                 }
                 else {

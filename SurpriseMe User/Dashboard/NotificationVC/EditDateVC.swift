@@ -60,6 +60,7 @@ class EditDateVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.getCard()
         lblArtistNotAvai.text = "choose_another_date".localized()
         btnBack.setTitle("back".localized(), for: .normal)
         lblMainTitle.text = "select_time_booking".localized()
@@ -77,6 +78,55 @@ class EditDateVC: UIViewController {
         self.viewNoData.isHidden = true
         btnProceed.backgroundColor = UIColor.init(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
         
+    }
+    func getCard() {
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            
+            let dict = ["search":"","limit":"20"]
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    
+                    arrayCardListCommom.removeAll()
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            
+                            
+                            let dataDict = result["data"] as? [String : Any]
+                            if let dataArray = dataDict?["data"] as? [[String : Any]]{
+                                for index in dataArray{
+                                    print("the index value is \(index)")
+                                    let dataDict = GetCardModel.init(resposne: index)
+                                    arrayCardListCommom.append(dataDict)
+                                }
+                            }
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? [String:Any] {
+                            if (error_message["error_message"] as? String) != nil {
+                            }
+                        }
+                    }
+                }
+                else {
+                    //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
     }
     
     //MARK:- Set Initial Design -
@@ -551,6 +601,24 @@ extension EditDateVC : BookingStoreViewModelProtocol{
             }
         }else{
             //
+            let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
+            if currency != "EUR"{
+                if arrayCardListCommom.count > 0{
+                    let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+                    bookingID = dictAddress?["id"] as? Int
+                    bookingPaymentID = dictAddress?["id"] as? Int
+                    navigationController?.pushViewController(controller, animated: true)
+                }else{
+                    let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+                    bookingID = dictAddress?["id"] as? Int
+                    bookingPaymentID = dictAddress?["id"] as? Int
+                    controller.isMoreCount = true
+                    
+                    navigationController?.pushViewController(controller, animated: true)
+                }
+            }else{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
             let transition = CATransition()
@@ -565,6 +633,7 @@ extension EditDateVC : BookingStoreViewModelProtocol{
             controller.hidesBottomBarWhenPushed = true
             self.navigationController?.view.layer.add(transition, forKey: kCATransition)
             self.navigationController?.pushViewController(controller, animated: false)
+            }
             //            }
         }
     }

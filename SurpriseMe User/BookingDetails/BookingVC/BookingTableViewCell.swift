@@ -12,6 +12,8 @@ import Cosmos
 class BookingTableViewCell: UITableViewCell {
     
     //MARK:- Outlets -
+    @IBOutlet weak var lblOrderID1: UILabel!
+    @IBOutlet weak var lblOrderID: UILabel!
     @IBOutlet weak var viewBookingBorderDash: UIView!
     @IBOutlet weak var btnseeAllDetails: UIButton!
     @IBOutlet weak var lblDate: UILabel!

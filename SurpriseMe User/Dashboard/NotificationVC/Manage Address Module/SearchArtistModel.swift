@@ -24,7 +24,9 @@ class SearchArtistModel: NSObject {
     var currency: String?
     var digitalPrice: Int?
     var livePrice: Int?
-
+    var converted_currency : String?
+    var converted_digital_price: Int?
+    var converted_live_price: Int?
     
     
     
@@ -50,7 +52,9 @@ class SearchArtistModel: NSObject {
         digitalPrice = json[HomeScreenModelModelKey.digital_price_per_hr].intValue
 
         
-
+        converted_digital_price = json[HomeScreenModelModelKey.converted_digital_price].intValue
+        converted_live_price = json[HomeScreenModelModelKey.converted_live_price].intValue
+        converted_currency = json[HomeScreenModelModelKey.converted_currency].stringValue
         ratingValue = json[HomeScreenModelModelKey.rating].intValue
         distance = json[HomeScreenModelModelKey.distance].doubleValue
 //        rate_detail =
@@ -88,7 +92,9 @@ class SearchArtistModel: NSObject {
         static let live_price_per_hr  = "live_price_per_hr"
 
         static let digital_price_per_hr  = "digital_price_per_hr"
-
+        static let converted_digital_price = "converted_digital_price"
+        static let converted_live_price = "converted_live_price"
+        static let converted_currency = "converted_currency"
 
 
 
