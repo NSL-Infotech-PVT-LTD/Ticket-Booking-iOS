@@ -128,6 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = story.instantiateViewController(withIdentifier: "WalkThroughVC") as! WalkThroughVC
             let navigationController = UINavigationController(rootViewController: vc)
             navigationController.isNavigationBarHidden = true
+            vc.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
             UIApplication.shared.windows.first?.rootViewController = navigationController
             UIApplication.shared.windows.first?.makeKeyAndVisible()
             
@@ -138,6 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
                     let navigationController = UINavigationController(rootViewController: vc1)
                     navigationController.isNavigationBarHidden = true
+                    vc1.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                     UIApplication.shared.windows.first?.rootViewController = navigationController
                     UIApplication.shared.windows.first?.makeKeyAndVisible()
                
@@ -146,6 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let vc1 = vc.instantiateViewController(withIdentifier: "WalkThroughVC")
                     let navigationController = UINavigationController(rootViewController: vc1)
                     navigationController.isNavigationBarHidden = true
+                    vc1.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                     UIApplication.shared.windows.first?.rootViewController = navigationController
                     UIApplication.shared.windows.first?.makeKeyAndVisible()
                 }

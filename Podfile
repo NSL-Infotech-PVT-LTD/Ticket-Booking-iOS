@@ -37,6 +37,6 @@ pod 'StepSlider', '~> 1.3.0'
 pod "youtube-ios-player-helper"
 pod 'AMDots'
 pod 'Toast-Swift', '~> 5.0.1'
-
+pod 'Mantis', '~> 1.4.7'
 
 end

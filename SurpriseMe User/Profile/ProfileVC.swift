@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireImage
 import AVFoundation
 import AVKit
-
+import Mantis
 class ProfileVC: UIViewController {
     
     //MARK:- Outlets -
@@ -45,6 +45,25 @@ class ProfileVC: UIViewController {
         logoutView.isHidden = false
         viewAboutUs.isHidden = false
         viewChangePassword.isHidden = false
+        
+        let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapview(_:)))
+        imgUserProfile.addGestureRecognizer(tapviewAboutUs)
+        self.imgUserProfile.isUserInteractionEnabled = false
+    }
+    
+    @objc func handletapview(_ sender: UITapGestureRecognizer? = nil) {
+        let alert = UIAlertController(title: "", message: "Please Select an Option", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+            self.openCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default , handler:{ (UIAlertAction)in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+        }))
+        self.present(alert, animated: true, completion: {
+        })
     }
     
     
@@ -64,7 +83,6 @@ class ProfileVC: UIViewController {
         logoutView.addGestureRecognizer(tapviewLogin)
         let tapviewChangePassword = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewChangePassword(_:)))
         viewChangePassword.addGestureRecognizer(tapviewChangePassword)
-        
         
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
         viewAboutUs.addGestureRecognizer(tapviewAboutUs)
@@ -95,30 +113,28 @@ class ProfileVC: UIViewController {
         
         if isUpdateProfile == true{
             let alert = UIAlertController(title: "Alert!", message: "Do you want to save your profile?", preferredStyle: UIAlertController.Style.alert)
-                  alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
-
-                    if self.tfUserName.text == ""{
-                               self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
-                    }else{
-                        self.editProfileBtn.isHidden = false
-                        self.editImgBtn.isHidden = true
-                        self.updateBtn.isHidden = true
-                        self.isUpdateProfile = false
-                        self.logoutView.isHidden = false
-                        self.viewAboutUs.isHidden = false
-                        self.viewChangePassword.isHidden = false
-                        self.tfUserName.isUserInteractionEnabled = false
-                        self.tfEmail.isUserInteractionEnabled = false
-                        self.objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
-                    }
-                    
-                    
-                   }))
-                   
-                   alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
-                       self.back()
-                         }))
-                    self.present(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+                
+                if self.tfUserName.text == ""{
+                    self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
+                }else{
+                    self.editProfileBtn.isHidden = false
+                    self.editImgBtn.isHidden = true
+                    self.updateBtn.isHidden = true
+                    self.isUpdateProfile = false
+                    self.logoutView.isHidden = false
+                    self.viewAboutUs.isHidden = false
+                    self.viewChangePassword.isHidden = false
+                    self.tfUserName.isUserInteractionEnabled = false
+                    self.tfEmail.isUserInteractionEnabled = false
+                    self.objectViewModel.updataProfileData(param: ["name": self.tfUserName.text!], image: self.imgUserProfile.image ?? UIImage())
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+                self.back()
+            }))
+            self.present(alert, animated: true, completion: nil)
         }else{
 //            self.btnUpdateProfileAction(self.updateBtn)
              self.back()
@@ -202,6 +218,7 @@ class ProfileVC: UIViewController {
         viewChangePassword.isHidden = true
         self.tfUserName.isUserInteractionEnabled = true
         self.tfEmail.isUserInteractionEnabled = false
+        self.imgUserProfile.isUserInteractionEnabled = true
         isUpdateProfile = true
         self.tfUserName.becomeFirstResponder()
     }
@@ -215,6 +232,11 @@ class ProfileVC: UIViewController {
         let urlImage = URL(string: urlStringaa)!
         self.imgUserProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
         self.imgUserProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        if profile?.image == ""{
+            self.imgUserProfile.isUserInteractionEnabled = false
+        }else{
+            self.imgUserProfile.isUserInteractionEnabled = true
+        }
     }
     
 }
@@ -298,9 +320,12 @@ extension ProfileVC : UIImagePickerControllerDelegate,UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imagedata = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         {
-            self.imgUserProfile.image = imagedata
+            let cropViewController = Mantis.cropViewController(image: imagedata)
+            cropViewController.delegate = self
+            cropViewController.modalPresentationStyle = .overCurrentContext
+            self.present(cropViewController,animated: true)
         }
-        self.imgUserProfile.contentMode = .scaleAspectFill
+//        self.imgUserProfile.contentMode = .scaleAspectFill
         picker.view!.removeFromSuperview()
         picker.removeFromParent()
     }
@@ -310,5 +335,23 @@ extension ProfileVC : UIImagePickerControllerDelegate,UINavigationControllerDele
        picker.view!.removeFromSuperview()
         picker.removeFromParent()
     }
+    
+}
+
+
+extension ProfileVC:CropViewControllerDelegate{
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation) {
+        self.imgUserProfile.image = cropped
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cropViewControllerDidFailToCrop(_ cropViewController: CropViewController, original: UIImage) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
 }

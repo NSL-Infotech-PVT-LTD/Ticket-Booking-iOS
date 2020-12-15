@@ -25,8 +25,6 @@ class SelectPaymentVC: UIViewController {
     func getCard() {
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-        
-        
         if Reachability.isConnectedToNetwork() {
             LoaderClass.shared.loadAnimation()
             

@@ -117,6 +117,7 @@ PODS:
     - Kingfisher/Core (= 5.15.0)
   - Kingfisher/Core (5.15.0)
   - KJNavigationViewAnimation (0.1.0)
+  - Mantis (1.4.7)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -158,6 +159,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - Kingfisher
   - KJNavigationViewAnimation (~> 0.1.0)
+  - Mantis (~> 1.4.7)
   - NVActivityIndicatorView
   - SDWebImage (~> 5.0)
   - Starscream (~> 3.0.6)
@@ -199,6 +201,7 @@ SPEC REPOS:
     - IQKeyboardManager
     - Kingfisher
     - KJNavigationViewAnimation
+    - Mantis
     - nanopb
     - NVActivityIndicatorView
     - PromisesObjC
@@ -242,6 +245,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   KJNavigationViewAnimation: 0473485c433c20bdcd4f575ef2244ed25f9a0266
+  Mantis: 9cdf60d973503125bc140558b29c2cf7d0ecebe5
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
@@ -257,6 +261,6 @@ SPEC CHECKSUMS:
   youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 4374b443dc665265876ccd1704a8916856343a70
+PODFILE CHECKSUM: e974e43ac4b39a018b3e733c63572a419b2f53a9
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.rc.1

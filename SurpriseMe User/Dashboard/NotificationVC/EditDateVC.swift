@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Stripe
 class EditDateVC: UIViewController {
     var first: Int = -1
     var second: Int = -1
@@ -57,10 +57,38 @@ class EditDateVC: UIViewController {
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    func callApiGetStripeKey(){
+        if  Reachability.isConnectedToNetwork() {
+            let header = ["Authorization":"Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) as! String)"]
+            ApiManeger.sharedInstance.callApiWithHeaderWithoutParam(url: Api.getStripeKey, method: .get, header: header) { (response, error) in
+                if error == nil{
+                    if let data = response["data"] as? [String:Any]{
+                        if let key = data["public_key"] as? String{
+                            print("Stripe Key \(key)")
+                            STPAPIClient.shared().publishableKey = key
+                        }
+//                        if let clientID = data["client_id"] as? String{
+//                            self.stripeClientKey = clientID
+//                        }
+                    }
+                    
+                }else{
+                    if let error = response["error"] as? String{
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error)
+                    }
+                }
+            }
+        }else{
+            Helper.showOKAlert(onVC: self, title: "Error", message: "Please check your internet Connection")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.getCard()
+        self.self.callApiGetStripeKey()
         lblArtistNotAvai.text = "choose_another_date".localized()
         btnBack.setTitle("back".localized(), for: .normal)
         lblMainTitle.text = "select_time_booking".localized()
@@ -79,6 +107,8 @@ class EditDateVC: UIViewController {
         btnProceed.backgroundColor = UIColor.init(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
         
     }
+    
+    
     func getCard() {
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
@@ -428,7 +458,6 @@ class EditDateVC: UIViewController {
                 numsArraySelection = numsArray
                 return false
             }
-            
         }
     }
     
@@ -442,9 +471,7 @@ class EditDateVC: UIViewController {
                     
                 }else{
                     return true
-                    
                 }
-                
             }else{
                 return false
             }
@@ -461,11 +488,9 @@ class EditDateVC: UIViewController {
                 return false
             }
         }
-        
     }
-    
-    
 }
+
 extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -494,7 +519,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
                     cell.viewCell.backgroundColor = UIColor.white
                     cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
                 }
-                
             }else{
                 cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
                 cell.lblTimeSelect.textColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
@@ -589,18 +613,14 @@ extension EditDateVC : BookingStoreViewModelProtocol{
         let dictAddress = response["address"] as? [String:Any]
         if isError == true{
             if let errorDict = response["message"] as? String{
-                print(errorDict)
-                let alert = UIAlertController(title: "", message: errorDict, preferredStyle: .alert)
-                self.present(alert, animated: true, completion: nil)
-                // change to desired number of seconds (in this case 5 seconds)
-                let when = DispatchTime.now() + 5
-                DispatchQueue.main.asyncAfter(deadline: when){
-                    // your code with delay
-                    alert.dismiss(animated: true, completion: nil)
+                let alert = UIAlertController(title: "Error", message: errorDict, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "ok", style: .default) { (alert) in
+                    self.dismiss(animated: true, completion: nil)
                 }
+                alert.addAction(okAction)
+                self.present(alert,animated: true)
             }
         }else{
-            //
             let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
             if currency != "EUR"{
                 if arrayCardListCommom.count > 0{
@@ -615,32 +635,33 @@ extension EditDateVC : BookingStoreViewModelProtocol{
                     bookingID = dictAddress?["id"] as? Int
                     bookingPaymentID = dictAddress?["id"] as? Int
                     controller.isMoreCount = true
-                    
                     navigationController?.pushViewController(controller, animated: true)
                 }
             }else{
-            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: .default)
-            transition.type = .fade
-            transition.subtype = .fromRight
-            print("the booking id is \(dictAddress?["id"])")
-            
-            bookingID = dictAddress?["id"] as? Int
-            bookingPaymentID = dictAddress?["id"] as? Int
-            controller.hidesBottomBarWhenPushed = true
-            self.navigationController?.view.layer.add(transition, forKey: kCATransition)
-            self.navigationController?.pushViewController(controller, animated: false)
+                let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
+                let transition = CATransition()
+                transition.duration = 0.5
+                transition.timingFunction = CAMediaTimingFunction(name: .default)
+                transition.type = .fade
+                transition.subtype = .fromRight
+                print("the booking id is \(dictAddress?["id"])")
+                bookingID = dictAddress?["id"] as? Int
+                bookingPaymentID = dictAddress?["id"] as? Int
+                controller.hidesBottomBarWhenPushed = true
+                self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+                self.navigationController?.pushViewController(controller, animated: false)
             }
-            //            }
         }
     }
     
     func errorAlert(errorTitle: String, errorMessage: String) {
         
+        let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ok", style: .default) { (alert) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        self.present(alert,animated: true)
     }
-    
-    
 }

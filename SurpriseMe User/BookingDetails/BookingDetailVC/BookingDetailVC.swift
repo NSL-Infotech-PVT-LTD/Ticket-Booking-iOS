@@ -563,7 +563,7 @@ class BookingDetailVC: UIViewController {
 
         }
         let confirm = UIAlertAction(title: "Yes", style: .destructive) { [self] (alert) in
-            let param = ["booking_id":bookingID , "status":"cancel"] as [String : Any]
+            let param = ["booking_id":self.bookingID , "status":"cancel"] as [String : Any]
             LoaderClass.shared.loadAnimation()
             self.callApiDeletebookingSlot(param: param)
         }

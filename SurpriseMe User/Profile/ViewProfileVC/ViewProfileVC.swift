@@ -145,23 +145,23 @@ class ViewProfileVC: UIViewController {
     }
     
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
-//        let photosViewController = NYTPhotosViewController(photos: photo)
-//     present(photosViewController, animated: true)
+        //        let photosViewController = NYTPhotosViewController(photos: photo)
+        //     present(photosViewController, animated: true)
         
-         let transition = CATransition()
-                transition.duration = 0.5
-                transition.timingFunction = CAMediaTimingFunction(name: .linear)
-                transition.type = CATransitionType(rawValue: "flip")
-                transition.type = CATransitionType.push
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+        transition.type = CATransitionType(rawValue: "flip")
+        transition.type = CATransitionType.push
         transition.subtype = CATransitionSubtype.fromTop
-                imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+        imgViewUserPreview.layer.add(transition, forKey: kCATransition)
         viewContainerPreview.isHidden = false
         imgViewUserPreview.isHidden = false
         viewImageViewContainer.isHidden = false
         btnCrossImage.isHidden = false
         crossBack.isHidden = false
         imgViewUserPreview.image = imgProfile.image
-       }
+    }
 
     @IBAction func btnPlayVideoAction(_ sender: UIButton) {
         if youtubeID == "" || youtubeID.isEmpty == true{
@@ -326,6 +326,7 @@ class ViewProfileVC: UIViewController {
         if profile?.ratingValue == 0{
             self.viewCosmoRating.isHidden = true
             self.lblNewBrandArtist.isHidden = false
+            self.lblNewBrandArtist.text = "BRAND NEW ARTIST"
         }else{
             self.viewCosmoRating.isHidden = false
             self.lblNewBrandArtist.isHidden = true
@@ -340,6 +341,11 @@ class ViewProfileVC: UIViewController {
         let urlImage = URL(string: urlStringaa)!
         self.imgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
         self.imgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        if profile?.image == ""{
+            self.imgProfile.isUserInteractionEnabled = false
+        }else{
+            self.imgProfile.isUserInteractionEnabled = true
+        }
         
         
         let attributedString = NSMutableAttributedString(string: profile?.descriptionValue ?? "")
@@ -459,7 +465,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if collectionView == self.showCollectionView{
         
         let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
         
@@ -546,12 +552,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             crossBack.isHidden = false
             imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
         }
-        
-
-        
-        
-       
-        
+        }
         
     }
     

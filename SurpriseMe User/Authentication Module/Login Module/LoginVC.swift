@@ -34,9 +34,9 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        
-//        self.tfEmail.text = "rav@me.com"
-//        self.tfPassword.text = "12345678"
+        //
+        //        self.tfEmail.text = "rav@me.com"
+        //        self.tfPassword.text = "12345678"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,14 +63,14 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
                 self.tfEmail.text = UserDefaults.standard.string(forKey: "UserName")
                 self.tfPassword.text = UserDefaults.standard.string(forKey: "Password")
                 btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .normal)
-
+                
             }else{
                 btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
-
+                
             }
         }else{
             btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
-
+            
         }
         
         
@@ -84,16 +84,16 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     
     
     @IBAction func btnChangeLanguageAction(_ sender: UIButton) {
-//        let story = UIStoryboard(name: "Main", bundle:nil)
-//                   let vc = story.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
-//        let navController = UINavigationController(rootViewController: vc)
-//                vc.modalPresentationStyle = .overCurrentContext
-//               vc.hidesBottomBarWhenPushed = true
-//        navController.pushViewController(vc, animated: true)
+        //        let story = UIStoryboard(name: "Main", bundle:nil)
+        //                   let vc = story.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
+        //        let navController = UINavigationController(rootViewController: vc)
+        //                vc.modalPresentationStyle = .overCurrentContext
+        //               vc.hidesBottomBarWhenPushed = true
+        //        navController.pushViewController(vc, animated: true)
         
         self.presentViewController(viewController : "LanguageVC", value: "Main")
-
-
+        
+        
         
     }
     
@@ -103,25 +103,25 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         if sender.isSelected{
             print("selected")
             
-              UserDefaults.standard.set(false, forKey: "RememberMe")
-                        UserDefaults.standard.set("", forKey: "UserName")
-                        UserDefaults.standard.set("", forKey: "Password")
+            UserDefaults.standard.set(false, forKey: "RememberMe")
+            UserDefaults.standard.set("", forKey: "UserName")
+            UserDefaults.standard.set("", forKey: "Password")
             
             
-                          btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
+            btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
             
             
         }else{
             print("Unselected")
-                        UserDefaults.standard.set(true, forKey: "RememberMe")
+            UserDefaults.standard.set(true, forKey: "RememberMe")
             btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .selected)
-
-
-
+            
+            
+            
         }
-       sender.isSelected = !sender.isSelected
-
-  }
+        sender.isSelected = !sender.isSelected
+        
+    }
     
     @IBAction func btnForgetAction(_ sender: UIButton) {
         self.presentViewController(viewController : "ForgetPasswordVC", value: "Main")
@@ -135,7 +135,7 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         }else{
             sender.isSelected = false
             self.tfPassword.isSecureTextEntry = true
-           // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
+            // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
         }
     }
     
@@ -143,18 +143,18 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         
         print(tfEmail.text?.count)
         print(tfEmail.text!)
-
+        
         
         guard tfEmail.text?.count ?? 0 > 0 else {
-                   Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your email", btnOkTitle: "Done") {
-                   }
-                   return
-               }
-               guard tfPassword.text?.count ?? 0 > 0 else {
-                   Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your password", btnOkTitle: "Done") {
-                   }
-                   return
-               }
+            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your email", btnOkTitle: "Done") {
+            }
+            return
+        }
+        guard tfPassword.text?.count ?? 0 > 0 else {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your password", btnOkTitle: "Done") {
+            }
+            return
+        }
         
         var param = [String : Any]()
         LoaderClass.shared.loadAnimation()
@@ -176,7 +176,7 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
 extension LoginVC: LoginViewModelProtocol {
     func loginApiResponse(message: String, response: [String : Any], isError: Bool) {
         LoaderClass.shared.stopAnimation()
-
+        
         if !isError{
             UserDefaults.standard.set(response["token"], forKey: UserdefaultKeys.token)
             UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)

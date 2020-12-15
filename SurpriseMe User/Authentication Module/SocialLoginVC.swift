@@ -110,9 +110,12 @@ class SocialLoginVC: UIViewController {
                                     paramDict = result as? [String : Any] ?? [:]
                                     print(result!)
                                     let deviceToken = UserDefaults.standard.value(forKey: "device_token") as? String
+                                    let imageData = paramDict["picture"] as? [String:Any]
+                                    let imagePictureData = imageData?["data"] as? [String:Any]
+                                    let image = imagePictureData?["url"] as? String
                                     LoaderClass.shared.loadAnimation()
-                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "password" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? ""]
-                                    self.loginViewModel.getParamForSignUp(param: param, url: Api.Register)
+                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "fb_id" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? "","lang":"en","image":image ?? ""]
+                                    self.loginViewModel.getParamForSignUp(param: param, url: Api.FBregister)
                                 }
                             })
                         }

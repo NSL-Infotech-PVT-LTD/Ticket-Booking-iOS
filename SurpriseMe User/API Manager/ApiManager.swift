@@ -114,6 +114,7 @@ struct Api {
     
     static let login                  = baseUrl + "login"
     static let Register               = baseUrl + "register"
+    static let FBregister            = baseUrl + "register/fb"
     static let AppleLogin             = baseUrl + "register/apple"
     static let update                 = baseUrl + "update"
     static let changePassword         = baseAuthUrl + "customer/change-password"
@@ -148,7 +149,8 @@ struct Api {
     static let artistGetArtistRating    = basePublicUrl + "customer/getartistrating"
     static let artistAvailableSlot    = basePublicUrl + "customer/bookslot/list-date"
     static let idelPayment           = basePublicUrl + "customer/create-payment-intent"
-
+    static let getStripeKey           = basePublicUrl + "payment-config"
+    static let currencies               = basePublicUrl + "currencies"
 
     
     
