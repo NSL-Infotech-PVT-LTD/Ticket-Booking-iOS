@@ -39,6 +39,7 @@ var pageForFilter = false
 var isEditAddress = false
 var modelObjectAdress = ManageAddressModel()
 var dictFilter = [String:Any]()
+var SelfImage = String()
 
 
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"

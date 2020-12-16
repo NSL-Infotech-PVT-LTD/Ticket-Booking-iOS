@@ -280,69 +280,69 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let dataItem = self.arrayBookingList[indexPath.row]
-        if dataItem.status == "completed_review"{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CompletedBookingTableViewCell", for: indexPath) as! BookingTableViewCell
-            cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
-            cell.btnseeAllDetails.tag = indexPath.row
-            cell.lblName.text =  dataItem.artist_detail?.name ?? ""
-            //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
-            let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
-            cell.lblDate.text = localTime
-            cell.lblOrderID.text = "#\(dataItem.id ?? 0)"
-            cell.lblReview.text = dataItem.rate_detail?.review ?? ""
-            cell.viewCosmo.isUserInteractionEnabled = false
-            cell.viewCosmo.rating = Double(dataItem.rate_detail?.rate ?? 0)
-            cell.lblBookDate.text = self.convertDateToStringBook(profile: dataItem.dateInString ?? "")
-            //            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
-            cell.lblBookingStatus.text = "\(dataItem.status?.capitalized ?? "")"
-            let timeInto24 = self.convertDateFormater(date: dataItem.from_time ?? "")
-            let timeInto24to_time = self.convertDateFormater(date: dataItem.to_time ?? "")
-            cell.lblBookingTime.text = "\(timeInto24)" + " to " + "\(timeInto24to_time)"
-            cell.lblRatedAddress.text = dataItem.address ?? ""
-            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.artist_detail?.imageProfile ?? "")"
-            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-            let urlImage = URL(string: urlStringaa)!
-            cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            if dataItem.type == "live"
-            {
-                cell.lblSkill.text = "In-Person"
-            }else
-            {
-                cell.lblSkill.text = "Virtual"
-            }
-            cell.viewBookingBorderDash.layer.cornerRadius = 8
-            cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
-            cell.viewBookingBorderDash.layer.shadowOpacity = 1
-            cell.viewBookingBorderDash.layer.shadowRadius = 3
-            //MARK:- Shade a view
-            cell.viewBookingBorderDash.layer.shadowOpacity = 0.5
-            cell.viewBookingBorderDash.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-            cell.viewBookingBorderDash.layer.masksToBounds = false
-            if dataItem.status == "pending"{
-                
-                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-            } else if dataItem.status == "rejected" || dataItem.status == "report"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                    }else if dataItem.status == "cancel"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                    }else if dataItem.status == "accepted"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                    }else if dataItem.status == "confirmed"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                    }else if dataItem.status == "processing"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-                    }else if dataItem.status == "completed_review"{
-                        cell.lblBookingStatus.text = "Completed"
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                    }else if dataItem.status == "completed"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-                    }else if dataItem.status == "payment_failed"{
-                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-                        cell.lblBookingStatus.text = "Failed"
-                    }
-            return cell
-        }else{
+//        if dataItem.status == "completed_review"{
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "CompletedBookingTableViewCell", for: indexPath) as! BookingTableViewCell
+//            cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
+//            cell.btnseeAllDetails.tag = indexPath.row
+//            cell.lblName.text =  dataItem.artist_detail?.name ?? ""
+//            //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
+//            let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
+//            cell.lblDate.text = localTime
+//            cell.lblOrderID.text = "#\(dataItem.id ?? 0)"
+//            cell.lblReview.text = dataItem.rate_detail?.review ?? ""
+//            cell.viewCosmo.isUserInteractionEnabled = false
+//            cell.viewCosmo.rating = Double(dataItem.rate_detail?.rate ?? 0)
+//            cell.lblBookDate.text = self.convertDateToStringBook(profile: dataItem.dateInString ?? "")
+//            //            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
+//            cell.lblBookingStatus.text = "\(dataItem.status?.capitalized ?? "")"
+//            let timeInto24 = self.convertDateFormater(date: dataItem.from_time ?? "")
+//            let timeInto24to_time = self.convertDateFormater(date: dataItem.to_time ?? "")
+//            cell.lblBookingTime.text = "\(timeInto24)" + " to " + "\(timeInto24to_time)"
+//            cell.lblRatedAddress.text = dataItem.address ?? ""
+//            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.artist_detail?.imageProfile ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+//            let urlImage = URL(string: urlStringaa)!
+//            cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//            if dataItem.type == "live"
+//            {
+//                cell.lblSkill.text = "In-Person"
+//            }else
+//            {
+//                cell.lblSkill.text = "Virtual"
+//            }
+//            cell.viewBookingBorderDash.layer.cornerRadius = 8
+//            cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
+//            cell.viewBookingBorderDash.layer.shadowOpacity = 1
+//            cell.viewBookingBorderDash.layer.shadowRadius = 3
+//            //MARK:- Shade a view
+//            cell.viewBookingBorderDash.layer.shadowOpacity = 0.5
+//            cell.viewBookingBorderDash.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+//            cell.viewBookingBorderDash.layer.masksToBounds = false
+//            if dataItem.status == "pending"{
+//
+//                cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+//            } else if dataItem.status == "rejected" || dataItem.status == "report"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+//                    }else if dataItem.status == "cancel"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+//                    }else if dataItem.status == "accepted"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//                    }else if dataItem.status == "confirmed"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//                    }else if dataItem.status == "processing"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
+//                    }else if dataItem.status == "completed_review"{
+//                        cell.lblBookingStatus.text = "Completed"
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//                    }else if dataItem.status == "completed"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
+//                    }else if dataItem.status == "payment_failed"{
+//                        cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
+//                        cell.lblBookingStatus.text = "Failed"
+//                    }
+//            return cell
+//        }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "BookingTableViewCell", for: indexPath) as! BookingTableViewCell
             //        cell.viewBookingBorderDash.addDashedBorder( UIColor(red: 0.78, green: 0.78, blue: 0.78, alpha: 1.00), withWidth: 1, cornerRadius: 6, dashPattern: [5,4])
             cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
@@ -363,7 +363,7 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
             let urlImage = URL(string: urlStringaa)!
             cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 489"))
             if dataItem.type == "live"{
                 cell.lblSkill.text = "In-Person"
             }else{
@@ -407,7 +407,7 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
             }
             
             return cell
-        }
+//        }
     }
     
     
@@ -416,7 +416,7 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
         if dataItem.status == "completed_review"{
             return 279
         }else{
-            return 210
+            return 230
         }
     }
     

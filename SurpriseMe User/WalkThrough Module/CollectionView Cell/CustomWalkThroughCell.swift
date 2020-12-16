@@ -16,4 +16,7 @@ class CustomWalkThroughCell: UICollectionViewCell {
     @IBOutlet weak var lblDescriptionWalkThrough: UILabel!
     @IBOutlet weak var widthConstant: NSLayoutConstraint!
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
+    
+    @IBOutlet weak var bottomLblSizeConstant: NSLayoutConstraint!
+    
 }

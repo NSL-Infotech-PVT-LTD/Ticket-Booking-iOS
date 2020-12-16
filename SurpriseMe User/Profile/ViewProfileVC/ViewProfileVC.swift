@@ -54,7 +54,9 @@ class ViewProfileVC: UIViewController {
     
     @IBOutlet weak var lblNewBrandArtist: UILabel!
     
+    @IBOutlet weak var viewInstaGramProfile: UIView!
     
+    @IBOutlet weak var viewYoutubeProfile: UIView!
     @IBOutlet weak var viewImageViewContainer: UIView!
     @IBOutlet weak var viewCosmoRating: CosmosView!
     //MARK:- Variable -
@@ -70,7 +72,23 @@ class ViewProfileVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         self.imgProfile.isUserInteractionEnabled = true
         self.imgProfile.addGestureRecognizer(tap)
+        
+        
+        
+        let tap12 = UITapGestureRecognizer(target: self, action: #selector(imageTappedtap12))
+        self.viewInstaGramProfile.isUserInteractionEnabled = true
+        self.viewInstaGramProfile.addGestureRecognizer(tap12)
+        
+        let tap13 = UITapGestureRecognizer(target: self, action: #selector(imageTappedtap13))
+        self.viewYoutubeProfile.isUserInteractionEnabled = true
+        self.viewYoutubeProfile.addGestureRecognizer(tap13)
+        
     }
+    
+    
+    
+    
+    
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
@@ -143,6 +161,37 @@ class ViewProfileVC: UIViewController {
         crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
     }
+    
+  
+    
+    @objc func imageTappedtap12(_ sender: UITapGestureRecognizer? = nil) {
+        let Username =  self.lblInstagramSubscribers.text ?? "" // Your Instagram Username here
+                       let appURL = URL(string: "instagram://user?username=\(Username)")!
+                       let application = UIApplication.shared
+
+                       if application.canOpenURL(appURL) {
+                           application.open(appURL)
+                       } else {
+                           // if Instagram app is not installed, open URL inside Safari
+                           let webURL = URL(string: "https://instagram.com/\(Username)")!
+                           application.open(webURL)
+                       }
+    }
+    
+    @objc func imageTappedtap13(_ sender: UITapGestureRecognizer? = nil) {
+        let YoutubeID =  lblYoutubeSubscribers.text ?? "" // Your Youtube ID here
+                       let appURL = NSURL(string: "youtube://www.youtube.com/channel/\(YoutubeID)")!
+                       let webURL = NSURL(string: "https://www.youtube.com/channel/\(YoutubeID)")!
+                       let application = UIApplication.shared
+
+                       if application.canOpenURL(appURL as URL) {
+                           application.open(appURL as URL)
+                       } else {
+                           // if Youtube app is not installed, open URL inside Safari
+                           application.open(webURL as URL)
+                       }
+    }
+    
     
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
         //        let photosViewController = NYTPhotosViewController(photos: photo)

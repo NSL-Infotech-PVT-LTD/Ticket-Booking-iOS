@@ -16,6 +16,8 @@ class FriendListVC: UIViewController {
     @IBOutlet weak var viewMsgDash: UIView!
     @IBOutlet weak var MessageTableView: UITableView!
     
+    
+    
     //MARK:- Variable -
     var arrayFreind = [GetFreindListModel]()
     var arrayFreindLoadMore = [GetFreindListModel]()
@@ -183,7 +185,7 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell", for: indexPath) as! MessageTableViewCell
         
         let dataItem = arrayFreind[indexPath.row]
-        cell.viewHeader.addShadowWithCornerRadius(viewObject: cell.viewHeader)
+      //  cell.viewHeader.addShadowWithCornerRadius(viewObject: cell.viewHeader)
         
         
         let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
@@ -204,7 +206,7 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
             print(urlStringaa)
             let urlImage = URL(string: urlStringaa)!
             cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
             
         }else{
             cell.lblFrindName.text = dataItem.receiver_name ?? ""
@@ -214,7 +216,7 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
             print(urlStringaa)
             let urlImage = URL(string: urlStringaa)!
             cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
         }
         
         

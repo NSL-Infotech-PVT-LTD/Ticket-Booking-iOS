@@ -812,6 +812,7 @@
 				TargetAttributes = {
 					832C887524F4ED6C0003B10B = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1220;
 					};
 				};
 			};
@@ -1220,10 +1221,11 @@
 			baseConfigurationReference = 6B2097EC0D952BA2867A9735 /* Pods-SurpriseMe User.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMe UserDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
@@ -1235,8 +1237,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
 			};
 			name = Debug;
 		};
@@ -1245,10 +1250,11 @@
 			baseConfigurationReference = 8D79C18DFC0374C660B69917 /* Pods-SurpriseMe User.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMeRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 25;
 				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
@@ -1260,6 +1266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
