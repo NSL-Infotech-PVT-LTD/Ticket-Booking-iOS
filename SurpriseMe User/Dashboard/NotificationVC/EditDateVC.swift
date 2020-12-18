@@ -8,6 +8,7 @@
 
 import UIKit
 import Stripe
+
 class EditDateVC: UIViewController {
     var first: Int = -1
     var second: Int = -1
@@ -28,6 +29,8 @@ class EditDateVC: UIViewController {
     //MARK:- Variable -
     var screenSize: CGRect!
     var screenWidth: CGFloat!
+    
+    
     var screenHeight: CGFloat!
     var indxArr = [Int]()
     var viewModelObject = BookingStoreViewModel()
@@ -54,9 +57,12 @@ class EditDateVC: UIViewController {
     var numsArraySelection = [Int]()
     var arrayTestingData = [[String : [[String : Any]]]]()
     
+    
+   
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
     }
     
@@ -315,6 +321,10 @@ class EditDateVC: UIViewController {
    }
     
     
+    
+    
+    
+    
     func bookNow(){
         if self.first != -1 && self.second == -1{
             let inputString = self.aarayTimeSecond[self.first]
@@ -364,12 +374,58 @@ class EditDateVC: UIViewController {
         
     }
     
+   
+    
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func btnSaveOnPress(_ sender: UIButton) {
     }
+    
+    func getPaymentForBooking(param: [String: Any]) {
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        
+        if Reachability.isConnectedToNetwork() {
+            // LoaderClass.shared.loadAnimation()
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                self.dismiss(animated: true, completion: nil)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                            idealPayment = true
+                            self.navigationController?.pushViewController(controller1, animated: true)
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        else{
+                            if let error_message = response["error"] as? String {
+                                Helper.showOKAlert(onVC: self, title: error_message, message: "")
+                            }
+                        }
+                    }
+                    else {
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    }
+                }
+                else {
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+        
+    }
+
     
     
     
@@ -611,6 +667,9 @@ extension EditDateVC : BookingStoreViewModelProtocol{
         print("the respons is \(response)")
         let dictValue = response["data"] as? [String:Any]
         let dictAddress = response["address"] as? [String:Any]
+        bookingID = dictAddress?["id"] as? Int
+        bookingPaymentID = dictAddress?["id"] as? Int
+
         if isError == true{
             if let errorDict = response["message"] as? String{
                 let alert = UIAlertController(title: "Error", message: errorDict, preferredStyle: .alert)
@@ -623,6 +682,10 @@ extension EditDateVC : BookingStoreViewModelProtocol{
         }else{
             let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
             if currency != "EUR"{
+             
+//
+                
+//
                 if arrayCardListCommom.count > 0{
                     let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList

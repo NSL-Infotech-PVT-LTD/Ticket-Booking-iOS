@@ -38,5 +38,8 @@ pod "youtube-ios-player-helper"
 pod 'AMDots'
 pod 'Toast-Swift', '~> 5.0.1'
 pod 'Mantis', '~> 1.4.7'
+pod 'ImageViewer.swift', '~> 3.0'
+pod "GSImageViewerController"
+
 
 end

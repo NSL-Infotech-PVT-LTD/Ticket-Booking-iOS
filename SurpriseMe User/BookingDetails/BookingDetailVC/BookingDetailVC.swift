@@ -92,9 +92,13 @@ class BookingDetailVC: UIViewController {
     var arrayReport = ["Select Reason","Artist Denied Duty","Artist is unreachable","Artist not picking call","Other"]
     var resonReport = String()
     
+    
+    
+    
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+       
 //        self.viewRatingAndReview.roundCorners(corners: [.topLeft,.topRight], radius: 20.0)
     }
     
@@ -239,6 +243,51 @@ class BookingDetailVC: UIViewController {
         
     }
     
+    
+   
+    func getPaymentForBooking(param: [String: Any]) {
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        print("the token is \(headerToken)")
+        
+        if Reachability.isConnectedToNetwork() {
+            // LoaderClass.shared.loadAnimation()
+            
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
+                print(response)
+                self.dismiss(animated: true, completion: nil)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            let storyboard1 = UIStoryboard(name: "Dashboard", bundle: nil)
+                            let controller1 = storyboard1.instantiateViewController(withIdentifier: "SuccessPaymentVC") as! SuccessPaymentVC
+                            idealPayment = true
+                            self.navigationController?.pushViewController(controller1, animated: true)
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                        else{
+                            if let error_message = response["error"] as? String {
+                                Helper.showOKAlert(onVC: self, title: error_message, message: "")
+                            }
+                        }
+                    }
+                    else {
+                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    }
+                }
+                else {
+                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+        
+    }
+    
     func getCard() {
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
@@ -292,7 +341,17 @@ class BookingDetailVC: UIViewController {
     
     func payNowAction()  {
         
+        
+        
+        
+        
         let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
+        
+       
+
+        
+        
+//
         if currency != "EUR"{
             if arrayCardListCommom.count > 0{
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
@@ -309,8 +368,7 @@ class BookingDetailVC: UIViewController {
                 else{
                     bookingPaymentID = bookingID
                 }
-                //                bookingID = dictAddress?["id"] as? Int
-                //                bookingPaymentID = dictAddress?["id"] as? Int
+                               
                 navigationController?.pushViewController(controller, animated: true)
             }else{
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
@@ -327,8 +385,7 @@ class BookingDetailVC: UIViewController {
                 else{
                     bookingPaymentID = bookingID
                 }
-                //                bookingID = dictAddress?["id"] as? Int
-                //                bookingPaymentID = dictAddress?["id"] as? Int
+                               
                 controller.isMoreCount = true
                 
                 navigationController?.pushViewController(controller, animated: true)

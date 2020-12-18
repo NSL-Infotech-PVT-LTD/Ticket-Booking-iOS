@@ -18,6 +18,8 @@ import AVKit
 import AVFoundation
 import youtube_ios_player_helper
 import Cosmos
+import ImageViewer_swift
+import GSImageViewerController
 
 class ViewProfileVC: UIViewController {
     
@@ -54,7 +56,9 @@ class ViewProfileVC: UIViewController {
     
     @IBOutlet weak var lblNewBrandArtist: UILabel!
     
+    @IBOutlet weak var viewInstaGramProfile: UIView!
     
+    @IBOutlet weak var viewYoutubeProfile: UIView!
     @IBOutlet weak var viewImageViewContainer: UIView!
     @IBOutlet weak var viewCosmoRating: CosmosView!
     //MARK:- Variable -
@@ -64,13 +68,31 @@ class ViewProfileVC: UIViewController {
     var youtubeID = String()
     var VideoLink = String()
     var photo = [UIImage]()
+    var photoArray = [UIImage]()
+
    var localVideoUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         self.imgProfile.isUserInteractionEnabled = true
         self.imgProfile.addGestureRecognizer(tap)
+        
+        
+        
+        let tap12 = UITapGestureRecognizer(target: self, action: #selector(imageTappedtap12))
+        self.viewInstaGramProfile.isUserInteractionEnabled = true
+        self.viewInstaGramProfile.addGestureRecognizer(tap12)
+        
+        let tap13 = UITapGestureRecognizer(target: self, action: #selector(imageTappedtap13))
+        self.viewYoutubeProfile.isUserInteractionEnabled = true
+        self.viewYoutubeProfile.addGestureRecognizer(tap13)
+        
     }
+    
+    
+    
+    
+    
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
@@ -143,6 +165,37 @@ class ViewProfileVC: UIViewController {
         crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
     }
+    
+  
+    
+    @objc func imageTappedtap12(_ sender: UITapGestureRecognizer? = nil) {
+        let Username =  self.lblInstagramSubscribers.text ?? "" // Your Instagram Username here
+                       let appURL = URL(string: "instagram://user?username=\(Username)")!
+                       let application = UIApplication.shared
+
+                       if application.canOpenURL(appURL) {
+                           application.open(appURL)
+                       } else {
+                           // if Instagram app is not installed, open URL inside Safari
+                           let webURL = URL(string: "https://instagram.com/\(Username)")!
+                           application.open(webURL)
+                       }
+    }
+    
+    @objc func imageTappedtap13(_ sender: UITapGestureRecognizer? = nil) {
+        let YoutubeID =  lblYoutubeSubscribers.text ?? "" // Your Youtube ID here
+                       let appURL = NSURL(string: "youtube://www.youtube.com/channel/\(YoutubeID)")!
+                       let webURL = NSURL(string: "https://www.youtube.com/channel/\(YoutubeID)")!
+                       let application = UIApplication.shared
+
+                       if application.canOpenURL(appURL as URL) {
+                           application.open(appURL as URL)
+                       } else {
+                           // if Youtube app is not installed, open URL inside Safari
+                           application.open(webURL as URL)
+                       }
+    }
+    
     
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
         //        let photosViewController = NYTPhotosViewController(photos: photo)
@@ -221,6 +274,7 @@ class ViewProfileVC: UIViewController {
     func getThumbnailImage(forUrl url: URL) -> UIImage? {
         let asset: AVAsset = AVAsset(url: url)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
 
         do {
             let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60) , actualTime: nil)
@@ -346,7 +400,7 @@ class ViewProfileVC: UIViewController {
         }else{
             self.imgProfile.isUserInteractionEnabled = true
         }
-        
+        self.imgProfile.setupImageViewer()
         
         let attributedString = NSMutableAttributedString(string: profile?.descriptionValue ?? "")
         txtViewAbout.linkTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.blue] as [NSAttributedString.Key: Any]?
@@ -468,14 +522,28 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
         if collectionView == self.showCollectionView{
         
         let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
-        
+            cell2.imgShow.setupImageViewer()
         if indexPath.row == 0{
             let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_1 ?? "")"
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
             let urlImage = URL(string: urlStringaa)!
             cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//            photoArray.append(cell2.imgShow.image!)
+            
+//            DispatchQueue.main.async {
+////                            cell2.imgShow.setupImageViewer()
+//                cell2.imgShow.setupImageViewer(images: [self.photoArray[0]], initialIndex: 0, options: [ImageViewerOption.closeIcon(UIImage.init(named: "close (6)")!)], from: self)
+//
+//                let imageInfo   = GSImageInfo(image: cell2.imgShow.image!, imageMode: .aspectFit)
+//                let imageViewer = GSImageViewerController(imageInfo: imageInfo)
+//                self.navigationController?.pushViewController(imageViewer, animated: true)
+//               // cell2.imgShow.setupImageViewer(url: urlImage)
+//
+//            }
+//            cell2.imgShow.setupImageViewer()
 
+//
             let transition = CATransition()
                    transition.duration = 0.5
                    transition.timingFunction = CAMediaTimingFunction(name: .linear)
@@ -495,6 +563,8 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             let urlImage = URL(string: urlStringaa)!
             cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+
+            
             let transition = CATransition()
                    transition.duration = 0.5
                    transition.timingFunction = CAMediaTimingFunction(name: .linear)
@@ -515,7 +585,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             let urlImage = URL(string: urlStringaa)!
             cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
+
             let transition = CATransition()
                    transition.duration = 0.5
                    transition.timingFunction = CAMediaTimingFunction(name: .linear)
@@ -536,6 +606,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             let urlImage = URL(string: urlStringaa)!
             cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+
             
             
             let transition = CATransition()
@@ -552,6 +623,9 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             crossBack.isHidden = false
             imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
         }
+            
+            
+            
         }
         
     }

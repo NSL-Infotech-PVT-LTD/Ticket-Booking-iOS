@@ -17,7 +17,7 @@ class WalkThroughVC: UIViewController {
     var imgArray = ["WalkThrough1","WalkThrough2","WalkThrough3"]
     var arrayHeader = ["Birthday Surprise","Dj Performers","Digital Performers"]
     var arrayDescHeader = ["Lorem Ipsum is simply dummy text of theprinting and typesetting industry. LoremIpsum has been the industry's standard dummy text ever","Dj Performers","Digital Performers"]
-
+    
     var navigationControl = UINavigationController()
     var timer = Timer()
     var counter = 0
@@ -28,7 +28,7 @@ class WalkThroughVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.reloadData()
-//        self.setAutoScroll()
+        //        self.setAutoScroll()
         
     }
     
@@ -36,7 +36,7 @@ class WalkThroughVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         self.btnGetStarted.setTitle("GET_STARTED".localized(), for: .normal)
-
+        
     }
     
     @IBAction func btnGetStartedAction(_ sender: Any) {
@@ -64,10 +64,10 @@ class WalkThroughVC: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
-    pageController.currentPage = Int(pageIndex)
+        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+        pageController.currentPage = Int(pageIndex)
     }
-
+    
     
 }
 
@@ -84,6 +84,14 @@ extension WalkThroughVC : UICollectionViewDelegate,UICollectionViewDataSource,UI
         cell.lblTitleWalkThrough.text = arrayHeader[indexPath.row]
         cell.heightConstant.constant = view.frame.size.height
         cell.widthConstant.constant = self.view.frame.size.width
+        
+        if UIDevice.current.hasNotch{
+            cell.bottomLblSizeConstant.constant = 210
+            
+        }else{
+            cell.bottomLblSizeConstant.constant = 150
+        }
+        
         return cell
     }
     
@@ -94,3 +102,5 @@ extension WalkThroughVC : UICollectionViewDelegate,UICollectionViewDataSource,UI
     
     
 }
+
+
