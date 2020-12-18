@@ -130,9 +130,9 @@ extension LanguageVC:UITableViewDataSource,UITableViewDelegate{
         cell.lblLanguage.text = languageArray[indexPath.row]
         let selectIndex = UserDefaults.standard.value(forKey: "SelectedIndex") as? Int ?? 0
       if selectIndex == indexPath.row {
-            cell.imgCheck.image = #imageLiteral(resourceName: "tick")
+        cell.imgCheck.image = UIImage.init(named: "TICK-1")
         }else{
-            cell.imgCheck.image = #imageLiteral(resourceName: "tick_unselect")
+            cell.imgCheck.image = UIImage.init(named: "Atoms- Selectors- Selected-2")
         }
         return cell
     }

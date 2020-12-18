@@ -34,7 +34,7 @@ class SelectDateVC: UIViewController {
         let dict = ["artist_id":userArtistID]
         self.getAvailableSlot(dict: dict)
         calenderView.appearance.todaySelectionColor = UIColor.systemPink
-
+        self.calenderView.placeholderType = .none
 
     }
     

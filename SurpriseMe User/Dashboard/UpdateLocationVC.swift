@@ -39,6 +39,7 @@ class UpdateLocationVC: UIViewController {
     var isEdit = Bool()
     var modelObjectDict = ManageAddressModel()
     var locationManager = CLLocationManager()
+    var isCurrentLocation = false
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
@@ -52,17 +53,20 @@ class UpdateLocationVC: UIViewController {
         self.otherAddressTF.isHidden = true
         self.objectViewModel.delegate = self
         self.btnCross.isHidden = true
-        self.currentLocationGet()
         lblAddressTextValue.isUserInteractionEnabled = true
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
         lblAddressTextValue.addGestureRecognizer(tapviewAboutUs)
-
-        if isEdit == true {
-            isEditAddress = true
+        
+        
+        if isEditValue == true && isEditAddress == true{
+            setEditAddressAgain()
+            
+            
+        }else if isEditValue == true && isEditAddress == false{
             setAddressInTextField()
-            
-            
-        }else{
+
+        }
+        else{
 //            if cameFrom == false{
 //                self.currentLocationGet()
 //            }else{
@@ -70,18 +74,95 @@ class UpdateLocationVC: UIViewController {
 //            }
         }
         
+
+//        if isEdit == true {
+//            isEditAddress = true
+//            setAddressInTextField()
+//
+//
+//        }else{
+////            if cameFrom == false{
+////                self.currentLocationGet()
+////            }else{
+//                self.setMarkerCustomLocation()
+////            }
+//        }
+        
         
     }
     
     
     @IBAction func btnEditActions(_ sender: UIButton) {
+        isEditAddress = true
+
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
         navigationController?.pushViewController(controller, animated: false)
         
     }
     
-    
+    func setEditAddressAgain()  {
+        
+
+        self.lblAddressTextValue.text =  addressSelected
+        self.getAddress(address: addressSelected)
+        print("the param is \(isEditAddress)")
+
+        print("the latitude and long is\(addressLat),\(addressLong)")
+        
+        
+        if addressLandMarkEdit  == "self.tfLandMark.text!" || addressLandMarkEdit  == ""{
+        }else{
+            self.tfLandMark.text = addressLandMarkEdit
+        }
+        
+        if addressAdditionalDetailEdit == "self.tfHouserNumber.text!" || addressAdditionalDetailEdit == ""{
+        }else{
+            self.tfHouserNumber.text = addressAdditionalDetailEdit
+        }
+        
+       
+//
+//        addressLat = "\(modelObjectDict.lat ?? 0.0)"
+//        addressLong = "\(modelObjectDict.long ?? 0.0)"
+        
+        
+//        self.addressType = modelObjectDict.name ?? ""
+        
+        
+        if addressTypeEdit == "Home"{
+            self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            self.stackViews.isHidden = false
+            self.btnCross.isHidden = true
+            self.otherAddressTF.isHidden = true
+        }else if addressTypeEdit == "Work"{
+            self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+            self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+             self.stackViews.isHidden = false
+                      self.btnCross.isHidden = true
+                      self.otherAddressTF.isHidden = true
+        }else if addressTypeEdit == "Other"{
+            self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+             self.btnOther.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+              self.stackViews.isHidden = false
+                      self.btnCross.isHidden = true
+                      self.otherAddressTF.isHidden = true
+        }
+        else{
+            self.stackViews.isHidden = true
+            self.btnCross.isHidden = false
+            self.otherAddressTF.isHidden = false
+            self.otherAddressTF.text = otherAddresssFeildValue
+        }
+        
+
+        
+        
+    }
     
     @IBAction func btnCurrentLocationAction(_ sender: UIButton) {
         
@@ -216,26 +297,27 @@ class UpdateLocationVC: UIViewController {
             var location = GMSCameraPosition()
             print("Location services are not enabled");
             
+            isCurrentLocation = true
+            
             currentLat = getLatLong?.coordinate.latitude ?? 0.0
             currentLong = getLatLong?.coordinate.longitude ?? 0.0
             
-            if isEdit == true {
-                
-                
-                print("the latittude is \(modelObjectDict.lat ?? 0.0)")
-                print("the long is \(modelObjectDict.long ?? 0.0)")
-                
-                
-                location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
-            }else{
+//            if isEdit == true {
+//
+//
+//                print("the latittude is \(modelObjectDict.lat ?? 0.0)")
+//                print("the long is \(modelObjectDict.long ?? 0.0)")
+//
+//
+//                location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
+//            }else{
                 location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
-            }
+//            }
             
             //            print("check Lattitude = \(modelObjectDict.lat)")
             //            print("check Longitude = \(modelObjectDict.long)")
             
             mapView.camera = location
-            //            self.tfAddress.text =  ""
             
             
         } else {
@@ -467,33 +549,197 @@ class UpdateLocationVC: UIViewController {
         self.objectViewModel.getParamForEditAddress(param: dictParam)
     }
     
+    func setAddressEditAgain()  {
+        
+        LoaderClass.shared.loadAnimation()
+        
+        
+        
+        
+        
+        
+        
+        var dictParam = [String : Any]()
+        if addressTypeEdit == "Other" || addressTypeEdit != "Home" || addressTypeEdit != "Work"{
+            
+            if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                
+                if self.otherAddressTF.text == ""{
+                    dictParam =
+                                       
+                                       ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                }else{
+                    dictParam =
+                                       
+                                       ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                }
+                
+              
+               
+                
+                
+                
+            }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                
+               
+                
+                
+                if self.otherAddressTF.text == ""{
+                                  dictParam =
+                                                     
+                                                     ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                              }else{
+                                                     
+                                                      dictParam =
+                                                                        
+                                                                        ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                              }
+                              
+                
+                
+                
+            }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                //                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+                
+                
+                
+               
+                
+                
+                if self.otherAddressTF.text == ""{
+                                                           dictParam =
+                                                                             
+                                                                             ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                                                           }else{
+                                                                                  
+                                                                               dictParam =
+                                                                                   
+                                                                                   ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                                                           }
+                
+                
+                
+            }
+                
+                
+            else{
+                //                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+                
+                
+                
+                
+                
+                if self.otherAddressTF.text == ""{
+                                           dictParam =
+                                                
+                                                ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                                            }else{
+                                                                   
+                                                                dictParam =
+                                                                    
+                                                                    ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                                            }
+                
+                
+            }
+            
+            
+        }else{
+            
+            if addressType == ""{
+                
+                
+                
+                dictParam =
+                    
+                    ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                
+                
+                
+                
+                
+            }else{
+                
+                if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                  
+                    dictParam =
+                        
+                        ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                    
+                    
+                    
+                }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                    
+                    
+                    dictParam =
+                        
+                        ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                    
+                    
+                    
+                }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                    //                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
+                    
+                    
+                    
+                    dictParam =
+                        
+                        ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                    
+                    
+                }
+                    
+                    
+                else{
+                    //                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
+                    
+                    
+                    dictParam =
+                        
+                        ["name":addressTypeEdit,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":addressIDEdit]
+                    
+                    
+                }
+
+                
+                
+                
+                
+            }
+            
+            
+        }
+        
+        
+        
+        
+        //        var dictParam = [String : Any]()
+        //        if addressType == "other"{
+        //            dictParam = ["name":otherAddressTF.text!,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
+        //        }else{
+        //            dictParam = ["name":"other","longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
+        //        }
+        self.objectViewModel.getParamForEditAddress(param: dictParam)
+       
+        
+        
+        
+    }
+    
     
     @IBAction func btnSaveAddress(_ sender: UIButton) {
         
-        if isEdit == true{
+        if isEditValue == true && isEditAddress == false{
             
-            
-            //            if addressType == "" {
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
-            //            }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
-            //            }
-            //            else{
+      
             self.setEditAddress()
             //            }
-        }else{
-            //            if self.tfLandMark.text! == "" {
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select landmark")
-            //            }else if self.tfHouserNumber.text! == ""{
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select House/flat Number")
-            //            }
-            //            else
-            //            if addressType == "" {
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please select address type")
-            //            }else if self.otherAddressTF.text?.count == 0 && addressType == "Other"{
-            //                Helper.showOKAlert(onVC: self, title: "", message: "Please enter other address")
-            //            }
-            //            else{
+        }else if isEditValue == true && isEditAddress == true{
+            setAddressEditAgain()
+        }
+        
+       else{
+          
             self.setAddress()
             //}
         }
@@ -550,6 +796,16 @@ extension UpdateLocationVC: ManageAddressViewModelProtocol {
             if controller.isKind(of: ManageAddressVC.self) {
                 self.navigationController!.popToViewController(controller, animated: true)
                 isEditAddress = false
+                isEditAddress = false
+                isEditValue = false
+                isEditAddress = false
+                isEditValue = false
+                isEditAddress = false
+                addressIDEdit = ""
+                 addressTypeEdit =  ""
+                 addressAdditionalDetailEdit = ""
+                 addressLandMarkEdit =  ""
+                otherAddresssFeildValue = ""
                 break
             }
         }
@@ -629,9 +885,14 @@ extension UpdateLocationVC : CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         print("the user location is \(locations.first?.coordinate.latitude ?? 0.0)")
+        
+//        if isCurrentLocation == true{
+//            addressLat = "\(locations.first?.coordinate.latitude ?? 0.0 )"
+//            addressLong = "\(locations.first?.coordinate.longitude ?? 0.0)"
+//        }
+        
        // self.getAddressFromLatLon(pdblLatitude: "\(locations.first?.coordinate.latitude ?? 0.0 )", withLongitude: "\(locations.first?.coordinate.longitude ?? 0.0)")
-        addressLat = "\(locations.first?.coordinate.latitude ?? 0.0 )"
-        addressLong = "\(locations.first?.coordinate.longitude ?? 0.0)"
+        
         
     }
     
@@ -727,5 +988,11 @@ extension UpdateLocationVC {
             self.otherAddressTF.isHidden = false
             self.otherAddressTF.text = modelObjectDict.name ?? ""
         }
+        
+        addressIDEdit = "\(modelObjectDict.id ?? 0)"
+         addressTypeEdit = modelObjectDict.name ?? ""
+         addressAdditionalDetailEdit = modelObjectDict.state ?? ""
+         addressLandMarkEdit = modelObjectDict.country ?? ""
+        otherAddresssFeildValue = self.otherAddressTF.text ?? ""
     }
 }

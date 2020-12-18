@@ -8,6 +8,7 @@
 
 import UIKit
 import Stripe
+
 class EditDateVC: UIViewController {
     var first: Int = -1
     var second: Int = -1
@@ -28,6 +29,8 @@ class EditDateVC: UIViewController {
     //MARK:- Variable -
     var screenSize: CGRect!
     var screenWidth: CGFloat!
+    
+    
     var screenHeight: CGFloat!
     var indxArr = [Int]()
     var viewModelObject = BookingStoreViewModel()
@@ -313,6 +316,10 @@ class EditDateVC: UIViewController {
         alert.addAction(cancel)
         self.present(alert,animated: true)
    }
+    
+    
+    
+    
     
     
     func bookNow(){

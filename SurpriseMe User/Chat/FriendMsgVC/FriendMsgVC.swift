@@ -20,6 +20,12 @@ class FriendMsgVC: UIViewController {
     @IBOutlet weak var picUserReciever: UIImageView!
     @IBOutlet weak var lblRecierverName: UILabel!
     
+    
+    @IBOutlet weak var img2NoData: UIImageView!
+    @IBOutlet weak var img1NoData: UIImageView!
+    @IBOutlet weak var noDataLblChat: UILabel!
+    @IBOutlet weak var nodataView: UIView!
+    
     //MARK:- Variables -
     var chatdetail = SocketConnectionManager.shared.self
     var chatVMObject = ChatHistoryViewModel()
@@ -30,6 +36,9 @@ class FriendMsgVC: UIViewController {
     var comingFrom = String()
     var recieverIDHistoryList = Int()
     var arrayDateString = [String]()
+    var freindName = String()
+    var freindNameImage = String()
+
     
     
     //MARK:- View's Life Cycle -
@@ -153,6 +162,7 @@ class FriendMsgVC: UIViewController {
                 let urlImage = URL(string: urlStringaa)!
                 picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
                 picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                
             }else{
                 
                 let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
@@ -203,13 +213,6 @@ class FriendMsgVC: UIViewController {
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "h:mm a"
         return dateFormatter.string(from: date ?? Date())
-        
-        
-        //           let date = dateFormatter.date(from: dateAsString)
-        //           dateFormatter.dateFormat = "h:mm a"
-        //           let Date12 = dateFormatter.string(from: date ?? Date())
-        //           print("12 hour formatted Date:",Date12)
-        //           return Date12
     }
     
     
@@ -523,10 +526,27 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
         chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage]))
         DispatchQueue.main.async {
             //scroll down tableview
-            if self.chatHistoryData.count > 0 {
+//            if self.chatHistoryData.count > 0 {
+//                self.scrollToBottom()
+//                self.msgTableView.reloadData()
+//            }
+//
+            if self.chatHistoryData.count == 0 {
+                self.nodataView.isHidden = false
+                self.msgTableView.isHidden = true
+                self.noDataLblChat.text = "Start chat with \(self.lblRecierverName.text ?? "")"
+                self.img1NoData.image = self.picUserReciever.image
+                self.img2NoData.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
+
+            }else{
+                self.nodataView.isHidden = true
+                self.msgTableView.isHidden = false
                 self.scrollToBottom()
                 self.msgTableView.reloadData()
-            } } }
+
+            }
+            
+        } }
 }
 
 extension FriendMsgVC : SocketConnectionManagerDelegate {
@@ -543,6 +563,31 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
         if message == "success" {
             chatHistoryData = response.map({$0}).reversed()
             self.scrollToBottom()
+            if chatHistoryData.count == 0 {
+                self.nodataView.isHidden = false
+                self.msgTableView.isHidden = true
+                noDataLblChat.text = "Start chat with \(self.lblRecierverName.text ?? "")"
+                img1NoData.image = picUserReciever.image
+                self.img2NoData.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
+
+            }else{
+                self.nodataView.isHidden = true
+                self.msgTableView.isHidden = false
+
+
+            }
+            
+//            msgTableView: UITableView!
+//            @IBOutlet weak var bottomConstant: NSLayoutConstraint!
+//            @IBOutlet weak var txtMssg: UITextView!
+//            @IBOutlet weak var picUserReciever: UIImageView!
+//            @IBOutlet weak var lblRecierverName: UILabel!
+//
+//
+//            @IBOutlet weak var img2NoData: UIImageView!
+//            @IBOutlet weak var img1NoData: UIImageView!
+//            @IBOutlet weak var noDataLblChat: UILabel!
+//            @IBOutlet weak var nodataView
             msgTableView.reloadData()
             if comingFrom == "NotificationTabs"{
                 self.setData(param: receiverDetails)

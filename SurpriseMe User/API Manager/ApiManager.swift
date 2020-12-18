@@ -39,6 +39,13 @@ var pageForFilter = false
 var isEditAddress = false
 var modelObjectAdress = ManageAddressModel()
 var dictFilter = [String:Any]()
+var SelfImage = String()
+var addressIDEdit = String()
+var addressTypeEdit = String()
+var addressAdditionalDetailEdit = String()
+var addressLandMarkEdit = String()
+var otherAddresssFeildValue = String()
+var isEditValue = Bool()
 
 
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"

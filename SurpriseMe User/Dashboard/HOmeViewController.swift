@@ -748,7 +748,10 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
     func getProfileData(profile :GetProfileModel? )  {
         print("the user image is \(Api.imageURL)\(profile?.image ?? "")")
         self.imgUserProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        
+        
         self.imgUserProfile.sd_setImage(with: URL(string: "\(Api.imageURL)\(profile?.image ?? "")"), placeholderImage: UIImage(named: "user (1)"))
+        SelfImage = "\(Api.imageURL)\(profile?.image ?? "")"
         
     }
     
