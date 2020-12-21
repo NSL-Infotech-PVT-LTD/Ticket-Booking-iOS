@@ -147,8 +147,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         self.viewSettingUpShowType.isHidden = true
         self.viewPopupContainer.isHidden = false
         
-        
-        
     }
     
     func getManageAddressData(param: [String: Any]) {

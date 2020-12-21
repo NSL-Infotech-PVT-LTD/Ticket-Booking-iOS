@@ -18,11 +18,23 @@ import AVKit
 import AVFoundation
 import youtube_ios_player_helper
 import Cosmos
+import SwiftyJSON
+import ImageSlideshow
 
-class ViewProfileVC: UIViewController {
+
+class imageSLiderCell :UICollectionViewCell{
+    @IBOutlet weak var imageWIdth: NSLayoutConstraint!
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
+}
+
+class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     //MARK:- Outlets -
 
+    @IBOutlet weak var pageController: UIPageControl!
+    @IBOutlet weak var imageSliderCollection: UICollectionView!
+    @IBOutlet weak var imageSliderCollectionContainer: UIView!
     @IBOutlet weak var crossBack: UIView!
     @IBOutlet weak var showCollectionView: UICollectionView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
@@ -56,7 +68,10 @@ class ViewProfileVC: UIViewController {
     
     @IBOutlet weak var viewInstaGramProfile: UIView!
     
+    @IBOutlet weak var imgSliderShowView: ImageSlideshow!
     
+    @IBOutlet weak var imgShowType: UIImageView!
+    @IBOutlet weak var btnSeeReview: UIButton!
     @IBOutlet weak var viewSocilaLoginContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var viewContainerSocialLoginView: UIView!
     
@@ -70,6 +85,16 @@ class ViewProfileVC: UIViewController {
     var youtubeID = String()
     var VideoLink = String()
     var photo = [UIImage]()
+    let mainScrollView = UIScrollView()
+    var imageArrayValue = [String]()
+    let pageControlData = UIPageControl()
+    
+    var isSliderShow = false
+    
+   //               pageControl.currentPageIndicatorTintColor = UIColor.lightGray
+   //               pageControl.pageIndicatorTintColor = UIColor.black
+   //        imgSliderShowView.pageIndicator = pageControl
+    
    var localVideoUrl = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +140,9 @@ class ViewProfileVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.viewBack.addBottomShadow()
-        
+        self.imageSliderCollectionContainer.isHidden = true
+        imgViewUserPreview.isHidden = false
+
         getProfileVMObject.delegate = self //Mark: Delegate call
         //Mark:Api Hitp
         let dictParam = ["id":userArtistID]
@@ -132,6 +159,9 @@ class ViewProfileVC: UIViewController {
         //Mark: CollectionView Delegate
         serviceCollectionView.delegate = self
         serviceCollectionView.dataSource = self
+
+        imageSliderCollection.delegate = self
+        imageSliderCollection.dataSource = self
         self.serviceCollectionView.reloadData()
         //getProfileVMObject.delegate = self
         
@@ -164,9 +194,21 @@ class ViewProfileVC: UIViewController {
          btnCrossImage.isHidden = true
         crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
-  
+    @IBAction func cloaseOnPress(_ sender: UIButton) {
+        self.imageSliderCollectionContainer.isHidden = true
+    }
+    
     
     @objc func imageTappedtap12(_ sender: UITapGestureRecognizer? = nil) {
         let Username =  self.lblInstagramSubscribers.text ?? "" // Your Instagram Username here
@@ -200,7 +242,7 @@ class ViewProfileVC: UIViewController {
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil) {
         //        let photosViewController = NYTPhotosViewController(photos: photo)
         //     present(photosViewController, animated: true)
-        
+        isSliderShow = false
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: .linear)
@@ -363,6 +405,56 @@ class ViewProfileVC: UIViewController {
     }
     
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
+        pageController.currentPage = Int(pageIndex)
+    }
+    
+    
+//    @objc func didTap() {
+//           let fullScreenController = slideshow.presentFullScreenController(from: self)
+//           // set the activity indicator for full screen controller (skipping the line will show no activity indicator)
+//           fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
+//       }
+//    
+    
+    func SetScrollViewImageSlider(array : [String])  {
+        
+        
+//
+       
+        print("the image is \(array.count)")
+        imgViewUserPreview.isHidden = true
+        
+        mainScrollView.frame = CGRect(x: 0, y:  100, width: viewImageViewContainer.frame.width, height: 250)
+        mainScrollView.delegate = self
+        mainScrollView.backgroundColor = UIColor.systemPink
+        self.view.addSubview(viewImageViewContainer)
+        self.viewImageViewContainer.addSubview(mainScrollView)
+        self.viewImageViewContainer.addSubview(crossBack)
+
+
+           for i in 0..<array.count{
+          let imageView = UIImageView()
+            
+            let urlSting : String = "\(Api.imageURLArtist)\(array[i] )"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            imageView.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            
+            
+//            imageView.image = UIImage.init(named: array[i])
+               imageView.contentMode = .scaleToFill
+               let xPosition = self.view.frame.width * CGFloat(i)
+               imageView.frame = CGRect(x: xPosition, y: 0, width: self.mainScrollView.frame.width, height: self.mainScrollView.frame.height)
+            imageView.backgroundColor = UIColor.yellow
+
+               mainScrollView.contentSize.width = mainScrollView.frame.width * CGFloat(i + 1)
+               mainScrollView.addSubview(imageView)
+    }
+    
+    }
     
     @IBAction func btnBookAction(_ sender: UIButton) {
         
@@ -378,6 +470,8 @@ class ViewProfileVC: UIViewController {
         self.lblLiveShowPrice.text = "\(profile?.converted_currency ?? "")\(" ")\(      profile?.converted_live_price ?? 0)"
         
         if profile?.ratingValue == 0{
+            btnSeeReview.isHidden = true
+            btnSeeReview.isUserInteractionEnabled = false
             self.viewCosmoRating.isHidden = true
             self.lblNewBrandArtist.isHidden = false
             self.lblNewBrandArtist.text = "BRAND NEW ARTIST"
@@ -385,8 +479,25 @@ class ViewProfileVC: UIViewController {
             self.viewCosmoRating.isHidden = false
             self.lblNewBrandArtist.isHidden = true
             self.viewCosmoRating.rating = Double("\(profile?.ratingValue ?? 0)") ?? 0.0
-            
+            btnSeeReview.isHidden = false
+            btnSeeReview.isUserInteractionEnabled = true
+
         }
+        
+        if   whicShowTypeDigital == false{
+//
+         
+            
+            self.imgShowType.image = UIImage.init(named: "digital_active")
+                                               
+                                           }else{
+           
+                                            self.imgShowType.image = UIImage.init(named: "live_active")
+
+            
+               }
+        
+        
         
 //        UserDefaults.standard.setValue(profile?.currency ?? "", forKey: UserdefaultKeys.userCurrency)
         self.lblDigitalShowPrice.text = "\(profile?.converted_currency ?? "")\(" ")\(    profile?.converted_digital_price ?? 0)"
@@ -410,6 +521,29 @@ class ViewProfileVC: UIViewController {
         self.viewYoutubeProfile.isUserInteractionEnabled = false
         viewYoutubeProfile.isHidden = true
         
+        if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
+            
+            imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
+
+       }else if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
+        imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
+        imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
+
+       }else if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 == ""{
+        imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
+        imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
+        imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
+
+        }else{
+            imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_4 ?? "")
+
+       }
+        
+        self.imageSliderCollection.reloadData()
+        
         if  profile?.social_link_insta ?? "" != "" &&  profile?.social_link_youtube ?? "" != ""{
             viewInstaGramProfile.isUserInteractionEnabled = true
             viewInstaGramProfile.isHidden = false
@@ -417,11 +551,9 @@ class ViewProfileVC: UIViewController {
             viewYoutubeProfile.isHidden = false
             viewContainerSocialLoginView.isHidden = false
             viewSocilaLoginContainerHeight.constant = 138
-
             
         }
-        
-        else if profile?.social_link_insta ?? "" == "" &&   profile?.social_link_youtube ?? "" != ""{
+      else if profile?.social_link_insta ?? "" == "" &&   profile?.social_link_youtube ?? "" != ""{
             
             viewInstaGramProfile.isUserInteractionEnabled = false
             viewInstaGramProfile.isHidden = true
@@ -429,22 +561,14 @@ class ViewProfileVC: UIViewController {
             viewYoutubeProfile.isHidden = false
             viewContainerSocialLoginView.isHidden = false
             viewSocilaLoginContainerHeight.constant = 138
-
-
-
-            
-            
-        }else if profile?.social_link_insta ?? "" != "" &&   profile?.social_link_youtube ?? "" == ""{
+       }else if profile?.social_link_insta ?? "" != "" &&   profile?.social_link_youtube ?? "" == ""{
             viewInstaGramProfile.isUserInteractionEnabled = true
             viewInstaGramProfile.isHidden = false
             self.viewYoutubeProfile.isUserInteractionEnabled = false
             viewYoutubeProfile.isHidden = true
             viewContainerSocialLoginView.isHidden = false
             viewSocilaLoginContainerHeight.constant = 138
-
-
-            
-        }else if  profile?.social_link_insta ?? "" == "" &&    profile?.social_link_youtube ?? "" == ""{
+    }else if  profile?.social_link_insta ?? "" == "" &&    profile?.social_link_youtube ?? "" == ""{
             viewInstaGramProfile.isUserInteractionEnabled = false
             viewInstaGramProfile.isHidden = true
             self.viewYoutubeProfile.isUserInteractionEnabled = false
@@ -504,6 +628,17 @@ class ViewProfileVC: UIViewController {
 //Mark: Protocol Function
 
 
+//open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        return .portrait
+//    }
+
+extension ViewProfileVC: ImageSlideshowDelegate {
+    func imageSlideshow(_ imageSlideshow: ImageSlideshow, didChangeCurrentPageTo page: Int) {
+        print("current page:", page)
+    }
+}
+
+
 extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.showCollectionView {
@@ -521,7 +656,10 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
                 return 4
             }
             
-        }else{
+        }else if collectionView == self.imageSliderCollection {
+            self.pageController.numberOfPages = self.imageArrayValue.count
+            return self.imageArrayValue.count
+    }else{
             if self.getArtistProfile?.categoryArtist.count ?? 0 != 0{
                 return self.getArtistProfile?.categoryArtist.count ?? 0
             }else{
@@ -540,6 +678,17 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             cell1.lblService.text = "\( getArtistProfile?.categoryArtist[indexPath.row].category_name ?? "")"
             return cell1
             
+        }else if collectionView == self.imageSliderCollection {
+            let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "imageSLiderCell", for: indexPath) as! imageSLiderCell
+            cell1.imageWIdth.constant = self.view.frame.size.width
+                cell1.imageHeight.constant = self.view.frame.size.height
+            let indexData = self.imageArrayValue[indexPath.row]
+            let urlSting : String = "\(Api.imageURLArtist)\(indexData)"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            cell1.image.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell1.image.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+            return cell1
         }else {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
             
@@ -577,94 +726,111 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == self.showCollectionView{
-        
-        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
-        
-        if indexPath.row == 0{
-            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_1 ?? "")"
-            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-            let urlImage = URL(string: urlStringaa)!
-            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-
-            let transition = CATransition()
-                   transition.duration = 0.5
-                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
-                   transition.type = CATransitionType(rawValue: "flip")
-                   transition.type = CATransitionType.push
-           transition.subtype = CATransitionSubtype.fromTop
-                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
-           viewContainerPreview.isHidden = false
-           imgViewUserPreview.isHidden = false
-           viewImageViewContainer.isHidden = false
-           btnCrossImage.isHidden = false
-            crossBack.isHidden = false
-            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-        }else if indexPath.row == 1{
-            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_2 ?? "")"
-            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-            let urlImage = URL(string: urlStringaa)!
-            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            let transition = CATransition()
-                   transition.duration = 0.5
-                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
-                   transition.type = CATransitionType(rawValue: "flip")
-                   transition.type = CATransitionType.push
-           transition.subtype = CATransitionSubtype.fromTop
-                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
-           viewContainerPreview.isHidden = false
-           imgViewUserPreview.isHidden = false
-           viewImageViewContainer.isHidden = false
-           btnCrossImage.isHidden = false
-            crossBack.isHidden = false
-            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
-        }else if indexPath.row == 2{
-            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_3 ?? "")"
-            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-            let urlImage = URL(string: urlStringaa)!
-            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
-            let transition = CATransition()
-                   transition.duration = 0.5
-                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
-                   transition.type = CATransitionType(rawValue: "flip")
-                   transition.type = CATransitionType.push
-           transition.subtype = CATransitionSubtype.fromTop
-                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
-           viewContainerPreview.isHidden = false
-           imgViewUserPreview.isHidden = false
-           viewImageViewContainer.isHidden = false
-           btnCrossImage.isHidden = false
-            crossBack.isHidden = false
-            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
-        }else{
-            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_4 ?? "")"
-            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-            let urlImage = URL(string: urlStringaa)!
-            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            
-            
-            let transition = CATransition()
-                   transition.duration = 0.5
-                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
-                   transition.type = CATransitionType(rawValue: "flip")
-                   transition.type = CATransitionType.push
-           transition.subtype = CATransitionSubtype.fromTop
-                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
-           viewContainerPreview.isHidden = false
-           imgViewUserPreview.isHidden = false
-           viewImageViewContainer.isHidden = false
-           btnCrossImage.isHidden = false
-            crossBack.isHidden = false
-            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-        }
-        }
+        self.imageSliderCollectionContainer.isHidden = false
+//        if collectionView == self.showCollectionView{
+//        
+//        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
+//        
+//        if indexPath.row == 0{
+//            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_1 ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//            let urlImage = URL(string: urlStringaa)!
+//            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//
+////            let transition = CATransition()
+////                   transition.duration = 0.5
+////                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+////                   transition.type = CATransitionType(rawValue: "flip")
+////                   transition.type = CATransitionType.push
+////           transition.subtype = CATransitionSubtype.fromTop
+////                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+////           viewContainerPreview.isHidden = false
+////           imgViewUserPreview.isHidden = false
+////           viewImageViewContainer.isHidden = false
+////           btnCrossImage.isHidden = false
+////            crossBack.isHidden = false
+////            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//        }else if indexPath.row == 1{
+//            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_2 ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//            let urlImage = URL(string: urlStringaa)!
+//            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+////            let transition = CATransition()
+////                   transition.duration = 0.5
+////                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+////                   transition.type = CATransitionType(rawValue: "flip")
+////                   transition.type = CATransitionType.push
+////           transition.subtype = CATransitionSubtype.fromTop
+////                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+////           viewContainerPreview.isHidden = false
+////           imgViewUserPreview.isHidden = false
+////           viewImageViewContainer.isHidden = false
+////           btnCrossImage.isHidden = false
+////            crossBack.isHidden = false
+////            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//            
+//        }else if indexPath.row == 2{
+//            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_3 ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//            let urlImage = URL(string: urlStringaa)!
+//            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+////
+////            let transition = CATransition()
+////                   transition.duration = 0.5
+////                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+////                   transition.type = CATransitionType(rawValue: "flip")
+////                   transition.type = CATransitionType.push
+////           transition.subtype = CATransitionSubtype.fromTop
+////                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+////           viewContainerPreview.isHidden = false
+////           imgViewUserPreview.isHidden = false
+////           viewImageViewContainer.isHidden = false
+////           btnCrossImage.isHidden = false
+////            crossBack.isHidden = false
+////            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//            
+//        }else{
+//            let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_4 ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//            let urlImage = URL(string: urlStringaa)!
+//            cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//            
+////
+////            let transition = CATransition()
+////                   transition.duration = 0.5
+////                   transition.timingFunction = CAMediaTimingFunction(name: .linear)
+////                   transition.type = CATransitionType(rawValue: "flip")
+////                   transition.type = CATransitionType.push
+////           transition.subtype = CATransitionSubtype.fromTop
+////                   imgViewUserPreview.layer.add(transition, forKey: kCATransition)
+////           viewContainerPreview.isHidden = false
+////           imgViewUserPreview.isHidden = false
+////           viewImageViewContainer.isHidden = false
+////           btnCrossImage.isHidden = false
+////            crossBack.isHidden = false
+////            imgViewUserPreview.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//        }
+//            viewContainerPreview.isHidden = false
+//            imgViewUserPreview.isHidden = false
+//            viewImageViewContainer.isHidden = false
+//            btnCrossImage.isHidden = false
+//             crossBack.isHidden = false
+//            pageControlData.currentPageIndicatorTintColor = UIColor.white
+//            pageControlData.pageIndicatorTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1724135211)
+//            pageControlData.numberOfPages = imageArrayValue.count
+//            pageControlData.frame = CGRect(x: 0, y: 450, width: viewImageViewContainer.frame.width, height: 175)
+//            mainScrollView.delegate = self
+//            self.viewImageViewContainer.addSubview(pageControlData)
+//            isSliderShow = true
+//            
+////            pageControlData.pageIndicator = pageControl
+//            self.SetScrollViewImageSlider(array: imageArrayValue)
+//            
+//        }
         
     }
     

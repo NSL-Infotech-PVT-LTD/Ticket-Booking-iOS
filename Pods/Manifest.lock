@@ -112,6 +112,9 @@ PODS:
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - HSCycleGalleryView (1.1.2)
+  - ImageSlideshow (1.9.2):
+    - ImageSlideshow/Core (= 1.9.2)
+  - ImageSlideshow/Core (1.9.2)
   - IQKeyboardManager (6.5.5)
   - Kingfisher (5.15.0):
     - Kingfisher/Core (= 5.15.0)
@@ -156,6 +159,7 @@ DEPENDENCIES:
   - FSCalendar
   - GooglePlacePicker
   - HSCycleGalleryView
+  - ImageSlideshow
   - IQKeyboardManager
   - Kingfisher
   - KJNavigationViewAnimation (~> 0.1.0)
@@ -198,6 +202,7 @@ SPEC REPOS:
     - GooglePlaces
     - GoogleUtilities
     - HSCycleGalleryView
+    - ImageSlideshow
     - IQKeyboardManager
     - Kingfisher
     - KJNavigationViewAnimation
@@ -242,6 +247,7 @@ SPEC CHECKSUMS:
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   HSCycleGalleryView: 791af0073b6f27adcefdf57f90cf6fc633bc2ae3
+  ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   KJNavigationViewAnimation: 0473485c433c20bdcd4f575ef2244ed25f9a0266
@@ -261,6 +267,6 @@ SPEC CHECKSUMS:
   youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 9008d3fbeb8a42240aec494386d0f5d6f2063646
+PODFILE CHECKSUM: 310f6f9ba4548fba97483061510bb51699e52c5a
 
 COCOAPODS: 1.10.0

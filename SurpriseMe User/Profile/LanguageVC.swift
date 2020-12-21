@@ -52,7 +52,7 @@ class LanguageVC: UIViewController {
         
         if isCameFromCL == "Setting"{
             self.btnBack.isHidden = false
-            self.btnNext.isHidden = true
+            self.btnNext.isHidden = false
 
         }else{
             self.btnBack.isHidden = true
@@ -112,9 +112,19 @@ class LanguageVC: UIViewController {
         }else{
             Bundle.setLanguage(lang: language)
             UserDefaults.standard.setValue(language, forKey: "app_lang")
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
-            self.navigationController?.pushViewController(controller, animated: true)
+            if isCameFromCL == "Setting"{
+               
+                self.dismiss(animated: true) {
+                    isCameFromCL = ""
+                  
+                }
+            }else{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+            
+          
         }
     }
 }

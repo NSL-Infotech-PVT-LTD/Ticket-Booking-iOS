@@ -234,6 +234,19 @@ extension ManageAddressVC: ManageAddressViewModelProtocol {
                 
                 
                 self.modelObject.remove(at: self.selectedIndex)
+                
+                if self.modelObject.count == 0{
+                    self.tblAddress.isHidden = true
+                    self.noDataFound.isHidden = false
+                    self.btnAddadress.isHidden = false
+                    self.btnPlus.isHidden = true
+                }else{
+                    self.btnAddadress.isHidden = true
+                    self.btnPlus.isHidden = false
+                    self.tblAddress.isHidden = false
+                    self.noDataFound.isHidden = true
+                }
+              
                 self.tblAddress.reloadData()
 //                self.objectViewModel.getParamForManageAddress(param: [:])
                       }

@@ -15,6 +15,8 @@ class SelectDateVC: UIViewController {
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var calenderView: FSCalendar!
     
+    @IBOutlet weak var imgeBookingType: UIImageView!
+    
     //MARK:- Variable -
     
     var arrayAvailDate = [GetArtistDateList]()
@@ -35,6 +37,20 @@ class SelectDateVC: UIViewController {
         self.getAvailableSlot(dict: dict)
         calenderView.appearance.todaySelectionColor = UIColor.systemPink
         self.calenderView.placeholderType = .none
+        
+        
+        if   whicShowTypeDigital == false{
+//
+         
+            
+            self.imgeBookingType.image = UIImage.init(named: "digital_active")
+                                               
+                                           }else{
+           
+                                            self.imgeBookingType.image = UIImage.init(named: "live_active")
+
+            
+               }
 
     }
     

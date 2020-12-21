@@ -29,6 +29,7 @@ class GetArtistModel: NSObject {
     var social_link_insta: String?
     var social_link_youtube: String?
     var shows_video: String?
+    var shows_image : [JSON]?
 
     var categoryArtist = [SearchCategoryHomeProfileDetails]()
 
@@ -66,6 +67,11 @@ convenience init(resposne : [String:Any]) {
         social_link_youtube = json[ManageAddressModelKey.social_link_youtube].stringValue
     category = json[ManageAddressModelKey.category_id_details].array
     
+    shows_image = json[ManageAddressModelKey.shows_image].array
+
+    
+    
+    
     converted_digital_price = json[ManageAddressModelKey.converted_digital_price].intValue
     converted_live_price = json[ManageAddressModelKey.converted_live_price].intValue
     converted_currency = json[ManageAddressModelKey.converted_currency].stringValue
@@ -102,6 +108,9 @@ convenience init(resposne : [String:Any]) {
         static let converted_digital_price = "converted_digital_price"
         static let converted_live_price = "converted_live_price"
         static let converted_currency = "converted_currency"
+        static let shows_image = "shows_image"
+
+        
 
     }
 
@@ -122,3 +131,5 @@ class SearchCategoryHomeProfileDetails: NSObject {
     }
     
 }
+
+

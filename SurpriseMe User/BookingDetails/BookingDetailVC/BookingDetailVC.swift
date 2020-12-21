@@ -711,7 +711,7 @@ class BookingDetailVC: UIViewController {
             self.viewContainerRating.isHidden = false
             viewHeaderNameHeight.constant = 77
             self.btnStatus.isHidden = true
-            self.btnChatTopBar.isHidden = true
+            self.btnChatTopBar.isHidden = false
             self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = dataItem?.rate_detail?.review ?? ""
 
@@ -881,7 +881,7 @@ class BookingDetailVC: UIViewController {
             self.btnStatus.setTitle("Go To Home", for: .normal)
             
             self.btnStatus.isHidden = false
-            self.btnChatTopBar.isHidden = true
+            self.btnChatTopBar.isHidden = false
             lblPaymentStatus.text = "Not paid"
             
         }else if dataItem?.status == "accepted"{
@@ -1004,7 +1004,7 @@ class BookingDetailVC: UIViewController {
             
 
             
-            self.btnChatTopBar.isHidden = true
+            self.btnChatTopBar.isHidden = false
             self.btnStatus.setTitle("Go To Home", for: .normal)
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
@@ -1193,7 +1193,7 @@ class BookingDetailVC: UIViewController {
             
 
             
-            self.btnChatTopBar.isHidden = true
+            self.btnChatTopBar.isHidden = false
             lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
             self.btnStatus.setTitle("You artist completed his performance", for: .normal)
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
@@ -1283,7 +1283,7 @@ class BookingDetailVC: UIViewController {
             self.viewContainerRating.isHidden = false
             viewHeaderNameHeight.constant = 77
             self.btnStatus.isHidden = true
-            self.btnChatTopBar.isHidden = true
+            self.btnChatTopBar.isHidden = false
             self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = dataItem?.reportReason?.report ?? ""
             
@@ -1359,7 +1359,7 @@ class BookingDetailVC: UIViewController {
             
             self.viewContainerRating.isHidden = true
             lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
-            self.btnChatTopBar.isHidden = true
+            self.btnChatTopBar.isHidden = false
             self.reportReasonLbl.isHidden = false
             self.reportReasonLbl.text = "Reason:- \(dataItem?.reportReason?.report ?? "")"
         }else if dataItem?.status == "payment_failed"{

@@ -69,7 +69,6 @@
 		83511CF425145D0000E9C501 /* showCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF025145D0000E9C501 /* showCollectionViewCell.swift */; };
 		83511CF625146F1200E9C501 /* GetArtistCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */; };
 		83682EA4255BF8FC00C87A45 /* SchueduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */; };
-		837078AB2588DA5D002659C0 /* PayPal.m in Sources */ = {isa = PBXBuildFile; fileRef = 837078AA2588DA5D002659C0 /* PayPal.m */; };
 		838D0114257A5D8700F1062F /* ZFRippleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838D0113257A5D8600F1062F /* ZFRippleButton.swift */; };
 		8391ACD924FCEABA008C04D3 /* customTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACD824FCEABA008C04D3 /* customTabBar.swift */; };
 		8391ACDD24FD194B008C04D3 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8391ACDC24FD194B008C04D3 /* InternetConnection.swift */; };
@@ -235,8 +234,6 @@
 		83511CF525146F1200E9C501 /* GetArtistCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArtistCategoryModel.swift; sourceTree = "<group>"; };
 		83517502256FBBC700406FC2 /* SurpriseMeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SurpriseMeRelease.entitlements; sourceTree = "<group>"; };
 		83682EA3255BF8FB00C87A45 /* SchueduleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchueduleVC.swift; sourceTree = "<group>"; };
-		837078A92588DA5C002659C0 /* SurpriseMe User-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SurpriseMe User-Bridging-Header.h"; sourceTree = "<group>"; };
-		837078AA2588DA5D002659C0 /* PayPal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayPal.m; sourceTree = "<group>"; };
 		838D0113257A5D8600F1062F /* ZFRippleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFRippleButton.swift; sourceTree = "<group>"; };
 		8391ACD824FCEABA008C04D3 /* customTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTabBar.swift; sourceTree = "<group>"; };
 		8391ACDC24FD194B008C04D3 /* InternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
@@ -453,8 +450,6 @@
 				832C888424F4ED6E0003B10B /* LaunchScreen.storyboard */,
 				0DAD1BCF255950E500AFA29A /* GoogleService-Info.plist */,
 				832C888724F4ED6E0003B10B /* Info.plist */,
-				837078AA2588DA5D002659C0 /* PayPal.m */,
-				837078A92588DA5C002659C0 /* SurpriseMe User-Bridging-Header.h */,
 			);
 			path = "SurpriseMe User";
 			sourceTree = "<group>";
@@ -986,7 +981,6 @@
 				830D4BAE251C6EF1002ABAC9 /* GetFreindListViewModel.swift in Sources */,
 				83AB5FE72557FF690087515B /* ReviewRatingViewModel.swift in Sources */,
 				83511CF425145D0000E9C501 /* showCollectionViewCell.swift in Sources */,
-				837078AB2588DA5D002659C0 /* PayPal.m in Sources */,
 				83511CE4251399F200E9C501 /* GetArtistViewModel.swift in Sources */,
 				83CDC2D624F92CBA0020E302 /* SearchArtistVC.swift in Sources */,
 				83D8776A2509532200BFB6D1 /* HomeScreenModel.swift in Sources */,
@@ -1243,7 +1237,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.mumba.demo.app;
 				PRODUCT_NAME = SurpriseMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SurpriseMe User/SurpriseMe User-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1272,7 +1266,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cloud.mumba.demo.app;
 				PRODUCT_NAME = SurpriseMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "SurpriseMe User/SurpriseMe User-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
