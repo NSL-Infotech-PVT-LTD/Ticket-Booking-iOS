@@ -9,9 +9,10 @@
 import UIKit
 import SDWebImage
 import Toast_Swift
+import NVActivityIndicatorView
 
 
-class SearchArtistByNameVC: UIViewController {
+class SearchArtistByNameVC: UIViewController , NVActivityIndicatorViewable{
     
     //MARK:- Variable -
     var objectViewModel = SearchArtistViewModel()
@@ -191,23 +192,34 @@ extension SearchArtistByNameVC : UITextFieldDelegate{
     {
         let userEnteredString = searchTf.text
         let newString = (userEnteredString! as NSString).replacingCharacters(in: range, with: string) as NSString
-        if  newString != ""{
-            if whicShowTypeDigital == true{
-                print("the live")
-                searchTextValue = "\(searchTf.text!)\(string)"
-                let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":"\(searchTf.text!)\(string)"] as [String : Any]
-                self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
-            }else{
-                print("the virtual")
-                searchTextValue = "\(searchTf.text!)\(string)"
-                let dataParam = ["limit":"8","search":"\(searchTf.text!)\(string)"] as [String : Any]
-                self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
-            }
-        } else {
+        
+        print("the numner of charac is \(newString.length)")
+        
+        if newString.length < 3{
             searchTextValue = ""
             self.tblArtist.isHidden = true
             self.viewNoData.isHidden = true
+        }else{
+            if  newString != ""{
+                self.tblArtist.isHidden = true
+                self.viewNoData.isHidden = true
+                self.startAnimating(CGSize(width: 50, height: 50), message: "", messageFont: UIFont(name: "Quicksand-Regular",size: 5), type: .ballClipRotateMultiple, color: UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1), padding: 5, displayTimeThreshold: 5, minimumDisplayTime: 5, backgroundColor: UIColor.clear, textColor: .darkGray, fadeInAnimation: nil)
+                if whicShowTypeDigital == true{
+                    print("the live")
+                    searchTextValue = "\(searchTf.text!)\(string)"
+                   
+                    let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":"\(searchTf.text!)\(string)"] as [String : Any]
+                    self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
+                }else{
+                    print("the virtual")
+                    searchTextValue = "\(searchTf.text!)\(string)"
+                    let dataParam = ["limit":"8","search":"\(searchTf.text!)\(string)"] as [String : Any]
+                    self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
+                }
+            }
         }
+        
+
         return true
     }
 }
@@ -224,6 +236,7 @@ extension SearchArtistByNameVC : SearchArtistViewModelProtocol{
             }else{
                 self.isLoadMore = false
             }
+            self.stopAnimating()
             arrayHomeArtistList = response.map({$0})
             let arrayValue = Set(arrayHomeArtistList)
             arrayHomeArtistList = arrayValue.map({$0})

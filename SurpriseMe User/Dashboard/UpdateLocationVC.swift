@@ -56,21 +56,21 @@ class UpdateLocationVC: UIViewController {
         lblAddressTextValue.isUserInteractionEnabled = true
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
         lblAddressTextValue.addGestureRecognizer(tapviewAboutUs)
-       if isEditValue == true && isEditAddress == true{
+        if isEditValue == true && isEditAddress == true{
             setEditAddressAgain()
-       }else if isEditValue == true && isEditAddress == false{
+        }else if isEditValue == true && isEditAddress == false{
             setAddressInTextField()
         }
         else{
-                self.setMarkerCustomLocation()
+            self.setMarkerCustomLocation()
         }
         
-   }
+    }
     
     
     @IBAction func btnEditActions(_ sender: UIButton) {
         isEditAddress = true
-
+        
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
         navigationController?.pushViewController(controller, animated: false)
@@ -79,10 +79,10 @@ class UpdateLocationVC: UIViewController {
     
     func setEditAddressAgain()  {
         
-
+        
         self.lblAddressTextValue.text =  addressSelected
         self.getAddress(address: addressSelected)
-       if addressLandMarkEdit  == "self.tfLandMark.text!" || addressLandMarkEdit  == ""{
+        if addressLandMarkEdit  == "self.tfLandMark.text!" || addressLandMarkEdit  == ""{
         }else{
             self.tfLandMark.text = addressLandMarkEdit
         }
@@ -90,7 +90,7 @@ class UpdateLocationVC: UIViewController {
         }else{
             self.tfHouserNumber.text = addressAdditionalDetailEdit
         }
-  
+        
         if addressTypeEdit == "Home"{
             self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
             self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
@@ -102,16 +102,16 @@ class UpdateLocationVC: UIViewController {
             self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
             self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
             self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-             self.stackViews.isHidden = false
-                      self.btnCross.isHidden = true
-                      self.otherAddressTF.isHidden = true
+            self.stackViews.isHidden = false
+            self.btnCross.isHidden = true
+            self.otherAddressTF.isHidden = true
         }else if addressTypeEdit == "Other"{
             self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
-             self.btnOther.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnOther.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
             self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
-              self.stackViews.isHidden = false
-                      self.btnCross.isHidden = true
-                      self.otherAddressTF.isHidden = true
+            self.stackViews.isHidden = false
+            self.btnCross.isHidden = true
+            self.otherAddressTF.isHidden = true
         }
         else{
             self.stackViews.isHidden = true
@@ -124,42 +124,42 @@ class UpdateLocationVC: UIViewController {
     @IBAction func btnCurrentLocationAction(_ sender: UIButton) {
         
         if CLLocationManager.locationServicesEnabled() {
-                  switch CLLocationManager.authorizationStatus() {
-                     case .notDetermined, .restricted, .denied:
-                         print("No access")
-                    self.showLocationAccessAlert()
-                     case .authorizedAlways, .authorizedWhenInUse:
-                         print("Access")
-                         self.currentLocationGet()
-                     }
-                 } else {
-                     print("Location services are not enabled")
-                 self.showLocationAccessAlert()
-
-             }
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined, .restricted, .denied:
+                print("No access")
+                self.showLocationAccessAlert()
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("Access")
+                self.currentLocationGet()
+            }
+        } else {
+            print("Location services are not enabled")
+            self.showLocationAccessAlert()
+            
+        }
     }
     
-  func showLocationAccessAlert() {
-            let alertController = UIAlertController(title: "Location Permission Required", message: "Please enable location permissions in settings.", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "settings", style: .default, handler: {(cAlertAction) in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            })
-            let cancelAction = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel)
-            alertController.addAction(cancelAction)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true)
-
-        }
+    func showLocationAccessAlert() {
+        let alertController = UIAlertController(title: "Location Permission Required", message: "Please enable location permissions in settings.", preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "settings", style: .default, handler: {(cAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        })
+        let cancelAction = UIAlertAction(title: "cancel", style: UIAlertAction.Style.cancel)
+        alertController.addAction(cancelAction)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
+        
+    }
     
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil)
-       {
+    {
         
         isEditAddress = true
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
         navigationController?.pushViewController(controller, animated: false)
         
-       }
+    }
     
     
     @IBAction func btnCrossAction(_ sender: UIButton) {
@@ -175,7 +175,7 @@ class UpdateLocationVC: UIViewController {
         let key : String = googleKey
         let postParameters:[String: Any] = [ "address": address,"key":key]
         let url : String = "https://maps.googleapis.com/maps/api/geocode/json"
-//        self.lblAddressTextValue.text =  address
+        //        self.lblAddressTextValue.text =  address
         Alamofire.request(url, method: .get, parameters: postParameters, encoding: URLEncoding.default, headers: nil).responseJSON {  response in
             
             if let receivedResults = response.result.value
@@ -209,7 +209,7 @@ class UpdateLocationVC: UIViewController {
     
     func setMarkerCustomLocation()  {
         self.lblAddressTextValue.text =  addressSelected
-
+        
         self.getAddress(address: addressSelected)
     }
     
@@ -230,9 +230,9 @@ class UpdateLocationVC: UIViewController {
             
             currentLat = getLatLong?.coordinate.latitude ?? 0.0
             currentLong = getLatLong?.coordinate.longitude ?? 0.0
-
-                location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
-//           
+            
+            location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
+            //
             mapView.camera = location
             
             
@@ -246,7 +246,7 @@ class UpdateLocationVC: UIViewController {
     @IBAction func btnOtherAction(_ sender: UIButton) {
         addressType = "Other"
         self.otherAddressTF.isHidden = false
-                self.stackViews.isHidden = true
+        self.stackViews.isHidden = true
         self.btnCross.isHidden = false
     }
     
@@ -277,8 +277,8 @@ class UpdateLocationVC: UIViewController {
             }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
                 dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
             }
-                
-                
+            
+            
             else{
                 dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
             }
@@ -287,13 +287,53 @@ class UpdateLocationVC: UIViewController {
         }else{
             
             if addressType == ""{
-                dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
+                
+                
+                if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                    
+                    
+                    
+                    
+                    
+                    dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
+                }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                    
+                    dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                    dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
+                }
+                
+                
+                else{
+                    dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                }
+                
+                
+                
             }else{
-                dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
+                
+                
+                if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                     dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
+                }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                  
+                    dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                    dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text!]
+                }
+                    
+                    
+                else{
+                    dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                }
+                
+                
+               
             }
             
             
         }
+        print("the dict param is totally \(dictParam)")
         self.objectViewModel.getParamForAddAddress(param: dictParam)
     }
     
@@ -391,16 +431,44 @@ class UpdateLocationVC: UIViewController {
             
             if addressType == ""{
                 
-                
-                
-                dictParam =
+                if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
+                  
+                    dictParam =
+                        
+                        ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":modelObjectDict.id ?? 0]
                     
-                    ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":modelObjectDict.id ?? 0]
-                
-                
-                
-                
-                
+                    
+                    
+                }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
+                    
+                    
+                    dictParam =
+                        
+                        ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"self.tfLandMark.text!","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":modelObjectDict.id ?? 0]
+                    
+                    
+                    
+                }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
+                   
+                    
+                    dictParam =
+                        
+                        ["name":"other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.lblAddressTextValue.text! , "id":modelObjectDict.id ?? 0]
+                    
+                    
+                }
+                    
+                    
+                else{
+                    
+                    
+                    dictParam =
+                        
+                        ["name":"other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text! , "id":modelObjectDict.id ?? 0]
+                    
+                    
+                }
+
             }else{
                 
                 if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
@@ -421,9 +489,7 @@ class UpdateLocationVC: UIViewController {
                     
                     
                 }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
-                    //                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"self.tfHouserNumber.text!","city":"city","street_address":self.tfAddress.text!]
-                    
-                    
+                   
                     
                     dictParam =
                         
@@ -434,7 +500,6 @@ class UpdateLocationVC: UIViewController {
                     
                     
                 else{
-                    //                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text!]
                     
                     
                     dictParam =
@@ -444,24 +509,11 @@ class UpdateLocationVC: UIViewController {
                     
                 }
 
-                
-                
-                
-                
-            }
+           }
             
             
         }
-        
-        
-        
-        
-        //        var dictParam = [String : Any]()
-        //        if addressType == "other"{
-        //            dictParam = ["name":otherAddressTF.text!,"longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
-        //        }else{
-        //            dictParam = ["name":"other","longitude":addressLat,"latitude":addressLong,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.tfAddress.text! , "id":modelObjectDict.id ?? 0]
-        //        }
+      
         self.objectViewModel.getParamForEditAddress(param: dictParam)
     }
     
@@ -469,13 +521,7 @@ class UpdateLocationVC: UIViewController {
         
         LoaderClass.shared.loadAnimation()
         
-        
-        
-        
-        
-        
-        
-        var dictParam = [String : Any]()
+         var dictParam = [String : Any]()
         if addressTypeEdit == "Other" || addressTypeEdit != "Home" || addressTypeEdit != "Work"{
             
             if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
@@ -890,7 +936,7 @@ extension UpdateLocationVC {
              self.stackViews.isHidden = false
                       self.btnCross.isHidden = true
                       self.otherAddressTF.isHidden = true
-        }else if modelObjectDict.name == "Other"{
+        }else if modelObjectDict.name == "other"{
             self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
              self.btnOther.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
             self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)

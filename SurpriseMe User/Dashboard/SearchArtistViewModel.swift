@@ -41,11 +41,11 @@ class SearchArtistViewModel {
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
         
         if Reachability.isConnectedToNetwork() {
-            LoaderClass.shared.loadAnimation()
+//            LoaderClass.shared.loadAnimation()
             
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.artistList, method: .post, param: param, header: headerToken) { (response, error) in
                 print(response)
-                LoaderClass.shared.stopAnimation()
+//                LoaderClass.shared.stopAnimation()
                 if error == nil {
                     let result = response
                     if let status = result["status"] as? Bool {

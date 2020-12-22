@@ -125,6 +125,10 @@ struct Api {
     static let imageURLArtist = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/artist/"
     static let videoUrl = "https://dev.netscapelabs.com/surpriseme/public/uploads/artist/videos/"
     
+    static let videoUrlThumbnail = videoUrl + "thumbnail/"
+
+    
+    
     static let login                  = baseUrl + "login"
     static let Register               = baseUrl + "register"
     static let FBregister            = baseUrl + "register/fb"

@@ -70,10 +70,26 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     @IBOutlet weak var imgSliderShowView: ImageSlideshow!
     
+    
+    @IBOutlet weak var imgPlayBtnVideo: UIImageView!
+    @IBOutlet weak var playVideoBtn: UIButton!
+    
+    @IBOutlet weak var digitalShowHeightConstant: NSLayoutConstraint!
+    
+    @IBOutlet weak var liveShowHeightConstant: NSLayoutConstraint!
+    
+    
     @IBOutlet weak var imgShowType: UIImageView!
     @IBOutlet weak var btnSeeReview: UIButton!
     @IBOutlet weak var viewSocilaLoginContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var viewContainerSocialLoginView: UIView!
+    
+    
+    @IBOutlet weak var viewLivePriceValue: UIView!
+    
+    
+    
+    @IBOutlet weak var lblInPersonData: UILabel!
     
     @IBOutlet weak var viewYoutubeProfile: UIView!
     @IBOutlet weak var viewImageViewContainer: UIView!
@@ -160,53 +176,17 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.viewBack.addBottomShadow()
-        self.imageSliderCollectionContainer.isHidden = true
-        imgViewUserPreview.isHidden = false
-
-        getProfileVMObject.delegate = self //Mark: Delegate call
-        //Mark:Api Hitp
-        let dictParam = ["id":userArtistID]
-        getProfileVMObject.getProfileData(param:dictParam)
-        novideoLbl.isHidden = true
-        viewContainerPreview.isHidden = true
-        imgViewUserPreview.isHidden = true
-        btnCrossImage.isHidden = true
-        crossBack.isHidden = true
-        viewImageViewContainer.isHidden = true
-
-        
-        
-        //Mark: CollectionView Delegate
-        serviceCollectionView.delegate = self
-        serviceCollectionView.dataSource = self
-
-        imageSliderCollection.delegate = self
-        imageSliderCollection.dataSource = self
-        self.serviceCollectionView.reloadData()
-        //getProfileVMObject.delegate = self
-        
-        //Mark: CollectionView Delegate
-        showCollectionView.delegate = self
-        showCollectionView.dataSource = self
-        self.showCollectionView.reloadData()
+       
         //Mark: UIView border dash
 //        self.viewLiveShow.viewLiveShowDashline()
 //        self.viewDigitalShow.viewLiveShowDashline()
-        
+        imgPlayBtnVideo.isHidden = true
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
               imgProfile.addGestureRecognizer(tapviewAboutUs)
         
     }
     
-    //Mark: CollectionView Height
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let height = serviceCollectionView.collectionViewLayout.collectionViewContentSize.height
-        serviceCollectionViewHeight.constant = height
-        self.view.layoutIfNeeded()
-  }
-    
+ 
     
     
     @IBAction func btnCrossProfileAction(_ sender: UIButton) {
@@ -320,16 +300,23 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
                 imgViedoPlay.sd_setImage(with: urlImg)
                 self.playerView.isHidden = true
                 self.youTubePlayer.isHidden = false
+                imgPlayBtnVideo.isHidden = true
+
                 return youtubeID
             }
         }else{
             let url = URL(string: Api.videoUrl + link)!
             self.localVideoUrl = Api.videoUrl + link
-            if let thumbnailImage = getThumbnailImage(forUrl: url) {
-                imgViedoPlay.image =  thumbnailImage
-                self.playerView.isHidden = false
-                self.youTubePlayer.isHidden = true
-            }
+            
+            let urlSting : String = "\(Api.videoUrlThumbnail)\(self.getArtistProfile?.shows_video_thumbnail ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            let urlImage = URL(string: urlStringaa)!
+            self.imgViedoPlay.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            self.imgViedoPlay.sd_setImage(with: urlImage, placeholderImage: UIImage(named: ""))
+            self.playerView.isHidden = false
+            imgPlayBtnVideo.isHidden = false
+            self.youTubePlayer.isHidden = true
+            
         }
         return ""
     }
@@ -477,6 +464,40 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     }
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.viewBack.addBottomShadow()
+        self.imageSliderCollectionContainer.isHidden = true
+        imgViewUserPreview.isHidden = false
+
+        getProfileVMObject.delegate = self //Mark: Delegate call
+        //Mark:Api Hitp
+        let dictParam = ["id":userArtistID]
+        getProfileVMObject.getProfileData(param:dictParam)
+        novideoLbl.isHidden = true
+        viewContainerPreview.isHidden = true
+        imgViewUserPreview.isHidden = true
+        btnCrossImage.isHidden = true
+        crossBack.isHidden = true
+        viewImageViewContainer.isHidden = true
+
+        
+        
+        //Mark: CollectionView Delegate
+        serviceCollectionView.delegate = self
+        serviceCollectionView.dataSource = self
+
+        imageSliderCollection.delegate = self
+        imageSliderCollection.dataSource = self
+        self.serviceCollectionView.reloadData()
+        //getProfileVMObject.delegate = self
+        
+        //Mark: CollectionView Delegate
+        showCollectionView.delegate = self
+        showCollectionView.dataSource = self
+        self.showCollectionView.reloadData()
+    }
+    
     @IBAction func btnBookAction(_ sender: UIButton) {
         
         userArtistID =  getArtistProfile?.id ?? 0
@@ -506,13 +527,27 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         }
         
         if   whicShowTypeDigital == false{
+            
+            
+            viewLivePriceValue.isHidden = true
+            
+            
+            
+            lblInPersonData.isHidden = true
 //
-         
+            self.liveShowHeightConstant.constant = 30
+            self.viewLiveShow.isHidden = false
             
             self.imgShowType.image = UIImage.init(named: "digital_active")
                                                
                                            }else{
-           
+                                            viewLivePriceValue.isHidden = false
+                                            
+                                            
+                                            
+                                            lblInPersonData.isHidden = false
+                                            self.digitalShowHeightConstant.constant = 0
+                                            self.viewDigitalShow.isHidden = true
                                             self.imgShowType.image = UIImage.init(named: "live_active")
 
             
@@ -608,7 +643,8 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             
             
         }
-        
+                self.imageSliderCollection.reloadData()
+
         self.lblInstagramSubscribers.text = profile?.social_link_insta ?? ""
         self.lblYoutubeSubscribers.text = profile?.social_link_youtube ?? ""
         //        self.txtViewAbout.text = profile?.descriptionValue ?? ""
@@ -624,6 +660,8 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             imgViedoPlay.isHidden = true
             novideoLbl.isHidden = false
             playerView.isUserInteractionEnabled = false
+            imgPlayBtnVideo.isHidden = true
+
         }else{
             imgViedoPlay.isHidden = false
             novideoLbl.isHidden = true
@@ -857,7 +895,22 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
 //            self.imageSliderCollection.reloadItems(at: <#T##[IndexPath]#>)
 //        }
         
-        self.imageSliderCollection.reloadData()
+//        imageSliderCollection.delegate = self
+//        imageSliderCollection.dataSource = self
+//
+//        imageSliderCollection.layoutIfNeeded()
+//        self.imageSliderCollection.scrollToItem(at:IndexPath(item: 1, section: 0), at: .right, animated: true)
+//        self.imageSliderCollection.setNeedsLayout()
+        
+//        let rect = self.collectionView.layoutAttributesForItem(at: IndexPath(row: 5, section: 0))?.frame
+        
+        
+        let rectValue = self.imageSliderCollection.layoutAttributesForItem(at: IndexPath(row: indexPath.item, section: 0))?.frame
+        self.imageSliderCollection.scrollRectToVisible(rectValue!, animated: false)
+
+      
+
+//        self.imageSliderCollection.reloadData()
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

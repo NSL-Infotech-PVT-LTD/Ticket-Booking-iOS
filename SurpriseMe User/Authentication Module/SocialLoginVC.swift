@@ -150,16 +150,17 @@ class SocialLoginVC: UIViewController {
 //Error handling Signup Api Here:-
 extension SocialLoginVC: SignUpViewModelProtocol {
     func signupApiResponse(message: String, response: [String : Any], isError: Bool) {
-        UserDefaults.standard.set(response["token"] ?? "", forKey: UserdefaultKeys.token)
-        UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
-        if let data = response["user"] as? [String:Any]{
-            if let currancy = data["currency"] as? String{
-                UserDefaults.standard.set(currancy, forKey: UserdefaultKeys.userCurrency)
-            }
-        }
+       
         
         LoaderClass.shared.stopAnimation()
         if !isError{
+            UserDefaults.standard.set(response["token"] ?? "", forKey: UserdefaultKeys.token)
+            UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
+            if let data = response["user"] as? [String:Any]{
+                if let currancy = data["currency"] as? String{
+                    UserDefaults.standard.set(currancy, forKey: UserdefaultKeys.userCurrency)
+                }
+            }
             self.goToDashBoard()
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
