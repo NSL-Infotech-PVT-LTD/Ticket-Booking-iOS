@@ -31,7 +31,7 @@ class SocialLoginVC: UIViewController {
     
     //MARK:- Varaibles -
     var loginViewModel = SignUpViewModel()
-    
+    let fbLoginManager : LoginManager = LoginManager()
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +96,8 @@ class SocialLoginVC: UIViewController {
     //MARK:- Tap Gesture Action -
     @objc func handletapviewFacebook(_ sender: UITapGestureRecognizer? = nil) {
         // handling code
-        let fbLoginManager : LoginManager = LoginManager()
+        
+        fbLoginManager.logOut()
         fbLoginManager.logIn(permissions: ["email"], from: self) { (result, error) in
             if (error == nil){
                 let fbloginresult : LoginManagerLoginResult = result!

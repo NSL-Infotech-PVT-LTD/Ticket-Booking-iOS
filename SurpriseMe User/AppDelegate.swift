@@ -18,7 +18,8 @@ import FirebaseMessaging
 import Stripe
 import Alamofire
 //import PayPalMobile
-
+import FBSDKCoreKit
+import FBSDKShareKit
 
 
 
@@ -35,7 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Override point for customization after application launch.
-         
+        ApplicationDelegate.shared.application(
+                   application,
+                   didFinishLaunchingWithOptions: launchOptions
+               )
 
         self.setInitialSetup()
         FirebaseApp.configure()
@@ -303,7 +307,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                }
                   return true
               }
-              return false
+              return  ApplicationDelegate.shared.application(
+                app,
+                open: url,
+                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+            )
           }
     
     

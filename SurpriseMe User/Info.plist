@@ -19,9 +19,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb367334191094815</string>
+				<string>fb1078382892582555</string>
 			</array>
 		</dict>
 		<dict>
@@ -29,16 +31,16 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>surpriseme</string>
+				<string>SurpriseMe</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
-	<string>367334191094815</string>
+	<string>1078382892582555</string>
 	<key>FacebookDisplayName</key>
-	<string>SurpriseMe User</string>
+	<string>SurpriseMe</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -59,6 +61,11 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app will use camera for upload profile picture</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
