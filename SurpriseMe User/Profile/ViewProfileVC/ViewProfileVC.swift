@@ -90,6 +90,9 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     let pageControlData = UIPageControl()
     
     var isSliderShow = false
+    var screenSize: CGRect!
+        var screenWidth: CGFloat!
+        var screenHeight: CGFloat!
     
    //               pageControl.currentPageIndicatorTintColor = UIColor.lightGray
    //               pageControl.pageIndicatorTintColor = UIColor.black
@@ -138,6 +141,24 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         self.tabBarController?.tabBar.isHidden = false
         sender.view?.removeFromSuperview()
     }
+    
+    func colletionImg() {
+            
+            screenSize = UIScreen.main.bounds
+            screenWidth = screenSize.width
+            screenHeight = screenSize.height
+            
+            // Do any additional setup after loading the view, typically from a nib.
+            let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            layout.itemSize = CGSize(width: (screenWidth), height: 200)
+            layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
+            layout.scrollDirection = .horizontal
+            imageSliderCollection!.collectionViewLayout = layout
+        }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.viewBack.addBottomShadow()
         self.imageSliderCollectionContainer.isHidden = true
@@ -542,7 +563,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
 
        }
         
-        self.imageSliderCollection.reloadData()
+       
         
         if  profile?.social_link_insta ?? "" != "" &&  profile?.social_link_youtube ?? "" != ""{
             viewInstaGramProfile.isUserInteractionEnabled = true
@@ -832,6 +853,11 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
 //            
 //        }
         
+//        if indexPath.row == 0{
+//            self.imageSliderCollection.reloadItems(at: <#T##[IndexPath]#>)
+//        }
+        
+        self.imageSliderCollection.reloadData()
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

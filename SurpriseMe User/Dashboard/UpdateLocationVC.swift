@@ -56,40 +56,16 @@ class UpdateLocationVC: UIViewController {
         lblAddressTextValue.isUserInteractionEnabled = true
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
         lblAddressTextValue.addGestureRecognizer(tapviewAboutUs)
-        
-        
-        if isEditValue == true && isEditAddress == true{
+       if isEditValue == true && isEditAddress == true{
             setEditAddressAgain()
-            
-            
-        }else if isEditValue == true && isEditAddress == false{
+       }else if isEditValue == true && isEditAddress == false{
             setAddressInTextField()
-
         }
         else{
-//            if cameFrom == false{
-//                self.currentLocationGet()
-//            }else{
                 self.setMarkerCustomLocation()
-//            }
         }
         
-
-//        if isEdit == true {
-//            isEditAddress = true
-//            setAddressInTextField()
-//
-//
-//        }else{
-////            if cameFrom == false{
-////                self.currentLocationGet()
-////            }else{
-//                self.setMarkerCustomLocation()
-////            }
-//        }
-        
-        
-    }
+   }
     
     
     @IBAction func btnEditActions(_ sender: UIButton) {
@@ -106,30 +82,15 @@ class UpdateLocationVC: UIViewController {
 
         self.lblAddressTextValue.text =  addressSelected
         self.getAddress(address: addressSelected)
-        print("the param is \(isEditAddress)")
-
-        print("the latitude and long is\(addressLat),\(addressLong)")
-        
-        
-        if addressLandMarkEdit  == "self.tfLandMark.text!" || addressLandMarkEdit  == ""{
+       if addressLandMarkEdit  == "self.tfLandMark.text!" || addressLandMarkEdit  == ""{
         }else{
             self.tfLandMark.text = addressLandMarkEdit
         }
-        
         if addressAdditionalDetailEdit == "self.tfHouserNumber.text!" || addressAdditionalDetailEdit == ""{
         }else{
             self.tfHouserNumber.text = addressAdditionalDetailEdit
         }
-        
-       
-//
-//        addressLat = "\(modelObjectDict.lat ?? 0.0)"
-//        addressLong = "\(modelObjectDict.long ?? 0.0)"
-        
-        
-//        self.addressType = modelObjectDict.name ?? ""
-        
-        
+  
         if addressTypeEdit == "Home"{
             self.btnHoe.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
             self.btnOther.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
@@ -158,10 +119,6 @@ class UpdateLocationVC: UIViewController {
             self.otherAddressTF.isHidden = false
             self.otherAddressTF.text = otherAddresssFeildValue
         }
-        
-
-        
-        
     }
     
     @IBAction func btnCurrentLocationAction(_ sender: UIButton) {
@@ -170,15 +127,10 @@ class UpdateLocationVC: UIViewController {
                   switch CLLocationManager.authorizationStatus() {
                      case .notDetermined, .restricted, .denied:
                          print("No access")
-                     
-                         self.showLocationAccessAlert()
-                     
-                     
+                    self.showLocationAccessAlert()
                      case .authorizedAlways, .authorizedWhenInUse:
                          print("Access")
                          self.currentLocationGet()
-                    
-                    
                      }
                  } else {
                      print("Location services are not enabled")
@@ -187,30 +139,7 @@ class UpdateLocationVC: UIViewController {
              }
     }
     
-//     func currentLocationGet(){
-//                //Mark:- Get current Lat/Long.
-//                if (CLLocationManager.locationServicesEnabled()) {
-//                    self.locationManager.delegate = self
-//                    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//                    self.locationManager.distanceFilter = 10.0
-//                    self.locationManager.requestAlwaysAuthorization()
-//                    self.locationManager.requestWhenInUseAuthorization()
-//                    self.locationManager.startUpdatingLocation()
-//    //                let getLatLong = locationManager.location
-//                    print("Location services are not enabled");
-//        //            self.getAddressFromLatLon(pdblLatitude: getLatLong?.coordinate.latitude ?? 0.0, withLongitude: getLatLong?.coordinate.longitude ?? 0.0)
-//        //            currentLat = getLatLong?.coordinate.latitude ?? 0.0
-//        //            currentLong = getLatLong?.coordinate.longitude ?? 0.0
-//        //            self.getDataBookingList(pageNumber: 1)
-//
-//
-//                } else {
-//                    print("Location services are not enabled");
-//                }
-//            }
-        
-        
-        func showLocationAccessAlert() {
+  func showLocationAccessAlert() {
             let alertController = UIAlertController(title: "Location Permission Required", message: "Please enable location permissions in settings.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "settings", style: .default, handler: {(cAlertAction) in
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
@@ -301,22 +230,9 @@ class UpdateLocationVC: UIViewController {
             
             currentLat = getLatLong?.coordinate.latitude ?? 0.0
             currentLong = getLatLong?.coordinate.longitude ?? 0.0
-            
-//            if isEdit == true {
-//
-//
-//                print("the latittude is \(modelObjectDict.lat ?? 0.0)")
-//                print("the long is \(modelObjectDict.long ?? 0.0)")
-//
-//
-//                location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
-//            }else{
+
                 location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
-//            }
-            
-            //            print("check Lattitude = \(modelObjectDict.lat)")
-            //            print("check Longitude = \(modelObjectDict.long)")
-            
+//           
             mapView.camera = location
             
             

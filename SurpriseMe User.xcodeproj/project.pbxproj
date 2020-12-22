@@ -1225,8 +1225,8 @@
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMe UserDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
-				DEVELOPMENT_TEAM = DH6XQ4K4W7;
+				CURRENT_PROJECT_VERSION = 31;
+				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1234,7 +1234,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cloud.mumba.demo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1254,8 +1254,8 @@
 				CODE_SIGN_ENTITLEMENTS = "SurpriseMe User/SurpriseMeRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
-				DEVELOPMENT_TEAM = DH6XQ4K4W7;
+				CURRENT_PROJECT_VERSION = 31;
+				DEVELOPMENT_TEAM = 27FJ8KG4W4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "SurpriseMe User/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1263,7 +1263,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cloud.mumba.demo.app;
+				PRODUCT_BUNDLE_IDENTIFIER = Netscapelabs.SurpriseMe.User;
 				PRODUCT_NAME = SurpriseMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
