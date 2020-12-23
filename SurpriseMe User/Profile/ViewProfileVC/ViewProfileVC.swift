@@ -314,7 +314,13 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             self.imgViedoPlay.sd_imageIndicator = SDWebImageActivityIndicator.gray
             self.imgViedoPlay.sd_setImage(with: urlImage, placeholderImage: UIImage(named: ""))
             self.playerView.isHidden = false
-            imgPlayBtnVideo.isHidden = false
+            let when = DispatchTime.now() + 5
+            DispatchQueue.main.asyncAfter(deadline: when){
+              // your code with delay
+                self.imgPlayBtnVideo.isHidden = false
+            }
+            
+          
             self.youTubePlayer.isHidden = true
             
         }
@@ -340,8 +346,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
                 let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "ReviewVC") as! ReviewVC
         controller.artistID = userArtistID
-        
-                navigationController?.pushViewController(controller, animated: true)
+         navigationController?.pushViewController(controller, animated: true)
     }
     
     
@@ -631,17 +636,13 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             viewYoutubeProfile.isHidden = true
             viewContainerSocialLoginView.isHidden = true
             viewSocilaLoginContainerHeight.constant = 0
-
-            
+  
         }
-
         else{
             viewInstaGramProfile.isUserInteractionEnabled = false
             viewInstaGramProfile.isHidden = true
             self.viewYoutubeProfile.isUserInteractionEnabled = false
             viewYoutubeProfile.isHidden = true
-            
-            
         }
                 self.imageSliderCollection.reloadData()
 
@@ -654,7 +655,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         print(VideoLink)
         
         //MARK:Viedo play and URL banner set
-        self.extractYoutubeId(fromLink: VideoLink)
+     
         
         if profile?.shows_video ?? "" == "" {
             imgViedoPlay.isHidden = true
@@ -666,8 +667,8 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             imgViedoPlay.isHidden = false
             novideoLbl.isHidden = true
             playerView.isUserInteractionEnabled = true
-            
-            
+            self.extractYoutubeId(fromLink: VideoLink)
+            imgPlayBtnVideo.isHidden = false
         }
         self.serviceCollectionView.reloadData()
         if profile?.shows_image_1 == "" && profile?.shows_image_2 == "" && profile?.shows_image_3 == "" && profile?.shows_image_4 == ""{
