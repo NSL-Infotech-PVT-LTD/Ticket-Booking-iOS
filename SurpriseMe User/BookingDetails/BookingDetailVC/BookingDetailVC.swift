@@ -84,6 +84,7 @@ class BookingDetailVC: UIViewController {
     var id : String?
     var bookingID = Int()
     var bookingIDNotification : Any?
+    var artistIDValue =  Int()
     var isComingFrom  = String()
     var dictProfile : BookingDetailsModel?
     var viewModelObject = BookingDetailsModelView()
@@ -114,6 +115,28 @@ class BookingDetailVC: UIViewController {
 
         let nc1 = NotificationCenter.default
         nc1.addObserver(self, selector: #selector(userLoggedIn), name: Notification.Name("BookingNotification"), object: nil)
+        
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        self.lblName.isUserInteractionEnabled = true
+        self.lblName.addGestureRecognizer(tap)
+        
+        
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        self.imgProfile.isUserInteractionEnabled = true
+        self.imgProfile.addGestureRecognizer(tap1)
+        
+        
+    }
+    
+    
+    @objc func imageTapped(_ sender: UITapGestureRecognizer? = nil) {
+       
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ViewProfileVC") as! ViewProfileVC
+        userArtistID = artistIDValue
+        navigationController?.pushViewController(controller, animated: false)
+        
     }
     
     
@@ -738,7 +761,10 @@ class BookingDetailVC: UIViewController {
 
             //            self.ratingDesc.isHidden = true
         }
+        
+        
         self.lblArtistNameRating.text = dataItem?.artist_detail?.name ?? ""
+        artistIDValue = dataItem?.artist_detail?.ID ?? 0
         self.lblName.text = dataItem?.artist_detail?.name ?? ""
 
         self.lblAddress.text = dataItem?.address ?? ""

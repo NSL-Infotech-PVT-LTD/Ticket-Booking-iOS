@@ -10,13 +10,19 @@ import UIKit
 
 class recievedTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var lblReceiveMsg: UILabel!
+//    @IBOutlet weak var lblReceiveMsg: UILabel!
+//    @IBOutlet weak var receiveView: UIView!
+//    
+//    
+//    @IBOutlet weak var receiverImg: UIImageView!
+//    
+//    @IBOutlet weak var lblReciveTime: UILabel!
+    
+    
     @IBOutlet weak var receiveView: UIView!
-    
-    
     @IBOutlet weak var receiverImg: UIImageView!
-    
-    @IBOutlet weak var lblReciveTime: UILabel!
+    @IBOutlet weak var lblReceiveMsg: UILabel!
+    @IBOutlet weak var lblTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

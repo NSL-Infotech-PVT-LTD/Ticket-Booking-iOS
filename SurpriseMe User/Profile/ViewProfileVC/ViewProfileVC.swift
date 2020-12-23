@@ -787,7 +787,11 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.imageSliderCollectionContainer.isHidden = false
-//        if collectionView == self.showCollectionView{
+        if collectionView == self.showCollectionView{
+            
+            let rectValue = self.imageSliderCollection.layoutAttributesForItem(at: IndexPath(row: indexPath.item, section: 0))?.frame
+            self.imageSliderCollection.scrollRectToVisible(rectValue!, animated: false)
+        }
 //        
 //        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
 //        
@@ -906,8 +910,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
 //        let rect = self.collectionView.layoutAttributesForItem(at: IndexPath(row: 5, section: 0))?.frame
         
         
-        let rectValue = self.imageSliderCollection.layoutAttributesForItem(at: IndexPath(row: indexPath.item, section: 0))?.frame
-        self.imageSliderCollection.scrollRectToVisible(rectValue!, animated: false)
+      
 
       
 

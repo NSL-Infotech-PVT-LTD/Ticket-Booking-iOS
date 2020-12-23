@@ -1006,8 +1006,8 @@
             filePath = "SurpriseMe User/Dashboard/FilterArtistData/FilterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "applySearchBtn(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1614,8 +1614,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "changeTimeFormate(date:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1630,8 +1630,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "changeTimeFormate(date:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1646,8 +1646,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "changeTimeFormate(date:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1662,10 +1662,10 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "btnSeeProfileAction(_:)"
-            landmarkType = "7">
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "FriendMsgVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1678,8 +1678,8 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "FriendMsgVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -1760,7 +1760,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
             endingLineNumber = "342"
-            landmarkName = "btnReviewonPress(_:)"
+            landmarkName = "getThumbnailImage(forUrl:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1934,10 +1934,10 @@
             filePath = "SurpriseMe User/Chat/FriendMsgVC/FriendMsgVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
-            landmarkName = "FriendMsgVC"
-            landmarkType = "21">
+            startingLineNumber = "590"
+            endingLineNumber = "590"
+            landmarkName = "textViewDidBeginEditing(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2062,8 +2062,8 @@
             filePath = "SurpriseMe User/Dashboard/FilterArtistData/FilterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2078,8 +2078,8 @@
             filePath = "SurpriseMe User/Dashboard/FilterArtistData/FilterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2588,8 +2588,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2604,8 +2604,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2620,8 +2620,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2636,8 +2636,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2652,8 +2652,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2668,8 +2668,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2684,8 +2684,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "setAllData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2700,8 +2700,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "getCard()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2716,8 +2716,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "getCard()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2732,8 +2732,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "getCard()"
             landmarkType = "7">
          </BreakpointContent>
@@ -4016,8 +4016,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1193"
-            endingLineNumber = "1193"
+            startingLineNumber = "1219"
+            endingLineNumber = "1219"
             landmarkName = "setInitialData(dataItem:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4080,8 +4080,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4096,8 +4096,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "userLoggedIn(userInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4112,8 +4112,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "userLoggedIn(userInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4128,8 +4128,8 @@
             filePath = "SurpriseMe User/BookingDetails/BookingDetailVC/BookingDetailVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "userLoggedIn(userInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4150,34 +4150,34 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D1387A65-02C0-44E3-84EB-FCF072327F05 - 149301dd7a2016e6"
+                  uuid = "D1387A65-02C0-44E3-84EB-FCF072327F05 - 456075f83dea3f5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SurpriseMe.BookingDetailsModelView.getBookingDetailsData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Latest/surpriseme_ios_customer/SurpriseMe%20User/BookingDetails/BookingDetailVC/BookingDetailsModelView.swift"
+                  urlString = "file:///Users/gauravsethi/Desktop/surpriseme_ios_customer/SurpriseMe%20User/BookingDetails/BookingDetailVC/BookingDetailsModelView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "101"
                   endingLineNumber = "101"
-                  offsetFromSymbolStart = "1652">
+                  offsetFromSymbolStart = "1328">
                </Location>
                <Location
-                  uuid = "D1387A65-02C0-44E3-84EB-FCF072327F05 - 17f72ac8ff7c3c70"
+                  uuid = "D1387A65-02C0-44E3-84EB-FCF072327F05 - 7322c4a06828961"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;, Swift.Optional&lt;__C.NSError&gt;) -&gt; () in SurpriseMe.BookingDetailsModelView.getBookingDetailsData(param: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
                   moduleName = "SurpriseMe"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gauravsethi/Desktop/Latest/surpriseme_ios_customer/SurpriseMe%20User/BookingDetails/BookingDetailVC/BookingDetailsModelView.swift"
+                  urlString = "file:///Users/gauravsethi/Desktop/surpriseme_ios_customer/SurpriseMe%20User/BookingDetails/BookingDetailVC/BookingDetailsModelView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "102"
                   endingLineNumber = "102"
-                  offsetFromSymbolStart = "337">
+                  offsetFromSymbolStart = "108">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -4304,8 +4304,8 @@
             filePath = "SurpriseMe User/Profile/ViewProfileVC/ViewProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "930"
-            endingLineNumber = "930"
+            startingLineNumber = "933"
+            endingLineNumber = "933"
             landmarkName = "UIView"
             landmarkType = "21">
          </BreakpointContent>
@@ -4320,8 +4320,8 @@
             filePath = "SurpriseMe User/Profile/ViewProfileVC/ViewProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "929"
-            endingLineNumber = "929"
+            startingLineNumber = "932"
+            endingLineNumber = "932"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -4416,8 +4416,8 @@
             filePath = "SurpriseMe User/Profile/ViewProfileVC/ViewProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "911"
-            endingLineNumber = "911"
+            startingLineNumber = "914"
+            endingLineNumber = "914"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -4467,6 +4467,70 @@
             startingLineNumber = "719"
             endingLineNumber = "719"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B6A3ABD-2F8D-47E7-8617-9F1B5D4BCA36"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Socket Manager/SocketConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "websocketDidConnect(socket:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68D49FAA-C744-4B2F-8AB3-6BE61AA60490"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Socket Manager/SocketConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "websocketDidDisconnect(socket:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E019FC6C-FBBD-4060-8B1B-A3B1E330CFAB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Socket Manager/SocketConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "websocketDidDisconnect(socket:error:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66BCC5AC-9051-47B6-AA76-B30F35E34AFC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SurpriseMe User/Socket Manager/SocketConnectionManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "websocketDidDisconnect(socket:error:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

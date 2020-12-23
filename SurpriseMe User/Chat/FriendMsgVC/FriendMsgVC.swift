@@ -19,7 +19,13 @@ class FriendMsgVC: UIViewController {
     @IBOutlet weak var txtMssg: UITextView!
     @IBOutlet weak var picUserReciever: UIImageView!
     @IBOutlet weak var lblRecierverName: UILabel!
-    
+    @IBOutlet weak var firstTimeView: UIView!
+    @IBOutlet weak var lblMsgChatWith: UILabel!
+    @IBOutlet weak var lblDateCurrent: UILabel!
+    @IBOutlet weak var reciverImage: UIImageView!
+    @IBOutlet weak var myImage: UIImageView!
+    @IBOutlet weak var textViewBackView: UIView!
+    @IBOutlet weak var topView: UIView!
     
     @IBOutlet weak var img2NoData: UIImageView!
     @IBOutlet weak var img1NoData: UIImageView!
@@ -38,7 +44,8 @@ class FriendMsgVC: UIViewController {
     var arrayDateString = [String]()
     var freindName = String()
     var freindNameImage = String()
-
+    
+    @IBOutlet weak var viewImgTappedView: UIView!
     
     
     //MARK:- View's Life Cycle -
@@ -61,6 +68,12 @@ class FriendMsgVC: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEdit))
         msgTableView.addGestureRecognizer(tapGesture)
         
+        let tapValue = UITapGestureRecognizer(target: self, action: #selector(viewImgTappedViewAction))
+
+//        let tap12 = UITapGestureRecognizer(target: self, action: #selector(viewImgTappedView))
+        self.viewImgTappedView.isUserInteractionEnabled = true
+        self.viewImgTappedView.addGestureRecognizer(tapValue)
+        
         let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
         print("the user id is \(useriD  )")
         
@@ -69,7 +82,7 @@ class FriendMsgVC: UIViewController {
     
     @IBAction func btnSeeProfileAction(_ sender: UIButton) {
         
-       if comingFrom == "NotificationTabs"{
+        if comingFrom == "NotificationTabs"{
             userArtistID = recieverIDHistoryList
         }else{
             if reciverData.receiver_id ?? 0 == 0{
@@ -78,15 +91,15 @@ class FriendMsgVC: UIViewController {
                 userArtistID = userID
             }else{
                 let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                 if userName == reciverData.receiver_name ?? ""{
-                      userArtistID = reciverData.sender_id ?? 0
-                  
+                if userName == reciverData.receiver_name ?? ""{
+                    userArtistID = reciverData.sender_id ?? 0
+                    
                 }else{
                     userArtistID = reciverData.receiver_id ?? 0
                 }
             }
         }
-          let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ViewProfileVC") as! ViewProfileVC
         navigationController?.pushViewController(controller, animated: false)
         
@@ -118,7 +131,7 @@ class FriendMsgVC: UIViewController {
     @IBAction func btnBookAction(_ sender: UIButton) {
         
         if reciverData.receiver_id ?? 0 == 0{
-         }else{
+        }else{
             
             let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
             if userName == reciverData.receiver_name ?? ""{
@@ -241,6 +254,34 @@ class FriendMsgVC: UIViewController {
         })
     }
     
+    
+    @objc func viewImgTappedViewAction(gesture: UITapGestureRecognizer) {
+        
+        if comingFrom == "NotificationTabs"{
+            userArtistID = recieverIDHistoryList
+        }else{
+            if reciverData.receiver_id ?? 0 == 0{
+                
+                var userID = userArtistID
+                userArtistID = userID
+            }else{
+                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                if userName == reciverData.receiver_name ?? ""{
+                    userArtistID = reciverData.sender_id ?? 0
+                    
+                }else{
+                    userArtistID = reciverData.receiver_id ?? 0
+                }
+            }
+        }
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ViewProfileVC") as! ViewProfileVC
+        navigationController?.pushViewController(controller, animated: false)
+    }
+    
+    
+    
+    
     @objc func handleKeyboardNotification(_ notification: Notification) {
         
         if let userInfo = notification.userInfo {
@@ -280,15 +321,15 @@ class FriendMsgVC: UIViewController {
         {
             print("scrollViewDidEndDragging")
             print("scrollViewDidEndDragging page number is ")
-
+            
         }
         
-//        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
-//               {
-//
-//                print("hello i am abhishek")
-//               }
-//
+        //        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height)
+        //               {
+        //
+        //                print("hello i am abhishek")
+        //               }
+        //
         
         
     }
@@ -411,9 +452,13 @@ class FriendMsgVC: UIViewController {
     }
     
     
-    @IBAction func btnBAckOnPress(_ sender: UIButton) {
+    @IBAction func btnBackOnPress(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+//    @IBAction func btnBAckOnPress(_ sender: UIButton) {
+//        self.navigationController?.popViewController(animated: true)
+//    }
 }
 extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
     
@@ -424,82 +469,116 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
         
+        
+        
+        let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
         if chatHistoryData[indexPath.row].sender_id ?? 0 == useriD {
             guard let SendCell = tableView.dequeueReusableCell(withIdentifier: "sendTableViewCell", for: indexPath) as? sendTableViewCell else  {
                 return UITableViewCell()
             }
             SendCell.selectionStyle = .none
             SendCell.lblSendMsg.text = chatHistoryData[indexPath.row].message
-            let timeStamp1 = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
-            
-            let timeStamp = self.changeTimeFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
-            SendCell.lblTime.text =  timeStamp1
-            //            SendCell.sendView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
+            let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+            SendCell.lblTime.text =  timeStamp
             return SendCell
-        }
-        else /*if reciverID == messageArr[indexPath.row].receiver_id*/ {
-            
+        }else{
             guard let ReceiveCell = tableView.dequeueReusableCell(withIdentifier: "recievedTableViewCell", for: indexPath) as? recievedTableViewCell else {
                 return UITableViewCell()
             }
             ReceiveCell.selectionStyle = .none
             ReceiveCell.lblReceiveMsg.text = chatHistoryData[indexPath.row].message
             
-            
-            
             let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
-            ReceiveCell.lblReciveTime.text =  timeStamp
+            ReceiveCell.lblTime.text =  timeStamp
             
-            
-            if reciverData.receiver_id ?? 0 == 0{
-                
-                let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
-                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                print(urlStringaa)
-                let urlImage = URL(string: urlStringaa)!
-                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            }else{
-                
-                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                
-                
-                if userName == reciverData.receiver_name ?? ""{
-                    
-                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
-                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                    print(urlStringaa)
-                    let urlImage = URL(string: urlStringaa)!
-                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                    ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-                }else{
-                    
-                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
-                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                    print(urlStringaa)
-                    let urlImage = URL(string: urlStringaa)!
-                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                    ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-                }
-                
-                
-                
-                //            let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].receiver_image ?? "")"
-                //                           let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                //                                              print("the url image of is \(urlSting)")
-                //                                              let urlImage = URL(string: urlStringaa)!
-                //                                                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                //            ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-                
-                
-                
-                //            ReceiveCell.receiveView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
-            }
+            let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].sender_image ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            print(urlStringaa)
+            let urlImage = URL(string: urlStringaa)!
+            ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "image_placeholder"))
             return ReceiveCell
-            
         }
+        
+        
+        
+        
+        //        let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+        //
+        //        if chatHistoryData[indexPath.row].sender_id ?? 0 == useriD {
+        //            guard let SendCell = tableView.dequeueReusableCell(withIdentifier: "sendTableViewCell", for: indexPath) as? sendTableViewCell else  {
+        //                return UITableViewCell()
+        //            }
+        //            SendCell.selectionStyle = .none
+        //            SendCell.lblSendMsg.text = chatHistoryData[indexPath.row].message
+        //            let timeStamp1 = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+        //
+        //            let timeStamp = self.changeTimeFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
+        //            SendCell.lblTime.text =  timeStamp1
+        //            //            SendCell.sendView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
+        //            return SendCell
+        //        }
+        //        else /*if reciverID == messageArr[indexPath.row].receiver_id*/ {
+        //
+        //            guard let ReceiveCell = tableView.dequeueReusableCell(withIdentifier: "recievedTableViewCell", for: indexPath) as? recievedTableViewCell else {
+        //                return UITableViewCell()
+        //            }
+        //            ReceiveCell.selectionStyle = .none
+        //            ReceiveCell.lblReceiveMsg.text = chatHistoryData[indexPath.row].message
+        //
+        //
+        //
+        //            let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+        //            ReceiveCell.lblReciveTime.text =  timeStamp
+        //
+        //
+        //            if reciverData.receiver_id ?? 0 == 0{
+        //
+        //                let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
+        //                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+        //                print(urlStringaa)
+        //                let urlImage = URL(string: urlStringaa)!
+        //                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        //                ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        //            }else{
+        //
+        //                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+        //
+        //
+        //                if userName == reciverData.receiver_name ?? ""{
+        //
+        //                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
+        //                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+        //                    print(urlStringaa)
+        //                    let urlImage = URL(string: urlStringaa)!
+        //                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        //                    ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        //                }else{
+        //
+        //                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
+        //                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+        //                    print(urlStringaa)
+        //                    let urlImage = URL(string: urlStringaa)!
+        //                    ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        //                    ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        //                }
+        //
+        //
+        //
+        //                //            let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].receiver_image ?? "")"
+        //                //                           let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+        //                //                                              print("the url image of is \(urlSting)")
+        //                //                                              let urlImage = URL(string: urlStringaa)!
+        //                //                                                ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        //                //            ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+        //
+        //
+        //
+        //                //            ReceiveCell.receiveView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft], radius: 20)//Common function call
+        //            }
+        //            return ReceiveCell
+        
         
     }
     
@@ -526,25 +605,29 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
         chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage]))
         DispatchQueue.main.async {
             //scroll down tableview
-//            if self.chatHistoryData.count > 0 {
-//                self.scrollToBottom()
-//                self.msgTableView.reloadData()
-//            }
-//
+            //            if self.chatHistoryData.count > 0 {
+            //                self.scrollToBottom()
+            //                self.msgTableView.reloadData()
+            //            }
+            
             if self.chatHistoryData.count == 0 {
-                self.nodataView.isHidden = false
+                
+                
+                self.firstTimeView.isHidden = false
                 self.msgTableView.isHidden = true
-                self.noDataLblChat.text = "Start chat with \(self.lblRecierverName.text ?? "")"
-                self.img1NoData.image = self.picUserReciever.image
-                self.img2NoData.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
-
+                self.lblMsgChatWith.text = "Start chat with \(self.lblRecierverName.text ?? "")"
+                self.reciverImage.image = self.picUserReciever.image
+                self.myImage.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
+                
             }else{
-                self.nodataView.isHidden = true
+                self.firstTimeView.isHidden = true
                 self.msgTableView.isHidden = false
                 self.scrollToBottom()
                 self.msgTableView.reloadData()
-
+                
+                
             }
+            
             
         } }
 }
@@ -564,30 +647,30 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
             chatHistoryData = response.map({$0}).reversed()
             self.scrollToBottom()
             if chatHistoryData.count == 0 {
-                self.nodataView.isHidden = false
+                self.firstTimeView.isHidden = false
                 self.msgTableView.isHidden = true
-                noDataLblChat.text = "Start chat with \(self.lblRecierverName.text ?? "")"
-                img1NoData.image = picUserReciever.image
-                self.img2NoData.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
-
+                lblMsgChatWith.text = "Start chat with \(self.lblRecierverName.text ?? "")"
+                reciverImage.image = picUserReciever.image
+                self.myImage.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
+                
             }else{
-                self.nodataView.isHidden = true
+                self.firstTimeView.isHidden = true
                 self.msgTableView.isHidden = false
-
-
+                
+                
             }
             
-//            msgTableView: UITableView!
-//            @IBOutlet weak var bottomConstant: NSLayoutConstraint!
-//            @IBOutlet weak var txtMssg: UITextView!
-//            @IBOutlet weak var picUserReciever: UIImageView!
-//            @IBOutlet weak var lblRecierverName: UILabel!
-//
-//
-//            @IBOutlet weak var img2NoData: UIImageView!
-//            @IBOutlet weak var img1NoData: UIImageView!
-//            @IBOutlet weak var noDataLblChat: UILabel!
-//            @IBOutlet weak var nodataView
+            //            msgTableView: UITableView!
+            //            @IBOutlet weak var bottomConstant: NSLayoutConstraint!
+            //            @IBOutlet weak var txtMssg: UITextView!
+            //            @IBOutlet weak var picUserReciever: UIImageView!
+            //            @IBOutlet weak var lblRecierverName: UILabel!
+            //
+            //
+            //            @IBOutlet weak var img2NoData: UIImageView!
+            //            @IBOutlet weak var img1NoData: UIImageView!
+            //            @IBOutlet weak var noDataLblChat: UILabel!
+            //            @IBOutlet weak var nodataView
             msgTableView.reloadData()
             if comingFrom == "NotificationTabs"{
                 self.setData(param: receiverDetails)

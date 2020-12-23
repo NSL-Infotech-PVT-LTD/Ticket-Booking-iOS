@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -1817,7 +1817,7 @@
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlV-IX-M7O">
-                                <rect key="frame" x="0.0" y="733" width="375" height="217"/>
+                                <rect key="frame" x="0.0" y="645" width="375" height="305"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izd-il-DkL">
                                         <rect key="frame" x="256" y="8" width="105" height="35"/>
@@ -1846,21 +1846,34 @@
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="gL4-AL-rDW">
                                         <rect key="frame" x="12" y="60" width="351" height="146"/>
                                     </datePicker>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uy-31-pVz" customClass="FSCalendar">
+                                        <rect key="frame" x="8" y="60" width="359" height="237"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="6uy-31-pVz" firstAttribute="top" secondItem="izd-il-DkL" secondAttribute="bottom" constant="17" id="5CN-iR-mkk"/>
                                     <constraint firstAttribute="trailing" secondItem="gL4-AL-rDW" secondAttribute="trailing" constant="12" id="6MH-j6-mb0"/>
-                                    <constraint firstAttribute="bottom" secondItem="gL4-AL-rDW" secondAttribute="bottom" constant="11" id="9Cu-lU-4p6"/>
+                                    <constraint firstAttribute="bottom" secondItem="gL4-AL-rDW" secondAttribute="bottom" constant="99" id="9Cu-lU-4p6"/>
+                                    <constraint firstItem="6uy-31-pVz" firstAttribute="leading" secondItem="GlV-IX-M7O" secondAttribute="leading" constant="8" id="AqF-qb-pPf"/>
                                     <constraint firstItem="gL4-AL-rDW" firstAttribute="leading" secondItem="GlV-IX-M7O" secondAttribute="leading" constant="12" id="Bsd-fC-Kk5"/>
                                     <constraint firstAttribute="trailing" secondItem="ke9-aV-CE6" secondAttribute="trailing" constant="12" id="Dha-1l-5fB"/>
                                     <constraint firstItem="ke9-aV-CE6" firstAttribute="top" secondItem="GlV-IX-M7O" secondAttribute="top" constant="51" id="F5c-yU-y9s"/>
                                     <constraint firstAttribute="trailing" secondItem="izd-il-DkL" secondAttribute="trailing" constant="14" id="Owi-iH-4NX"/>
-                                    <constraint firstAttribute="height" constant="217" id="Xrq-Pv-EsF"/>
+                                    <constraint firstAttribute="bottom" secondItem="6uy-31-pVz" secondAttribute="bottom" constant="8" id="Rgd-5J-gjL"/>
+                                    <constraint firstAttribute="height" constant="305" id="Xrq-Pv-EsF"/>
                                     <constraint firstItem="izd-il-DkL" firstAttribute="top" secondItem="GlV-IX-M7O" secondAttribute="top" constant="8" id="k31-7U-55G"/>
                                     <constraint firstItem="ke9-aV-CE6" firstAttribute="leading" secondItem="GlV-IX-M7O" secondAttribute="leading" constant="12" id="r7Q-eV-zwF"/>
+                                    <constraint firstAttribute="trailing" secondItem="6uy-31-pVz" secondAttribute="trailing" constant="8" id="szn-3X-2MY"/>
                                     <constraint firstItem="gL4-AL-rDW" firstAttribute="top" secondItem="GlV-IX-M7O" secondAttribute="top" constant="60" id="tNp-cy-LJ5"/>
-                                    <constraint firstAttribute="bottom" secondItem="ke9-aV-CE6" secondAttribute="bottom" constant="11" id="xjG-95-2wN"/>
+                                    <constraint firstAttribute="bottom" secondItem="ke9-aV-CE6" secondAttribute="bottom" constant="99" id="xjG-95-2wN"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="6uy-31-pVz"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wIK-fL-bRM"/>
@@ -1885,6 +1898,7 @@
                         <outlet property="ascendingNameLblOut" destination="4yk-UN-s3m" id="edH-0e-SNp"/>
                         <outlet property="btnFirst" destination="Imk-9d-to8" id="mdk-xp-FWi"/>
                         <outlet property="btnSecond" destination="hk1-HM-I1l" id="yRL-2n-F2B"/>
+                        <outlet property="calenderView" destination="6uy-31-pVz" id="o5S-ap-Y1Y"/>
                         <outlet property="countLbl_OUt" destination="LhS-E8-x7f" id="k8p-d4-cmp"/>
                         <outlet property="datePicker" destination="ke9-aV-CE6" id="oaQ-oU-702"/>
                         <outlet property="desendingNameOut" destination="n3C-B4-41e" id="9ne-hG-Ic8"/>
@@ -3016,7 +3030,7 @@
                                 <rect key="frame" x="0.0" y="143" width="375" height="524"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Notifications found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46P-Dm-abn">
-                                        <rect key="frame" x="64.5" y="120.5" width="246.5" height="26"/>
+                                        <rect key="frame" x="82.5" y="121.5" width="210.5" height="24.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -5422,7 +5436,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7h-Mg-kez">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n7h-Mg-kez">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="128" id="hGK-pk-Fur"/>
@@ -6332,13 +6346,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expires" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLe-qY-Hwk">
-                                                            <rect key="frame" x="57" y="69" width="34" height="20"/>
+                                                            <rect key="frame" x="57" y="69" width="36.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNowDisplay-ExtLt" family="Helvetica Now Display" pointSize="11"/>
                                                             <color key="textColor" red="0.21176470589999999" green="0.22352941179999999" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08/21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="255-J2-yRz">
-                                                            <rect key="frame" x="97" y="69" width="26" height="20"/>
+                                                            <rect key="frame" x="99.5" y="69" width="28.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNowDisplay-ExtLt" family="Helvetica Now Display" pointSize="11"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -7290,13 +7304,13 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="John doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j66-F0-KG1">
-                                                                <rect key="frame" x="8" y="43" width="313" height="19"/>
+                                                                <rect key="frame" x="8" y="43" width="313" height="18"/>
                                                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrW-6p-VgE">
-                                                                <rect key="frame" x="4" y="67" width="330" height="1"/>
+                                                                <rect key="frame" x="4" y="66" width="330" height="1"/>
                                                                 <color key="backgroundColor" red="0.043137254899999998" green="0.043137254899999998" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="9sZ-Cq-qHE"/>
@@ -7907,7 +7921,7 @@ Ipsum has been the industry's standard dummy text ever</string>
             <size key="intrinsicContentSize" width="335" height="44"/>
         </designable>
         <designable name="8Tx-eP-nmW">
-            <size key="intrinsicContentSize" width="92" height="30"/>
+            <size key="intrinsicContentSize" width="103" height="31"/>
         </designable>
         <designable name="X83-W6-e1s">
             <size key="intrinsicContentSize" width="58" height="10"/>
@@ -8010,6 +8024,42 @@ Ipsum has been the industry's standard dummy text ever</string>
         <image name="youtubelogo" width="42" height="42"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

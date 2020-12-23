@@ -10,11 +10,9 @@ import UIKit
 
 class sendTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var lblSendMsg: UILabel!
-    
-    
-    @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var sendView: UIView!
+    @IBOutlet weak var lblSendMsg: UILabel!
+    @IBOutlet weak var lblTime: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

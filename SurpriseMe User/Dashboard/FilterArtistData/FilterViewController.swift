@@ -8,6 +8,7 @@
 
 import UIKit
 import StepSlider
+import FSCalendar
 
 
 protocol SendDataPrevoius {
@@ -38,6 +39,7 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var secondDatePicker: UIDatePicker!
     @IBOutlet weak var lblArtistCategpry: UILabel!
     
+    @IBOutlet weak var calenderView: FSCalendar!
     
     @IBOutlet var lblTOpVirtualConstraint: NSLayoutConstraint!
     
@@ -63,6 +65,10 @@ class FilterViewController: UIViewController {
     var selectedRating = 4.5
     var distance = 200
     var sortByValue = String()
+    var isFirstSelected = false
+    
+    
+    
     @IBOutlet weak var countLbl_OUt: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +78,9 @@ class FilterViewController: UIViewController {
         countLbl_OUt.layer.borderColor = UIColor.lightGray.cgColor
         countLbl_OUt.layer.borderWidth = 1
         countLbl_OUt.layer.cornerRadius = 6
+        
+        self.calenderView.placeholderType = .none
+
         
         let tapviewChangePassword = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewChangePassword(_:)))
         viewSelectArtist.addGestureRecognizer(tapviewChangePassword)
@@ -115,7 +124,20 @@ class FilterViewController: UIViewController {
     }
     
     
-    
+    func covertDate(date :Date)  -> String{
+        let formatter = DateFormatter()
+        // initially set the format based on your datepicker date / server String
+        formatter.dateFormat = "yyyy-MM-dd"
+        let myString = formatter.string(from: date) // string purpose I add here
+        // convert your string to date
+        let yourDate = formatter.date(from: myString)
+        //then again set the date format whhich type of output you need
+        formatter.dateFormat = "yyyy-MM-dd"
+        // again convert your date to string
+        let dateInString = formatter.string(from: yourDate!)
+        print(dateInString)
+        return dateInString
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -228,6 +250,7 @@ class FilterViewController: UIViewController {
     
     
     @IBAction func toBtnTap(_ sender: Any) {
+        isFirstSelected = true
         self.viewDateContainer.isHidden = false
         self.secondDatePicker.isHidden = false
         self.datePicker.isHidden = true
@@ -239,6 +262,7 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func fromBtnTap(_ sender: Any) {
+        isFirstSelected = false
         self.viewDateContainer.isHidden = false
         self.secondDatePicker.isHidden = true
         self.datePicker.isHidden = false
@@ -356,4 +380,57 @@ extension FilterViewController : FilterArtistDataViewModelProtocol{
     }
     
     
+}
+extension FilterViewController: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDelegateAppearance{
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        print(date)
+        let currentDate = self.covertDate(date :date)
+        print(currentDate)
+        
+        
+        if isFirstSelected == true{
+            startDate = currentDate
+        }else{
+            endDate = currentDate
+
+        }
+        
+//        selectedDate  = currentDate
+//         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.EditDateVC)
+    }
+   
+    
+  func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool{
+
+      let currentDate = self.covertDate(date :date)
+             print(currentDate)
+    
+     if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
+          return false
+
+      }else {
+          return false
+      }
+  }
+
+
+
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+
+        print(date)
+               let currentDate = self.covertDate(date :date)
+               print(currentDate)
+
+//        if self.arrayDateSelect.contains(dateChoose) == true{
+//            let indexOfB = arrayDateSelect.firstIndex(of:dateChoose )
+//            self.arrayDateSelect.remove(at: indexOfB ?? 0)
+//
+//        }
+    }
+    
+    
+    func minimumDate(for calendar: FSCalendar) -> Date {
+        return Date()
+    }
 }
