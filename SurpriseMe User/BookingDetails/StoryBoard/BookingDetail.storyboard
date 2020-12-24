@@ -2425,9 +2425,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="yXB-9G-WdO"/>
-                                <exclude reference="Zod-pY-ihZ"/>
-                                <exclude reference="Lk4-L1-Ame"/>
                                 <exclude reference="2Ht-j1-JpM"/>
                             </mask>
                         </variation>
