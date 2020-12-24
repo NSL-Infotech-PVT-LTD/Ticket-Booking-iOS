@@ -34,7 +34,7 @@ class LoaderClass: UIViewController , NVActivityIndicatorViewable{
 
                print("the random number is \(myDinner)")
         
-              self.startAnimating(CGSize(width: 50, height: 50), message: myDinner, messageFont: UIFont(name: "Quicksand-Regular",size: 5), type: .lineScalePulseOut, color: UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1), padding: 5, displayTimeThreshold: 5, minimumDisplayTime: 5, backgroundColor: UIColor.white, textColor: .darkGray, fadeInAnimation: nil)
+              self.startAnimating(CGSize(width: 50, height: 50), message: myDinner, messageFont: UIFont(name: "Poppins-Regular",size: 3), type: .lineScalePulseOut, color: UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1), padding: 5, displayTimeThreshold: 5, minimumDisplayTime: 5, backgroundColor: UIColor.white, textColor: .darkGray, fadeInAnimation: nil)
     }
     
     func stopAnimation(){

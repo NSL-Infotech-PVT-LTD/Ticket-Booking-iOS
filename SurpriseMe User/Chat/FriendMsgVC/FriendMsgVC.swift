@@ -612,7 +612,11 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
             
             if self.chatHistoryData.count == 0 {
                 
-                
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "d MMM YYYY hh:mm a"
+                let nameOfMonth = dateFormatter.string(from: date)
+                self.lblDateCurrent.text = nameOfMonth
                 self.firstTimeView.isHidden = false
                 self.msgTableView.isHidden = true
                 self.lblMsgChatWith.text = "Start chat with \(self.lblRecierverName.text ?? "")"
@@ -648,6 +652,11 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
             self.scrollToBottom()
             if chatHistoryData.count == 0 {
                 self.firstTimeView.isHidden = false
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "d MMM YYYY hh:mm a"
+                let nameOfMonth = dateFormatter.string(from: date)
+                self.lblDateCurrent.text = nameOfMonth
                 self.msgTableView.isHidden = true
                 lblMsgChatWith.text = "Start chat with \(self.lblRecierverName.text ?? "")"
                 reciverImage.image = picUserReciever.image

@@ -785,10 +785,14 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
         }
     }
     
+    
+   
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.imageSliderCollectionContainer.isHidden = false
         if collectionView == self.showCollectionView{
-            
+            self.imageSliderCollectionContainer.isHidden = false
+
             let rectValue = self.imageSliderCollection.layoutAttributesForItem(at: IndexPath(row: indexPath.item, section: 0))?.frame
             self.imageSliderCollection.scrollRectToVisible(rectValue!, animated: false)
         }
@@ -918,13 +922,14 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//         if collectionView == self.serviceCollectionView {
+//         if collectionView == self.imageSliderCollection {
 //            
+//            return CGSize.init(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
 //            
-//            
-//         }else{
-//            
+//         }else if collectionView == self.showCollectionView{
+//            return CGSize.init(width: collectionView.frame.size.width / 4, height: collectionView.frame.size.height)
 //        }
+//        return CGSize.init(width: 0, height: 0)
 //    }
     
     

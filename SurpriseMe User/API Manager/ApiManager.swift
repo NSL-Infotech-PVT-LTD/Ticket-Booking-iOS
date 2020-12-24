@@ -168,6 +168,9 @@ struct Api {
     static let idelPayment           = basePublicUrl + "customer/create-payment-intent"
     static let getStripeKey           = basePublicUrl + "payment-config"
     static let currencies               = basePublicUrl + "currencies"
+    static let TermsAndCondi               = basePublicUrl + "config/terms_and_conditions"
+    static let AboutUs               = basePublicUrl + "config/about_us"
+    static let PrivacyPolicyApi               = basePublicUrl + "config/privacy_policy"
 
     
     
