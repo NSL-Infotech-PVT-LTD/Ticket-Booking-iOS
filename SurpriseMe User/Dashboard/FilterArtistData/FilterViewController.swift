@@ -324,14 +324,14 @@ class FilterViewController: UIViewController {
         
         if   whicShowTypeDigital == false{
 //
-            let dataParam = ["limit":"20","search":"","category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+            let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
             print(dataParam)
             
             
             self.objectViewModel.getParamForGetProfile(param: dataParam)
                                                
                                            }else{
-            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":"","category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
                    print(dataParam)
                    self.objectViewModel.getParamForGetProfile(param: dataParam)
             

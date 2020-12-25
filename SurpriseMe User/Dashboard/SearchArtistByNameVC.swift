@@ -129,9 +129,20 @@ extension SearchArtistByNameVC :UITableViewDataSource,UITableViewDelegate{
         }
         cell.lblDescription.text = dataItem.descriptionValue ?? ""
         if whicShowTypeDigital == false{
-            cell.lblPrice.text = "\(dataItem.converted_currency ?? "")" + " " + "\(dataItem.converted_digital_price ?? 0)" + " / " + "hr"
+            
+            
+            let myDouble = Double(dataItem.converted_digital_price ?? "") ?? 0.0
+            let y = (myDouble*100).rounded()/100
+            print(y)
+            
+            cell.lblPrice.text = "\(dataItem.converted_currency ?? "")" + " " + "\(y)" + " / " + "hr"
         }else{
-            cell.lblPrice.text =  "\(dataItem.converted_currency ?? "")" + " " + "\(dataItem.converted_live_price ?? 0)" + " / " + "hr"
+            
+            let myDouble = Double(dataItem.converted_live_price ?? "") ?? 0.0
+            let y = (myDouble*100).rounded()/100
+            print(y)
+            
+            cell.lblPrice.text =  "\(dataItem.converted_currency ?? "")" + " " + "\(y)" + " / " + "hr"
         }
         
         if dataItem.rate_detail.count > 0{
@@ -195,8 +206,14 @@ extension SearchArtistByNameVC : UITextFieldDelegate{
         
         print("the numner of charac is \(newString.length)")
         
+        if newString.length == 0{
+            searchTextValueData = ""
+        }
+        
+        
         if newString.length < 3{
-            searchTextValue = ""
+            searchTextValue = "\(searchTf.text!)\(string)"
+            searchTextValueData = searchTextValue
             self.tblArtist.isHidden = true
             self.viewNoData.isHidden = true
         }else{
@@ -207,7 +224,7 @@ extension SearchArtistByNameVC : UITextFieldDelegate{
                 if whicShowTypeDigital == true{
                     print("the live")
                     searchTextValue = "\(searchTf.text!)\(string)"
-                   
+                    searchTextValueData = searchTextValue
                     let dataParam = ["limit":"8","latitude":currentLat,"longitude":currentLong,"search":"\(searchTf.text!)\(string)"] as [String : Any]
                     self.objectViewModel.getParamForGetProfile(param: dataParam, pageNo: 1)
                 }else{

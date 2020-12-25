@@ -250,6 +250,8 @@ extension ProfileVC: ProfileViewModelProtocol {
             }
         }else{
             UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
+            UserDefaults.standard.removeObject(forKey: UserdefaultKeys.userID)
+//            UserDefaults.standard.set(0, forKey: UserdefaultKeys.userID)
             UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
             UserDefaults.standard.removeObject(forKey: UserdefaultKeys.userCurrency)
             UserDefaults.standard.setValue("", forKey: UserdefaultKeys.userCurrency)
@@ -297,6 +299,9 @@ extension ProfileVC: ProfileViewModelProtocol {
                 // do something like...
                 UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
                 UserDefaults.standard.removeObject(forKey: UserdefaultKeys.token)
+                
+//                UserDefaults.standard.set(nil, forKey: UserdefaultKeys.token)
+                UserDefaults.standard.removeObject(forKey: UserdefaultKeys.userID)
                 UserDefaults.standard.set(false, forKey: UserdefaultKeys.isLogin)
                 self.goToLogin()
             }))

@@ -76,6 +76,7 @@ class FriendMsgVC: UIViewController {
         
         let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
         print("the user id is \(useriD  )")
+        SocketConnectionManager.shared.socket.connect()
         
     }
     
@@ -628,8 +629,6 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                 self.msgTableView.isHidden = false
                 self.scrollToBottom()
                 self.msgTableView.reloadData()
-                
-                
             }
             
             
@@ -638,10 +637,8 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
 
 extension FriendMsgVC : SocketConnectionManagerDelegate {
     func onDataReceive(str: String){
-        
         Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Chat is disable Right now.Please contact admin", btnOkTitle: "Done") {
         }
-        
     }
 }
 
@@ -666,20 +663,8 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
                 self.firstTimeView.isHidden = true
                 self.msgTableView.isHidden = false
                 
-                
             }
-            
-            //            msgTableView: UITableView!
-            //            @IBOutlet weak var bottomConstant: NSLayoutConstraint!
-            //            @IBOutlet weak var txtMssg: UITextView!
-            //            @IBOutlet weak var picUserReciever: UIImageView!
-            //            @IBOutlet weak var lblRecierverName: UILabel!
-            //
-            //
-            //            @IBOutlet weak var img2NoData: UIImageView!
-            //            @IBOutlet weak var img1NoData: UIImageView!
-            //            @IBOutlet weak var noDataLblChat: UILabel!
-            //            @IBOutlet weak var nodataView
+         
             msgTableView.reloadData()
             if comingFrom == "NotificationTabs"{
                 self.setData(param: receiverDetails)

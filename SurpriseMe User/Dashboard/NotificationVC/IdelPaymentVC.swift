@@ -214,6 +214,11 @@ class IdelPaymentVC: UIViewController {
                 idealPayment = true
                 var param = ["booking_id":bookingPaymentID ?? 0 , "status": "confirmed" , "payment_method": "ideal"] as [String : Any]
                 param["payment_params"] = ["clientSecret":paymentIntent?.clientSecret ?? "" as Any ,"paymentMethodId":paymentIntent?.paymentMethodId ?? "","created":paymentIntent?.created ?? ""]
+                
+                
+                
+                
+                
             case .canceled:
                 self.displayAlert(title: "Canceled",
                                   message: error?.localizedDescription ?? "",

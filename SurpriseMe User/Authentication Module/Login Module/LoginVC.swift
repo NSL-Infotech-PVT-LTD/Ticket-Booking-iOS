@@ -191,6 +191,12 @@ extension LoginVC: LoginViewModelProtocol {
             
             self.stopAnimating()
             self.goToDashBoard()
+            
+            
+            let userIDValue =   UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+            print("the user id is \(userIDValue)")
+            
+            
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
                 self.tfEmail.text = nil

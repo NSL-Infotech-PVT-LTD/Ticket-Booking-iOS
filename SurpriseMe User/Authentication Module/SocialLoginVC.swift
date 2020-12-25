@@ -157,11 +157,20 @@ extension SocialLoginVC: SignUpViewModelProtocol {
             UserDefaults.standard.set(response["token"] ?? "", forKey: UserdefaultKeys.token)
             UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
             if let data = response["user"] as? [String:Any]{
+                
+                
+                UserDefaults.standard.set(data["id"] as? Int, forKey: UserdefaultKeys.userID)
+                
+                
                 if let currancy = data["currency"] as? String{
                     UserDefaults.standard.set(currancy, forKey: UserdefaultKeys.userCurrency)
                 }
             }
             self.goToDashBoard()
+            
+            let userIDValue =   UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+            print("the user id is \(userIDValue)")
+            
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
             }

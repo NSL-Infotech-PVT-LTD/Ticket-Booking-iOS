@@ -181,6 +181,15 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
 //        self.viewLiveShow.viewLiveShowDashline()
 //        self.viewDigitalShow.viewLiveShowDashline()
         imgPlayBtnVideo.isHidden = true
+        
+//        do {
+//            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
+//           }
+//           catch {
+//               print("Setting category to AVAudioSessionCategoryPlayback failed.")
+//           }
+//        
+        
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
               imgProfile.addGestureRecognizer(tapviewAboutUs)
         

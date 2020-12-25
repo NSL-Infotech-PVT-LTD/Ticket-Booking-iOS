@@ -20,6 +20,7 @@ import Alamofire
 //import PayPalMobile
 import FBSDKCoreKit
 import FBSDKShareKit
+import AVFoundation
 
 
 
@@ -41,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions: launchOptions
                )
 
+        
+//        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+
+        
         self.setInitialSetup()
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
