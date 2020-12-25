@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                )
 
         
-//        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
 
         
         self.setInitialSetup()
@@ -236,53 +236,13 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let id = ["target_id":targetID]
         let nc = NotificationCenter.default
         nc.post(name: Notification.Name("BookingNotification"), object: nil,userInfo: id)
-
-               
-               
-//               if let userInfo = notification.request.content.userInfo as? [AnyHashable : Any] {
-//                   let bookingID = userInfo["target_id"] ?? 0
-//                   userArtistIDBooking = userInfo["target_id"]
-//                   let bookingStatus = userInfo["target_model"] ?? ""
-//                if bookingStatus as! String == "Booking"{
-//                               let rootViewController = self.window!.rootViewController as? UINavigationController
-//        let mainStoryboard = UIStoryboard(name: "BookingDetail", bundle: nil)
-//
-//
-//                                      if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetailVC") as? BookingDetailVC{
-//                                       bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
-//                                      // bookigDetail.bookingID = (bookingID as? Int)!
-//
-//
-//                                          bookigDetail.isComingFrom = "NotificationCame"
-//                                        rootViewController?.pushViewController(bookigDetail, animated: true)
-//
-//                           }else{
-//                               
-//                           }
-//                           }else{
-//                   //
-//                   //
-//                           }
-//                   
-//                   
-//               }
-               
-
-            
-          
-
-                
-//                rootViewController.pushViewController(bookigDetail, animated: true)
-//                                                   rootViewController.pushViewController(bookigDetail, animated: true)
-
-            
-//                                  let controller = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetails") as! BookingDetails
-//           controller.bookingID = userInfo["target_id"] ?? 0
-//                                   rootViewController.pushViewController(controller, animated: true)
-
         
-        
-        completionHandler([[.alert, .sound]])
+        if isChatNotification == false{
+            completionHandler([[.alert, .sound]])
+        }else{
+            
+        }
+      
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {

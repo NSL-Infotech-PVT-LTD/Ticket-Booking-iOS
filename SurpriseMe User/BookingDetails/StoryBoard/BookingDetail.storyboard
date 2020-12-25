@@ -1698,7 +1698,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCC-pP-IAO">
                                                 <rect key="frame" x="81.5" y="24" width="140" height="20"/>
                                                 <subviews>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jpx-cT-ioi">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpx-cT-ioi">
                                                         <rect key="frame" x="9" y="3" width="26" height="14.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-31-gzZ">
@@ -1720,7 +1720,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yNT-o1-Y1a" customClass="CosmosView" customModule="Cosmos">
+                                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNT-o1-Y1a" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="38" y="4" width="64" height="12"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -2731,6 +2731,26 @@
             <point key="canvasLocation" x="2896.8000000000002" y="88.605697151424295"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="BGy-lx-maO">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+        <designable name="KJK-Ob-gsx">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+        <designable name="OlM-mp-JsF">
+            <size key="intrinsicContentSize" width="68" height="12"/>
+        </designable>
+        <designable name="WiZ-TC-sQ6">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+        <designable name="h9g-xY-bja">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
+        <designable name="yNT-o1-Y1a">
+            <size key="intrinsicContentSize" width="64" height="12"/>
+        </designable>
+    </designables>
     <resources>
         <image name="1" width="199" height="134.5"/>
         <image name="Back-1" width="58" height="19"/>

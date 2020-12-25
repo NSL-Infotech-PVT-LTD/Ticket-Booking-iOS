@@ -47,6 +47,7 @@ var addressLandMarkEdit = String()
 var otherAddresssFeildValue = String()
 var isEditValue = Bool()
 var searchTextValueData = String()
+var isChatNotification = false
 
 
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"

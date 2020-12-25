@@ -41,8 +41,8 @@ class GetArtistModel: NSObject {
     
     var category : [JSON]?
     var converted_currency : String?
-    var converted_digital_price: Int?
-    var converted_live_price: Int?
+    var converted_digital_price: String?
+    var converted_live_price: String?
 
 convenience init(resposne : [String:Any]) {
         self.init()
@@ -78,8 +78,8 @@ convenience init(resposne : [String:Any]) {
     
     
     
-    converted_digital_price = json[ManageAddressModelKey.converted_digital_price].intValue
-    converted_live_price = json[ManageAddressModelKey.converted_live_price].intValue
+    converted_digital_price = json[ManageAddressModelKey.converted_digital_price].stringValue
+    converted_live_price = json[ManageAddressModelKey.converted_live_price].stringValue
     converted_currency = json[ManageAddressModelKey.converted_currency].stringValue
     
     

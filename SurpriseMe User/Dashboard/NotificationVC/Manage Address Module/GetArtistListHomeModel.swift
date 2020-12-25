@@ -23,8 +23,8 @@ class GetArtistListHomeModel: NSObject {
     var categoryArtist = [SearchCategoryHome]()
     var category : [JSON]?
     var converted_currency : String?
-    var converted_digital_price: Int?
-    var converted_live_price: Int?
+    var converted_digital_price: String?
+    var converted_live_price: String?
     convenience init(resposne : [String:Any]) {
         self.init()
         let json = JSON(resposne)
@@ -40,8 +40,8 @@ class GetArtistListHomeModel: NSObject {
         rating = json[HomeScreenModelModelKey.rating].intValue
         id = json[HomeScreenModelModelKey.id].intValue
         category = json[HomeScreenModelModelKey.category_id_details].array
-        converted_digital_price = json[HomeScreenModelModelKey.converted_digital_price].intValue
-        converted_live_price = json[HomeScreenModelModelKey.converted_live_price].intValue
+        converted_digital_price = json[HomeScreenModelModelKey.converted_digital_price].stringValue
+        converted_live_price = json[HomeScreenModelModelKey.converted_live_price].stringValue
         converted_currency = json[HomeScreenModelModelKey.converted_currency].stringValue
         let categories = json["category_id_details"].arrayValue
                for indexValue in categories {

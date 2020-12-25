@@ -690,25 +690,28 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
         }else{
             cell.RolePlayLbl_out.text = "No Skill"
         }
-        
         if whicShowTypeDigital == false{
-            cell.lblPriceArtist.text =  "\(dataItem.converted_currency ?? "")" + " " + "\(dataItem.converted_digital_price ?? 0)"  + "/" + "hr"
+            let myDouble = Double(dataItem.converted_digital_price ?? "") ?? 0.0
+            let y = (myDouble*100).rounded()/100
+            print(y)
+            
+            
+            cell.lblPriceArtist.text =  "\(dataItem.converted_currency ?? "")" + " " + "\(y)"  + "/" + "hr"
         }else{
-            cell.lblPriceArtist.text =  "\(dataItem.converted_currency ?? "")" + " " + "\(dataItem.converted_live_price ?? 0)" + "/" + "hr"
+            let myDouble = Double(dataItem.converted_live_price ?? "") ?? 0.0
+            let y = (myDouble*100).rounded()/100
+            print(y)
+            cell.lblPriceArtist.text =  "\(dataItem.converted_currency ?? "")" + " " + "\((y))" + "/" + "hr"
         }
-        
         if dataItem.rating == 0{
             cell.cosmoView.rating = 0.0
             cell.cosmoView.isHidden = true
-            print("the rating is zero")
             cell.lblNoRatingAvail.isHidden = false
-            
         }else{
             cell.cosmoView.isHidden = false
             cell.lblNoRatingAvail.isHidden = true
             cell.cosmoView.rating = Double("\(dataItem.rating ?? 0)") ?? 0.0
         }
-        
         let urlSting : String = "\(Api.imageURLArtist)\(dataItem.image ?? "")"
         let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
         let urlImage = URL(string: urlStringaa)!
@@ -716,7 +719,6 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.bannerImage.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
         cell.bookBtn_out.tag = indexPath.row
         cell.bookBtn_out.addTarget(self, action: #selector(btnBookAction), for: .touchUpInside)
-        
         return cell
     }
     
@@ -727,9 +729,7 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userArtistID = arrayHomeArtistList[indexPath.row].id ?? 0
-        
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: "ViewProfileVC")
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -746,13 +746,10 @@ extension HOmeViewController: UITableViewDelegate, UITableViewDataSource {
     func getProfileData(profile :GetProfileModel? )  {
         print("the user image is \(Api.imageURL)\(profile?.image ?? "")")
         self.imgUserProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        
-        
         self.imgUserProfile.sd_setImage(with: URL(string: "\(Api.imageURL)\(profile?.image ?? "")"), placeholderImage: UIImage(named: "user (1)"))
         SelfImage = "\(Api.imageURL)\(profile?.image ?? "")"
         
     }
-    
 }
 
 class homeTableCell: UITableViewCell {
@@ -769,10 +766,7 @@ class homeTableCell: UITableViewCell {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet var lblSeeArtistProfile: UILabel!
     @IBOutlet weak var lblPriceArtist: UILabel!
-    
-    
 }
-
 
 extension HOmeViewController : UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -785,7 +779,6 @@ extension HOmeViewController : UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
-        
         return true
     }
 }
@@ -800,34 +793,24 @@ extension HOmeViewController: HomeViewModelProtocol ,ProfileViewModelProtocol{
             Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
             }
         }else{
-            print("the page number is \(self.pageInt)")
             if self.pageInt == 1{
                 self.arrayHomeArtistList.removeAll()
                 arrayHomeArtistList = response.map({$0})
-                
             }else{
                 self.arrayHomeArtistListLoadMore.removeAll()
                 arrayHomeArtistListLoadMore = response.map({$0})
                 arrayHomeArtistList = arrayHomeArtistList + self.arrayHomeArtistListLoadMore
-                
                 if arrayHomeArtistListLoadMore.count == 0{
                     isLoadMore = true
                 }
-                
-                
-                print("the page number is arrayHomeArtistListLoadMore\(arrayHomeArtistListLoadMore )")
-                
             }
-            
             if arrayHomeArtistList.count == 0{
                 self.tableView_out.isHidden = true
                 self.noDataFound.isHidden = false
-                
             }else{
                 self.tableView_out.isHidden = false
                 self.noDataFound.isHidden = true
             }
-            
             self.tableView_out.reloadData()
         }
     }
@@ -848,7 +831,6 @@ extension HOmeViewController: HomeViewModelProtocol ,ProfileViewModelProtocol{
             LoaderClass.shared.stopAnimation()
             self.goToLogin()
         }
-        
     }
     
     func getUpdateProfileApiResponse(message: String , isError : Bool){
@@ -874,43 +856,31 @@ extension HOmeViewController: HomeViewModelProtocol ,ProfileViewModelProtocol{
     }
 }
 
-
-
 extension HOmeViewController : CLLocationManagerDelegate{
     
     //MARK:- start point latitude and longitude convert into Address
     func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double) {
-        
         let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(pdblLatitude),\(pdblLongitude)&key=\("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")"
-        
         Alamofire.request(url).validate().responseJSON { response in
             switch response.result {
             case .success:
-                
                 let responseJson = response.result.value! as! NSDictionary
                 print("the location is \(responseJson)")
                 if let results = responseJson.object(forKey: "results")! as? [NSDictionary] {
                     if results.count > 0 {
                         if let addressComponents = results[0]["address_components"]! as? [NSDictionary] {
-                            // self.locationTf.text = results[0]["formatted_address"] as? String
+                        
                             if self.locationTf.text == ""{
-                                //  self.currentLocationGetAgain()
                             }
-                            
                             currentAddress = self.locationTf.text!
-                        }
+                            break               }
                     }
                 }
-            case .failure(let error):
-                print(error)
+            case .failure(let error): break
             }
         }
-        
-        
-        
     }
     
-    // After user tap on 'Allow' or 'Disallow' on the dialog
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if(status == .authorizedWhenInUse || status == .authorizedAlways){
             manager.requestLocation()
@@ -919,15 +889,11 @@ extension HOmeViewController : CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        print("the user location is \(locations.first?.coordinate.latitude)")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error while requesting new coordinates")
     }
 }
-
-
 
 extension Sequence {
     var minimalDescription: String {
@@ -935,13 +901,10 @@ extension Sequence {
     }
 }
 
-
 extension HOmeViewController:updateCurrancy{
     func isCurrancyUpdated(bool: Bool) {
         if bool == true{
             self.setHomeData()
         }
     }
-    
-    
 }

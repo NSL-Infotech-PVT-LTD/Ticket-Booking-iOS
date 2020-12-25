@@ -98,7 +98,7 @@ class SelectPaymentVC: UIViewController {
 
         self.present(alert,animated: true)
     }
-    
+
     
     func callApiDeletebookingSlot(param: [String: Any]){
         
