@@ -197,13 +197,22 @@ class FilterViewController: UIViewController {
             print("the start date is \(startDatevalue)")
             
             self.lblFromDate.text = startDatevalue
-
+            datePicker.datePickerMode = .date
+                           let dateFormatter = DateFormatter()
+                           dateFormatter.dateFormat =  "YYYY-MM-dd"
+            let date = dateFormatter.date(from: startDatevalue ?? "")
+                           datePicker.date = date ?? Date()
             
             
             let endDateValue = dictFilter["end_Date"] as? String
             print("the start date is \(endDateValue)")
 
             self.toDateLbl.text = endDateValue
+            datePicker.datePickerMode = .date
+                           let dateFormatter1 = DateFormatter()
+            dateFormatter1.dateFormat =  "YYYY-MM-dd"
+            let date1 = dateFormatter1.date(from: endDateValue ?? "")
+                           secondDatePicker.date = date1 ?? Date()
             
             
            let selectionValue = dictFilter["selection"] as? String
@@ -223,9 +232,13 @@ class FilterViewController: UIViewController {
         
         
         
-        datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
+        
+        
+        
+        
+//        datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
+//        secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         secondDatePicker.addTarget(self, action: #selector(seconddateChanged(_:)), for: .valueChanged)
         sortByValue = "asc"
         

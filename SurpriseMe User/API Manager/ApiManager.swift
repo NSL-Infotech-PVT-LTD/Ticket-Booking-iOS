@@ -51,6 +51,7 @@ var startDateValue = String()
 var endDateValue = String()
 
 var isChatNotification = false
+var nextPageUrlCount = String()
 
 
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"

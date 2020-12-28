@@ -148,27 +148,16 @@ class FriendMsgVC: UIViewController {
             if userName == reciverData.receiver_name ?? ""{
                 userArtistID =  reciverData.sender_id ?? 0
             }else{
-                
                 userArtistID =  reciverData.receiver_id ?? 0
-                
             }
-            
-            
-            
-        }
-        
-        
-        
-        
-        
-        self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
+         }
+       self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
         
     }
     
     func chatHistoryApi() {
         
           if comingFrom == "NotificationTabs"{
-            
             let param = ["receiver_id": recieverIDHistoryList ] as [String: Any]
             chatVMObject.getParamForChatHistory(param: param)
             
@@ -188,7 +177,6 @@ class FriendMsgVC: UIViewController {
             }else{
                 
                 let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                
                 
                 if userName == reciverData.receiver_name ?? ""{
                     let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
@@ -416,7 +404,7 @@ class FriendMsgVC: UIViewController {
                         _ =  self.navigationController!.popToViewController(controller, animated: true)
                         break
                     }else{
-                        self.pushWithAnimate(StoryName: ViewControllers.ChatDash, Controller:ViewControllers.FriendList)
+//                        self.pushWithAnimate(StoryName: ViewControllers.ChatDash, Controller: )
                     }
                 }
             
