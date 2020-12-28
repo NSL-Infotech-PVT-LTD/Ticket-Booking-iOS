@@ -107,6 +107,30 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         self.viewYoutubeProfile.isUserInteractionEnabled = true
         self.viewYoutubeProfile.addGestureRecognizer(tap13)
         
+        self.viewBack.addBottomShadow()
+        self.imageSliderCollectionContainer.isHidden = true
+        imgViewUserPreview.isHidden = false
+        
+        getProfileVMObject.delegate = self //Mark: Delegate call
+        //Mark:Api Hitp
+        let dictParam = ["id":userArtistID]
+        getProfileVMObject.getProfileData(param:dictParam)
+        novideoLbl.isHidden = true
+        viewContainerPreview.isHidden = true
+        imgViewUserPreview.isHidden = true
+        btnCrossImage.isHidden = true
+        crossBack.isHidden = true
+        viewImageViewContainer.isHidden = true
+        //Mark: CollectionView Delegate
+        serviceCollectionView.delegate = self
+        serviceCollectionView.dataSource = self
+        imageSliderCollection.delegate = self
+        imageSliderCollection.dataSource = self
+        self.serviceCollectionView.reloadData()
+        showCollectionView.delegate = self
+        showCollectionView.dataSource = self
+        self.showCollectionView.reloadData()
+        
     }
     
     @IBAction func imageTapped(_ sender: UITapGestureRecognizer) {
@@ -360,29 +384,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.viewBack.addBottomShadow()
-        self.imageSliderCollectionContainer.isHidden = true
-        imgViewUserPreview.isHidden = false
-        
-        getProfileVMObject.delegate = self //Mark: Delegate call
-        //Mark:Api Hitp
-        let dictParam = ["id":userArtistID]
-        getProfileVMObject.getProfileData(param:dictParam)
-        novideoLbl.isHidden = true
-        viewContainerPreview.isHidden = true
-        imgViewUserPreview.isHidden = true
-        btnCrossImage.isHidden = true
-        crossBack.isHidden = true
-        viewImageViewContainer.isHidden = true
-        //Mark: CollectionView Delegate
-        serviceCollectionView.delegate = self
-        serviceCollectionView.dataSource = self
-        imageSliderCollection.delegate = self
-        imageSliderCollection.dataSource = self
-        self.serviceCollectionView.reloadData()
-        showCollectionView.delegate = self
-        showCollectionView.dataSource = self
-        self.showCollectionView.reloadData()
+       
     }
     
     @IBAction func btnBookAction(_ sender: UIButton) {
@@ -395,12 +397,10 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         let imageUrl = Api.imageURLArtist
         self.lblName.text = profile?.name ?? ""
         
-        
         let myDouble = Double(profile?.converted_live_price ?? "") ?? 0.0
         let y1 = (myDouble*100).rounded()/100
         
        self.lblLiveShowPrice.text = "\(profile?.converted_currency ?? "")\(" ")\( y1)"
-        
         if profile?.ratingValue == 0{
             btnSeeReview.isHidden = true
             btnSeeReview.isUserInteractionEnabled = false

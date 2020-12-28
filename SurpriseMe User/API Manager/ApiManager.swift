@@ -47,6 +47,9 @@ var addressLandMarkEdit = String()
 var otherAddresssFeildValue = String()
 var isEditValue = Bool()
 var searchTextValueData = String()
+var startDateValue = String()
+var endDateValue = String()
+
 var isChatNotification = false
 
 
@@ -94,6 +97,10 @@ struct StringFile {
 struct ViewControllers {
     static let Login = "LoginVC"
     static let DashBoard = "Dashboard"
+    static let ChatDash = "Chat"
+    static let FriendList = "FriendListVC"
+
+
     static let ManageAddressVC = "ManageAddressVC"
     static let UpdateLocationVC = "UpdateLocationVC"
     static let ScheduleBookingVC = "ScheduleBookingVC"

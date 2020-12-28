@@ -407,7 +407,25 @@ class FriendMsgVC: UIViewController {
     
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        
+        
+        if comingFrom == "NotificationTabsTouch"{
+            
+            for controller in self.navigationController!.viewControllers as Array {
+                    if controller.isKind(of: FriendListVC.self) {
+                        _ =  self.navigationController!.popToViewController(controller, animated: true)
+                        break
+                    }else{
+                        self.pushWithAnimate(StoryName: ViewControllers.ChatDash, Controller:ViewControllers.FriendList)
+                    }
+                }
+            
+            
+        }else{
+            self.navigationController?.popViewController(animated: true)
+
+        }
+        
     }
 }
 extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {

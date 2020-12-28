@@ -316,15 +316,31 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                     }else{
                         
                     }
-                    }else{
-            //
-            //
                     }
-            
-            
+//         else{
+//
+//                        let rootViewController = self.window!.rootViewController as! UINavigationController
+// let mainStoryboard = UIStoryboard(name: "Chat", bundle: nil)
+//
+//
+//                               if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "FriendMsgVC") as? FriendMsgVC{
+//
+//
+//
+//
+//
+////                                bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
+//                               // bookigDetail.bookingID = (bookingID as? Int)!
+//
+//
+//                                   bookigDetail.comingFrom = "NotificationTabsTouch"
+//                                   rootViewController.pushViewController(bookigDetail, animated: true)
+//                 }
+//
+//
+//        }
+        
         }
-        
-        
         
             
             

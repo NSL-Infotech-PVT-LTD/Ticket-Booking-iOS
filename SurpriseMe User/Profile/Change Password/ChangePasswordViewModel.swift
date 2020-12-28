@@ -38,11 +38,22 @@ class ChangePasswordViewModel {
                   ApiManeger.sharedInstance.callApiWithHeader(url: Api.changePassword, method: .post, param: param, header: headerToken) { (response, error) in
                       print(response)
                     print("the base url is \(Api.changePassword)")
+                    LoaderClass.shared.stopAnimation()
+
                     
                       if error == nil {
                           let result = response
                           if let status = result["status"] as? Bool {
                               if status ==  true{
+                                
+                             print("the success password")
+                                
+                                
+                                self.delegate?.loginApiResponse(message: "", response: [:], isError: false)
+                                
+                                
+                                
+                                
                                   //
 //                                  let dictData = result["data"] as? [String:Any]
 //                                  let userProfile = dictData?["user"] as? [String:Any]
@@ -51,6 +62,13 @@ class ChangePasswordViewModel {
                                   
                               }
                               else{
+                                print("the success password")
+                                
+                                self.delegate?.loginApiResponse(message: result["error"] as? String ?? "", response: [:], isError: true)
+                                
+//
+//                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: result["error"] as? String ?? "")
+
                               }
                           }
                           else {
@@ -61,6 +79,8 @@ class ChangePasswordViewModel {
                           }
                       }
                       else {
+                        print("the error password password")
+
                           self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                       }
                   }

@@ -61,7 +61,12 @@ extension ChangePasswordVC: ChangePasswordViewModelProtocol {
     func loginApiResponse(message: String, response: [String : Any], isError: Bool) {
 
            if !isError{
-            self.back()
+            
+            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Password Changed Successfully", btnOkTitle: "Done") {
+                self.back()
+            }
+            
+            
            }else{
                Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
                   

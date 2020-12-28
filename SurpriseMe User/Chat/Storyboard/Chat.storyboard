@@ -177,7 +177,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 hours ago" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFQ-0W-yzR">
-                                                                    <rect key="frame" x="207" y="24" width="105" height="20"/>
+                                                                    <rect key="frame" x="207" y="23.5" width="105" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="105" id="Xiq-G0-Qwb"/>
                                                                         <constraint firstAttribute="height" constant="20" id="dPV-Hu-mcC"/>
@@ -1002,7 +1002,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Eg-gW-LxS">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueEdge" translatesAutoresizingMaskIntoConstraints="NO" id="V31-w0-Olr">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="V31-w0-Olr">
                                                             <rect key="frame" x="270" y="67" width="25" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="Mec-GE-dyN"/>
@@ -1028,7 +1028,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" red="0.14117647059999999" green="0.1137254902" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" red="0.6470588235294118" green="0.0" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="9Jm-i0-HRV" secondAttribute="trailing" constant="10" id="FGs-fH-K7O"/>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Ng5-zw-86t"/>
@@ -1401,13 +1401,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Background" width="37.5" height="37.5"/>
         <image name="Group 1337" width="51" height="51"/>
         <image name="Group 399" width="66" height="66"/>
         <image name="Send message" width="49" height="50"/>
         <image name="avatar" width="50" height="50"/>
         <image name="back" width="12.5" height="24.5"/>
         <image name="backButton-1" width="24" height="35.5"/>
-        <image name="blueEdge" width="37.5" height="37.5"/>
         <image name="greyEdge" width="37" height="37"/>
         <image name="image_placeholder" width="128" height="128"/>
         <image name="load" width="37" height="16"/>

@@ -106,6 +106,7 @@ class FilterViewController: UIViewController {
         startDate = formatter.string(from: datePicker.date)
         print(startDate)
         self.lblFromDate.text = startDate
+        startDateValue = startDate
         self.view.endEditing(true)
     }
     
@@ -119,6 +120,9 @@ class FilterViewController: UIViewController {
         print(endDate)
         
         self.toDateLbl.text = endDate
+        
+       
+         endDateValue = endDate
 
         self.view.endEditing(true)
     }
@@ -142,6 +146,16 @@ class FilterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewDateContainer.isHidden = true
+        
+        
+        
+        if #available(iOS 13.4, *) {
+                   datePicker.preferredDatePickerStyle = .wheels
+                 secondDatePicker.preferredDatePickerStyle = .wheels
+            
+               } else {
+                   // Fallback on earlier versions
+               }
         
         
         if whicShowTypeDigital == true{
@@ -176,6 +190,22 @@ class FilterViewController: UIViewController {
                 ratingSlider.setIndex(4, animated: true)
 
             }
+            
+            
+            let startDatevalue = dictFilter["start_Date"] as? String
+            
+            print("the start date is \(startDatevalue)")
+            
+            self.lblFromDate.text = startDatevalue
+
+            
+            
+            let endDateValue = dictFilter["end_Date"] as? String
+            print("the start date is \(endDateValue)")
+
+            self.toDateLbl.text = endDateValue
+            
+            
            let selectionValue = dictFilter["selection"] as? String
             if  selectionValue == "desc"{
                 btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
@@ -230,12 +260,22 @@ class FilterViewController: UIViewController {
     @objc func handletapviewFirstBtn(_ sender: UITapGestureRecognizer? = nil) {
          btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
            btnFirst.setImage(UIImage(named: "tick"), for: .normal)
+        sortByValue = "asc"
+
+        print("the dictvalue is handletapviewFirstBtn\(dictFilter)")
+
+        
+        
        }
     
     
     @objc func handletapviewSecondBtn(_ sender: UITapGestureRecognizer? = nil) {
       btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick"), for: .normal)
+        sortByValue = "desc"
+        
+        print("the dictvalue is handletapviewSecondBtn\(dictFilter)")
+
     }
     
     
@@ -245,6 +285,7 @@ class FilterViewController: UIViewController {
         btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick"), for: .normal)
         sortByValue = "desc"
+        print("the dictvalue is \(dictFilter)")
 
     }
     
@@ -324,22 +365,24 @@ class FilterViewController: UIViewController {
         
         if   whicShowTypeDigital == false{
 //
-            let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+            let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
             print(dataParam)
             
             
             self.objectViewModel.getParamForGetProfile(param: dataParam)
                                                
                                            }else{
-            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDate,"to_date":endDate,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
                    print(dataParam)
                    self.objectViewModel.getParamForGetProfile(param: dataParam)
             
                }
         
-        dictFilter = ["distance":distance , "rating" : selectedRating , "selection":sortByValue ]
-
         
+        
+        dictFilter = ["distance":distance , "rating" : selectedRating , "selection":sortByValue ,"start_Date":startDateValue,"end_Date":endDateValue]
+
+        print("the selected filter is \(dictFilter)")
        
     }
     
@@ -348,6 +391,7 @@ class FilterViewController: UIViewController {
         btnFirst.setImage(UIImage(named: "tick"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
         sortByValue = "asc"
+        print("the dict filter is \(dictFilter)")
         
         
         
