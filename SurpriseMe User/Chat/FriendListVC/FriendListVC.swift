@@ -154,7 +154,19 @@ class FriendListVC: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.hideTable(page: 1)
+        
+        
+        if  cameFromChat == true{
+            self.tabBarController?.tabBar.isHidden = false
+
+            self.hideTable(page: 1)
+            cameFromChat = false
+
+        }else{
+            self.hideTable(page: 1)
+
+        }
+        
         
         
     }

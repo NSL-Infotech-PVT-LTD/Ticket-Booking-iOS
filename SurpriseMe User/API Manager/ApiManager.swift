@@ -21,6 +21,10 @@ var customAddress = Bool()
 var currentAddress = String()
 var selectedIdentifier = String()
 var userArtistIDBooking : Any?
+var userChatIDNoti : Any?
+var cameFromChat  = false
+
+
 var userArtistID = Int()
 var arrayCategorySelected = [Int]()
 var arrayCategorySelectedName = [String]()
@@ -196,11 +200,7 @@ class ApiManeger : NSObject{
     func callApiWithInternet(url:String,controller:UIViewController,method:HTTPMethod,param:[String:Any],completion:@escaping ([String:Any],NSError?)->()){
           
           
-//        if Reachability.isConnectedToNetwork(){
-//            controller.view.addSubview(<#T##view: UIView##UIView#>)
-//        }else{
-//            
-//        }
+//     
           
           
           Alamofire.request(url, method: method, parameters: param, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in

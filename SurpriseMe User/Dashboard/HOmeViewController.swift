@@ -82,8 +82,14 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.setHomeData()
-    }
+        
+        if cameFromChat == true{
+            self.tabBarController?.selectedIndex = 2
+            cameFromChat = false
+        }else{
+            self.setHomeData()
+        }
+ }
     
     func setHomeData(){
         

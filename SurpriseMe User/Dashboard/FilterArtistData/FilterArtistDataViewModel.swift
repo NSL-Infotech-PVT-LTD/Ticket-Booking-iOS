@@ -67,6 +67,7 @@ class FilterArtistDataViewModel {
                            
                         }
                         else{
+                            self.delegate?.getFilterArtistDataApiResponse(message: result["error"] as? String ?? "", response: self.arrayObject, isError: true)
                         }
                     }
                     else {

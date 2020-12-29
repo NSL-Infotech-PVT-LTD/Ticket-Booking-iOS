@@ -238,7 +238,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         nc.post(name: Notification.Name("BookingNotification"), object: nil,userInfo: id)
         
         if isChatNotification == false{
-            completionHandler([[.alert, .sound]])
+            completionHandler([[.alert]])
         }else{
             
         }
@@ -299,6 +299,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let userInfo = response.notification.request.content.userInfo as? [AnyHashable : Any] {
             let bookingID = userInfo["target_id"] ?? 0
             userArtistIDBooking = userInfo["target_id"]
+            
+            userChatIDNoti = userInfo["target_id"]
+
+            
             let bookingStatus = userInfo["target_model"] ?? ""
          if bookingStatus as! String == "Booking"{
                         let rootViewController = self.window!.rootViewController as! UINavigationController
@@ -307,48 +311,38 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
                                if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "BookingDetailVC") as? BookingDetailVC{
                                 bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
-                               // bookigDetail.bookingID = (bookingID as? Int)!
-
-
-                                   bookigDetail.isComingFrom = "NotificationCame"
+                                bookigDetail.isComingFrom = "NotificationCame"
                                    rootViewController.pushViewController(bookigDetail, animated: true)
 
-                    }else{
-                        
                     }
+                               else{
                     }
-//         else{
-//
-//                        let rootViewController = self.window!.rootViewController as! UINavigationController
-// let mainStoryboard = UIStoryboard(name: "Chat", bundle: nil)
-//
-//
-//                               if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "FriendMsgVC") as? FriendMsgVC{
-//
-//
-//
-//
-//
-////                                bookigDetail.bookingIDNotification = userArtistIDBooking ?? 0
-//                               // bookigDetail.bookingID = (bookingID as? Int)!
-//
-//
-//                                   bookigDetail.comingFrom = "NotificationTabsTouch"
-//                                   rootViewController.pushViewController(bookigDetail, animated: true)
-//                 }
-//
-//
-//        }
-        
-        }
-        
+         }else{
+            let rootViewController = self.window!.rootViewController as! UINavigationController
             
             
-               
+            
+//            userChatIDNoti = userInfo["target_id"] as? Int
+            
+let mainStoryboard = UIStoryboard(name: "Chat", bundle: nil)
 
-//            rootViewController.pushWithAnimate(StoryName: "BookingDetail", Controller: "BookingDetailVC")
+
+                   if let bookigDetail = mainStoryboard.instantiateViewController(withIdentifier: "FriendMsgVC") as? FriendMsgVC{
+                    
+                    
+                    
+                    
+                    bookigDetail.comingFrom = "NotificationTabsTouch"
+                       rootViewController.pushViewController(bookigDetail, animated: true)
+
+        }
+            
+        }
+
         completionHandler()
+
     }
+}
 }
 // [END ios_10_message_handling]
 
