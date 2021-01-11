@@ -69,6 +69,23 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     @IBOutlet weak var imgPlayBtnVideo: UIImageView!
     @IBOutlet weak var playVideoBtn: UIButton!
     @IBOutlet weak var digitalShowHeightConstant: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblBookingPrice: UILabel!
+    @IBOutlet weak var lblVirtual: UILabel!
+    
+    
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lblSocialMedia: UILabel!
+    
+  @IBOutlet weak var viewProfile12: UILabel!
+    @IBOutlet weak var viewProfile: UILabel!
+    @IBOutlet weak var lblInstaAccount: UILabel!
+    @IBOutlet weak var lblYoutubeAccount: UILabel!
+    @IBOutlet weak var lblAbout: UILabel!
+    
+    @IBOutlet weak var lblChatAboutBooking: UILabel!
+    
+    
     @IBOutlet weak var liveShowHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var imgShowType: UIImageView!
     @IBOutlet weak var btnSeeReview: UIButton!
@@ -188,7 +205,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         btnCrossImage.isHidden = true
         crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
-        
     }
     
     @IBAction func cloaseOnPress(_ sender: UIButton) {
@@ -397,6 +413,19 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         let imageUrl = Api.imageURLArtist
         self.lblName.text = profile?.name ?? ""
         
+        self.lblBookingPrice.text = "BOOKING_PRICE".localized()
+        self.lblGallery.text = "GALLERY".localized()
+        self.lblInPersonData.text = "IN_PRESON".localized()
+        self.lblVirtual.text = "VIRTUAL_SHOW".localized()
+        self.lblSocialMedia.text = "SOCIAL_MEDIA_HANDLES".localized()
+        btnBack.setTitle("back".localized(), for: .normal)
+        self.lblAbout.text = "ABOUT".localized()
+        self.lblChatAboutBooking.text = "HAVE_A_CHAT_BOOKING".localized()
+        self.lblInstaLink.text = "INSTRAGRAM_ACCOUNT".localized()
+        self.lblYoutubeAccount.text = "YOUTUBE_ACCOUNT".localized()
+        self.viewProfile.text = "VIEW_PROFILE".localized()
+        self.viewProfile12.text = "VIEW_PROFILE".localized()
+
         let myDouble = Double(profile?.converted_live_price ?? "") ?? 0.0
         let y1 = (myDouble*100).rounded()/100
         
@@ -406,12 +435,14 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             btnSeeReview.isUserInteractionEnabled = false
             self.viewCosmoRating.isHidden = true
             self.lblNewBrandArtist.isHidden = false
-            self.lblNewBrandArtist.text = "BRAND NEW ARTIST"
+            self.lblNewBrandArtist.text = "NEW_ARTIST".localized()
         }else{
             self.viewCosmoRating.isHidden = false
             self.lblNewBrandArtist.isHidden = true
             self.viewCosmoRating.rating = Double("\(profile?.ratingValue ?? 0)") ?? 0.0
             btnSeeReview.isHidden = false
+            btnSeeReview.setTitle("SEE_REVIEW".localized(), for: .normal)
+
             btnSeeReview.isUserInteractionEnabled = true
         }
         if   whicShowTypeDigital == false{
@@ -419,19 +450,13 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             lblInPersonData.isHidden = true
             self.liveShowHeightConstant.constant = 30
             self.viewLiveShow.isHidden = false
-            self.imgShowType.image = UIImage.init(named: "digital_active")
-            
+            self.imgShowType.image = UIImage.init(named: "virtual")
         }else{
             viewLivePriceValue.isHidden = false
-            
-            
-            
-            lblInPersonData.isHidden = false
+             lblInPersonData.isHidden = false
             self.digitalShowHeightConstant.constant = 0
             self.viewDigitalShow.isHidden = true
-            self.imgShowType.image = UIImage.init(named: "live_active")
-            
-            
+            self.imgShowType.image = UIImage.init(named: "inperson")
         }
         
         let myDouble1 = Double(profile?.converted_digital_price ?? "") ?? 0.0
@@ -528,6 +553,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         if profile?.shows_video ?? "" == "" {
             imgViedoPlay.isHidden = true
             novideoLbl.isHidden = false
+            novideoLbl.text = "NO_VIDEO_UPLOADED".localized()
             playerView.isUserInteractionEnabled = false
             imgPlayBtnVideo.isHidden = true
             

@@ -15,6 +15,7 @@ class ManualAddressVC: UIViewController {
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var tblManualAddress: UITableView!
     @IBOutlet weak var searchTf: UITextField!
+    @IBOutlet weak var btnBack: UIButton!
     
     //MARK:- Variable -
     var arrayAddress = [String]()
@@ -22,6 +23,8 @@ class ManualAddressVC: UIViewController {
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBack.setTitle("back".localized(), for: .normal)
+        searchTf.placeholder = "SEARCH_CITY_AREA".localized()
         // Do any additional setup after loading the view.
     }
     

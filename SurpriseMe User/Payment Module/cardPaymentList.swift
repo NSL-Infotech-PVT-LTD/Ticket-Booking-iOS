@@ -18,8 +18,12 @@ class cardPaymentList: UIViewController {
     var arraySelectedzIndexCVV = -1
 
     
+    @IBOutlet weak var lblSelectCard: UILabel!
+    @IBOutlet weak var lblChooseMethod: UILabel!
+    @IBOutlet weak var btnAddCard: UIButton!
     @IBOutlet weak var btnPayNow: UIButton!
     
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var noData: UILabel!
     @IBOutlet var viewHeader: UIView!
     var isBookingDetails = false
@@ -29,8 +33,16 @@ class cardPaymentList: UIViewController {
         //Mark:tableview delegate/datasource
         self.getCard()
         self.viewHeader.addBottomShadow()
+        noData.text = "NO_DATA".localized()
         noData.isHidden = true
         cardPaymentListTV.isHidden = true
+        
+        btnBack.setTitle("back".localized(), for: .normal)
+        btnPayNow.setTitle("PAY_NOW".localized(), for: .normal)
+        lblSelectCard.text = "SELECT_CARD".localized()
+        lblChooseMethod.text = "CARD_METHOD".localized()
+        btnAddCard.setTitle("ADD_CARD".localized(), for: .normal)
+        
     }
     
     @IBAction func btnAddCardAction(_ sender: UIButton) {
@@ -50,7 +62,7 @@ class cardPaymentList: UIViewController {
         }else{
             
             if cardID == ""{
-                Helper.showOKAlert(onVC: self, title: "Please select any card", message: "")
+                Helper.showOKAlert(onVC: self, title: "SELECT_CARD".localized(), message: "")
             }else{
                 let param = ["booking_id":bookingPaymentID ?? 0 , "status":"confirmed" , "card_id":cardID,"payment_method":"card"] as [String : Any]
                 let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
@@ -113,14 +125,14 @@ class cardPaymentList: UIViewController {
                     }
                 }
                 else {
-                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: error?.localizedDescription ?? "")
                     //self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                 }
             }
             
         }else{
             // self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
-            Helper.showOKAlert(onVC: self, title: "Error", message: "Please Check your Internet Connection")
+            Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: "INTERNET_CONN".localized())
         }
     }
     
@@ -132,11 +144,11 @@ class cardPaymentList: UIViewController {
         if isBookingDetails == true{
         self.back()
         }else{
-        let alert = UIAlertController(title: "If you click yes your booking will be canceled from on hold and other customer can book same slot.", message: "", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "No", style: .default) { (alert) in
+            let alert = UIAlertController(title: "CANCEL_SLOT".localized(), message: "", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "NO".localized(), style: .default) { (alert) in
 
         }
-        let confirm = UIAlertAction(title: "Yes", style: .destructive) { (alert) in
+            let confirm = UIAlertAction(title: "YES".localized(), style: .destructive) { (alert) in
             let param = ["booking_id":bookingPaymentID ?? 0 , "status":"cancel"] as [String : Any]
             LoaderClass.shared.loadAnimation()
             self.callApiDeletebookingSlot(param: param)
@@ -170,21 +182,21 @@ class cardPaymentList: UIViewController {
                             self.dismiss(animated: true, completion: nil)
                         }
                         else{
-                            Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                            Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: error?.localizedDescription ?? "")
                         }
                     }
                     else {
-                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                        Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: error?.localizedDescription ?? "")
                     }
                 }
                 else {
                     //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
-                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: error?.localizedDescription ?? "")
                 }
             }
             
         }else{
-            Helper.showOKAlert(onVC: self, title: "Alert", message: "Please check your internet connection")
+            Helper.showOKAlert(onVC: self, title: "ALERT".localized(), message: "INTERNET_CONN".localized())
             //                            self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
         }
         
@@ -218,11 +230,11 @@ class cardPaymentList: UIViewController {
                         }
                     }
                     else {
-                        Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                        Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: error?.localizedDescription ?? "")
                     }
                 }
                 else {
-                    Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
+                    Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: error?.localizedDescription ?? "")
                     //                                                self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
                 }
             }
@@ -237,13 +249,13 @@ class cardPaymentList: UIViewController {
         
         let dataItem = arrayCardList[sender.tag]
         
-        let alert = UIAlertController(title: "", message: "Do you want to delete this card\(dataItem.id ?? "")", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "", message: "CARD_REMOVE\(dataItem.id ?? "")".localized(), preferredStyle: UIAlertController.Style.alert)
         //
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
+        alert.addAction(UIAlertAction(title: "YES".localized(), style: UIAlertAction.Style.destructive, handler: { action in
             self.removeCard(cardNumber: dataItem.id ?? "")
             
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: UIAlertAction.Style.cancel, handler: nil))
         //
         //
         //        // show the alert
@@ -338,7 +350,10 @@ extension cardPaymentList : UITableViewDelegate,UITableViewDataSource {
         }
         
         
-        
+        cell.lblCVVV.text = "CVV".localized()
+        cell.lblTitleExpires.text = "EXPIRE".localized()
+
+
         cell.viewContainer.layer.cornerRadius = 8
         cell.viewContainer.layer.shadowColor = UIColor.darkGray.cgColor
         cell.viewContainer.layer.shadowOpacity = 1

@@ -38,11 +38,8 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var lblDistance: UILabel!
     @IBOutlet weak var secondDatePicker: UIDatePicker!
     @IBOutlet weak var lblArtistCategpry: UILabel!
-    
     @IBOutlet weak var calenderView: FSCalendar!
-    
     @IBOutlet var lblTOpVirtualConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var fromView_out: UIView!
     @IBOutlet weak var viewSecondBtn: UIView!
     @IBOutlet weak var btnSecond: UIButton!
@@ -54,7 +51,15 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var toView_out: UIView!
     @IBOutlet weak var ratingSlider: StepSlider!
     @IBOutlet weak var distanceSlider: UISlider!
-    
+    @IBOutlet weak var lblMainTitle: UILabel!
+    @IBOutlet weak var lblCategoryTitle: UILabel!
+    @IBOutlet weak var lblPickDate: UILabel!
+    @IBOutlet weak var lblByRating: UILabel!
+    @IBOutlet weak var btnDone: UIButton!
+    @IBOutlet weak var btnClose: UIButton!
+    @IBOutlet weak var countLbl_OUt: UILabel!
+    @IBOutlet weak var btnApplySearch: UIButton!
+    @IBOutlet weak var lblSortBy: UILabel!
     
     var delegate :SendDataPrevoius?
     var objectViewModel = FilterArtistDataViewModel()
@@ -68,24 +73,30 @@ class FilterViewController: UIViewController {
     var isFirstSelected = false
     
     
-    
-    @IBOutlet weak var countLbl_OUt: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        btnClose.setTitle("CLOSE".localized(), for: .normal)
+        btnDone.setTitle("DONE".localized(), for: .normal)
+        lblMainTitle.text = "FILTER_MAIN_TITLE".localized()
+        lblCategoryTitle.text = "CATEGORY_TITLE".localized()
+        lblPickDate.text = "PICK_DATE".localized()
+        lblByRating.text = "BY_RATING".localized()
+        lblFromDate.text = "FROM".localized()
+        toDateLbl.text = "TO".localized()
+        distanceLblTitle.text = "BY_DISTANCE".localized()
+        lblSortBy.text = "SORT_BY".localized()
+        priceLtoHLbl.text = "PRICE_LOW_HIGH".localized()
+        priceHtoLOut.text = "PRICE_HIGH_LOW".localized()
+        btnApplySearch.setTitle("APPLY_SEARCH".localized(), for: .normal)
         ratingSlider.labels = ["5","4.5","4.0","3.5","Any"]
-//        self.headerView.roundCorners(corners: [.topLeft,.topRight], radius: 25.0)
         countLbl_OUt.layer.borderColor = UIColor.lightGray.cgColor
         countLbl_OUt.layer.borderWidth = 1
         countLbl_OUt.layer.cornerRadius = 6
-        
         self.calenderView.placeholderType = .none
-
         
         let tapviewChangePassword = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewChangePassword(_:)))
         viewSelectArtist.addGestureRecognizer(tapviewChangePassword)
         self.objectViewModel.delegate = self
-        
         
         let tapviewFirstBtn = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewFirstBtn(_:)))
         viewFirstBtn.addGestureRecognizer(tapviewFirstBtn)
@@ -121,9 +132,9 @@ class FilterViewController: UIViewController {
         
         self.toDateLbl.text = endDate
         
-       
-         endDateValue = endDate
-
+        
+        endDateValue = endDate
+        
         self.view.endEditing(true)
     }
     
@@ -150,25 +161,30 @@ class FilterViewController: UIViewController {
         
         
         if #available(iOS 13.4, *) {
-                   datePicker.preferredDatePickerStyle = .wheels
-                 secondDatePicker.preferredDatePickerStyle = .wheels
+            datePicker.preferredDatePickerStyle = .wheels
+            secondDatePicker.preferredDatePickerStyle = .wheels
             
-               } else {
-                   // Fallback on earlier versions
-               }
+        } else {
+            // Fallback on earlier versions
+        }
         
+        datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
+        datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
+secondDatePicker.addTarget(self, action: #selector(seconddateChanged(_:)), for: .valueChanged)
+sortByValue = "asc"
         
         if whicShowTypeDigital == true{
             distanceView.isHidden = false
             distanceLblTitle.isHidden = false
             lblTOpVirtualConstraint.constant = 160
-       }else{
+        }else{
             distanceView.isHidden = true
             distanceLblTitle.isHidden = true
             lblTOpVirtualConstraint.constant = 28
-
+            
         }
-                
+        
         if  dictFilter.count > 0{
             
             let distance = dictFilter["distance"] as? Int
@@ -179,16 +195,16 @@ class FilterViewController: UIViewController {
             
             if sliderValue == 4.5{
                 ratingSlider.setIndex(1, animated: true)
-
+                
             }else if sliderValue == 4.0{
                 ratingSlider.setIndex(2, animated: true)
-
+                
             }else if sliderValue == 3.5{
                 ratingSlider.setIndex(3, animated: true)
-
+                
             }else {
                 ratingSlider.setIndex(4, animated: true)
-
+                
             }
             
             
@@ -198,24 +214,24 @@ class FilterViewController: UIViewController {
             
             self.lblFromDate.text = startDatevalue
             datePicker.datePickerMode = .date
-                           let dateFormatter = DateFormatter()
-                           dateFormatter.dateFormat =  "YYYY-MM-dd"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat =  "YYYY-MM-dd"
             let date = dateFormatter.date(from: startDatevalue ?? "")
-                           datePicker.date = date ?? Date()
+            datePicker.date = date ?? Date()
             
             
             let endDateValue = dictFilter["end_Date"] as? String
             print("the start date is \(endDateValue)")
-
+            
             self.toDateLbl.text = endDateValue
             datePicker.datePickerMode = .date
-                           let dateFormatter1 = DateFormatter()
+            let dateFormatter1 = DateFormatter()
             dateFormatter1.dateFormat =  "YYYY-MM-dd"
             let date1 = dateFormatter1.date(from: endDateValue ?? "")
-                           secondDatePicker.date = date1 ?? Date()
+            secondDatePicker.date = date1 ?? Date()
             
             
-           let selectionValue = dictFilter["selection"] as? String
+            let selectionValue = dictFilter["selection"] as? String
             if  selectionValue == "desc"{
                 btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
                 btnSecond.setImage(UIImage(named: "tick"), for: .normal)
@@ -225,7 +241,7 @@ class FilterViewController: UIViewController {
                 btnFirst.setImage(UIImage(named: "tick"), for: .normal)
                 sortByValue = "asc"
             }
-       }else{
+        }else{
             ratingSlider.setIndex(4, animated: true)
         }
         
@@ -236,24 +252,20 @@ class FilterViewController: UIViewController {
         
         
         
-//        datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
-        datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-//        secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
-        secondDatePicker.addTarget(self, action: #selector(seconddateChanged(_:)), for: .valueChanged)
-        sortByValue = "asc"
+               
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchHappen(_:)))
         fromView_out.addGestureRecognizer(tap)
         fromView_out.isUserInteractionEnabled = true
-//
-//        btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
-//        btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
+        //
+        //        btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
+        //        btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
         if arrayCategorySelectedName.count > 0{
             lblArtistCategpry.font = lblArtistCategpry.font.withSize(12)
             lblArtistCategpry.text = arrayCategorySelectedName.joined(separator: ",")
         }else{
             lblArtistCategpry.font = lblArtistCategpry.font.withSize(14)
-            lblArtistCategpry.text = "Click to choose category"
+            lblArtistCategpry.text = "CLICK_CHOOSE_CATEGORY".localized()
         }
         
         
@@ -261,7 +273,7 @@ class FilterViewController: UIViewController {
     
     @objc func touchHappen(_ sender: UITapGestureRecognizer) {
         print("Hello Dear you are here")
-   }
+    }
     
     
     
@@ -271,35 +283,29 @@ class FilterViewController: UIViewController {
     
     
     @objc func handletapviewFirstBtn(_ sender: UITapGestureRecognizer? = nil) {
-         btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
-           btnFirst.setImage(UIImage(named: "tick"), for: .normal)
+        btnSecond.setImage(UIImage(named: "tick_unselect"), for: .normal)
+        btnFirst.setImage(UIImage(named: "tick"), for: .normal)
         sortByValue = "asc"
-
+        
         print("the dictvalue is handletapviewFirstBtn\(dictFilter)")
-
         
         
-       }
-    
-    
-    @objc func handletapviewSecondBtn(_ sender: UITapGestureRecognizer? = nil) {
-      btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
-        btnSecond.setImage(UIImage(named: "tick"), for: .normal)
-        sortByValue = "desc"
         
-        print("the dictvalue is handletapviewSecondBtn\(dictFilter)")
-
     }
     
     
-    
+    @objc func handletapviewSecondBtn(_ sender: UITapGestureRecognizer? = nil) {
+        btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
+        btnSecond.setImage(UIImage(named: "tick"), for: .normal)
+        sortByValue = "desc"
+        print("the dictvalue is handletapviewSecondBtn\(dictFilter)")
+    }
     
     @IBAction func btnSecondAction(_ sender: UIButton) {
         btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
         btnSecond.setImage(UIImage(named: "tick"), for: .normal)
         sortByValue = "desc"
         print("the dictvalue is \(dictFilter)")
-
     }
     
     
@@ -346,27 +352,20 @@ class FilterViewController: UIViewController {
     @IBAction func ratingSLiderOnSlide(_ sender: StepSlider) {
         print(sender.index)
         if sender.index == 0{
-            
         }else if sender.index == 1{
             self.selectedRating = 4.5
-
         }else if sender.index == 2{
             self.selectedRating = 4.0
-
         }else if sender.index == 3{
             self.selectedRating = 3.5
-
         }else if sender.index == 4{
             self.selectedRating = 0.0
-
         }
-        
-        
     }
     
     @IBAction func distanceSliderOnSLide(_ sender: UISlider) {
         print(sender.value)
-
+        
         self.lblDistance.text = "\(Int(sender.value))km"
         self.distance = Int(sender.value)
     }
@@ -377,26 +376,26 @@ class FilterViewController: UIViewController {
         pageForFilter = true
         
         if   whicShowTypeDigital == false{
-//
+            //
             let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
             print(dataParam)
             
             
             self.objectViewModel.getParamForGetProfile(param: dataParam)
-                                               
-                                           }else{
-            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
-                   print(dataParam)
-                   self.objectViewModel.getParamForGetProfile(param: dataParam)
             
-               }
+        }else{
+            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+            print(dataParam)
+            self.objectViewModel.getParamForGetProfile(param: dataParam)
+            
+        }
         
         
         
         dictFilter = ["distance":distance , "rating" : selectedRating , "selection":sortByValue ,"start_Date":startDateValue,"end_Date":endDateValue]
-
+        
         print("the selected filter is \(dictFilter)")
-       
+        
     }
     
     
@@ -420,13 +419,13 @@ class FilterViewController: UIViewController {
 extension FilterViewController : FilterArtistDataViewModelProtocol{
     func getFilterArtistDataApiResponse(message: String, response: [SearchArtistModel], isError: Bool) {
         if isError == true{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
             }
         }else{
             arrayHomeArtistList = response.map({$0})
             self.view!.removeFromSuperview()
             self.removeFromParent()
-            self.delegate?.getFilterData(message: "success", response: arrayHomeArtistList)
+            self.delegate?.getFilterData(message: "SUCCESS".localized(), response: arrayHomeArtistList)
             
             
         }
@@ -450,40 +449,40 @@ extension FilterViewController: FSCalendarDataSource, FSCalendarDelegate,FSCalen
             startDate = currentDate
         }else{
             endDate = currentDate
-
+            
         }
         
-//        selectedDate  = currentDate
-//         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.EditDateVC)
+        //        selectedDate  = currentDate
+        //         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.EditDateVC)
     }
-   
     
-  func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool{
-
-      let currentDate = self.covertDate(date :date)
-             print(currentDate)
     
-     if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
-          return false
-
-      }else {
-          return false
-      }
-  }
-
-
-
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool{
+        
+        let currentDate = self.covertDate(date :date)
+        print(currentDate)
+        
+        if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
+            return false
+            
+        }else {
+            return false
+        }
+    }
+    
+    
+    
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
-
+        
         print(date)
-               let currentDate = self.covertDate(date :date)
-               print(currentDate)
-
-//        if self.arrayDateSelect.contains(dateChoose) == true{
-//            let indexOfB = arrayDateSelect.firstIndex(of:dateChoose )
-//            self.arrayDateSelect.remove(at: indexOfB ?? 0)
-//
-//        }
+        let currentDate = self.covertDate(date :date)
+        print(currentDate)
+        
+        //        if self.arrayDateSelect.contains(dateChoose) == true{
+        //            let indexOfB = arrayDateSelect.firstIndex(of:dateChoose )
+        //            self.arrayDateSelect.remove(at: indexOfB ?? 0)
+        //
+        //        }
     }
     
     

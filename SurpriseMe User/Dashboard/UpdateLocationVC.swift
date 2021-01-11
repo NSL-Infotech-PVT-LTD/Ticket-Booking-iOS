@@ -27,6 +27,10 @@ class UpdateLocationVC: UIViewController {
     @IBOutlet weak var btnCross: UIButton!
     @IBOutlet weak var stackViews: UIStackView!
     @IBOutlet weak var lblAddressTextValue: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lblAddDETAILS: UILabel!
+    @IBOutlet weak var lblLandmark: UILabel!
+    @IBOutlet weak var btnSaveAdd: ZFRippleButton!
     
     //MARK:- Variable -
     let marker = GMSMarker()
@@ -44,6 +48,14 @@ class UpdateLocationVC: UIViewController {
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBack.setTitle("back".localized(), for: .normal)
+        lblAddDETAILS.text = "ADD_DETAILS".localized()
+        lblLandmark.text = "LANDMARK".localized()
+        otherAddressTF.placeholder = "OTHER_ADD".localized()
+        btnSaveAdd.setTitle("SAVE_ADD".localized(), for: .normal)
+        btnHoe.setTitle("HOME".localized(), for: .normal)
+        btnWork.setTitle("WORK".localized(), for: .normal)
+        btnOther.setTitle("OTHER".localized(), for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -98,6 +98,9 @@ class IdelPaymentVC: UIViewController {
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var viewNameContainer: UIView!
     
+    @IBOutlet weak var lblMainTitle: UILabel!
+    @IBOutlet weak var lblChooseBankName: UILabel!
+    @IBOutlet weak var lblHolderName: UILabel!
     
     var bookingID = Int()
     var bankName = ["ABN AMRO", "ASN Bank", "Bunq","Handlesbanken","ING","Knab","Moneyou","Rabobank","RegioBank","SNS Bank (De Volksbank)","Triodos Bank","Van Lanschot"]
@@ -110,6 +113,13 @@ class IdelPaymentVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnNext.setTitle("next".localized(), for: .normal)
+        lblMainTitle.text = "IDEAL_PAYMENT_TITLE".localized()
+        lblChooseBankName.text = "BANK_NAME_TITLE".localized()
+        lblHolderName.text = "HOLDER_NAME".localized()
+        lblBankName.text = "SELECT_BANK".localized()
+        
+        
         self.idelViewModel.delegate = self
         dropDown.anchorView = dropDownView
         

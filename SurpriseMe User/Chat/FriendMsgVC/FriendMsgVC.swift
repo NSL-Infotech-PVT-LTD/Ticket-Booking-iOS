@@ -44,6 +44,9 @@ class FriendMsgVC: UIViewController {
     var arrayDateString = [String]()
     var freindName = String()
     var freindNameImage = String()
+    var current_page = 1
+    var dateForHeader = [String]()
+
     
     @IBOutlet weak var viewImgTappedView: UIView!
     
@@ -69,7 +72,8 @@ class FriendMsgVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         chatdetail.chatDelegate = self
-        chatHistoryApi() //Call api here
+        
+        chatHistoryApi(boolValue: false, pageCounting: 1) //Call api here
         chatVMObject.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(FriendMsgVC.handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
         IQKeyboardManager.shared().isEnabled = false
@@ -91,6 +95,30 @@ class FriendMsgVC: UIViewController {
     }
     
     
+    func getdate() {
+        
+        if chatHistoryData.count > 0 {
+            for dateIn in 0...chatHistoryData.count - 1 {
+                let indexData = chatHistoryData.reversed()[dateIn]
+                if let date = chatHistoryData[dateIn].created_at {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
+                    formatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
+                    let dateIDate = formatter.date(from: date)
+                    formatter.dateFormat = "YYYY/MM/dd"
+                    // again convert your date to string
+                    let myStringafd = formatter.string(from: dateIDate ?? Date())
+                    dateForHeader.append(myStringafd)
+                }
+            }
+            let filterArrayDate = Set(dateForHeader)
+            dateForHeader = filterArrayDate.map({$0})
+            print("the filter date is \(dateForHeader)")
+        }
+    }
+    
+    
+    
     @IBAction func btnSeeProfileAction(_ sender: UIButton) {
         
         if comingFrom == "NotificationTabs"{
@@ -101,13 +129,25 @@ class FriendMsgVC: UIViewController {
                 var userID = userArtistID
                 userArtistID = userID
             }else{
-                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                if userName == reciverData.receiver_name ?? ""{
-                    userArtistID = reciverData.sender_id ?? 0
-                    
-                }else{
+                
+                let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                print("the user id is \(useriD  )")
+                
+                if useriD == reciverData.sender_id{
                     userArtistID = reciverData.receiver_id ?? 0
+
+                }else{
+                    userArtistID = reciverData.sender_id ?? 0
+
                 }
+                
+//                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+//                if userName == reciverData.receiver_name ?? ""{
+//                    userArtistID = reciverData.sender_id ?? 0
+//
+//                }else{
+//                    userArtistID = reciverData.receiver_id ?? 0
+//                }
             }
         }
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
@@ -141,28 +181,55 @@ class FriendMsgVC: UIViewController {
     
     @IBAction func btnBookAction(_ sender: UIButton) {
         if reciverData.receiver_id ?? 0 == 0{
-        }else{  let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-            if userName == reciverData.receiver_name ?? ""{
-                userArtistID =  reciverData.sender_id ?? 0
-            }else{
+        }else{
+            let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+            print("the user id is \(useriD  )")
+            
+            if useriD == reciverData.sender_id{
                 userArtistID =  reciverData.receiver_id ?? 0
+            }else{
+                userArtistID =  reciverData.sender_id ?? 0
+
             }
+            
+            
+//            let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+//            if userName == reciverData.receiver_name ?? ""{
+//                userArtistID =  reciverData.sender_id ?? 0
+//            }else{
+//                userArtistID =  reciverData.receiver_id ?? 0
+//            }
         }
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
     }
     
-    func chatHistoryApi() {
+    
+    //Pagination
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let height = scrollView.frame.size.height
+               let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = height - contentYoffset
+               if distanceFromBottom > height {
+                   if nextPageUrlCount.isEmpty == false{
+                       current_page = current_page + 1
+                        print("currnt page == \(current_page)")
+                    chatHistoryApi(boolValue: true, pageCounting: current_page)
+                   }
+               }
+    }
+    
+    func chatHistoryApi(boolValue: Bool, pageCounting: Int) {
         if comingFrom == "NotificationTabs"{
-            let param = ["receiver_id": recieverIDHistoryList ] as [String: Any]
-            chatVMObject.getParamForChatHistory(param: param)
+            let param = ["receiver_id": recieverIDHistoryList , "limit": "20", "page": "\(current_page)"] as [String: Any]
+            chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
         }else if comingFrom ==  "NotificationTabsTouch"{
-            let param = ["receiver_id": userChatIDNoti ?? 0 ] as [String: Any]
-            chatVMObject.getParamForChatHistory(param: param)
+            let param = ["receiver_id": userChatIDNoti ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+            chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
         }
         else{
             if reciverData.receiver_id ?? 0 == 0{
-                let param = ["receiver_id": userArtistID ] as [String: Any]
-                chatVMObject.getParamForChatHistory(param: param)
+                let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
                 self.lblRecierverName.text = name
                 let urlSting : String = "\(Api.imageURLArtist)\(userImage)"
                 let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
@@ -172,19 +239,13 @@ class FriendMsgVC: UIViewController {
                 picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             }else{
                 let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                if userName == reciverData.receiver_name ?? ""{
-                    let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
-                    chatVMObject.getParamForChatHistory(param: param)
-                    self.lblRecierverName.text = reciverData.sender_name ?? ""
-                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
-                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                    print(urlStringaa)
-                    let urlImage = URL(string: urlStringaa)!
-                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-                }else{
-                    let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
-                    chatVMObject.getParamForChatHistory(param: param)
+                
+                let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                print("the user id is \(useriD  )")
+                
+                if useriD == reciverData.sender_id{
+                    let param = ["receiver_id": reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                    chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
                     self.lblRecierverName.text = reciverData.receiver_name ?? ""
                     let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
                     let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
@@ -192,7 +253,40 @@ class FriendMsgVC: UIViewController {
                     let urlImage = URL(string: urlStringaa)!
                     picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
                     picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+                }else{
+                    let param = ["receiver_id": reciverData.sender_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                    chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
+                    self.lblRecierverName.text = reciverData.sender_name ?? ""
+                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
+                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+                    print(urlStringaa)
+                    let urlImage = URL(string: urlStringaa)!
+                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
                 }
+                
+                
+//                if userName == reciverData.receiver_name ?? ""{
+//                    let param = ["receiver_id": reciverData.sender_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+//                    chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
+//                    self.lblRecierverName.text = reciverData.sender_name ?? ""
+//                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
+//                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//                    print(urlStringaa)
+//                    let urlImage = URL(string: urlStringaa)!
+//                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//                }else{
+//                    let param = ["receiver_id": reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+//                    chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
+//                    self.lblRecierverName.text = reciverData.receiver_name ?? ""
+//                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
+//                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//                    print(urlStringaa)
+//                    let urlImage = URL(string: urlStringaa)!
+//                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//                }
             }
         }
     }
@@ -247,13 +341,28 @@ class FriendMsgVC: UIViewController {
                 var userID = userArtistID
                 userArtistID = userID
             }else{
-                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                if userName == reciverData.receiver_name ?? ""{
-                    userArtistID = reciverData.sender_id ?? 0
-                    
-                }else{
+//                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+//                if userName == reciverData.receiver_name ?? ""{
+//                    userArtistID = reciverData.sender_id ?? 0
+//
+//                }else{
+//                    userArtistID = reciverData.receiver_id ?? 0
+//                }
+//
+                let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                print("the user id is \(useriD  )")
+                
+                if useriD == reciverData.sender_id{
                     userArtistID = reciverData.receiver_id ?? 0
+
+                }else{
+                    userArtistID = reciverData.sender_id ?? 0
+
                 }
+                
+                
+                
+                
             }
         }
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
@@ -279,6 +388,40 @@ class FriendMsgVC: UIViewController {
         IQKeyboardManager.shared().isEnableAutoToolbar = true
     }
     
+    func changeDateFormate(date: String)-> String {
+        if date == "" || date == nil {
+            return ""
+        } else {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let val_Date = dateFormatter.date(from: date)
+            dateFormatter.dateFormat = "dd-MMM-yyyy"
+            if val_Date != nil {
+                return dateFormatter.string(from: val_Date!)
+            }
+            return ""
+        }
+    }
+    
+    func filterReceivedMessageDataAccordingDate() {
+        var filterReceivedMessageData = [ChatHistoryModel]()
+        var date = ""
+        filterReceivedMessageData.removeAll()
+        for val in chatHistoryData {
+            let date_Formate = self.changeDateFormate(date: val.created_at ?? "")
+            
+            if date == date_Formate {
+                val.customValue! = ""
+            } else {
+                date = date_Formate
+                val.customValue = date_Formate
+            }
+            filterReceivedMessageData.append(val)
+        }
+        self.chatHistoryData = filterReceivedMessageData
+        
+    }
+    
     
     func setData(param : [String:Any])  {
         self.lblRecierverName.text = param["name"]  as?  String
@@ -289,13 +432,7 @@ class FriendMsgVC: UIViewController {
         picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
         picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
     }
-    //Pagination
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if ((msgTableView.contentOffset.y + msgTableView.frame.size.height) >= msgTableView.contentSize.height)
-        {
-           
-        }
-    }
+   
     
     func scrollToBottom(){
         if self.chatHistoryData.count > 0{
@@ -336,17 +473,12 @@ class FriendMsgVC: UIViewController {
             }
             else{
                 if reciverData.receiver_id ?? 0 != 0{
-                    let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                    if userName == reciverData.receiver_name ?? ""{
-                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                        let data = Data(data1.utf8)
-                        if SocketConnectionManager.shared.socket.isConnected {
-                            SocketConnectionManager.shared.socket.write(data: data)
-                            txtMssg.text = ""
-                        }else{
-                            SocketConnectionManager.shared.socket.connect()
-                        }
-                    }else{
+                    
+                    
+                    let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                    print("the user id is \(useriD  )")
+                    
+                    if useriD == reciverData.sender_id{
                         let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
                         let data = Data(data1.utf8)
                         if SocketConnectionManager.shared.socket.isConnected {
@@ -355,7 +487,39 @@ class FriendMsgVC: UIViewController {
                         }else{
                             SocketConnectionManager.shared.socket.connect()
                         }
+                    }else{
+                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                        let data = Data(data1.utf8)
+                        if SocketConnectionManager.shared.socket.isConnected {
+                            SocketConnectionManager.shared.socket.write(data: data)
+                            txtMssg.text = ""
+                        }else{
+                            SocketConnectionManager.shared.socket.connect()
+                        }
                     }
+                    
+                    
+//
+//                    let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+//                    if userName == reciverData.receiver_name ?? ""{
+//                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+//                        let data = Data(data1.utf8)
+//                        if SocketConnectionManager.shared.socket.isConnected {
+//                            SocketConnectionManager.shared.socket.write(data: data)
+//                            txtMssg.text = ""
+//                        }else{
+//                            SocketConnectionManager.shared.socket.connect()
+//                        }
+//                    }else{
+//                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+//                        let data = Data(data1.utf8)
+//                        if SocketConnectionManager.shared.socket.isConnected {
+//                            SocketConnectionManager.shared.socket.write(data: data)
+//                            txtMssg.text = ""
+//                        }else{
+//                            SocketConnectionManager.shared.socket.connect()
+//                        }
+//                    }
                 }else{
                     let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userArtistID)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
                     let data = Data(data1.utf8)
@@ -400,6 +564,17 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             SendCell.selectionStyle = .none
             SendCell.lblSendMsg.text = chatHistoryData[indexPath.row].message
             let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+            
+            let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
+            SendCell.lblSenderTime.text = date
+            if chatHistoryData[indexPath.row].customValue != "" {
+                SendCell.lblSenderTime.isHidden = false
+                SendCell.senderHeight.constant = 0
+            } else {
+                SendCell.lblSenderTime.isHidden = true
+                SendCell.senderHeight.constant = 0
+            }
+            
             SendCell.lblTime.text =  timeStamp
             return SendCell
         }else{
@@ -409,6 +584,15 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             ReceiveCell.selectionStyle = .none
             ReceiveCell.lblReceiveMsg.text = chatHistoryData[indexPath.row].message
             let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+            
+            let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
+            ReceiveCell.lblReceiverTime.text = date
+            if chatHistoryData[indexPath.row].customValue != "" {
+                ReceiveCell.lblReceiverTime.isHidden = false
+            } else {
+                ReceiveCell.lblReceiverTime.isHidden = true
+            }
+            
             ReceiveCell.lblTime.text =  timeStamp
             let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].sender_image ?? "")"
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
@@ -454,14 +638,30 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                 let param = ["receiver_id": userArtistID ] as [String: Any]
                 reciverID = userArtistID
             }else{
-                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                if userName == reciverData.receiver_name ?? ""{
-                    let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
-                    reciverID = reciverData.sender_id ?? 0
-                }else{
+                
+                
+                let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                print("the user id is \(useriD  )")
+                
+                if useriD == reciverData.sender_id{
                     let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
                     reciverID = reciverData.receiver_id ?? 0
+                }else{
+                    let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
+                    reciverID = reciverData.sender_id ?? 0
                 }
+                
+                
+                
+                
+//                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+//                if userName == reciverData.receiver_name ?? ""{
+//                    let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
+//                    reciverID = reciverData.sender_id ?? 0
+//                }else{
+//                    let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
+//                    reciverID = reciverData.receiver_id ?? 0
+//                }
             }
         }
         if reciverID == receiver_id && useriD == sender_id || useriD == receiver_id  {
@@ -516,6 +716,14 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
             }else{
                 self.firstTimeView.isHidden = true
                 self.msgTableView.isHidden = false
+                
+                if current_page == 1 {
+                    self.scrollToBottom()
+                }
+                getdate()
+                filterReceivedMessageDataAccordingDate()
+                msgTableView.reloadData()
+                
             }
             msgTableView.reloadData()
             if comingFrom == "NotificationTabs" || comingFrom == "NotificationTabsTouch"{

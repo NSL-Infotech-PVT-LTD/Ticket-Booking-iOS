@@ -55,9 +55,10 @@ var startDateValue = String()
 var endDateValue = String()
 
 var isChatNotification = false
+
 var nextPageUrlCount = String()
 
-
+var lastPageUrlCount = Int()
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"
 
 struct Storyboard {

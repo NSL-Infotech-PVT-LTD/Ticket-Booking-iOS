@@ -40,7 +40,7 @@ class LanguageVC: UIViewController {
     var languageArray = ["English (US)","Dutch","German","Spanish"]
     var languageCodeArray = ["en","nl","de","es"]
     var selectedIndex = 0
-   var selectedLanguage = String()
+    var selectedLanguage = String()
     
 
     
@@ -64,32 +64,32 @@ class LanguageVC: UIViewController {
        let language = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
         if language == "en"{
             self.lblChooselanguage.text =  "CHOOSE_PREFFERED".localized()
-            self.lblSubTittelChooseLanhguage.text = "CHOOSE_YOUR_LAGUAGE_SUBTITTEL".localized()
+            self.lblSubTittelChooseLanhguage.text = "CHOOSE_LAGUAGE_SUBTITTEL".localized()
             let languageValue = UserDefaults.standard.value(forKey: "Selected") as? String ?? ""
-                   if languageValue == "1"{
-                       self.btnNext.setTitle("CHANGE", for: .normal)
-                   }else{
-                       self.btnNext.setTitle("next".localized(), for: .normal)
-                   }
+            if languageValue == "1"{
+                self.btnNext.setTitle("CHANGE", for: .normal)
+            }else{
+                self.btnNext.setTitle("next".localized(), for: .normal)
+            }
             self.language = "en"
         }else if language == "nl" {
             self.lblChooselanguage.text =  "CHOOSE_PREFFERED".localized()
-            self.lblSubTittelChooseLanhguage.text = "CHOOSE_YOUR_LAGUAGE_SUBTITTEL".localized()
+            self.lblSubTittelChooseLanhguage.text = "CHOOSE_LAGUAGE_SUBTITTEL".localized()
             self.btnNext.setTitle("next".localized(), for: .normal)
             self.language = "nl"
         }else if language == "es"{
             self.lblChooselanguage.text =  "CHOOSE_PREFFERED".localized()
-            self.lblSubTittelChooseLanhguage.text = "CHOOSE_YOUR_LAGUAGE_SUBTITTEL".localized()
+            self.lblSubTittelChooseLanhguage.text = "CHOOSE_LAGUAGE_SUBTITTEL".localized()
             self.btnNext.setTitle("next".localized(), for: .normal)
             self.language = "es"
         }else if language == "de"{
             self.lblChooselanguage.text =  "CHOOSE_PREFFERED".localized()
-            self.lblSubTittelChooseLanhguage.text = "CHOOSE_YOUR_LAGUAGE_SUBTITTEL".localized()
+            self.lblSubTittelChooseLanhguage.text = "CHOOSE_LAGUAGE_SUBTITTEL".localized()
             self.btnNext.setTitle("next".localized(), for: .normal)
             self.language = "de"
         }else{
             self.lblChooselanguage.text =  "CHOOSE_PREFFERED".localized()
-            self.lblSubTittelChooseLanhguage.text = "CHOOSE_YOUR_LAGUAGE_SUBTITTEL".localized()
+            self.lblSubTittelChooseLanhguage.text = "CHOOSE_LAGUAGE_SUBTITTEL".localized()
             self.btnNext.setTitle("next".localized(), for: .normal)
             self.language = "en"
         }
@@ -102,7 +102,6 @@ class LanguageVC: UIViewController {
             isCameFromCL = ""
             Bundle.setLanguage(lang: self.language)
             UserDefaults.standard.setValue(self.language, forKey: "app_lang")
-
         }
     }
     
@@ -113,18 +112,14 @@ class LanguageVC: UIViewController {
             Bundle.setLanguage(lang: language)
             UserDefaults.standard.setValue(language, forKey: "app_lang")
             if isCameFromCL == "Setting"{
-               
                 self.dismiss(animated: true) {
                     isCameFromCL = ""
-                  
                 }
             }else{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
                 self.navigationController?.pushViewController(controller, animated: true)
             }
-            
-          
         }
     }
 }
@@ -133,19 +128,20 @@ class LanguageVC: UIViewController {
 extension LanguageVC:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return languageArray.count
-    }
+           }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageTableCell", for: indexPath) as! LanguageTableCell
         cell.lblLanguage.text = languageArray[indexPath.row]
         let selectIndex = UserDefaults.standard.value(forKey: "SelectedIndex") as? Int ?? 0
-      if selectIndex == indexPath.row {
-        cell.imgCheck.image = UIImage.init(named: "TICK-1")
+        if selectIndex == indexPath.row {
+            cell.imgCheck.image = UIImage.init(named: "TICK-1")
         }else{
             cell.imgCheck.image = UIImage.init(named: "Atoms- Selectors- Selected-2")
         }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let language = languageCodeArray[indexPath.row]
         self.language = language

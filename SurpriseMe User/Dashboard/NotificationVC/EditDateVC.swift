@@ -10,6 +10,7 @@ import UIKit
 import Stripe
 
 class EditDateVC: UIViewController {
+    
     var first: Int = -1
     var second: Int = -1
     //MARK:- Outlets -
@@ -29,16 +30,18 @@ class EditDateVC: UIViewController {
     //MARK:- Variable -
     var screenSize: CGRect!
     var screenWidth: CGFloat!
-    
-    
     var screenHeight: CGFloat!
     var indxArr = [Int]()
     var viewModelObject = BookingStoreViewModel()
+    
     var aarayTime = ["12:00 AM - 01:00 AM","01:00 AM - 02:00 AM","02:00 AM - 03:00 AM","03:00 AM - 04:00 AM","04:00 AM - 05:00 AM","05:00 AM - 06:00 AM","06:00 AM - 07:00 AM","07:00 AM - 8:00 AM","8:00 AM - 9:00 AM","9:00 AM - 10:00 AM","10:00 AM - 11:00 AM","11:00 AM - 12:00 PM","12:00 PM - 01:00 PM","01:00 PM - 02:00 PM","02:00 PM - 03:00 PM","03:00 PM - 04:00 PM","04:00 PM - 05:00 PM","05:00 PM - 06:00 PM","06:00 PM - 07:00 PM","07:00 PM - 8:00 PM","8:00 PM - 9:00 PM","9:00 PM - 10:00 PM","10:00 PM - 11:00 PM","11:00 PM - 12:00 AM"]
+    
     var aarayTimeSecond = ["00:00 - 01:00","01:00 - 02:00","02:00 - 03:00","03:00 - 04:00","04:00 - 05:00","05:00 - 06:00","06:00 - 07:00","07:00 - 08:00","08:00 - 09:00","09:00 - 10:00","10:00 - 11:00","11:00 - 12:00","12:00 - 13:00","13:00 - 14:00","14:00 - 15:00","15:00 - 16:00","16:00 - 17:00","17:00 - 18:00","18:00 - 19:00","19:00 - 20:00","20:00 - 21:00","21:00 - 22:00","22:00 - 23:00","23:00 - 00:00"]
+    
     var aarayTimeSplitSecond = ["00:00:00","01:00:00","02:00:00","03:00:00","04:00:00","05:00:00","06:00:00","07:00:00","08:00:00","09:00:00","10:00:00","11:00:00","12:00:00","13:00:00","14:00:00","15:00:00","16:00:00","17:00:00","18:00:00","19:00:00","20:00:00","21:00:00","22:00:00","23:00:00"]
     
     var arrayInteger = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+    
     var arrNotSelect = [Int]()
     var arrNotSelectCombine = [Int]()
     
@@ -85,13 +88,18 @@ class EditDateVC: UIViewController {
                 }
             }
         }else{
-            Helper.showOKAlert(onVC: self, title: "Error", message: "Please check your internet Connection")
+            Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: "INTERNET_CONN".localized())
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.getCard()
         self.self.callApiGetStripeKey()
+        
+        
+       
+        
+        
         lblArtistNotAvai.text = "choose_another_date".localized()
         btnBack.setTitle("back".localized(), for: .normal)
         lblMainTitle.text = "select_time_booking".localized()
@@ -100,6 +108,8 @@ class EditDateVC: UIViewController {
         lblUnavailable.text = "unavailable".localized()
         btnClearAll.setTitle("clear_all".localized(), for: .normal)
         btnProceed.setTitle("proceed_checkout".localized(), for: .normal)
+        btnBack.setTitle("back".localized(), for: .normal)
+
         
         self.setInitialSetup()
         print(aarayTime.count)
@@ -247,6 +257,7 @@ class EditDateVC: UIViewController {
                                 self.viewNoData.isHidden = false
                             }
                             self.dateListCollectionView.reloadData()
+                            Helper.showOKAlert(onVC: self, title: "PLEASE_SELECT_TIME".localized(), message: "BOOKING_CONFIRMATION_TITLE".localized())
                             
                         }else{
                             if let error = response["error"] as? String {
@@ -305,11 +316,11 @@ class EditDateVC: UIViewController {
     
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Once booking confirmed by you, your booking will go on hold until payment received or click cancel to check slots again !", message: "", preferredStyle: .alert)
-        let confirm = UIAlertAction(title: "Confirm", style: .default) { (alert) in
+        let alert = UIAlertController(title: "POPUP_CONFIRM".localized(), message: "", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "CONFIRM".localized(), style: .default) { (alert) in
             self.bookNow()
         }
-        let cancel = UIAlertAction(title: "cancel", style: .default) { (alert) in
+        let cancel = UIAlertAction(title: "CANCEL".localized(), style: .default) { (alert) in
            
         }
         alert.addAction(confirm)
@@ -330,7 +341,7 @@ class EditDateVC: UIViewController {
             self.secondTime = splits[1]
             
         }else if self.first == -1 && self.second == -1{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "Please select Any Slot", btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "SELECT_SLOT_ALERT".localized(), btnOkTitle: "DONE".localized()) {
             }
         }else{
             let inputString = self.aarayTimeSecond[self.first]
@@ -438,7 +449,7 @@ class EditDateVC: UIViewController {
                 let element = numsArray.first ?? 0
                 print("the value is sortArray sorted\(element)")
                 numsArraySelection.append(element)
-                let alert = UIAlertController(title: "", message: "You cannot book because slot is already book in this range", preferredStyle: .alert)
+                let alert = UIAlertController(title: "", message: "CONT_BOOK_SLOT".localized(), preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
                 // change to desired number of seconds (in this case 5 seconds)
                 let when = DispatchTime.now() + 3
@@ -555,7 +566,7 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         arrNotSelectCombine = arrNotSelect + arrayBookingSlotSelection
         if arrayBookingSlot.contains(indexPath.item) {
             if self.arrayBookingSlotStatus[indexPath.item] == 1{
-                let alert = UIAlertController(title: "", message: "Artist is already booked", preferredStyle: .alert)
+                let alert = UIAlertController(title: "", message: "ARTIST_ALREADY_BOOK".localized(), preferredStyle: .alert)
                 self.present(alert, animated: true, completion: nil)
                 // change to desired number of seconds (in this case 5 seconds)
                 let when = DispatchTime.now() + 3
@@ -599,7 +610,7 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
                 }
             }
         }else{
-            let alert = UIAlertController(title: "", message: "Artist is not available", preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "ARTIST_NOT_AVAIABLE".localized(), preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
             // change to desired number of seconds (in this case 5 seconds)
             let when = DispatchTime.now() + 3
@@ -628,37 +639,45 @@ extension EditDateVC : BookingStoreViewModelProtocol{
                 self.present(alert,animated: true)
             }
         }else{
-            let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
-            if currency != "EUR"{
-                if arrayCardListCommom.count > 0{
-                    let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
-                    bookingID = dictAddress?["id"] as? Int
-                    bookingPaymentID = dictAddress?["id"] as? Int
-                    navigationController?.pushViewController(controller, animated: true)
+            
+            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "BOOKING_CRNF_SUCCESS".localized(), btnOkTitle: "OK".localized()) {
+                let currency =  UserDefaults.standard.value(forKey: UserdefaultKeys.userCurrency) as? String
+                if currency != "EUR"{
+                    if arrayCardListCommom.count > 0{
+                        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+                        self.bookingID = dictAddress?["id"] as? Int
+                        bookingPaymentID = dictAddress?["id"] as? Int
+                        self.navigationController?.pushViewController(controller, animated: true)
+                    }else{
+                        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                        let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+                        self.bookingID = dictAddress?["id"] as? Int
+                        bookingPaymentID = dictAddress?["id"] as? Int
+                        controller.isMoreCount = true
+                        self.navigationController?.pushViewController(controller, animated: true)
+                    }
                 }else{
                     let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
-                    bookingID = dictAddress?["id"] as? Int
+                    let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
+                    let transition = CATransition()
+                    transition.duration = 0.5
+                    transition.timingFunction = CAMediaTimingFunction(name: .default)
+                    transition.type = .fade
+                    transition.subtype = .fromRight
+                    print("the booking id is \(dictAddress?["id"])")
+                    self.bookingID = dictAddress?["id"] as? Int
                     bookingPaymentID = dictAddress?["id"] as? Int
-                    controller.isMoreCount = true
-                    navigationController?.pushViewController(controller, animated: true)
+                    controller.hidesBottomBarWhenPushed = true
+                    self.navigationController?.view.layer.add(transition, forKey: kCATransition)
+                    self.navigationController?.pushViewController(controller, animated: false)
                 }
-            }else{
-                let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "SelectPaymentVC") as! SelectPaymentVC
-                let transition = CATransition()
-                transition.duration = 0.5
-                transition.timingFunction = CAMediaTimingFunction(name: .default)
-                transition.type = .fade
-                transition.subtype = .fromRight
-                print("the booking id is \(dictAddress?["id"])")
-                bookingID = dictAddress?["id"] as? Int
-                bookingPaymentID = dictAddress?["id"] as? Int
-                controller.hidesBottomBarWhenPushed = true
-                self.navigationController?.view.layer.add(transition, forKey: kCATransition)
-                self.navigationController?.pushViewController(controller, animated: false)
+
             }
+            
+            
+            
+            
         }
     }
     

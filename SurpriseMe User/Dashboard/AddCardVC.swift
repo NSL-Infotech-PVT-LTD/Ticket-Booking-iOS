@@ -12,6 +12,7 @@ import Stripe
 class AddCardVC: UIViewController {
     
     
+    @IBOutlet weak var lblCardDebit: UILabel!
     @IBOutlet weak var cctSecureTxt: UITextField!
     @IBOutlet var txtYYYY: UITextField!
     @IBOutlet var txtCVV: UITextField!
@@ -21,6 +22,14 @@ class AddCardVC: UIViewController {
     @IBOutlet var viewHeader: UIView!
     @IBOutlet var txtCardNumber: UITextField!
     @IBOutlet weak var btnAddCard: UIButton!
+    @IBOutlet weak var lblCArdHolderNAme: UILabel!
+    @IBOutlet weak var lblCardNo: UILabel!
+    @IBOutlet weak var lblExpireCard: UILabel!
+    @IBOutlet weak var lblCVV: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
+    
+    
+    
     var arrayExpire = ["11/2020","12/2020","1/2021","2/2021","3/2021","4/2021","5/2021"]
     let pickerView = UIPickerView()
     var months = String()
@@ -32,6 +41,14 @@ class AddCardVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblCArdHolderNAme.text = "CARD_HOLDER_NAME".localized()
+        txtCardHolderName.placeholder = "ENTER_NAME".localized()
+        lblCardNo.text = "CARD_NUMBER".localized()
+        lblExpireCard.text = "EXPIRE_CARD".localized()
+        lblCVV.text = "CVV".localized()
+        btnAddCard.setTitle("ADD_CARD_TITLE".localized(), for: .normal)
+        btnBack.setTitle("back".localized(), for: .normal)
+        lblCardDebit.text = "DEBIT_CREDIT_CARD".localized()
         self.viewHeader.addBottomShadow()
         //        self.createPickerView()
         
@@ -43,13 +60,11 @@ class AddCardVC: UIViewController {
         txtExpire.text = nil
         txtCardHolderName.text = nil
         txtCardNumber.text = nil
-        
         if isMoreCount == true{
-            btnAddCard.setTitle("Pay Now", for: .normal)
+            btnAddCard.setTitle("PAY_NOW".localized(), for: .normal)
         }else{
-            btnAddCard.setTitle("Add Card", for: .normal)
+            btnAddCard.setTitle("ADD_CARD_TITLE".localized(), for: .normal)
         }
-        
     }
     
     func createPickerView() {
@@ -313,7 +328,6 @@ extension AddCardVC : UITextFieldDelegate{
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        
         let  char = string.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
         if (isBackSpace == -92) {
@@ -330,39 +344,29 @@ extension AddCardVC : UITextFieldDelegate{
                 print("hello -")
                 self.txtCardNumber.text = (cardNumber ?? "") + " - "
             }
-            
             let maxLength = 25
             let currentString: NSString = (txtCardNumber.text ?? "") as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
-            
             return newString.length <= maxLength
-            
         }else if textField == txtExpire{
             let maxLength = 2
             let currentString: NSString = (txtExpire.text ?? "") as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
-            
             return newString.length <= maxLength
-            
         }else if textField == txtYYYY{
             let maxLength = 4
             let currentString: NSString = (txtYYYY.text ?? "") as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
-            
             return newString.length <= maxLength
-            
         }
-        
-        
         else if textField == txtCVV{
             let maxLength = 4
             let currentString: NSString = (txtCVV.text ?? "") as NSString
             let newString: NSString =
                 currentString.replacingCharacters(in: range, with: string) as NSString
-            
             return newString.length <= maxLength
             
         }else{

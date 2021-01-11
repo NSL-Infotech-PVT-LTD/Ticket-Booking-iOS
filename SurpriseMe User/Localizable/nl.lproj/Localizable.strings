@@ -5,95 +5,318 @@
   Created by NetScape Labs on 11/11/20.
   Copyright © 2020 Pankaj Mac. All rights reserved.
 */
-
+//COMMON
+"back"                      = "Terug";
+"next"                      = "De volgende";
+"CONFIRM"                   = "Bevestigen";
+"CANCEL"                    = "annuleren";
+"DONE"                      = "Gedaan";
+"CLOSE"                     = "Dichtbij";
+"ERROR"                     = "Fout";
+"INTERNET_CONN"             = "Controleer uw internetverbinding";
+"NO"                        = "Nee";
+"YES"                       = "Ja";
+"ALERT"                     = "Alert";
+"NO_DATA"                   = "Geen kaart beschikbaar";
+"OTHER"                     = "Andere";
 //Language_VC
-
-"CHOOSE_PREFFERED"                  = "Kies uw voorkeurstaal";
-"CHOOSE_YOUR_LAGUAGE_SUBTITTEL"     = "wij serveren op basis van uw selectie.";
-"next"                              = "De volgende";
-
+"CHOOSE_PREFFERED"          = "Kies uw voorkeurstaal";
+"CHOOSE_LAGUAGE_SUBTITTEL"  = "wij serveren op basis van uw selectie";
 //WalkThrough
-
-"GET_STARTED"           = "Begin";
-"BIRTHDAY_SURPRISE"     = "Verjaardagsverrassing";
-
+"GET_STARTED"               = "Begin";
+"BIRTHDAY_SURPRISE"         = "Zangers voor de deur";
+"DJ_PERFORMERSDj"           = "Virtuele optredens";
+"DIGITAL_PERFORMANCE"       = "Verras uw dierbaren";
+"DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
 //Login
-"EMAIL_ADDRESS"         = "E-mailadres";
-"PASSWORD"              = "Wachtwoord";
-"TYPE_HERE"             = "Typ hier ...";
-"WELCOME"               = "Welkom";
-"SIGN_TO_CONTINUE"      = "Log in om door te gaan";
-"DONT_HAVE_ACCOUNT"     = "Nog geen account?";
-"SIGN_UP"               = "Aanmelden";
-"remember_me"           = "Onthoud me";
-"forget_password"       = "Wachtwoord vergeten?";
-"login"                 = "Log in";
-
+"EMAIL_ADDRESS"             = "E-mailadres";
+"PASSWORD"                  = "Wachtwoord";
+"TYPE_HERE"                 = "Typ hier ...";
+"WELCOME"                   = "Welkom";
+"SIGN_TO_CONTINUE"          = "Log in om door te gaan";
+"DONT_HAVE_ACCOUNT"         = "Nog geen account?";
+"SIGN_UP"                   = "Regístrate";
+"remember_me"               = "Onthoud me";
+"forget_password"           = "Wachtwoord vergeten?";
+"login"                     = "Log in";
+"CHNAGE"                    = "Verandering";
+"NO_BOOKING_RIGHT"          = "Op dit moment geen boeking";
+"UNABLE_FIND_BOOKING_PAGE"  = "Kan geen boeking vinden op deze pagina";
+"VIRTUAL_SHOW_HEADER"      = "Virtueel";
+"IN_PERSON_SHOW_HEADER"    = "Persoonlijk";
 //Social Login
-"register_title"        = "Schrijf je bij ons in in surpriseme.";
-"are_you_new"           = "Ben je nieuw?";
-"signup_with_email"     = "Aanmelden met e-mail";
-"or"                    = "of";
-"signup_with_facebook"  = "Aanmelden met Facebook";
-"signup_with_apple"     = "Aanmelden bij Apple";
-"back_to_login"         = "Terug naar Inloggen";
-"by_signup"             = "Door u aan te melden, gaat u akkoord met onze";
-"terms_condition"       = "algemene voorwaarden";
-
+"register_title"            = "Schrijf je bij ons in in surpriseme";
+"are_you_new"               = "Ben je nieuw?";
+"signup_with_email"         = "Aanmelden met e-mail";
+"or"                        = "of";
+"signup_with_facebook"      = "Aanmelden met Facebook";
+"signup_with_apple"         = "Aanmelden bij Apple";
+"back_to_login"             = "Terug naar Inloggen";
+"by_signup"                 = "Door u aan te melden, gaat u akkoord met onze";
+"terms_condition"           = "algemene voorwaarden";
 //SignUp
-"back"                  = "Terug";
-"fillup_detail"         = "Vul details in";
-"register_with"         = "Schrijf je bij ons in in surpriseme";
-"TYPE_HERE"             = "Typ hier ...";
-"username"              = "Gebruikersnaam";
-"EMAIL_ADDRESS"         = "E-mailadres";
-"PASSWORD"              = "Wachtwoord";
-"c_password"            = "bevestig wachtwoord";
-"register_now"          = "Registreer nu";
-"back_to_login"         = "Terug naar Inloggen";
-
+"fillup_detail"             = "Vul details in";
+"register_with"             = "Schrijf je bij ons in in surpriseme";
+"TYPE_HERE"                 = "Typ hier ...";
+"username"                  = "Gebruikersnaam";
+"EMAIL_ADDRESS"             = "E-mailadres";
+"PASSWORD"                  = "Wachtwoord";
+"c_password"                = "bevestig wachtwoord";
+"register_now"              = "Registreer nu";
+"back_to_login"             = "Terug naar Inloggen";
+"BACK_TO_LOGIN"             = "Terug naar Inloggen";
+"MAIN_TITLE"                = "Vul details in";
+"REGISTER_TITLE"            = "Registreer bij ons in";
+"SURPRISE_TITLE"            = "verrassing";
+"ME_TITLE"                  = "me";
 //Forget Password
-"back"                  = "Terug";
-"EMAIL_ADDRESS"         = "E-mailadres";
-"TYPE_HERE"             = "Typ hier ...";
-"continue"              = "Doorgaan met";
-
+"EMAIL_ADDRESS"             = "E-mail Address";
+"continue"                  = "Doorgaan met";
+"SEETING_UP_DETAIL_VIRTUAL" = "Artiesten spelen virtueel met Skype, Zoom, Hangouts, enz";
 //Terms & Conditions
-"back"                  = "Terug";
-"terms_title"           = "algemene voorwaarden";
-
+"terms_title"               = "Terms & Conditions";
 //Home VC
-"view_profile"          = "Bekijk profiel";
-"your_location"         = "Uw locatie";
-"search_for_artist"     = "Zoek naar artiest, zanger etc";
-"book_artist_title"     = "Boek Artist You Listen";
-"see_artist_profile"    = "Zie Artist Profile";
-"book"                  = "Boek";
-
+"view_profile"              = "Bekijk profiel";
+"your_location"             = "Your Location";
+"search_for_artist"         = "Zoek naar artiest, zanger etc.";
+"book_artist_title"         = "Book Artist You Listen";
+"see_artist_profile"        = "Controleer het artiestenprofiel";
+"book"                      = "Book";
 //Schuedule booking
-"back"                  = "Terug";
-"select_way_booking"    = "Selecteer Manier van boeken";
-"check_availabilty"     = "Om de beschikbaarheid van de artiest op de door u geselecteerde datum te controleren";
-"live_booking"          = "Live show boeken";
-"digital_booking"       = "Digitale showboeking";
-"Proceed"               = "Doorgaan";
-"book_now"              = "Boek nu";
-
-"live_booking_detail"   = "We zijn nu klaar met de volgende golf van entertainment. Met trots kondigen we ons in-house online streamingplatform aan.";
-
-"digital_booking_detail"= "We zijn nu klaar met de volgende golf van entertainment. Met trots kondigen we ons in-house online streamingplatform aan.";
-
+"select_booking_Title"      = "Schedule Book";
+"Booking_Edit"              = "You may edit the booking slots for your performances.";
+"live_booking"              = "In Person Booking";
+"digital_booking"           = "Virtual Show Booking";
+"Proceed"                   = "Doorgaan";
+"book_now"                  = "Book Now";
+"live_booking_detail"       = "We are now ready with the next of wave of entertainment. We are proud to      announce our in-house online streaming                            platform.";
+"digital_booking_detail"    = "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming                                  platform.";
 //Calander
-"back"                  = "Terug";
-"select_date_booking"   = "Selecteer Datum van boeking";
-"check_availabilty"     = "Om de beschikbaarheid van de artiest op de door u geselecteerde datum te controleren";
+"select_date_booking"       = "Kies uw datum";
+"check_availabilty"         = "Selecteer de slots die het beste bij u passen";
 
+
+
+"AVAILABLE"                 = "Beschikbaar";
+"UNAVAILABLE"               = "Niet beschikbaar";
+"VIRTUAL"                   = "VIRTUAL";
+"IN-PERSON"                 = "IN-PERSON";
 //Edit Date
-"back"                  = "Back";
-"select_time_booking"   = "Select time of booking";
-"multiple_slot"         = "you may select multiple slot in a row.";
-"choose_another_date"   = "Artist is not available on this date . Please Choose another date";
-"clear_all"             = "Wis alles";
-"available"             = "Beschikbaar";
-"unavailable"           = "Niet beschikbaar";
-"proceed_checkout"      = "Ga naar de kassa";
+"select_time_booking"       = "Selecteer het tijdstip van boeken";
+"multiple_slot"             = "u kunt meerdere slots achter elkaar selecteren.";
+"choose_another_date"       = "Artist is not available on this date . Please Choose another date";
+"clear_all"                 = "Wis alles";
+"available"                 = "Beschikbaar";
+"unavailable"               = "Niet beschikbaar";
+"proceed_checkout"          = "Ga naar de kassa";
+"POPUP_CONFIRM"             = "Zodra de boeking door u is bevestigd, wordt deze in de wacht gezet totdat we de betaling hebben ontvangen. Klik op Bevestigen om door te gaan OF Annuleren om terug te gaan";
+"SELECT_SLOT_ALERT"         = "Please select Any Slot";
+"CONT_BOOK_SLOT"            = "You cannot book because slot is already book in this range";
+"ARTIST_ALREADY_BOOK"       = "Artiest is al geboekt";
+"ARTIST_NOT_AVAIABLE"       = "Artiest is niet beschikbaar";
+"BELOW_IDEAL_AVAILABE_NETHERLAND" = "Hieronder IDEALE bijsluiter Alleen voor klanten in Nederland";
+
+"BOOKING_CRNF_SUCCESS"      = "Hoera! uw boeking is bevestigd
+ 🙂";
+"OK"                        = "OK
+";
+
+
+
+
+//CAED PAYMENT LIST
+"SELECT_CARD"               = "Selecteer kaart";
+"CARD_METHOD"               = "Kies uw betaalmethode";
+"ADD_CARD"                  = "+ Voeg een kaart toe";
+"CARD_NUMBER"               = "Kaartnummer";
+"EXPIRE"                    = "Vervalt";
+"CVV"                       = "CVV";
+"SELECT_CARD"               = "Selecteer een kaart";
+"CANCEL_SLOT"               = "Als u op Ja klikt, wordt uw boeking geannuleerd en kunnen andere klanten hetzelfde slot boeken";
+"CARD_REMOVE"               = "Wilt u deze kaart verwijderen?";
+//Success Payment VC
+"PAYMENT_DONE"              = "Betaling gedaan";
+"READY_FOR_SHOW"            = "Hoera, je kunt je voorbereiden op de show";
+"PAYMENT_FAIL"              = "Betaling mislukt!";
+"PAYMENT_FAIL_DETAIL"       = "U kunt opnieuw betalen via het boekingsdetailscherm";
+"DO_NOT_PRESS"              = "Druk niet op of ga niet terug";
+//LoaderVC
+"PAYMENT_PROCESSING"        = "Verwerking van betalingen";
+"PAYMENT_PRO_DETAIL"        = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                   standard dummy text ever";
+//Choose your Currency
+"CHOOSE_CURRENCY"           = "Kies uw valuta";
+// IDEALBank
+"IDEAL_PAYMENT_TITLE"       = "iDeal-betaling";
+"BANK_NAME_TITLE"           = "Kies Banknaam";
+"HOLDER_NAME"               = "Naam rekeninghouder";
+"SELECT_BANK"               = "Selecteer Bank";
+//ADD CARD
+"CARD_HOLDER_NAME"          = "Naam pashouder";
+"ENTER_NAME"                = "Voer naam in";
+"EXPIRE_CARD"               = "Vervaldatum van kaart";
+"PARTNERSHIP_WITH"          = "Partnership with";
+"STRIPE"                    = "Stripe";
+"ADD_CARD_TITLE"            = "Voeg een kaart toe";
+"DEBIT_CREDIT_CARD"         = "Betaalpas / creditcard";
+//UpdateLocationVC
+"ADD_DETAILS"               = "aanvullende details";
+"LANDMARK"                  = "Oriëntatiepunt";
+"OTHER_ADD"                 = "Voer een ander adres in";
+"SAVE_ADD"                  = "Adres opslaan";
+"HOME"                      = "Huis";
+"WORK"                      = "Werk";
+
+"ENTER_YOUR_MAIL"           = "Voer uw e-mailadres in";
+
+
+//PROFILE -
+"PROFILE"                   = "Profiel";
+"LOGOUT"                    = "Uitloggen";
+"SETTING"                   = "Instellingen";
+"CHANGE_PASSSWORD"          = "Wachtwoord wijzigen";
+"USER_NAME"                 = "Gebruikersnaam";
+"EMAIL"                     = "E-mail";
+"UPDATE_PROFILE_CUSTOMER"            = "Profiel bijwerken";
+"EDIT_PROFILE"              = "Bewerk profiel";
+"PLEASE_SELECT_OPTION"      = "Maak een keuze a.u.b";
+"GALLERY"                   = "Galerij";
+"CAMERA"                    = "Camera";
+"PLEASE_ENTER_USERNAME"     = "Wilt u uw profiel opslaan?";
+"DO_YOU_WANT_LOGOUT"        = "Wil je uitloggen?";
+"DO_WANT_PROFILE"           = "Wilt u uw profiel opslaan?";
+
+
+"ENTER_OLD_PASSWRD"         = "Voer uw oude wachtwoord in";
+"ENTER_YOUR_PASSWRD"         = "Voer uw oude wachtwoord in";
+
+
+
+"TERMSACONDITION"           = "Voorwaarden";
+"PRIVACY_POLICY"            = "Privacybeleid";
+"ABOUT_US"                  = "Over ons";
+"CHANGE_LANG"               = "Verander taal";
+
+"OLD_PASSWORD"              = "Oud Wachtwoord";
+"NEW_PASSWORD"              = "nieuw paswoord";
+"CONFIRM_PASSWORD"          = "bevestig wachtwoord";
+
+
+//NotificationVC
+"NO_NOTIFICATION"           = "Geen meldingen gevonden";
+"NOTI_TITLE"                = "Meldingen";
+"NOTI_SUBTITLE"             = "Schakel zwevende melding in / uit";
+//FilterViewController
+"FILTER_MAIN_TITLE"         = "Filter";
+"CATEGORY_TITLE"            = "Categorie";
+"CLICK_CHOOSE_CATEGORY"     = "Klik om een ​​categorie te kiezen";
+"PICK_DATE"                 = "Kies een datum";
+"FROM"                      = "Van";
+"TO"                        = "naar";
+"BY_RATING"                 = "Op beoordeling";
+"BY_DISTANCE"               = "Op afstand";
+"SORT_BY"                   = "Sorteer op";
+"APPLY_SEARCH"              = "Zoeken toepassen";
+"PRICE_LOW_HIGH"            = "Prijs laag naar hoog";
+"PRICE_HIGH_LOW"            = "Prijs van hoog naar laag";
+"PROFILE_UPDATE_SUCCESS"    = "profiel is succesvol bijgewerkt";
+
+
+//SelectPaymentVC
+"CHOOSE_PAYMENT_METHOD"     = "Kies uw betalingsmethode";
+"FRVT_METHOD"               = "Choose your favourable method of payment";
+"IDEAL"                     = "iDeal";
+"CARD"                      = "Kaart";
+"SUCCESS"                   = "Succes";
+"BELOW_IDEAL_INSERT"        = "Alleen voor klanten in Nederland";
+
+"PLEASE_SELECT_TIME"        = "Selecteer de tijd";
+"BOOKING_CONFIRMATION_TITLE" = "Maak je geen zorgen. U kunt het aanpassen door met de artiest te chatten 🙂";
+
+//ManageAddressVC
+"ADD_ADDRESS"               = "Añadir dirección";
+"NO_ADD_RIGHT_NOW"          = "Geen adres op dit moment";
+"PLEASE_ADD_ADDRESS"        = "Kan het opgeslagen adres niet vinden. Voeg adres toe";
+"DO_YOU_WANT"               = "Wil je stoppen?";
+"OK"                        = "OK";
+//SelectAddressTypeVC
+"CURRENT_LOCATION"          = "Current Location";
+"OTHER_LOCATION"            = "Select Other Location";
+//SearchArtistByNameVC
+"SEARCH_ARTISH"             = "Search Artist(Enter Atleast 3 Chars.)";
+"NO_ARTISH"                 = "Momenteel geen artiest";
+"UNABLE_TO_FIND"            = "Kan artiest niet vinden op deze pagina. Zoek een andere artiest";
+//HOmeViewController
+"NO_DATA_FOUND"             = "No Data Found";
+"NEW_ARTIST"                = "Nieuwe artiest";
+"CHOOSE_SHOW"               = "Kies het soort uitvoering dat u zoekt";
+"CHOOSE_SHOW_DETAIL"        = "we are now ready with the next of entertaintment.we are proud to announce our in-house line streaming plateform.";
+"VIRTUAL_SHOW"              = "Virtuele show";
+"IN_PERSON_SHOW"            = "Persoonlijke show";
+"SELECT"                    = "Select";
+"SEETING_UP"                = "Geweldig ! wij cureren artiesten voor jou. Wacht even";
+"SEETING_UP_DETAIL"         = "we are now ready with the next of entertaintment.we are proud to announce our in-house line streaming plateform.";
+
+"SEETING_UP_DETAIL_IN_PERSON" = "Kunstenaars bezoeken een locatie naar keuze";
+"SEETING_UP_DETAIL_VIRTUAL"  = "Artiesten spelen virtueel met Skype, Zoom, Hangouts, enz.";
+"PLEASE_WAIT"               = "Even geduld aub";
+"MESSAGES"                  = "Berichten";
+"BOOKINGS"                  = "Boeking";
+"BEFORE_PAYMENT_PROCESS"    = "You May Edit The BookingSlot,Before Payment Process.";
+"BOOKINGS_DETAILS"          = "Boekingsdetails";
+"MUSICIANS_HEARTS"          =  "Muzikanten willen de luide stem zijn voor zoveel stille harten";
+"MUSIC_UNIVERSAL_LANG"      =  "Muziek is de universele taal van de mensheid";
+"MUSIC_IS_PLACE"            = "Als muziek een plaats is, dan is jazz de stad";
+"ROCK_RODE"                 = "Rots is de weg, klassiek is een tempel";
+"MUSIC_EMOTION"             =  "Muziek is de afkorting van emotie";
+"MUSIC_LANGUAGE"            =  "Muziek is de enige taal waarin je geen gemeen of sarcastisch iets kunt zeggen";
+"MUSIC_IS_ART"              = "Muziek is de kunst die het meest nabij tranen en herinnering is";
+"ONE_GOOD_THING"            = "Een goed ding over muziek, als het je raakt, voel je geen pijn";
+"WORDFAIL_MUSICSPEAK"       = "Waar woorden falen spreekt muziek";
+"SEE_REVIEW"                = "Zie recensie";
+"BOOKING_PRICE"             = "Boekingsprijs";
+"VIRTUAL_SHOW"              = "Virtuele show";
+"IN_PRESON"                 = "Persoonlijk";
+"GALLERY"                   = "Galerij";
+"SOCIAL_MEDIA_HANDLES"      = "Handvatten voor sociale media";
+//"CHAT_ABOUT_YOUR_BOOKING"   = "Social Media Handles";
+"ABOUT"                     = "Over";
+"YOUTUBE_ACCOUNT"           = "YouTube-account";
+"INSTRAGRAM_ACCOUNT"        = "Instagram-account";
+"VIEW_PROFILE"              = "Ver perfil";
+"SEE_REVIEW"                = "Zie recensie";
+"REACH_LOCATION"            = "Weet u zeker dat artiesten op uw locatie kunnen bereiken?";
+"SELECT_RESON"              = "Selecteer reden";
+"ARTIST_DENIED_DUTY"        = "Artiest plicht geweigerd";
+"ARTIST_UNREACHABLE"        = "Artiest is onbereikbaar";
+"ARTIST_NOT_PICK_CALL"      = "Artiest kiest geen oproep";
+"OTHER"                     = "Andere";
+"YOUR_OTP"                  = "Uw OTP is:";
+"SHARE_YOUR_OTP"            = "Deel uw OTP met uw artiest";
+"READ_MORE"                 = "Lees verder";
+"REASON"                    = "Reden";
+"BOOKING_DATE"              = "Boekingsdatum";
+"BOOKING_TIME"              = "Boekingstijd";
+"STATUS"                    = "Toestand";
+"PAYMENT"                   = "BETALING";
+"DID_ARTIST_REACHED"        = "Heeft Artist uw locatie bereikt?";
+"YES_REACHED"               = "Ja, erreicht";
+"NO_ARTIST"                 = "Nee, ik wil rapporteren";
+"PAID"                      = "Betaald:-";
+"REPORT"                    = "Verslag doen van";
+"book"                      = "Boek";
+"NO_VIDEO_UPLOADED"         = "Er is nog geen video geüpload";
+"HAVE_A_CHAT_BOOKING"       = "Maak een praatje over uw boeking";
+"PAY_NOW"                   = "NU BETALEN";
+"DEBIT_CREDIT_CARD"         = "Betaalpas / creditcard";
+"MANAGE_BOOKING_YOURS"      = "Beheer hier uw boekingen";
+"SEARCH_CITY_AREA"          = "Doorzoek een stad, gebied";
+"SAVED_LOCATION"            = "Opgeslagen locatie";
+"RATE_REVIEW"               = "Beoordeling en beoordeling";
+"LOCATION_VALUE_DATE"       = "Plaats";
+"CANCEL_BOOKING"            = "Boeking annuleren";
+"NOT_PAID"                   = "Niet betaald";
+"GO_TO_HOME"                = "Ga naar huis";
+"ARTIST_COMPLETE_PERFORMANCE" = "You artist completed his performance";
+"BOOKING_DETAILS"          = "Boekingsdetails";
+"FAILED"                   = "Mislukt";
+"COMPLETED"                = "voltooid";

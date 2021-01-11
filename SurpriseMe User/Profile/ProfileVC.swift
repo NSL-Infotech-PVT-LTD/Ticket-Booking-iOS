@@ -22,6 +22,19 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var viewChangePassword: UIView!
     @IBOutlet weak var viewAboutUs: UIView!
     @IBOutlet weak var logoutView: UIView!
+    
+    
+    @IBOutlet weak var lblProfile: UILabel!
+    
+    
+    @IBOutlet weak var lblChangePasssword: UILabel!
+    @IBOutlet weak var lblSettings: UILabel!
+    @IBOutlet weak var lblLogout: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    @IBOutlet weak var lblUserName: UILabel!
+    
+    
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var updateBtn: UIButton!
     @IBOutlet weak var viewHeader: UIView!
@@ -41,6 +54,7 @@ class ProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setInitialSetup()
+        self.setLocalisation()
         self.viewHeader.addBottomShadow()
         logoutView.isHidden = false
         viewAboutUs.isHidden = false
@@ -51,16 +65,29 @@ class ProfileVC: UIViewController {
         self.imgUserProfile.isUserInteractionEnabled = false
     }
     
+    
+    func setLocalisation(){
+        self.lblProfile.text = "PROFILE".localized()
+        self.lblUserName.text = "USER_NAME".localized()
+        self.lblEmail.text = "EMAIL".localized()
+        self.lblLogout.text = "LOGOUT".localized()
+        self.lblSettings.text = "SETTING".localized()
+        self.lblChangePasssword.text = "CHANGE_PASSSWORD".localized()
+        self.editProfileBtn.setTitle("EDIT_PROFILE".localized(), for: .normal)
+        btnBack.setTitle("back".localized(), for: .normal)
+        self.updateBtn.setTitle("UPDATE_PROFILE_CUSTOMER".localized(), for: .normal)
+ }
+    
     @objc func handletapview(_ sender: UITapGestureRecognizer? = nil) {
-        let alert = UIAlertController(title: "", message: "Please Select an Option", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+        let alert = UIAlertController(title: "", message: "PLEASE_SELECT_OPTION".localized(), preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "CAMERA".localized(), style: .default , handler:{ (UIAlertAction)in
             self.openCamera()
         }))
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "GALLERY".localized(), style: .default , handler:{ (UIAlertAction)in
             self.openGallery()
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel , handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
         })
@@ -96,11 +123,11 @@ class ProfileVC: UIViewController {
     }
     
     @objc func handletapviewLogin(_ sender: UITapGestureRecognizer? = nil) {
-        let alert = UIAlertController(title: "Alert", message: "Do you want to logout?", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
+        let alert = UIAlertController(title: "ALERT".localized(), message: "DO_YOU_WANT_LOGOUT".localized(), preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "YES".localized(), style: UIAlertAction.Style.destructive, handler: { action in
             self.objectViewModel.logout()
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -112,11 +139,11 @@ class ProfileVC: UIViewController {
     @IBAction func btnBackAction(_ sender: UIButton) {
         
         if isUpdateProfile == true{
-            let alert = UIAlertController(title: "Alert!", message: "Do you want to save your profile?", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.default, handler: { action in
+            let alert = UIAlertController(title: "ALERT".localized(), message: "DO_WANT_PROFILE".localized(), preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "YES".localized(), style: UIAlertAction.Style.default, handler: { action in
                 
                 if self.tfUserName.text == ""{
-                    self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
+                    self.showSimpleAlert(Title: "ALERT".localized(), message: "PLEASE_ENTER_USERNAME".localized(), inClass: self)
                 }else{
                     self.editProfileBtn.isHidden = false
                     self.editImgBtn.isHidden = true
@@ -131,7 +158,7 @@ class ProfileVC: UIViewController {
                 }
             }))
             
-            alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: { action in
+            alert.addAction(UIAlertAction(title: "NO".localized(), style: UIAlertAction.Style.default, handler: { action in
                 self.back()
             }))
             self.present(alert, animated: true, completion: nil)
@@ -142,15 +169,17 @@ class ProfileVC: UIViewController {
   }
     
     @IBAction func btnEditAction(_ sender: UIButton) {
-        let alert = UIAlertController(title: "", message: "Please Select an Option", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default , handler:{ (UIAlertAction)in
+        
+        
+        let alert = UIAlertController(title: "", message: "PLEASE_SELECT_OPTION".localized(), preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "CAMERA".localized(), style: .default , handler:{ (UIAlertAction)in
             self.openCamera()
         }))
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "GALLERY".localized(), style: .default , handler:{ (UIAlertAction)in
             self.openGallery()
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel , handler:{ (UIAlertAction)in
+        alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: .cancel , handler:{ (UIAlertAction)in
         }))
         self.present(alert, animated: true, completion: {
         })
@@ -194,7 +223,7 @@ class ProfileVC: UIViewController {
     
     @IBAction func btnUpdateProfileAction(_ sender: UIButton) {
         if self.tfUserName.text == ""{
-            self.showSimpleAlert(Title: "Alert", message: "Please enter your username", inClass: self)
+            self.showSimpleAlert(Title: "YES".localized(), message: "PLEASE_ENTER_USERNAME".localized(), inClass: self)
         }else{
             self.editProfileBtn.isHidden = false
             self.editImgBtn.isHidden = true
@@ -267,10 +296,10 @@ extension ProfileVC: ProfileViewModelProtocol {
     
     func getUpdateProfileApiResponse(message: String , isError : Bool){
         if isError == true{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
             }
         }else{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "profile has been updated succesfully", btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: "PROFILE_UPDATE_SUCCESS".localized(), btnOkTitle: "DONE".localized()) {
                 //self.objectViewModel.getParamForGetProfile(param: [:])
             }
         }
@@ -279,7 +308,7 @@ extension ProfileVC: ProfileViewModelProtocol {
     func getProfileApiResponse(message: String, response: GetProfileModel?, isError: Bool) {
         LoaderClass.shared.stopAnimating()
         if isError == true{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
             }
         }else{
             

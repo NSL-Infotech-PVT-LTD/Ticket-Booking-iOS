@@ -16,6 +16,11 @@ class NotificationVC: UIViewController {
     @IBOutlet weak var NotificationTableView: UITableView!
     @IBOutlet weak var viewNoData: UIView!
     @IBOutlet weak var btnSwitch: UISwitch!
+    @IBOutlet weak var lblNoNotification: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
+    
+    @IBOutlet weak var lblNotificationTitle: UILabel!
+   @IBOutlet weak var lblNotificationDescriptions: UILabel!
     
     //MARK:- Variable -
     var objectViewModel = NotificationViewModel()
@@ -31,12 +36,12 @@ class NotificationVC: UIViewController {
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBack.setTitle("back".localized(), for: .normal)
+        lblNoNotification.text = "NO_NOTIFICATION".localized()
         NotificationTableView.delegate = self
         NotificationTableView.dataSource = self
         NotificationTableView.reloadData()
-        // refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        // refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-        // NotificationTableView.addSubview(refreshControl)
+
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -49,7 +54,14 @@ class NotificationVC: UIViewController {
         self.hideTable()
         let userIsNotify = UserDefaults.standard.value(forKey: UserdefaultKeys.is_notify) as? String
         print("the status is \(userIsNotify)")
+        self.setLocalisation()
     }
+    
+    func setLocalisation()  {
+        lblNotificationTitle.text = "NOTI_TITLE".localized()
+        lblNotificationDescriptions.text = "NOTI_SUBTITLE".localized()
+    }
+    
     
     @IBAction func btnSwitchedAction(_ sender: UISwitch) {
         if sender.isOn{

@@ -15,8 +15,8 @@ class WalkThroughVC: UIViewController {
     
     //MARK:- Variable -
     var imgArray = ["WalkThrough1","WalkThrough2","WalkThrough3"]
-    var arrayHeader = ["Birthday Surprise","Dj Performers","Digital Performers"]
-    var arrayDescHeader = ["Lorem Ipsum is simply dummy text of theprinting and typesetting industry. LoremIpsum has been the industry's standard dummy text ever","Dj Performers","Digital Performers"]
+    var arrayHeader = ["BIRTHDAY_SURPRISE".localized(),"DJ_PERFORMERSDj".localized(),"DIGITAL_PERFORMANCE".localized()]
+    var arrayDescHeader = ["DETAIL_CONTENT".localized()]
     
     var navigationControl = UINavigationController()
     var timer = Timer()
@@ -82,6 +82,8 @@ extension WalkThroughVC : UICollectionViewDelegate,UICollectionViewDataSource,UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CustomWalkThroughCell
         cell.imgWalkThrough.image = UIImage.init(named: imgArray[indexPath.row])
         cell.lblTitleWalkThrough.text = arrayHeader[indexPath.row]
+        //scell.lblDescriptionWalkThrough.text = arrayDescHeader[indexPath.row]
+        
         cell.heightConstant.constant = view.frame.size.height
         cell.widthConstant.constant = self.view.frame.size.width
         

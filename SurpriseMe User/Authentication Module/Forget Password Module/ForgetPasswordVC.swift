@@ -41,7 +41,7 @@ class ForgetPasswordVC: UIViewController {
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
         guard tfEmail.text?.count ?? 0 > 0 else {
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your email", btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_MAIL".localized(), btnOkTitle: "Done") {
             }
             return
         }
@@ -64,11 +64,11 @@ extension ForgetPasswordVC: ForgetPasswordViewModelProtocol {
         LoaderClass.shared.stopAnimation()
         
         if !isError{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Success", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "SUCCESS".localized(), message: message, btnOkTitle: "DONE".localized()) {
                 self.dismiss(animated: true, completion: nil)
             }
         }else{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
                 self.tfEmail.text = nil
             }
         }

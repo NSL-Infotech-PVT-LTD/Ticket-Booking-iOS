@@ -13,6 +13,8 @@ class GetArtistCategoryVC: UIViewController {
     
     @IBOutlet weak var tblCategory: UITableView!
     @IBOutlet weak var seachTF: UITextField!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnDone: UIButton!
     
     
     var arrayGetCategory = [GetArtistCategoryModel]()
@@ -24,7 +26,9 @@ class GetArtistCategoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        btnBack.setTitle("back".localized(), for: .normal)
+        btnDone.setTitle("DONE".localized(), for: .normal)
+        
         // Do any additional setup after loading the view.
     }
     

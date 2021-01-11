@@ -12,10 +12,24 @@ class SelectPaymentVC: UIViewController {
     
     
     @IBOutlet var viewHeader: UIView!
-
+    
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lblPaymentMethod: UILabel!
+    @IBOutlet weak var lblFrvtMethod: UILabel!
+    @IBOutlet weak var lblIdeal: UILabel!
+    @IBOutlet weak var lblCard: UILabel!
+    
+    @IBOutlet weak var lblIdealInsert: UILabel!
+    
+    @IBOutlet weak var bacckBtn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bacckBtn.setTitle("back".localized(), for: .normal)
+        lblPaymentMethod.text = "CHOOSE_PAYMENT_METHOD".localized()
+        lblFrvtMethod.text = "FRVT_METHOD".localized()
+        lblIdeal.text = "CARD".localized()
+        lblCard.text = "IDEAL".localized()
+        lblIdealInsert.text = "BELOW_IDEAL_INSERT".localized()
         self.viewHeader.addBottomShadow()
         self.getCard()
 
@@ -73,22 +87,27 @@ class SelectPaymentVC: UIViewController {
 
     @IBAction func btnIdealAction(_ sender: UIButton) {
         
-        //        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        //        let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
-        //        navigationController?.pushViewController(controller, animated: true)
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "IdelPaymentVC") as! IdelPaymentVC
-        navigationController?.pushViewController(controller, animated: true)
-        
+        if arrayCardListCommom.count > 0{
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+            controller.isBookingDetails = true
+            navigationController?.pushViewController(controller, animated: true)
+        }else{
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+            controller.isBookingDetails = true
+            controller.isMoreCount = true
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
 
-        let alert = UIAlertController(title: "If you click yes your booking will be canceled from on hold and other customer can book same slot.", message: "", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "No", style: .default) { (alert) in
+        let alert = UIAlertController(title: "CANCEL_SLOT".localized(), message: "", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "NO".localized(), style: .default) { (alert) in
 
         }
-        let confirm = UIAlertAction(title: "Yes", style: .destructive) { (alert) in
+        let confirm = UIAlertAction(title: "YES".localized(), style: .destructive) { (alert) in
             let param = ["booking_id":bookingPaymentID ?? 0 , "status":"cancel"] as [String : Any]
             LoaderClass.shared.loadAnimation()
             self.callApiDeletebookingSlot(param: param)
@@ -145,19 +164,24 @@ class SelectPaymentVC: UIViewController {
     
     @IBAction func btnCashAction(_ sender: UIButton) {
         
-        if arrayCardListCommom.count > 0{
-            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
-            controller.isBookingDetails = true
-            navigationController?.pushViewController(controller, animated: true)
-        }else{
-            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
-            controller.isBookingDetails = true
-            controller.isMoreCount = true
-            
-            navigationController?.pushViewController(controller, animated: true)
-        }
+        
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "IdelPaymentVC") as! IdelPaymentVC
+        navigationController?.pushViewController(controller, animated: true)
+        
+//        if arrayCardListCommom.count > 0{
+//            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "cardPaymentList") as! cardPaymentList
+//            controller.isBookingDetails = true
+//            navigationController?.pushViewController(controller, animated: true)
+//        }else{
+//            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "AddCardVC") as! AddCardVC
+//            controller.isBookingDetails = true
+//            controller.isMoreCount = true
+//
+//            navigationController?.pushViewController(controller, animated: true)
+//        }
     }
     
     

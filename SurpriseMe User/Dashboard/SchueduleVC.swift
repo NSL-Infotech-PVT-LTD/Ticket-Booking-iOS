@@ -39,11 +39,13 @@ class SchueduleVC: UIViewController {
     }
     
     func setLocalization(){
-//        self.lblDigitalShow.text = "DIGITAL_SHOW".localized()
-//        self.lblTittelSehudeule.text = "SCHEDULE_BOOK".localized()
-//        self.lblLiveShowBooking.text = "LIVE_SHOW".localized()
-//        self.lblSubTittelSehuedule.text = "SCHEDULE_BOOK_SUB_TITTEL".localized()
-//        self.btnProcess.setTitle("PROCEED".localized(), for: .normal)
+        self.lblTittelSehudeule.text = "select_booking_Title".localized()
+        self.lblSubTittelSehuedule.text = "Booking_Edit".localized()
+        self.lblLiveShowBooking.text = "live_booking".localized()
+        self.lblDigitalShow.text = "digital_booking".localized()
+        self.btnProcess.setTitle("Proceed".localized(), for: .normal)
+        self.btnBookNowLive.setTitle("book_now".localized(), for: .normal)
+        self.btnBookNowDigital.setTitle("book_now".localized(), for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

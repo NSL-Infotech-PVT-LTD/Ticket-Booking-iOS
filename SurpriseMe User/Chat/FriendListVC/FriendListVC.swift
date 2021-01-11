@@ -11,17 +11,16 @@ import SDWebImage
 
 class FriendListVC: UIViewController {
     
-    
     @IBOutlet weak var viewNoData: UIView!
     @IBOutlet weak var viewMsgDash: UIView!
     @IBOutlet weak var MessageTableView: UITableView!
+  @IBOutlet weak var lblMssgeHeader: UILabel!
     
-    
+    @IBOutlet weak var lblEditBookingDescpt: UILabel!
     
     //MARK:- Variable -
     var arrayFreind = [GetFreindListModel]()
     var arrayFreindLoadMore = [GetFreindListModel]()
-    
     var objectModelView : GetUserChatListViewM?
     var isLoadMore = Bool()
     var pageInt = 1
@@ -31,25 +30,23 @@ class FriendListVC: UIViewController {
         //Mark: UIView DashLine
         self.viewMsgDash.addDashedBorderMsg()
         self.navigationController?.isNavigationBarHidden = true
-        
-        
     }
     
     
+    func setLocalisation(){
+        self.lblMssgeHeader.text = "MESSAGES".localized()
+        self.lblEditBookingDescpt.text = "MANAGE_BOOKING_YOURS".localized()
+    }
     
     
-    
-    
-    func hideTable(page:Int)  {
-        //        viewNoData.isHidden = true
+   func hideTable(page:Int)  {
+        //  viewNoData.isHidden = true
         MessageTableView.isHidden = true
         viewNoData.isHidden = true
-        
         LoaderClass.shared.loadAnimation()
         let dictParam = ["limit":"20" , "page":page] as [String : Any]
         objectModelView?.delegate = self
         //        self.objectModelView?.getFriendList(param: dictParam)
-        
         let header = ["Authorization":"Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) as! String)"]
         if Reachability.isConnectedToNetwork() {
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.getFreindList, method: .post, param: dictParam, header: header) { (response, error) in
@@ -60,11 +57,8 @@ class FriendListVC: UIViewController {
                     if let status = result["status"] as? Bool {
                         if status ==  true{
                             if let dataDetail = response["data"] as? [String : Any]{
-                                
-                                
                                 //pagination is start from here ..
                                 if self.pageInt == 1{
-                                    
                                     self.arrayFreind.removeAll()
                                     if let data = dataDetail["list"] as? [[String:Any]] {
                                         for getcategory in data {
@@ -72,18 +66,15 @@ class FriendListVC: UIViewController {
                                             self.arrayFreind.append(GetFreindListModel.init(resposne: getcategory ))
                                         }
                                     }
-                                    
+                                    print("the number of running arrayFreind is \(self.arrayFreind.count)")
                                 }else{
                                     self.arrayFreindLoadMore.removeAll()
-                                    
-                                    
                                     if let data = dataDetail["list"] as? [[String:Any]] {
                                         for getcategory in data {
                                             print("dictionary paer dlsnfsad \(getcategory)")
                                             self.arrayFreindLoadMore.append(GetFreindListModel.init(resposne: getcategory ))
                                         }
                                     }
-                                    
                                     self.arrayFreind = self.arrayFreind + self.arrayFreindLoadMore
                                     if (self.arrayFreindLoadMore.count == 0){
                                         self.isLoadMore = true
@@ -92,31 +83,16 @@ class FriendListVC: UIViewController {
                                     }
                                     print("the number of running fixture is \(self.arrayFreindLoadMore.count)")
                                 }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                print("the freind List is \(self.arrayFreind.count)")
-                                
+                              print("the freind List is \(self.arrayFreind.count)")
                                 if self.arrayFreind.count >  0{
-                                    
                                     self.MessageTableView.isHidden = false
                                     self.viewNoData.isHidden = true
-                                    
-                                    
+                                    self.MessageTableView.reloadData()
                                 }else{
                                     self.MessageTableView.isHidden = true
                                     self.viewNoData.isHidden = false
-                                    
                                 }
-                                
-                                self.MessageTableView.reloadData()
                                 //
-                                
                             }
                         }else{
                             self.MessageTableView.isHidden = true
@@ -138,38 +114,24 @@ class FriendListVC: UIViewController {
         let dateAsString = timeData
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        
         let date = dateFormatter.date(from: dateAsString)
         dateFormatter.locale = Locale.current
-        
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.dateFormat = "dd-MMM ,h:mm a"
         return dateFormatter.string(from: date ?? Date())
-        
-        
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+        self.setLocalisation()
         if  cameFromChat == true{
             self.tabBarController?.tabBar.isHidden = false
-
             self.hideTable(page: 1)
             cameFromChat = false
-
         }else{
             self.hideTable(page: 1)
-
         }
-        
-        
-        
-    }
+     }
     
     //Pagination
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -181,7 +143,6 @@ class FriendListVC: UIViewController {
                 print("scrollViewDidEndDragging page number is \(self.pageInt)")
                 let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
                 self.hideTable(page: self.pageInt)
-                //                   objectViewModel.getParamForNotification(param: dictParam)
             }
         }
     }
@@ -198,29 +159,18 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
         
         let dataItem = arrayFreind[indexPath.row]
       //  cell.viewHeader.addShadowWithCornerRadius(viewObject: cell.viewHeader)
-        
-        
         let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-        
         if   dataItem.is_read == 0{
             cell.lblUnreadCount.isHidden = true
         }else{
             cell.lblUnreadCount.isHidden = false
-            
         }
         
         
-        if userName == dataItem.receiver_name ?? ""{
-            cell.lblFrindName.text = dataItem.sender_name ?? ""
-            //Mark: Reciver Profile Image Set
-            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.sender_image ?? "")"
-            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-            print(urlStringaa)
-            let urlImage = URL(string: urlStringaa)!
-            cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
-            
-        }else{
+        let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+        print("the user id is \(useriD  )")
+        
+        if useriD == dataItem.sender_id{
             cell.lblFrindName.text = dataItem.receiver_name ?? ""
             //Mark: Reciver Profile Image Set
             let urlSting : String = "\(Api.imageURLArtist)\(dataItem.receiver_image ?? "")"
@@ -229,17 +179,41 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
             let urlImage = URL(string: urlStringaa)!
             cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
+        }else{
+            cell.lblFrindName.text = dataItem.sender_name ?? ""
+            //Mark: Reciver Profile Image Set
+            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.sender_image ?? "")"
+            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+            print(urlStringaa)
+            let urlImage = URL(string: urlStringaa)!
+            cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
         }
         
         
-        
-        
+//        if userName == dataItem.receiver_name ?? ""{
+//            cell.lblFrindName.text = dataItem.sender_name ?? ""
+//            //Mark: Reciver Profile Image Set
+//            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.sender_image ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//            print(urlStringaa)
+//            let urlImage = URL(string: urlStringaa)!
+//            cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
+//
+//        }else{
+//            cell.lblFrindName.text = dataItem.receiver_name ?? ""
+//            //Mark: Reciver Profile Image Set
+//            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.receiver_image ?? "")"
+//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//            print(urlStringaa)
+//            let urlImage = URL(string: urlStringaa)!
+//            cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
+//        }
         cell.lblLastMssg.text = dataItem.message ?? ""
         dateTimeCommenMethod.sharesDateTime.date(dateSet: dataItem.created_at ?? "")
-        print("the timing is \(self.convertTimeInto24(timeData: dataItem.created_at ?? ""))")
-        
         cell.lblTime.text = self.convertTimeInto24(timeData: dataItem.created_at ?? "")
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -254,11 +228,9 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
 extension UIView {
     func addDashedBorderMsg() {
         let color = UIColor.white.cgColor
-        
         let shapeLayer:CAShapeLayer = CAShapeLayer()
         let frameSize = self.frame.size
         let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
-        
         shapeLayer.bounds = shapeRect
         shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
         shapeLayer.fillColor = UIColor.clear.cgColor
@@ -267,7 +239,6 @@ extension UIView {
         shapeLayer.lineJoin = CAShapeLayerLineJoin.round
         shapeLayer.lineDashPattern = [4,4]
         shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 6).cgPath
-        
         self.layer.addSublayer(shapeLayer)
     }
 }
@@ -276,7 +247,6 @@ extension UIView {
 extension FriendListVC : getUseChatListListViewModelProtocol{
     func errorAlert(errorTitle: String, errorMessage: String) {
         print("dsfdsfds")
-        
     }
     
     func getFriendListViewArray(response:[GetFreindListModel]){
@@ -286,15 +256,9 @@ extension FriendListVC : getUseChatListListViewModelProtocol{
             viewNoData.isHidden = true
         }else{
             print("the list is\(arrayFreind.count)")
-            
             MessageTableView.isHidden = true
             viewNoData.isHidden = false
         }
-        
-        self.MessageTableView.reloadData()
-        
     }
-    
-    
 }
 

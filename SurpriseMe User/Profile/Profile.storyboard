@@ -50,7 +50,10 @@
                                             <constraint firstAttribute="height" constant="30" id="0HV-Po-FDP"/>
                                             <constraint firstAttribute="width" constant="91" id="QUf-t1-n8h"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="Back-1"/>
+                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackAction:" destination="Fki-1M-DNr" eventType="touchUpInside" id="azw-kK-Mmz"/>
                                         </connections>
@@ -430,9 +433,16 @@
                     <navigationItem key="navigationItem" id="RMb-vb-FxA"/>
                     <size key="freeformSize" width="414" height="755"/>
                     <connections>
+                        <outlet property="btnBack" destination="pZw-6Q-5FC" id="Hom-rU-Hsu"/>
                         <outlet property="editImgBtn" destination="5rc-SN-r85" id="QXD-9O-7tC"/>
                         <outlet property="editProfileBtn" destination="Dru-bJ-ReW" id="FlY-xS-ucy"/>
                         <outlet property="imgUserProfile" destination="Ght-aD-pMK" id="BmN-0U-itY"/>
+                        <outlet property="lblChangePasssword" destination="LHC-RC-l6p" id="HMc-m1-7w9"/>
+                        <outlet property="lblEmail" destination="czc-Bn-OUX" id="N2e-DU-Zmw"/>
+                        <outlet property="lblLogout" destination="8JS-h8-MjW" id="DCd-Hi-kKh"/>
+                        <outlet property="lblProfile" destination="J1D-BD-VYv" id="DyE-tQ-PCU"/>
+                        <outlet property="lblSettings" destination="JYK-rY-6X3" id="UDs-LD-i7I"/>
+                        <outlet property="lblUserName" destination="msX-fN-NxM" id="h1K-wA-gjd"/>
                         <outlet property="logoutView" destination="ZFR-VJ-fLg" id="8C7-0e-p1i"/>
                         <outlet property="tfEmail" destination="51Z-w6-VbR" id="Ra3-UO-yrx"/>
                         <outlet property="tfUserName" destination="svu-zx-vNu" id="xhZ-nS-0FO"/>
@@ -444,7 +454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9E-UX-aiM" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420.8" y="269.41529235382313"/>
+            <point key="canvasLocation" x="1518" y="269"/>
         </scene>
         <!--Change PasswordVC-->
         <scene sceneID="g7B-hw-1C1">
@@ -458,12 +468,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgM-I0-DuR">
-                                        <rect key="frame" x="18" y="26" width="62" height="30"/>
+                                        <rect key="frame" x="18" y="26" width="94" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bCA-Yn-Ika"/>
-                                            <constraint firstAttribute="width" constant="62" id="fgI-zb-Hxw"/>
+                                            <constraint firstAttribute="width" constant="94" id="fgI-zb-Hxw"/>
                                         </constraints>
-                                        <state key="normal" image="Back-1"/>
+                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackAction:" destination="odp-VD-et9" eventType="touchUpInside" id="aPk-2Y-e6A"/>
                                         </connections>
@@ -696,6 +709,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnBack" destination="OgM-I0-DuR" id="zrN-Cm-TzL"/>
+                        <outlet property="btnContinue" destination="uTe-1r-lpm" id="dIT-Bk-56u"/>
+                        <outlet property="lblConfirmPassword" destination="AMY-EG-VcU" id="L6r-Hg-dWi"/>
+                        <outlet property="lblNewPassword" destination="HLv-9J-Df6" id="LYG-zf-4EJ"/>
+                        <outlet property="lblOldPassword" destination="PHr-j2-DyF" id="1tv-WS-uTQ"/>
                         <outlet property="oldPassword" destination="WOf-y1-e3L" id="MTc-So-7ga"/>
                         <outlet property="tfConfirmPassword" destination="Hj4-fm-OD7" id="zd0-HG-z0w"/>
                         <outlet property="tfPassword" destination="03E-8T-081" id="caq-Hy-rJA"/>
@@ -704,7 +722,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z7X-Xk-Aek" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5559.1999999999998" y="113.79310344827587"/>
+            <point key="canvasLocation" x="2181.5999999999999" y="229.83508245877064"/>
         </scene>
         <!--SettingVC-->
         <scene sceneID="d5W-HR-WkZ">
@@ -718,12 +736,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDw-5s-Ozb">
-                                        <rect key="frame" x="18" y="26" width="62" height="30"/>
+                                        <rect key="frame" x="18" y="26" width="79" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bbN-mU-Dac"/>
-                                            <constraint firstAttribute="width" constant="62" id="dYj-qW-CUk"/>
+                                            <constraint firstAttribute="width" constant="79" id="dYj-qW-CUk"/>
                                         </constraints>
-                                        <state key="normal" image="Back-1"/>
+                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackAction:" destination="wsG-95-cZh" eventType="touchUpInside" id="Vm7-mk-tcf"/>
                                         </connections>
@@ -955,6 +976,11 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="btnBack" destination="aDw-5s-Ozb" id="V6Z-V6-JuT"/>
+                        <outlet property="lblAbout" destination="NjW-3P-AoU" id="jqN-Lq-Imw"/>
+                        <outlet property="lblChngeLanguage" destination="1Lv-kw-yba" id="WYe-dJ-M6c"/>
+                        <outlet property="lblPrivacyPolicy" destination="bKB-lK-0PC" id="ms6-BQ-dxN"/>
+                        <outlet property="lblTermsAndConditions" destination="6CF-6l-7al" id="ZO1-y0-Fwv"/>
                         <outlet property="viewAboutUs" destination="C5i-eA-rHW" id="9dU-sj-b1l"/>
                         <outlet property="viewChangeLag" destination="a4I-fp-FMk" id="Hjb-n6-nvq"/>
                         <outlet property="viewHeader" destination="NXe-gM-D9c" id="SNk-lW-KU1"/>
@@ -964,11 +990,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XiT-f0-Zgr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6221.6000000000004" y="113.79310344827587"/>
+            <point key="canvasLocation" x="2824.8000000000002" y="229.83508245877064"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Back-1" width="58" height="19"/>
         <image name="Group 1396" width="41" height="41"/>
         <image name="Group 1397" width="41" height="41"/>
         <image name="Group 1399" width="41" height="41"/>
@@ -978,6 +1003,7 @@
         <image name="Mask Group 67" width="64" height="64"/>
         <image name="Mask Group 68" width="64" height="64"/>
         <image name="Term&amp;Condition" width="41" height="41"/>
+        <image name="down-arrow" width="7.5" height="14.5"/>
         <image name="editImage" width="512" height="512"/>
         <image name="login_bg" width="589" height="393"/>
         <image name="logo" width="1024" height="1024"/>

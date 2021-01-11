@@ -23,6 +23,12 @@ class SocialLoginVC: UIViewController {
     @IBOutlet var lblBackToLogin: UILabel!
     
     
+    
+    @IBOutlet weak var lblTermsANDCond: UILabel!
+    @IBOutlet weak var lblSigningUpAgree: UILabel!
+    
+    
+    
     @IBOutlet weak var viewFacebook: UIView!
     @IBOutlet weak var viewBackTOLogin: UIView!
     @IBOutlet weak var viewSignWithEmail: UIView!
@@ -45,6 +51,12 @@ class SocialLoginVC: UIViewController {
         self.lblAreYouNew.text = "are_you_new".localized()
         self.lblSignUpWithEmail.text = "signup_with_email".localized()
         self.lblOr.text = "or".localized()
+        
+        self.lblSigningUpAgree.text = "by_signup".localized()
+        self.lblTermsANDCond.text = "terms_condition".localized()
+
+        
+        
         self.lblSignupWithFacebook.text = "signup_with_facebook".localized()
         self.lblSignupWithApple.text = "signup_with_apple".localized()
         self.lblBackToLogin.text = "back_to_login".localized()

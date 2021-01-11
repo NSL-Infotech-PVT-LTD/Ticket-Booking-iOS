@@ -15,7 +15,9 @@ class ReviewVC: UIViewController {
     @IBOutlet weak var ReviewTableView: UITableView!
     @IBOutlet weak var viewAvgRate: CosmosView!
     
+    @IBOutlet weak var lblReviewAndRate: UILabel!
     
+    @IBOutlet weak var btnBack: UIButton!
     
     //Mark: Variables
     var ReviewRatingVMObject = ReviewRatingViewModel()//ViewModel Declare
@@ -57,6 +59,10 @@ class ReviewVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //Mar: ViewModel Object
+        
+        lblReviewAndRate.text = "RATE_REVIEW".localized()
+        btnBack.setTitle("back".localized(), for: .normal)
+
         LoaderClass.shared.loadAnimation()
         ReviewRatingVMObject.delegate = self
         let param = ["limit":"20","artist_id": self.artistID,"page":1] as [String : Any]

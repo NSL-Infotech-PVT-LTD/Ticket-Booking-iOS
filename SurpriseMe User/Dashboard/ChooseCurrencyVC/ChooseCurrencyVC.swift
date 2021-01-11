@@ -29,13 +29,20 @@ class ChooseCurrencyVC: UIViewController {
     @IBOutlet weak var eurCheckImage: UIImageView!
     @IBOutlet weak var angCheckImage: UIImageView!
     @IBOutlet weak var gbpCheckImage: UIImageView!
+    @IBOutlet weak var btnProcess: UIButton!
+    @IBOutlet weak var lblChooseCurrency: UILabel!
     var currency = ""
     var delegate : updateCurrancy?
     var objectViewModel = ProfileViewModel()
     var currancyData = [[String:Any]]()
     var selectedIndex = Int()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.btnProcess.setTitle("Proceed".localized(), for: .normal)
+        lblChooseCurrency.text = "CHOOSE_CURRENCY".localized()
+        
+        
         self.getCurrancyData()
 //        self.inrCheckImage.image = #imageLiteral(resourceName: "Atoms- Selectors- Selected-1")
 //        self.usdCheckImage.image = #imageLiteral(resourceName: "Atoms- Selectors- Selected-1")

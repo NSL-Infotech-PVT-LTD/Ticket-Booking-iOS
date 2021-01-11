@@ -87,7 +87,7 @@
                                             <constraint firstAttribute="height" constant="1" id="hax-rW-fVm"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You may edit the booking slots, before payment process." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qo5-H9-Kse">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage your bookings here" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qo5-H9-Kse">
                                         <rect key="frame" x="24" y="118" width="331" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="3fK-K9-wvS"/>
@@ -900,6 +900,10 @@
                     </view>
                     <connections>
                         <outlet property="BookingTableView" destination="44k-N0-Zfp" id="fyF-X4-uT4"/>
+                        <outlet property="lblBookingDescr" destination="Qo5-H9-Kse" id="G3L-AF-x7D"/>
+                        <outlet property="lblBookingTitle" destination="Bnr-8b-pQC" id="AeG-Y1-IQl"/>
+                        <outlet property="lblNoBookingRightNow" destination="XBM-t9-CYh" id="uby-7L-gDV"/>
+                        <outlet property="lblUnableToFindBooking" destination="N8q-sC-NdF" id="tn3-7V-ML5"/>
                         <outlet property="viewBookingDash" destination="pMW-oY-jxr" id="ejQ-Js-FP0"/>
                         <outlet property="viewNoData" destination="BUa-HP-bxC" id="JHx-oG-PfB"/>
                     </connections>
@@ -2441,15 +2445,20 @@
                         <outlet property="imgProfile" destination="VJK-L5-rxB" id="hsR-vV-17P"/>
                         <outlet property="lblAddress" destination="1mn-l4-anQ" id="lBw-be-8ye"/>
                         <outlet property="lblArtistNameRating" destination="dso-x0-TjP" id="F7D-c0-GYa"/>
+                        <outlet property="lblBookingDate" destination="eEN-Ap-gGf" id="4hP-Hg-xyO"/>
+                        <outlet property="lblBookingDetails" destination="DO9-fw-iVU" id="daw-IW-oFJ"/>
+                        <outlet property="lblBookingTime" destination="EeZ-7M-wYq" id="Cxq-No-JxK"/>
                         <outlet property="lblDate" destination="fz6-jI-Xdx" id="nLh-bV-k7e"/>
                         <outlet property="lblLocationValue" destination="g9x-6b-lcb" id="Jm6-4u-NHd"/>
                         <outlet property="lblName" destination="cqd-Rt-4iC" id="sum-h0-Yq9"/>
                         <outlet property="lblNewStatus" destination="p6L-sE-Zuw" id="Wsy-Wc-q7M"/>
                         <outlet property="lblOtpNumber" destination="dh6-Qb-cyd" id="y2Q-Fl-ggo"/>
+                        <outlet property="lblPayemntTitleHeader" destination="nMt-ga-BgR" id="Vt8-IM-nAs"/>
                         <outlet property="lblPaymentStatus" destination="yQZ-0M-Vfz" id="bhU-i1-wU8"/>
                         <outlet property="lblRatingArtist" destination="t2H-31-gzZ" id="AOz-D7-W2D"/>
                         <outlet property="lblReviewRating" destination="n4I-mt-uZC" id="6ba-A9-bvP"/>
                         <outlet property="lblReviewTitleHeader" destination="17T-mI-BwA" id="F3J-Xe-1Qs"/>
+                        <outlet property="lblStatusTitle" destination="hah-w2-40d" id="P6a-2b-Nyz"/>
                         <outlet property="lblTime" destination="t3L-OS-XU1" id="P41-In-svS"/>
                         <outlet property="pickerView" destination="fwR-gq-DKc" id="Lco-rd-QSc"/>
                         <outlet property="reportImageICon" destination="sR4-Um-7tX" id="tKh-e5-MIO"/>
@@ -2686,12 +2695,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgR-Lf-pj6">
-                                        <rect key="frame" x="18" y="32" width="60" height="24"/>
+                                        <rect key="frame" x="18" y="32" width="87" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="0r5-oG-lxz"/>
-                                            <constraint firstAttribute="width" constant="60" id="aiF-SX-07e"/>
+                                            <constraint firstAttribute="width" constant="87" id="aiF-SX-07e"/>
                                         </constraints>
-                                        <state key="normal" image="Back-1"/>
+                                        <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="down-arrow">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="btnBackOnPress:" destination="PaS-Kw-no9" eventType="touchUpInside" id="0ro-Aq-1Nq"/>
                                         </connections>
@@ -2722,6 +2734,8 @@
                     </view>
                     <connections>
                         <outlet property="ReviewTableView" destination="zAp-gG-QbJ" id="f8Q-4G-e7H"/>
+                        <outlet property="btnBack" destination="mgR-Lf-pj6" id="RgZ-jC-ZSc"/>
+                        <outlet property="lblReviewAndRate" destination="FO1-23-v6m" id="stI-v2-oil"/>
                         <outlet property="viewAvgRate" destination="fhY-8A-IeN" id="QPQ-UJ-EoN"/>
                         <outlet property="viewBack" destination="281-M4-sbZ" id="IMy-bO-fU8"/>
                     </connections>
@@ -2770,6 +2784,7 @@
         <image name="clock" width="11.5" height="11.5"/>
         <image name="cross-1" width="1300" height="1300"/>
         <image name="dashline" width="242" height="0.5"/>
+        <image name="down-arrow" width="7.5" height="14.5"/>
         <image name="image_placeholder" width="128" height="128"/>
         <image name="live_active" width="65" height="26"/>
         <image name="no data" width="414" height="232"/>

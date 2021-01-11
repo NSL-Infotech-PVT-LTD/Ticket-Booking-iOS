@@ -14,6 +14,7 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     //MARK:- Outlets -
     
     @IBOutlet var btnLogin: UIButton!
+    @IBOutlet weak var btnChange: UIButton!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet var lblEmail: UILabel!
@@ -23,8 +24,7 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     @IBOutlet var btnSign: UIButton!
     @IBOutlet var lblDontHaveAccount: UILabel!
     @IBOutlet var lblWelcome: UILabel!
-    @IBOutlet var lblSignInToContinue: UILabel!
-    
+    @IBOutlet var lblSignInToContinue: UILabel!    
     @IBOutlet weak var btnRememberMe: UIButton!
     
     //MARK:- Varaibles -
@@ -56,7 +56,9 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         
         self.lblDontHaveAccount.text = "DONT_HAVE_ACCOUNT".localized()
         btnSign.setTitle("SIGN_UP".localized(), for: .normal)
+        
         self.btnLogin.setTitle("login".localized(), for: .normal)
+        self.btnChange.setTitle("CHNAGE".localized(), for: .normal)
         
         if let boolValue = UserDefaults.standard.bool(forKey: "RememberMe") as? Bool {
             if boolValue == true{
@@ -146,12 +148,12 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
         
         
         guard tfEmail.text?.count ?? 0 > 0 else {
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your email", btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_MAIL".localized(), btnOkTitle: "DONE".localized()) {
             }
             return
         }
         guard tfPassword.text?.count ?? 0 > 0 else {
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: "Enter your password", btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
             }
             return
         }
@@ -198,7 +200,7 @@ extension LoginVC: LoginViewModelProtocol {
             
             
         }else{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
                 self.tfEmail.text = nil
                 self.tfPassword.text = nil
             }

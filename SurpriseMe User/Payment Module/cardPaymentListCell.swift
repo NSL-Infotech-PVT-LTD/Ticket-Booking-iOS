@@ -9,9 +9,11 @@ import UIKit
 
 class cardPaymentListCell: UITableViewCell {
 
+    @IBOutlet weak var lblCVVV: UILabel!
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var lblCardDetail: UILabel!
+    @IBOutlet weak var lblTitleExpires: UILabel!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblExpireMonth: UILabel!
     @IBOutlet weak var txtCVV: UITextField!

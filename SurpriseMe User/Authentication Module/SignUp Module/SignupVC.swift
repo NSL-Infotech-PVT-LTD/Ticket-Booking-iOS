@@ -17,6 +17,19 @@ class SignupVC: UIViewController {
     
     
     @IBOutlet var btnBack: UIButton!
+    @IBOutlet weak var btnBackToLogin: UIButton!
+    @IBOutlet weak var lblMainTitle: UILabel!
+    
+    
+    
+    
+    
+    
+    
+    @IBOutlet weak var lblRegisterTitle: UILabel!
+    @IBOutlet weak var lblSurpriseTitle: UILabel!
+    @IBOutlet weak var lblMeTitle: UILabel!
+    
     @IBOutlet var lblUsername: UILabel!
     @IBOutlet var lblEmailAddress: UILabel!
     @IBOutlet var lblPassword: UILabel!
@@ -36,6 +49,11 @@ class SignupVC: UIViewController {
         
         self.btnBack.setTitle("back".localized(), for: .normal)
         
+        self.lblMainTitle.text = "MAIN_TITLE".localized()
+        self.lblRegisterTitle.text = "REGISTER_TITLE".localized()
+        self.lblSurpriseTitle.text = "SURPRISE_TITLE".localized()
+        self.lblMeTitle.text = "ME_TITLE".localized()
+        
         self.lblUsername.text = "username".localized()
         self.tfUserName.placeholder = "TYPE_HERE".localized()
         
@@ -49,6 +67,7 @@ class SignupVC: UIViewController {
         self.tfConfirmPassword.placeholder = "TYPE_HERE".localized()
         
         self.btnRegister.setTitle("register_now".localized(), for: .normal)
+        self.btnBackToLogin.setTitle("BACK_TO_LOGIN".localized(), for: .normal)
     }
     
     override func viewDidLoad() {
@@ -84,18 +103,14 @@ class SignupVC: UIViewController {
             Helper.showOKAlert(onVC: self, title: "Alert", message: "Password Does not match")
             
         }else {
-                  var param = [String : Any]()
-                         LoaderClass.shared.loadAnimation()
+            var param = [String : Any]()
+            LoaderClass.shared.loadAnimation()
             
             let deviceToken = UserDefaults.standard.value(forKey: "device_token")
-
             param = [StringFile.Name:tfUserName.text! , StringFile.Email : tfEmail.text! , StringFile.Password : tfPassword.text! , StringFile.device_type:StringFile.iOS,StringFile.device_token:deviceToken ?? "","lang":"en"]
             viewModelObject.getParamForSignUp(param: param, url: Api.Register)
                }
-        
-        
-       
-    }
+      }
     
     //MARK:- Custom's Back to login Button Action -
     @IBAction func btnBackToLoginAction(_ sender: UIButton) {
@@ -115,12 +130,10 @@ extension SignupVC: SignUpViewModelProtocol {
                   UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
                   UserDefaults.standard.removeObject(forKey: UserdefaultKeys.userID)
                              let useriD = response["user"] as? [String:Any]
-                             
                              print("the user id is \(useriD?["id"] ?? 0)")
-                             UserDefaults.standard.set(useriD?["id"] ?? 0, forKey:UserdefaultKeys.userID )
+             UserDefaults.standard.set(useriD?["id"] ?? 0, forKey:UserdefaultKeys.userID )
             UserDefaults.standard.set(useriD?["name"] ?? "", forKey:UserdefaultKeys.userName )
             UserDefaults.standard.set(useriD?["is_notify"] ?? "", forKey:UserdefaultKeys.is_notify )
-
             self.goToDashBoard()
         }
     }

@@ -26,10 +26,18 @@ class SearchArtistByNameVC: UIViewController , NVActivityIndicatorViewable{
     @IBOutlet weak var tblArtist: UITableView!
     @IBOutlet var noFoundLbl: UILabel!
     @IBOutlet weak var viewNoData: UIView!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lblUnableArtist: UILabel!
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBack.setTitle("back".localized(), for: .normal)
+        searchTf.placeholder = "search_for_artist".localized()
+        noFoundLbl.text = "NO_ARTISH".localized()
+        lblUnableArtist.text = "UNABLE_TO_FIND".localized()
+        
+        
         let view = UIView()
         self.tblArtist.tableFooterView = view
         tblArtist.estimatedRowHeight = 390
@@ -121,6 +129,7 @@ extension SearchArtistByNameVC :UITableViewDataSource,UITableViewDelegate{
         cell.lblDescription.text = dataItem.descriptionValue ?? ""
         if dataItem.ratingValue == 0{
             cell.brandNewLbl.isHidden = false
+            cell.brandNewLbl.text = "NEW_ARTIST".localized()
             cell.cosmoView.isHidden = true
         }else{
             cell.brandNewLbl.isHidden = true

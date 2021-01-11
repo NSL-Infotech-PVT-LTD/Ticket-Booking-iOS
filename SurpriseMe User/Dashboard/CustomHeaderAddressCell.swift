@@ -9,7 +9,10 @@
 import UIKit
 
 class CustomHeaderAddressCell: UITableViewCell {
-
+    
+    
+    @IBOutlet weak var lblSavedLocation: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

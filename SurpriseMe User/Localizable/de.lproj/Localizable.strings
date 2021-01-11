@@ -5,95 +5,314 @@
   Created by NetScape Labs on 11/11/20.
   Copyright © 2020 Pankaj Mac. All rights reserved.
 */
-
+//COMMON
+"back"                      = "Zurück";
+"next"                      = "Nächster";
+"CONFIRM"                   = "Bestätigen";
+"CANCEL"                    = "stornieren";
+"DONE"                      = "Getan";
+"CLOSE"                     = "Schließen";
+"ERROR"                     = "Error";
+"INTERNET_CONN"             = "Bitte überprüfe deine Internetverbindung";
+"NO"                        = "Nein";
+"YES"                       = "Ja";
+"ALERT"                     = "Aufmerksam";
+"NO_DATA"                   = "Keine Karte verfügbar";
+"OTHER"                     = "Andere";
 //Language_VC
-
-"CHOOSE_PREFFERED"                  = "Wählen Sie Ihre bevorzugte Sprache";
-"CHOOSE_YOUR_LAGUAGE_SUBTITTEL"     = "Wir werden auf der Grundlage Ihrer Auswahl bedient.";
-"next"                              = "Nächster";
-
+"CHOOSE_PREFFERED"          = "Wählen Sie Ihre bevorzugte Sprache";
+"CHOOSE_LAGUAGE_SUBTITTEL"  = "Wir werden auf der Grundlage Ihrer Auswahl bedient";
 //WalkThrough
-
-"GET_STARTED"           = "Loslegen";
-"BIRTHDAY_SURPRISE"     = "Geburtstagsüberraschung";
-
+"GET_STARTED"               = "Loslegen";
+"BIRTHDAY_SURPRISE"         = "Sänger vor Ihrer Haustür";
+"DJ_PERFORMERSDj"           = "Virtuelle Aufführungen";
+"DIGITAL_PERFORMANCE"       = "Überraschen Sie Ihre Lieben";
+"DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
 //Login
-"EMAIL_ADDRESS"         = "E-Mail-Addresse";
-"PASSWORD"              = "Passwort";
-"TYPE_HERE"             = "Geben Sie hier ein ...";
-"WELCOME"               = "Herzlich willkommen";
-"SIGN_TO_CONTINUE"      = "Anmelden, um fortzufahren";
-"DONT_HAVE_ACCOUNT"     = "Noch keinen Account?";
-"SIGN_UP"               = "Anmelden";
-"remember_me"           = "Behalte mich in Erinnerung";
-"forget_password"       = "Passwort vergessen?";
-"login"                 = "Anmeldung";
-
+"EMAIL_ADDRESS"             = "E-Mail-Addresse";
+"PASSWORD"                  = "Passwort";
+"TYPE_HERE"                 = "Geben Sie hier ein ...";
+"WELCOME"                   = "Herzlich willkommen";
+"SIGN_TO_CONTINUE"          = "Melden Sie sich an, um fortzufahren";
+"DONT_HAVE_ACCOUNT"         = "Noch keinen Account?";
+"SIGN_UP"                   = "Anmelden";
+"remember_me"               = "Recuérdame";
+"forget_password"           = "Passwort vergessen?";
+"login"                     = "Anmeldung";
+"CHNAGE"                    = "Veränderung";
 //Social Login
-"register_title"        = "Registrieren Sie sich bei uns in Überraschung.";
-"are_you_new"           = "Bist du neu?";
-"signup_with_email"     = "Registrieren Sie sich mit Ihrer E-Mail Adresse";
-"or"                    = "oder";
-"signup_with_facebook"  = "Anmelden mit Facebook";
-"signup_with_apple"     = "Melden Sie sich bei Apple an";
-"back_to_login"         = "Zurück zur Anmeldung";
-"by_signup"             = "Mit Ihrer Anmeldung stimmen Sie unseren zu";
-"terms_condition"       = "Terms & amp; Bedingungen";
-
+"register_title"            = "Registrieren Sie sich bei uns in Überraschung";
+"are_you_new"               = "Bist du neu?";
+"signup_with_email"         = "Registrieren Sie sich mit Ihrer E-Mail Adresse";
+"or"                        = "oder";
+"signup_with_facebook"      = "Anmelden mit Facebook";
+"signup_with_apple"         = "Melden Sie sich bei Apple an";
+"back_to_login"             = "Zurück zur Anmeldung";
+"by_signup"                 = "Mit Ihrer Anmeldung stimmen Sie unseren zu";
+"terms_condition"           = "Terms & amp; Bedingungen";
 //SignUp
-"back"                  = "Zurück";
-"fillup_detail"         = "Füllen Sie die Details aus";
-"register_with"         = "Registrieren Sie sich bei uns in Überraschung";
-"TYPE_HERE"             = "Geben Sie hier ein ...";
-"username"              = "Nutzername";
-"EMAIL_ADDRESS"         = "E-Mail-Addresse";
-"PASSWORD"              = "Passwort";
-"c_password"            = "Kennwort bestätigen";
-"register_now"          = "Jetzt registrieren";
-"back_to_login"         = "Zurück zur Anmeldung";
-
+"fillup_detail"             = "Füllen Sie die Details aus";
+"register_with"             = "Registrieren Sie sich bei uns in Überraschung";
+"TYPE_HERE"                 = "Geben Sie hier ein ...";
+"username"                  = "Nutzername";
+"EMAIL_ADDRESS"             = "E-Mail-Addresse";
+"PASSWORD"                  = "Passwort";
+"c_password"                = "Kennwort bestätigen";
+"register_now"              = "Jetzt registrieren";
+"back_to_login"             = "Zurück zur Anmeldung";
+"BACK_TO_LOGIN"             = "Zurück zur Anmeldung";
+"MAIN_TITLE"                = "Füllen Sie die Details aus";
+"REGISTER_TITLE"            = "Registrieren Sie sich bei uns in";
+"SURPRISE_TITLE"            = "Überraschung";
+"ME_TITLE"                  = "mich";
+"ENTER_OLD_PASSWRD"         = "Geben Sie Ihr altes Passwort ein";
+"ENTER_YOUR_PASSWRD"         = "Geben Sie Ihr Passwort ein";
 //Forget Password
-"back"                  = "Zurück";
-"EMAIL_ADDRESS"         = "E-Mail-Addresse";
-"TYPE_HERE"             = "Geben Sie hier ein ...";
-"continue"              = "Fortsetzen";
-
+"EMAIL_ADDRESS"             = "E-mail Address";
+"continue"                  = "Fortsetzen";
 //Terms & Conditions
-"back"                  = "Zurück";
-"terms_title"           = "Terms & amp; Bedingungen";
-
+"terms_title"               = "Terms & Conditions";
+"NO_BOOKING_RIGHT"          = "Derzeit keine Buchung";
+"UNABLE_FIND_BOOKING_PAGE"  = "Buchung auf dieser Seite nicht möglich";
+"VIRTUAL_SHOW_HEADER"      = "Virtuell";
+"IN_PERSON_SHOW_HEADER"    = "Persönlich";
 //Home VC
-"view_profile"          = "Profil anzeigen";
-"your_location"         = "Ihr Standort";
-"search_for_artist"     = "Suche nach Künstler, Sänger etc.";
-"book_artist_title"     = "Buchkünstler Sie hören";
-"see_artist_profile"    = "Siehe Künstlerprofil";
-"book"                  = "Buch";
+"view_profile"              = "Profil anzeigen";
+"your_location"             = "Your Location";
+"search_for_artist"         = "Suche nach Künstler, Sänger etc.";
+"book_artist_title"         = "Book Artist You Listen";
+"see_artist_profile"        = "Überprüfen Sie das Künstlerprofil";
+"book"                      = "Book";
 
 //Schuedule booking
-"back"                  = "Zurück";
-"select_way_booking"    = "Wählen Sie die Art der Buchung";
-"check_availabilty"     = "Um die Verfügbarkeit des Künstlers an Ihrem ausgewählten Datum zu überprüfen";
-"live_booking"          = "Live Show Buchung";
-"digital_booking"       = "Digitale Showbuchung";
-"Proceed"               = "Vorgehen";
-"book_now"              = "buchen Sie jetzt";
-
-"live_booking_detail"   = "Wir sind jetzt bereit für die nächste Welle der Unterhaltung. Wir sind stolz darauf, Ihnen unsere interne Online-Streaming-Plattform vorstellen zu können.";
-
-"digital_booking_detail"= "Wir sind jetzt bereit für die nächste Welle der Unterhaltung. Wir sind stolz darauf, Ihnen unsere interne Online-Streaming-Plattform vorstellen zu können.";
-
+"select_booking_Title"      = "Schedule Book";
+"Booking_Edit"              = "You may edit the booking slots for your performances.";
+"live_booking"              = "In Person Booking";
+"digital_booking"           = "Virtual Show Booking";
+"Proceed"                   = "Vorgehen";
+"book_now"                  = "Book Now";
+"live_booking_detail"       = "We are now ready with the next of wave of entertainment. We are proud to      announce our in-house online streaming                            platform.";
+"digital_booking_detail"    = "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming                                  platform.";
 //Calander
-"back"                  = "Zurück";
-"select_date_booking"   = "Wählen Sie das Datum der Buchung";
-"check_availabilty"     = "Um die Verfügbarkeit des Künstlers an Ihrem ausgewählten Datum zu überprüfen";
+"select_date_booking"       = "Wählen Sie Ihr Datum";
+"check_availabilty"         = "Wählen Sie die für Sie am besten geeigneten Steckplätze aus";
 
+"AVAILABLE"                 = "Verfügbar";
+"ENTER_YOUR_MAIL"           = "Geben sie ihre E-Mail Adresse ein";
+
+"UNAVAILABLE"               = "Nicht verfügbar";
+"VIRTUAL"                   = "VIRTUELL";
+"IN-PERSON"                 = "PERSÖNLICH";
 //Edit Date
-"back"                  = "Zurück";
-"select_time_booking"   = "Wählen Sie den Zeitpunkt der Buchung";
-"multiple_slot"         = "Sie können mehrere Steckplätze hintereinander auswählen.";
-"choose_another_date"   = "Der Künstler ist an diesem Datum nicht verfügbar. Bitte wählen Sie ein anderes Datum";
-"clear_all"             = "Alles löschen";
-"available"             = "Verfügbar";
-"unavailable"           = "Nicht verfügbar";
-"proceed_checkout"      = "Zur Kasse";
+"select_time_booking"       = "Wählen Sie den Zeitpunkt der Buchung";
+"multiple_slot"             = "
+Sie können mehrere Steckplätze hintereinander auswählen.";
+"choose_another_date"       = "Artist is not available on this date . Please Choose another date";
+"clear_all"                 = "Clear All";
+"available"                 = "Available";
+"unavailable"               = "Unavailable";
+"proceed_checkout"          = "Zur Kasse";
+"POPUP_CONFIRM"             = "
+Sobald die Buchung von Ihnen bestätigt wurde, wird sie zurückgestellt, bis wir die Zahlung erhalten. Klicken Sie auf Bestätigen, um fortzufahren, ODER auf Abbrechen, um zurückzukehren";
+"BELOW_IDEAL_AVAILABE_NETHERLAND" = "Unten IDEALE Beilage Nur für Kunden in den Niederlanden";
+"SELECT_SLOT_ALERT"         = "Please select Any Slot";
+"CONT_BOOK_SLOT"            = "You cannot book because slot is already book in this range";
+"ARTIST_ALREADY_BOOK"       = "
+Künstler ist bereits gebucht";
+"ARTIST_NOT_AVAIABLE"       = "
+Künstler ist nicht verfügbar";
+"BOOKING_CRNF_SUCCESS"      = "
+Hurra! Ihre Buchung ist bestätigt 🙂";
+"OK"                        = "In Ordnung
+";
+
+
+//CAED PAYMENT LIST
+"SELECT_CARD"               = "Wählen Sie Karte";
+"CARD_METHOD"               = "Wählen Sie Ihre Kartenzahlungsmethode";
+"ADD_CARD"                  = "+ Karte hinzufügen";
+"CARD_NUMBER"               = "Kartennummer";
+"EXPIRE"                    = "Läuft ab";
+"CVV"                       = "CVV";
+"SELECT_CARD"               = "Bitte wählen Sie eine Karte aus";
+"CANCEL_SLOT"               = "Wenn Sie auf Ja klicken, wird Ihre Buchung aus der Warteschleife storniert und andere Kunden können denselben Slot buchen";
+"CARD_REMOVE"               = "Möchten Sie diese Karte löschen?";
+//Success Payment VC
+"PAYMENT_DONE"              = "Zahlung erledigt";
+"READY_FOR_SHOW"            = "Hurra, du kannst dich für die Show fertig machen";
+"PAYMENT_FAIL"              = "Bezahlung fehlgeschlagen!";
+"PAYMENT_FAIL_DETAIL"       = "Sie können erneut über den Buchungsdetailbildschirm bezahlen";
+"DO_NOT_PRESS"              = "Drücken Sie nicht oder gehen Sie nicht zurück";
+//LoaderVC
+"PAYMENT_PROCESSING"        = "Zahlungsabwicklung";
+"PAYMENT_PRO_DETAIL"        = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                   standard dummy text ever";
+//Choose your Currency
+"CHOOSE_CURRENCY"           = "Wählen Sie Ihre Währung";
+// IDEALBank
+"IDEAL_PAYMENT_TITLE"       = "iDeal Zahlung";
+"BANK_NAME_TITLE"           = "Wählen Sie Bankname";
+"HOLDER_NAME"               = "Name des Kontoinhabers";
+"SELECT_BANK"               = "Wählen Sie Bank";
+//ADD CARD
+"CARD_HOLDER_NAME"          = "Name des Karteninhabers";
+"ENTER_NAME"                = "Name eingeben";
+"EXPIRE_CARD"               = "Ablaufdatum der Karte";
+"PARTNERSHIP_WITH"          = "Partnership with";
+"STRIPE"                    = "Stripe";
+"ADD_CARD_TITLE"            = "Karte hinzufügen";
+//UpdateLocationVC
+"ADD_DETAILS"               = "Zusätzliche Details";
+"LANDMARK"                  = "Wahrzeichen";
+"OTHER_ADD"                 = "Geben Sie eine andere Adresse ein";
+"SAVE_ADD"                  = "Adresse speichern";
+"HOME"                      = "Zuhause";
+"WORK"                      = "Arbeit";
+//NotificationVC
+"NO_NOTIFICATION"           = "Keine Benachrichtigungen gefunden";
+"NOTI_TITLE"                = "Benachrichtigungen";
+"NOTI_SUBTITLE"             = "Floating-Benachrichtigung ein- / ausschalten";
+//FilterViewController
+"FILTER_MAIN_TITLE"         = "Filter";
+"CATEGORY_TITLE"            = "Kategorie";
+"CLICK_CHOOSE_CATEGORY"     = "Klicken Sie hier, um eine Kategorie auszuwählen";
+"PICK_DATE"                 = "Datum auswählen";
+"FROM"                      = "Von";
+"TO"                        = "Zu";
+"BY_RATING"                 = "Nach Bewertung";
+"BY_DISTANCE"               = "Nach Entfernung";
+"SORT_BY"                   = "Sortieren nach";
+"APPLY_SEARCH"              = "Suche anwenden";
+"PRICE_LOW_HIGH"            = "Preis niedrig bis hoch";
+"PRICE_HIGH_LOW"            = "Preis hoch bis niedrig";
+
+
+"PLEASE_SELECT_TIME"        = "Bitte wählen Sie die Zeit";
+"BOOKING_CONFIRMATION_TITLE" = "Mach dir keine Sorgen. Sie können es anpassen, indem Sie mit dem Künstler chatten 🙂";
+
+
+//SelectPaymentVC
+"CHOOSE_PAYMENT_METHOD"     = "Wähle deine Zahlungsmethode";
+"FRVT_METHOD"               = "Choose your favourable method of payment";
+"IDEAL"                     = "iDeal";
+"CARD"                      = "Card";
+"SUCCESS"                   = "Erfolg";
+"BELOW_IDEAL_INSERT"        = "Nur für Kunden in den Niederlanden";
+
+//ManageAddressVC
+"ADD_ADDRESS"               = "Adresse hinzufügen";
+"NO_ADD_RIGHT_NOW"          = "Derzeit keine Adresse";
+"PLEASE_ADD_ADDRESS"        = "Gespeicherte Adresse konnte nicht gefunden werden. Bitte Adresse hinzufügen";
+"DO_YOU_WANT"               = "Möchten Sie löschen?";
+"OK"                        = "OK";
+
+
+
+//PROFILE -
+"PROFILE"                   = "Profil";
+"LOGOUT"                    = "Ausloggen";
+"SETTING"                   = "die Einstellungen";
+"CHANGE_PASSSWORD"          = "Passwort ändern";
+"USER_NAME"                 = "Nutzername";
+"EMAIL"                     = "Email";
+"UPDATE_PROFILE_CUSTOMER"            = "Profil aktualisieren";
+"EDIT_PROFILE"              = "Profil bearbeiten";
+"PLEASE_SELECT_OPTION"      = "Bitte wähle eine Option";
+"GALLERY"                   = "Galerie";
+"CAMERA"                    = "Kamera";
+"PLEASE_ENTER_USERNAME"     = "Bitte geben Sie Ihren Benutzernamen ein";
+"DO_YOU_WANT_LOGOUT"        = "Möchten Sie sich abmelden?";
+"DO_WANT_PROFILE"           = "Möchten Sie Ihr Profil speichern?";
+
+
+"TERMSACONDITION"           = "Geschäftsbedingungen";
+"PRIVACY_POLICY"            = "Datenschutz-Bestimmungen";
+"ABOUT_US"                  = "Über uns";
+"CHANGE_LANG"               = "Sprache ändern";
+
+"OLD_PASSWORD"              = "Altes Passwort";
+"NEW_PASSWORD"              = "Neues Passwort";
+"CONFIRM_PASSWORD"          = "Kennwort bestätigen";
+
+
+//SelectAddressTypeVC
+"CURRENT_LOCATION"          = "Current Location";
+"OTHER_LOCATION"            = "Select Other Location";
+//SearchArtistByNameVC
+"SEARCH_ARTISH"             = "Search Artist(Enter Atleast 3 Chars.)";
+"NO_ARTISH"                 = "Derzeit kein Künstler";
+"UNABLE_TO_FIND"            = "Künstler kann auf dieser Seite nicht gefunden werden. Bitte suchen Sie nach einem anderen.";
+//HOmeViewController
+"NO_DATA_FOUND"             = "Keine Daten gefunden";
+"NEW_ARTIST"                = "Nieuwe artiest";
+"CHOOSE_SHOW"               = "Wählen Sie die Art der Leistung, die Sie suchen";
+"CHOOSE_SHOW_DETAIL"        = "we are now ready with the next of entertaintment.we are proud to announce our in-house line streaming plateform.";
+"VIRTUAL_SHOW"              = "Virtuelle Show";
+"IN_PERSON_SHOW"            = "Persönliche Show";
+"SELECT"                    = "Wählen";
+"SEETING_UP"                = "Genial ! Wir kuratieren Künstler für Sie. Warte eine Sekunde";
+"SEETING_UP_DETAIL"         = "we are now ready with the next of entertaintment.we are proud to announce our in-house line streaming plateform.";
+"SEETING_UP_DETAIL_IN_PERSON" = "Künstler besuchen einen Ort Ihrer Wahl";
+"SEETING_UP_DETAIL_VIRTUAL"  = "Künstler, die virtuell Skype, Zoom, Hangouts usw. verwenden.";
+"PLEASE_WAIT"               = "Warten Sie mal";
+"MESSAGES"                  = "Mitteilungen";
+"BOOKINGS"                  = "Buchung";
+"BEFORE_PAYMENT_PROCESS"    = "You May Edit The BookingSlot,Before Payment Process.";
+"BOOKINGS_DETAILS"          = "Buchungsdetails";
+"MUSICIANS_HEARTS"          =  "Musiker wollen die laute Stimme für so viele ruhige Herzen sein";
+"MUSIC_UNIVERSAL_LANG"      =  "Musik ist die universelle Sprache der Menschheit";
+"MUSIC_IS_PLACE"            = "Wenn Musik ein Ort ist, dann ist Jazz die Stadt";
+"ROCK_RODE"                 = "Rock ist die Straße, Klassik ist ein Tempel";
+"MUSIC_EMOTION"             =  "Musik ist die Abkürzung für Emotionen";
+"MUSIC_LANGUAGE"            =  "Musik ist die einzige Sprache, in der man nichts Gemeines oder Sarkastisches sagen kann";
+"MUSIC_IS_ART"              = "Musik ist die Kunst, die Tränen und Erinnerungen am nächsten kommt";
+"ONE_GOOD_THING"            = "Eine gute Sache an Musik: Wenn sie dich trifft, fühlst du keinen Schmerz";
+"WORDFAIL_MUSICSPEAK"       = "Wo Worte fehlen spricht Musik";
+"SEE_REVIEW"                = "Siehe Überprüfung";
+"BOOKING_PRICE"             = "Buchungspreis";
+"VIRTUAL_SHOW"              = "Virtuelle Show";
+"IN_PRESON"                 = "Persönlich";
+"GALLERY"                   = "Galerie";
+"SOCIAL_MEDIA_HANDLES"      = "Social Media Handles";
+//"CHAT_ABOUT_YOUR_BOOKING"   = "Social Media Handles";
+"ABOUT"                     = "Über";
+"YOUTUBE_ACCOUNT"           = "Youtube Account";
+"INSTRAGRAM_ACCOUNT"        = "Instagram-Konto";
+"VIEW_PROFILE"              = "Profil anzeigen";
+"SEE_REVIEW"                = "Siehe Überprüfung";
+"REACH_LOCATION"            = "Sind Sie sicher, dass Künstler an Ihrem Standort ankommen?";
+"SELECT_RESON"              = "Wählen Sie Grund";
+"ARTIST_DENIED_DUTY"        = "Künstler verweigert Pflicht";
+"ARTIST_UNREACHABLE"        = "Künstler ist nicht erreichbar";
+"ARTIST_NOT_PICK_CALL"      = "Künstler nimmt keinen Anruf entgegen";
+"OTHER"                     = "Andere";
+"YOUR_OTP"                  = "Ihr OTP ist:";
+"SHARE_YOUR_OTP"            = "Teilen Sie Ihr OTP mit Ihrem Künstler";
+"READ_MORE"                 = "Weiterlesen";
+"REASON"                    = "Grund";
+"BOOKING_DATE"              = "Buchungsdatum";
+"BOOKING_TIME"              = "Buchungszeit";
+"STATUS"                    = "Status";
+"PAYMENT"                   = "ZAHLUNG";
+"DID_ARTIST_REACHED"        = "Hat Artist Ihren Standort erreicht?";
+"YES_REACHED"               = "Si alcanzado";
+"NO_ARTIST"                 = "No, quiero informar";
+"PAID"                      = "Pagado:-";
+"REPORT"                    = "Reporte";
+"book"                      = "Buch";
+"NO_VIDEO_UPLOADED"         = "Es wurde noch kein Video hochgeladen";
+"HAVE_A_CHAT_BOOKING"       = "Plaudern Sie über Ihre Buchung";
+"PAY_NOW"                   = "ZAHLEN SIE JETZT";
+"DEBIT_CREDIT_CARD"         = "Lastschrift [?] Kreditkarte";
+"PROFILE_UPDATE_SUCCESS"    = "Profil wurde erfolgreich aktualisiert";
+"MANAGE_BOOKING_YOURS"      = "Verwalten Sie Ihre Buchungen hier";
+"SEARCH_CITY_AREA"          = "Suche jede Stadt, Region";
+"SAVED_LOCATION"            = "Gespeicherter Ort";
+"RATE_REVIEW"               = "Bewertung und Bewertung";
+"LOCATION_VALUE_DATE"       = "Ort";
+"CANCEL_BOOKING"            = "Buchung stornieren";
+"NOT_PAID"                   = "Nicht bezahlt";
+"GO_TO_HOME"                = "Zur Startseite";
+"ARTIST_COMPLETE_PERFORMANCE" = "You artist completed his performance";
+"BOOKING_DETAILS"          = "Buchungsdetails";
+"FAILED"                   = "Gescheitert";
+"COMPLETED"                = "abgeschlossen";

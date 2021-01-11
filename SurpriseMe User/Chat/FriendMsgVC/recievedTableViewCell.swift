@@ -19,6 +19,7 @@ class recievedTableViewCell: UITableViewCell {
 //    @IBOutlet weak var lblReciveTime: UILabel!
     
     
+    @IBOutlet weak var lblReceiverTime: UILabel!
     @IBOutlet weak var receiveView: UIView!
     @IBOutlet weak var receiverImg: UIImageView!
     @IBOutlet weak var lblReceiveMsg: UILabel!

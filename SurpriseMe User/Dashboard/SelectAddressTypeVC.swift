@@ -16,12 +16,19 @@ class SelectAddressTypeVC: UIViewController {
     //MARK:- Outlets -
     @IBOutlet weak var viewHeader: UIView!
     
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnCurrentLocation: UIButton!
+    @IBOutlet weak var btnOtherLocation: UIButton!
     var locationManager = CLLocationManager()
 
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBack.setTitle("back".localized(), for: .normal)
+        btnCurrentLocation.setTitle("CURRENT_LOCATION".localized(), for: .normal)
+        btnOtherLocation.setTitle("OTHER_LOCATION".localized(), for: .normal)
+        
         self.viewHeader.addBottomShadow()
         self.currentLocationGet()
 

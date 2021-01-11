@@ -29,6 +29,8 @@ class ChatHistoryModel: NSObject {
     var receiver_image: String?
     var reply_count: Int?
     var status: Int?
+    var customValue: String?
+
 //    var thumbnail: String?
     
     
@@ -53,6 +55,8 @@ class ChatHistoryModel: NSObject {
         receiver_image = json[Key.receiver_image].stringValue
         reply_count = json[Key.reply_count].intValue
         status = json[Key.status].intValue
+        customValue = json["customValue"].stringValue
+
 //        thumbnail = json[Key.thumbnail].stringValue
         
     }

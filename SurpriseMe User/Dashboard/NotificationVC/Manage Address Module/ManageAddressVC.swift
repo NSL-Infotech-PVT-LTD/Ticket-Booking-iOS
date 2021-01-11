@@ -18,6 +18,13 @@ class ManageAddressVC: UIViewController {
     
     @IBOutlet weak var btnPlus: UIButton!
     @IBOutlet weak var noDataFound: UIView!
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var lblNoAddress: UILabel!
+    @IBOutlet weak var lblPleaseAddAddress: UILabel!
+    
+    
+    
+    
     //MARK:- Variables -
     var objectViewModel = ManageAddressViewModel()
     var modelObject = [ManageAddressModel]()
@@ -29,6 +36,13 @@ class ManageAddressVC: UIViewController {
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
+        btnBack.setTitle("back".localized(), for: .normal)
+        btnPlus.setTitle("ADD_ADDRESS".localized(), for: .normal)
+        btnAddadress.setTitle("ADD_ADDRESS".localized(), for: .normal)
+        lblNoAddress.text = "NO_ADD_RIGHT_NOW".localized()
+        lblPleaseAddAddress.text = "PLEASE_ADD_ADDRESS".localized()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,13 +113,13 @@ class ManageAddressVC: UIViewController {
         
         let param = ["id":modelData.id]
         
-        let alert = UIAlertController(title: "Alert", message: "Do you want to delete?", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "ALERT".localized(), message: "DO_YOU_WANT".localized(), preferredStyle: UIAlertController.Style.alert)
                // add the actions (buttons)
-                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertAction.Style.destructive, handler: { action in
+        alert.addAction(UIAlertAction(title: "YES".localized(), style: UIAlertAction.Style.destructive, handler: { action in
                           // do something like...
                     self.objectViewModel.getParamForDeleteAddress(param: param as [String : Any])
                       }))
-               alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: UIAlertAction.Style.cancel, handler: nil))
               
                self.present(alert, animated: true, completion: nil)
         
@@ -121,6 +135,7 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as! CustomHeaderAddressCell
+        cell.lblSavedLocation.text = "SAVED_LOCATION".localized()
         return cell
     }
     
@@ -151,6 +166,9 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
 //        }else{
 //            cell.viewContainer.backgroundColor = UIColor.white
 //        }
+        
+        
+        
          if data.name == "Home"{
             cell.addressTypeImg.image = UIImage.init(named: "Mask Group 71")
         }else if data.name == "Work"{
@@ -230,8 +248,7 @@ extension ManageAddressVC: ManageAddressViewModelProtocol {
     func successAlert(susccessTitle: String, successMessage: String, from: Bool) {
         
         if from == false{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: successMessage, btnOkTitle: "OK") {
-                
+            Helper.showOKAlertWithCompletion(onVC: self, title: "", message: successMessage, btnOkTitle: "DONE".localized()) {
                 
                 self.modelObject.remove(at: self.selectedIndex)
                 
@@ -256,7 +273,7 @@ extension ManageAddressVC: ManageAddressViewModelProtocol {
     
     func manageAddressApiResponse(message: String, modelArray response:  [ManageAddressModel],isError :Bool) {
         if isError == true{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "OK") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "OK".localized()) {
             }
         }else{
             modelObject = response
@@ -284,7 +301,7 @@ extension ManageAddressVC: ManageAddressViewModelProtocol {
     func successAlert(susccessTitle: String, successMessage: String)
     {
         self.objectViewModel.getParamForManageAddress(param: [:])
-        Helper.showOKAlertWithCompletion(onVC: self, title: "", message: successMessage, btnOkTitle: "OK") {
+        Helper.showOKAlertWithCompletion(onVC: self, title: "", message: successMessage, btnOkTitle: "OK".localized()) {
 
                    }
     }

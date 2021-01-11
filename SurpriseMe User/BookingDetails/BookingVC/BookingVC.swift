@@ -14,7 +14,11 @@ class BookingVC: UIViewController {
     
     @IBOutlet weak var viewBookingDash: UIView!
     @IBOutlet weak var BookingTableView: UITableView!
+    @IBOutlet weak var lblBookingTitle: UILabel!
+    @IBOutlet weak var lblBookingDescr: UILabel!
     @IBOutlet weak var viewNoData: UIView!
+    @IBOutlet weak var lblNoBookingRightNow: UILabel!
+    @IBOutlet weak var lblUnableToFindBooking: UILabel!
     
     //MARK:- Variables -
     var objectViewModel = BookingListModelView()
@@ -25,7 +29,6 @@ class BookingVC: UIViewController {
     var refreshControl = UIRefreshControl()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl.backgroundColor = UIColor.clear
@@ -33,7 +36,6 @@ class BookingVC: UIViewController {
         self.BookingTableView.refreshControl = refreshControl
         self.refreshControl.addTarget(self, action:#selector(methodPullToRefresh), for: .valueChanged)
         self.BookingTableView.addSubview(self.refreshControl)
-        
     }
     
     @objc func methodPullToRefresh(){
@@ -42,20 +44,24 @@ class BookingVC: UIViewController {
         self.getBookingListData(param: 1)
     }
     
+    func setLocalisation(){
+        self.lblBookingTitle.text = "BOOKINGS".localized()
+        self.lblBookingDescr.text = "MANAGE_BOOKING_YOURS".localized()
+        self.lblNoBookingRightNow.text = "NO_BOOKING_RIGHT".localized()
+        self.lblUnableToFindBooking.text = "UNABLE_FIND_BOOKING_PAGE".localized()
+    }
     
-   override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         pageInt = 1
+        self.setLocalisation()
         if idealPayment == true && idealPaymentAppDelegate == true{
-            
         }else if idealPayment == true && idealPaymentAppDelegate == false{
             let storyboard1 = UIStoryboard(name: "BookingDetail", bundle: nil)
             let controller1 = storyboard1.instantiateViewController(withIdentifier: "BookingDetailVC") as! BookingDetailVC
-            //            let navController = UINavigationController(rootViewController: controller1)
             controller1.bookingID = bookingPaymentID ?? 0
             idealPaymentAppDelegate = true
             idealPayment = false
-            //            navController.modalPresentationStyle = .overCurrentContext
             controller1.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(controller1, animated: true)
         }else{
@@ -78,11 +84,7 @@ class BookingVC: UIViewController {
         let navController = UINavigationController(rootViewController: controller1)
         navController.modalPresentationStyle = .overCurrentContext
         navController.isNavigationBarHidden = true
-        //                                                        let bookingDict = self.arrayBookingList[indexPath.row]
-        
-        //                                                        controller.bookingID = bookingDict.id ?? 0
         self.navigationController?.pushViewController(controller1, animated: true)
-        
     }
     
     
@@ -130,11 +132,6 @@ class BookingVC: UIViewController {
         dateFormatter.dateFormat = "h:mm a"
         let Date12 = dateFormatter.string(from: date ?? Date())
         return Date12
-    }
-    
-    
-    func getFreindList()  {
-        
     }
     
     
@@ -228,7 +225,7 @@ class BookingVC: UIViewController {
                                 self.BookingTableView.isHidden = true
                             }
                             self.refreshControl.endRefreshing()
-
+                            
                             self.BookingTableView.reloadData()
                         }
                         else {
@@ -359,6 +356,7 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookingTableViewCell", for: indexPath) as! BookingTableViewCell
         //        cell.viewBookingBorderDash.addDashedBorder( UIColor(red: 0.78, green: 0.78, blue: 0.78, alpha: 1.00), withWidth: 1, cornerRadius: 6, dashPattern: [5,4])
         cell.btnseeAllDetails.addTarget(self, action: #selector(btnseeAllDetailsOnPress(sender:)), for: .touchUpInside)
+        cell.btnseeAllDetails.setTitle("BOOKING_DETAILS".localized(), for: .normal)
         cell.btnseeAllDetails.tag = indexPath.row
         cell.lblName.text =  dataItem.artist_detail?.name ?? ""
         cell.lblOrderID.text = "#\(dataItem.id ?? 0)"
@@ -378,9 +376,9 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
         cell.userImgProfile.sd_imageIndicator = SDWebImageActivityIndicator.gray
         cell.userImgProfile.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 489"))
         if dataItem.type == "live"{
-            cell.lblSkill.text = "In-Person"
+            cell.lblSkill.text = "IN_PERSON_SHOW_HEADER".localized()
         }else{
-            cell.lblSkill.text = "Virtual"
+            cell.lblSkill.text = "VIRTUAL_SHOW_HEADER".localized()
         }
         cell.viewBookingBorderDash.layer.cornerRadius = 8
         cell.viewBookingBorderDash.layer.shadowColor = UIColor.darkGray.cgColor
@@ -392,47 +390,37 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
         cell.viewBookingBorderDash.layer.masksToBounds = false
         
         if dataItem.status == "pending"{
-            
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
         } else if dataItem.status == "rejected" || dataItem.status == "report"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-            
         }else if dataItem.status == "cancel"{
-            
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
         }else if dataItem.status == "accepted"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-            
         }else if dataItem.status == "confirmed"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-            
         }else if dataItem.status == "processing"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.6784313725, blue: 0.2, alpha: 1)
-            
         }else if dataItem.status == "completed_review"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
-            cell.lblBookingStatus.text = "Completed"
+            cell.lblBookingStatus.text = "COMPLETED".localized()
         }else if dataItem.status == "completed"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.3764705882, green: 0.7725490196, blue: 0.4980392157, alpha: 1)
         }else if dataItem.status == "payment_failed"{
             cell.tittelView.backgroundColor = #colorLiteral(red: 0.9529411765, green: 0.2784313725, blue: 0.2, alpha: 1)
-            cell.lblBookingStatus.text = "Failed"
+            cell.lblBookingStatus.text = "FAILED".localized()
         }
-        
         return cell
-        //        }
     }
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let dataItem = self.arrayBookingList[indexPath.row]
         if dataItem.status == "completed_review"{
-            return 279
+            return 230
         }else{
             return 230
         }
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "BookingDetail", bundle: nil)
@@ -445,33 +433,28 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
     
 }
 
-
 //Error handling Get Profile Api Here:-
 extension BookingVC: BookingListModelViewDelegate {
     func bookingListApiResponse(message: String, response: [GetBookingListModel], isError: Bool) {
         if isError == true{
-            Helper.showOKAlertWithCompletion(onVC: self, title: "Error", message: message, btnOkTitle: "Done") {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
             }
         }else{
             if self.pageInt == 1{
                 arrayBookingList.removeAll()
                 arrayBookingList = response.map({$0})
-                print("the page number is arrayBookingList\(arrayBookingList.count )")
             }else{
                 self.arraySetBookingList.removeAll()
                 arraySetBookingList = response.map({$0})
-                print("the page number is arrayHomeArtistListLoadMore\(arraySetBookingList )")
                 arrayBookingList = arrayBookingList + self.arraySetBookingList
                 if arraySetBookingList.count == 0{
                     isLoadMore = true
                 }
             }
-            print("the page number is arrayBookingList\(arrayBookingList )")
             if arrayBookingList.count > 0{
                 viewNoData.isHidden = true
                 BookingTableView.isHidden = false
             }else{
-                print("the page number is no data found\(arrayBookingList.count )")
                 viewNoData.isHidden = false
                 BookingTableView.isHidden = true
             }
