@@ -14,8 +14,7 @@ class FriendListVC: UIViewController {
     @IBOutlet weak var viewNoData: UIView!
     @IBOutlet weak var viewMsgDash: UIView!
     @IBOutlet weak var MessageTableView: UITableView!
-  @IBOutlet weak var lblMssgeHeader: UILabel!
-    
+    @IBOutlet weak var lblMssgeHeader: UILabel!
     @IBOutlet weak var lblEditBookingDescpt: UILabel!
     
     //MARK:- Variable -
@@ -84,6 +83,9 @@ class FriendListVC: UIViewController {
                                     print("the number of running fixture is \(self.arrayFreindLoadMore.count)")
                                 }
                               print("the freind List is \(self.arrayFreind.count)")
+                                
+                                
+                                
                                 if self.arrayFreind.count >  0{
                                     self.MessageTableView.isHidden = false
                                     self.viewNoData.isHidden = true

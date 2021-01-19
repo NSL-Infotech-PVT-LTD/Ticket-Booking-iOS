@@ -21,14 +21,8 @@ class SocialLoginVC: UIViewController {
     @IBOutlet var lblSignupWithFacebook: UILabel!
     @IBOutlet var lblSignupWithApple: UILabel!
     @IBOutlet var lblBackToLogin: UILabel!
-    
-    
-    
     @IBOutlet weak var lblTermsANDCond: UILabel!
     @IBOutlet weak var lblSigningUpAgree: UILabel!
-    
-    
-    
     @IBOutlet weak var viewFacebook: UIView!
     @IBOutlet weak var viewBackTOLogin: UIView!
     @IBOutlet weak var viewSignWithEmail: UIView!
@@ -51,12 +45,8 @@ class SocialLoginVC: UIViewController {
         self.lblAreYouNew.text = "are_you_new".localized()
         self.lblSignUpWithEmail.text = "signup_with_email".localized()
         self.lblOr.text = "or".localized()
-        
         self.lblSigningUpAgree.text = "by_signup".localized()
         self.lblTermsANDCond.text = "terms_condition".localized()
-
-        
-        
         self.lblSignupWithFacebook.text = "signup_with_facebook".localized()
         self.lblSignupWithApple.text = "signup_with_apple".localized()
         self.lblBackToLogin.text = "back_to_login".localized()
@@ -94,8 +84,6 @@ class SocialLoginVC: UIViewController {
         let tapviewFacebook = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewFacebook(_:)))
         viewFacebook.addGestureRecognizer(tapviewFacebook)
         
-        
-        
         let tapviewEmail = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewEmail(_:)))
         viewSignWithEmail.addGestureRecognizer(tapviewEmail)
         
@@ -127,7 +115,9 @@ class SocialLoginVC: UIViewController {
                                     let imagePictureData = imageData?["data"] as? [String:Any]
                                     let image = imagePictureData?["url"] as? String
                                     LoaderClass.shared.loadAnimation()
-                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "fb_id" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? "","lang":"en","image":image ?? ""]
+                                    let language = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
+                                    
+                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "fb_id" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? "","lang":language,"image":image ?? ""]
                                     self.loginViewModel.getParamForSignUp(param: param, url: Api.FBregister)
                                 }
                             })
@@ -142,7 +132,6 @@ class SocialLoginVC: UIViewController {
     
     @IBAction func btnTerConditionAction(_ sender: UIButton) {
         selectedIdentifier = "Terms And Conditions"
-
         self.presentViewController(viewController : "TermsProfileVC", value: "Main")
 
     }
@@ -169,11 +158,7 @@ extension SocialLoginVC: SignUpViewModelProtocol {
             UserDefaults.standard.set(response["token"] ?? "", forKey: UserdefaultKeys.token)
             UserDefaults.standard.set(true, forKey: UserdefaultKeys.isLogin)
             if let data = response["user"] as? [String:Any]{
-                
-                
                 UserDefaults.standard.set(data["id"] as? Int, forKey: UserdefaultKeys.userID)
-                
-                
                 if let currancy = data["currency"] as? String{
                     UserDefaults.standard.set(currancy, forKey: UserdefaultKeys.userCurrency)
                 }

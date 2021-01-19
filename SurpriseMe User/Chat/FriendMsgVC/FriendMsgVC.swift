@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManager
 import SDWebImage
+import SafariServices
 
 
 class FriendMsgVC: UIViewController {
@@ -115,6 +116,17 @@ class FriendMsgVC: UIViewController {
             dateForHeader = filterArrayDate.map({$0})
             print("the filter date is \(dateForHeader)")
         }
+    }
+    
+    
+    
+    public func htmlStyleAttributeText(text: String) -> NSMutableAttributedString? {
+        if let htmlData = text.data(using: .utf8) {
+            let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html, NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8.rawValue]
+            let attributedString = try? NSMutableAttributedString(data: htmlData, options: options, documentAttributes: nil)
+            return attributedString
+        }
+        return nil
     }
     
     
@@ -359,11 +371,7 @@ class FriendMsgVC: UIViewController {
                     userArtistID = reciverData.sender_id ?? 0
 
                 }
-                
-                
-                
-                
-            }
+             }
         }
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ViewProfileVC") as! ViewProfileVC
@@ -395,7 +403,7 @@ class FriendMsgVC: UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             let val_Date = dateFormatter.date(from: date)
-            dateFormatter.dateFormat = "dd-MMM-yyyy"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             if val_Date != nil {
                 return dateFormatter.string(from: val_Date!)
             }
@@ -403,13 +411,14 @@ class FriendMsgVC: UIViewController {
         }
     }
     
-    func filterReceivedMessageDataAccordingDate() {
+    
+      func filterReceivedMessageDataAccordingDate() {
         var filterReceivedMessageData = [ChatHistoryModel]()
         var date = ""
         filterReceivedMessageData.removeAll()
         for val in chatHistoryData {
             let date_Formate = self.changeDateFormate(date: val.created_at ?? "")
-            
+            print("the created time is \(val.created_at ?? "")")
             if date == date_Formate {
                 val.customValue! = ""
             } else {
@@ -419,7 +428,6 @@ class FriendMsgVC: UIViewController {
             filterReceivedMessageData.append(val)
         }
         self.chatHistoryData = filterReceivedMessageData
-        
     }
     
     
@@ -534,6 +542,118 @@ class FriendMsgVC: UIViewController {
         }
     }
     
+    
+    
+    
+    func convertDateIntoTodaysYesterday(somedate : String) -> String {
+        print(somedate)
+        let todayDate = Date()
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "yyyy-MM-dd"
+        let today = dateFormat.string(from: todayDate)
+        print("today is \(today)")
+        let yesterdayDate = todayDate.addingTimeInterval(-86400.0)
+        let yesterday = dateFormat.string(from: yesterdayDate)
+        print("yesterday was \(yesterday)")
+        let yourDate = somedate
+        if yourDate == yesterday {
+            print("yesterday")
+            return "Yesterday"
+        } else if yourDate == today {
+            print("today")
+            return "Today"
+        } else {
+            print("the date is \(yourDate)")
+            return yourDate
+        }
+        return ""
+    }
+    
+    
+    func localToUTC(dateStr: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd h:mm:ss"
+        dateFormatter.calendar = Calendar.current
+        dateFormatter.timeZone = TimeZone.current
+        if let date = dateFormatter.date(from: dateStr) {
+            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+            dateFormatter.dateFormat = "yyyy-MM-dd h:mm:ss"
+            return dateFormatter.string(from: date)
+        }
+        return nil
+    }
+    
+    
+    
+    
+    @objc func normalTapReviewver(_ sender: UIGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.ended {
+                   let tapLocation = sender.location(in: self.msgTableView)
+                   if let tapIndexPath = self.msgTableView.indexPathForRow(at: tapLocation) {
+                    let input = chatHistoryData[tapIndexPath.row].message
+                    let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+                    let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input?.utf16.count ?? 0))
+                    for match in matches {
+                        guard let range = Range(match.range, in: input ?? "") else { continue }
+                        let url = input?[range]
+                        print(url)
+                        
+                        var string = url
+
+                        if string?.range(of:"https://") != nil {
+                            print("exists")
+                            if let url = URL(string: String(url ?? "")) {
+                                UIApplication.shared.open(url)
+                            }
+                        }else{
+                            if let url = URL(string: "https://" + String(url ?? "")) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
+ }
+                 }
+        }
+    }
+    
+    
+    
+    
+    
+    @objc func normalTap(_ sender: UIGestureRecognizer){
+
+        if sender.state == UIGestureRecognizer.State.ended {
+                   let tapLocation = sender.location(in: self.msgTableView)
+                   if let tapIndexPath = self.msgTableView.indexPathForRow(at: tapLocation) {
+                    print("Normal tap \(tapIndexPath.row)")
+                    let input = chatHistoryData[tapIndexPath.row].message
+                    let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+                    let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input?.utf16.count ?? 0))
+                    for match in matches {
+                        guard let range = Range(match.range, in: input ?? "") else { continue }
+                        let url = input?[range]
+                        print(url)
+
+                        var string = url
+
+                        if string?.range(of:"https://") != nil {
+                            print("exists")
+                            if let url = URL(string: String(url ?? "")) {
+                                UIApplication.shared.open(url)
+                            }
+                        }else{
+                            if let url = URL(string: "https://" + String(url ?? "")) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
+                    }
+                }
+        }
+        
+        
+        
+    }
+    
+    
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         if comingFrom == "NotificationTabsTouch"{
             cameFromChat = true
@@ -561,20 +681,38 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             guard let SendCell = tableView.dequeueReusableCell(withIdentifier: "sendTableViewCell", for: indexPath) as? sendTableViewCell else  {
                 return UITableViewCell()
             }
-            SendCell.selectionStyle = .none
-            SendCell.lblSendMsg.text = chatHistoryData[indexPath.row].message
-            let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
             
+            SendCell.selectionStyle = .none
+            let myString = chatHistoryData[indexPath.row].message ?? ""
+            
+            
+            //SendCell.lblSendMsg.enabledTypes = [.mention, .hashtag, .url, .email]
+            SendCell.lblSendMsg.text = myString
+//            SendCell.lblSendMsg.handleHashtagTap { hashtag in
+//                print("Success. You just tapped the \(hashtag) hashtag")
+//            }
+            
+//            SendCell.lblSendMsg.text = myString
+            let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
             let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
-            SendCell.lblSenderTime.text = date
+            
+            
+            let dateValue = self.convertDateIntoTodaysYesterday(somedate: date)
+            print("the date value is \(dateValue)")
+            
+            SendCell.lblSenderTime.text = dateValue
+            print("the created at is \(chatHistoryData[indexPath.row].created_at ?? "")")
             if chatHistoryData[indexPath.row].customValue != "" {
+                print("hello")
                 SendCell.lblSenderTime.isHidden = false
-                SendCell.senderHeight.constant = 0
+                SendCell.senderHeight.constant = 30
             } else {
+                print("not hello")
                 SendCell.lblSenderTime.isHidden = true
                 SendCell.senderHeight.constant = 0
             }
-            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap))
+            SendCell.addGestureRecognizer(tapGesture)
             SendCell.lblTime.text =  timeStamp
             return SendCell
         }else{
@@ -584,7 +722,6 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             ReceiveCell.selectionStyle = .none
             ReceiveCell.lblReceiveMsg.text = chatHistoryData[indexPath.row].message
             let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
-            
             let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
             ReceiveCell.lblReceiverTime.text = date
             if chatHistoryData[indexPath.row].customValue != "" {
@@ -592,7 +729,8 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             } else {
                 ReceiveCell.lblReceiverTime.isHidden = true
             }
-            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTapReviewver))
+            ReceiveCell.addGestureRecognizer(tapGesture)
             ReceiveCell.lblTime.text =  timeStamp
             let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].sender_image ?? "")"
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
@@ -638,11 +776,8 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                 let param = ["receiver_id": userArtistID ] as [String: Any]
                 reciverID = userArtistID
             }else{
-                
-                
                 let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
                 print("the user id is \(useriD  )")
-                
                 if useriD == reciverData.sender_id{
                     let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
                     reciverID = reciverData.receiver_id ?? 0
@@ -650,24 +785,42 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                     let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
                     reciverID = reciverData.sender_id ?? 0
                 }
-                
-                
-                
-                
-//                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-//                if userName == reciverData.receiver_name ?? ""{
-//                    let param = ["receiver_id": reciverData.sender_id ?? 0 ] as [String: Any]
-//                    reciverID = reciverData.sender_id ?? 0
-//                }else{
-//                    let param = ["receiver_id": reciverData.receiver_id ?? 0 ] as [String: Any]
-//                    reciverID = reciverData.receiver_id ?? 0
-//                }
             }
         }
         if reciverID == receiver_id && useriD == sender_id || useriD == receiver_id  {
-            chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage]))
+            
+            
+          
+            
+            let date = Date()
+            let formatter = DateFormatter()
+
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+            let result = formatter.string(from: date)
+
+            
+            
+            
+            
+            
+            print("the time in utc is \(result)")
+            
+            
+            let dateString = result
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let s = dateFormatter.date(from: dateString)
+            print(s)
+            let utcTime = self.localToUTC(dateStr: formatter.string(from: s ?? Date()))
+
+            print("the time in utc is \(utcTime)")
+
+            
+            chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage , "created_at" : utcTime]))
             DispatchQueue.main.async {
-                if self.chatHistoryData.count == 0 {
+                
+               if self.chatHistoryData.count == 0 {
                     let date = Date()
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "d MMM YYYY hh:mm a"
@@ -678,13 +831,18 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                     self.lblMsgChatWith.text = "Start chat with \(self.lblRecierverName.text ?? "")"
                     self.reciverImage.image = self.picUserReciever.image
                     self.myImage.sd_setImage(with: URL(string: SelfImage), placeholderImage: UIImage(named: "user (1)"))
-                    
                 }else{
                     self.firstTimeView.isHidden = true
                     self.msgTableView.isHidden = false
+                    self.getdate()
                     self.scrollToBottom()
+                    self.filterReceivedMessageDataAccordingDate()
+                    print("the message is \(self.chatHistoryData.map({$0.created_at}))")
+                    print("the message is \(self.chatHistoryData.map({$0.message}))")
                     self.msgTableView.reloadData()
                 }
+                self.msgTableView.reloadData()
+
             }
         }
     }

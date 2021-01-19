@@ -33,15 +33,11 @@ class LanguageVC: UIViewController {
     @IBOutlet weak var btnBack: UIButton!
     
 //    @IBOutlet weak var btnNext: UIButton!
-    
-    
-    
     var language = "en"
     var languageArray = ["English (US)","Dutch","German","Spanish"]
     var languageCodeArray = ["en","nl","de","es"]
     var selectedIndex = 0
     var selectedLanguage = String()
-    
 
     
     override func viewDidLoad() {
@@ -49,17 +45,13 @@ class LanguageVC: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView()
-        
         if isCameFromCL == "Setting"{
             self.btnBack.isHidden = false
             self.btnNext.isHidden = false
-
         }else{
             self.btnBack.isHidden = true
             self.btnNext.isHidden = false
-
         }
-        
         
        let language = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
         if language == "en"{

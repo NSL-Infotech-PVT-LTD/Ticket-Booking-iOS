@@ -7,12 +7,12 @@
 		<key>AARatingBar.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>43</integer>
+			<integer>54</integer>
 		</dict>
 		<key>AMDots.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>44</integer>
+			<integer>53</integer>
 		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
@@ -38,7 +38,7 @@
 		<key>DropDown.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>45</integer>
+			<integer>43</integer>
 		</dict>
 		<key>FBSDKCoreKit.xcscheme</key>
 		<dict>
@@ -53,6 +53,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>6</integer>
+		</dict>
+		<key>FBSDKShareKit.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>45</integer>
 		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
@@ -92,7 +97,7 @@
 		<key>FirebaseCrashlytics.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>46</integer>
+			<integer>51</integer>
 		</dict>
 		<key>FirebaseInstallations.xcscheme</key>
 		<dict>
@@ -171,6 +176,11 @@
 			<key>orderHint</key>
 			<integer>23</integer>
 		</dict>
+		<key>ImageSlideshow.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>47</integer>
+		</dict>
 		<key>KJNavigationViewAnimation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -184,6 +194,16 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>24</integer>
+		</dict>
+		<key>Mantis-Resource.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>48</integer>
+		</dict>
+		<key>Mantis.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>50</integer>
 		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
@@ -265,7 +285,7 @@
 		<key>StepSlider.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>47</integer>
+			<integer>52</integer>
 		</dict>
 		<key>Stripe-Stripe.xcscheme</key>
 		<dict>
@@ -303,7 +323,7 @@
 		<key>Toast-Swift.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>48</integer>
+			<integer>44</integer>
 		</dict>
 		<key>YoutubePlayer-in-WKWebView.xcscheme</key>
 		<dict>
@@ -329,7 +349,7 @@
 		<key>youtube-ios-player-helper.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>50</integer>
+			<integer>46</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

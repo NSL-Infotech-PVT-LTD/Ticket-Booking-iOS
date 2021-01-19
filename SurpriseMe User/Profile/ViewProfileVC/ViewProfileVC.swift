@@ -38,6 +38,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     @IBOutlet weak var crossBack: UIView!
     @IBOutlet weak var showCollectionView: UICollectionView!
     @IBOutlet weak var serviceCollectionView: UICollectionView!
+  @IBOutlet weak var imgVirtualShowType: UIImageView!
     @IBOutlet weak var serviceCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var viewLiveShow: UIView!
     @IBOutlet weak var viewDigitalShow: UIView!
@@ -306,7 +307,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         }else{
             let url = URL(string: Api.videoUrl + link)!
             self.localVideoUrl = Api.videoUrl + link
-            
             let urlSting : String = "\(Api.videoUrlThumbnail)\(self.getArtistProfile?.shows_video_thumbnail ?? "")"
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
             let urlImage = URL(string: urlStringaa)!
@@ -315,11 +315,9 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             self.playerView.isHidden = false
             let when = DispatchTime.now() + 5
             DispatchQueue.main.asyncAfter(deadline: when){
-                // your code with delay
                 self.imgPlayBtnVideo.isHidden = false
             }
             self.youTubePlayer.isHidden = true
-            
         }
         return ""
     }
@@ -449,13 +447,16 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             viewLivePriceValue.isHidden = true
             lblInPersonData.isHidden = true
             self.liveShowHeightConstant.constant = 30
+            self.imgShowType.isHidden = true
             self.viewLiveShow.isHidden = false
-            self.imgShowType.image = UIImage.init(named: "virtual")
+            self.imgVirtualShowType.image = UIImage.init(named: "virtual")
+//            self.imgShowType.image = UIImage.init(named: "virtual")
         }else{
             viewLivePriceValue.isHidden = false
              lblInPersonData.isHidden = false
             self.digitalShowHeightConstant.constant = 0
             self.viewDigitalShow.isHidden = true
+            self.imgShowType.isHidden = false
             self.imgShowType.image = UIImage.init(named: "inperson")
         }
         
@@ -488,7 +489,17 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             
             imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
             
-        }else if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
+        }else  if getArtistProfile?.shows_image_1 == "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 != ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_4 ?? "")
+            
+        }else  if getArtistProfile?.shows_image_1 == "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
+            
+        }else  if getArtistProfile?.shows_image_1 == "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 != ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
+            
+        }
+        else if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
             imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
             imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
             
@@ -497,13 +508,35 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
             imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
             
-        }else{
+        }else  if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 != ""{
             imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
             imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
             imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
             imageArrayValue.append(getArtistProfile?.shows_image_4 ?? "")
             
+        }else  if getArtistProfile?.shows_image_1 == "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 == ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
+        }else  if getArtistProfile?.shows_image_1 == "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 != ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_2 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_4 ?? "")
+        }else  if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 != ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_4 ?? "")
+        }else  if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 == ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_1 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
+        }else  if getArtistProfile?.shows_image_1 == "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 != ""{
+            imageArrayValue.append(getArtistProfile?.shows_image_4 ?? "")
+            imageArrayValue.append(getArtistProfile?.shows_image_3 ?? "")
         }
+        
+        
+        
+        print("the number of gallery images is \(imageArrayValue.count)")
+        print("the number of gallery images is \(imageArrayValue)")
+
+        
         if  profile?.social_link_insta ?? "" != "" &&  profile?.social_link_youtube ?? "" != ""{
             viewInstaGramProfile.isUserInteractionEnabled = true
             viewInstaGramProfile.isHidden = false
@@ -591,18 +624,7 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.showCollectionView {
             
-            if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 == "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
-                return 1
-                
-            }else if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 == "" && getArtistProfile?.shows_image_4 == ""{
-                return 2
-                
-            }else if getArtistProfile?.shows_image_1 != "" && getArtistProfile?.shows_image_2 != "" && getArtistProfile?.shows_image_3 != "" && getArtistProfile?.shows_image_4 == ""{
-                return 3
-                
-            }else{
-                return 4
-            }
+            return imageArrayValue.count
             
         }else if collectionView == self.imageSliderCollection {
             self.pageController.numberOfPages = self.imageArrayValue.count
@@ -636,35 +658,33 @@ extension ViewProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIC
             return cell1
         }else {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "showCollectionViewCell", for: indexPath) as! showCollectionViewCell
-            
-            if indexPath.row == 0{
-                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_1 ?? "")"
+             let urlSting : String = "\(Api.imageURLArtist)\(imageArrayValue[indexPath.row])"
                 let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
                 let urlImage = URL(string: urlStringaa)!
                 cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
                 cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
                 
-            }else if indexPath.row == 1{
-                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_2 ?? "")"
-                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                let urlImage = URL(string: urlStringaa)!
-                cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-                
-            }else if indexPath.row == 2{
-                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_3 ?? "")"
-                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                let urlImage = URL(string: urlStringaa)!
-                cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-                
-            }else{
-                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_4 ?? "")"
-                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-                let urlImage = URL(string: urlStringaa)!
-                cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
-                cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-            }
+//            }else if indexPath.row == 1{
+//                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_2 ?? "")"
+//                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//                let urlImage = URL(string: urlStringaa)!
+//                cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//                cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//
+//            }else if indexPath.row == 2{
+//                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_3 ?? "")"
+//                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//                let urlImage = URL(string: urlStringaa)!
+//                cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//                cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//
+//            }else{
+//                let urlSting : String = "\(Api.imageURLArtist)\(getArtistProfile?.shows_image_4 ?? "")"
+//                let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
+//                let urlImage = URL(string: urlStringaa)!
+//                cell2.imgShow.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//                cell2.imgShow.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
+//            }
             
             return cell2
         }

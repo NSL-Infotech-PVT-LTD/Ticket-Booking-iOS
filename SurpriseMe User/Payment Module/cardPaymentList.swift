@@ -249,7 +249,7 @@ class cardPaymentList: UIViewController {
         
         let dataItem = arrayCardList[sender.tag]
         
-        let alert = UIAlertController(title: "", message: "CARD_REMOVE\(dataItem.id ?? "")".localized(), preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "", message: "CARD_REMOVE".localized(), preferredStyle: UIAlertController.Style.alert)
         //
         alert.addAction(UIAlertAction(title: "YES".localized(), style: UIAlertAction.Style.destructive, handler: { action in
             self.removeCard(cardNumber: dataItem.id ?? "")

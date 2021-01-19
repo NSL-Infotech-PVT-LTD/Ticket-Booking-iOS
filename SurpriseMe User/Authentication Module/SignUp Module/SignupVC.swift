@@ -19,14 +19,7 @@ class SignupVC: UIViewController {
     @IBOutlet var btnBack: UIButton!
     @IBOutlet weak var btnBackToLogin: UIButton!
     @IBOutlet weak var lblMainTitle: UILabel!
-    
-    
-    
-    
-    
-    
-    
-    @IBOutlet weak var lblRegisterTitle: UILabel!
+   @IBOutlet weak var lblRegisterTitle: UILabel!
     @IBOutlet weak var lblSurpriseTitle: UILabel!
     @IBOutlet weak var lblMeTitle: UILabel!
     
@@ -46,26 +39,19 @@ class SignupVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         viewModelObject.delegate = self
         self.viewHeader.addBottomShadow()
-        
         self.btnBack.setTitle("back".localized(), for: .normal)
-        
         self.lblMainTitle.text = "MAIN_TITLE".localized()
         self.lblRegisterTitle.text = "REGISTER_TITLE".localized()
         self.lblSurpriseTitle.text = "SURPRISE_TITLE".localized()
         self.lblMeTitle.text = "ME_TITLE".localized()
-        
         self.lblUsername.text = "username".localized()
         self.tfUserName.placeholder = "TYPE_HERE".localized()
-        
         self.lblEmailAddress.text = "EMAIL_ADDRESS".localized()
         self.tfEmail.placeholder = "TYPE_HERE".localized()
-        
         self.lblPassword.text = "PASSWORD".localized()
         self.tfPassword.placeholder = "TYPE_HERE".localized()
-        
         self.lblCPassword.text = "c_password".localized()
         self.tfConfirmPassword.placeholder = "TYPE_HERE".localized()
-        
         self.btnRegister.setTitle("register_now".localized(), for: .normal)
         self.btnBackToLogin.setTitle("BACK_TO_LOGIN".localized(), for: .normal)
     }
@@ -78,6 +64,40 @@ class SignupVC: UIViewController {
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.navigationController?.dismiss(animated: true, completion: {
         })
+    }
+    
+    
+    @IBAction func btnConfPasswordAction(_ sender: UIButton) {
+       
+        
+        if sender.isSelected == false{
+            sender.isSelected = true
+            self.tfConfirmPassword.isSecureTextEntry = false
+        }else{
+            sender.isSelected = false
+            self.tfConfirmPassword.isSecureTextEntry = true
+        }
+        
+        
+        
+        
+    }
+    
+    @IBAction func btnPasswordVisibleAction(_ sender: UIButton) {
+        
+        
+        if sender.isSelected == false{
+            sender.isSelected = true
+            self.tfPassword.isSecureTextEntry = false
+        }else{
+            sender.isSelected = false
+            self.tfPassword.isSecureTextEntry = true
+        }
+        
+        
+        
+      
+        
     }
     
     //MARK:- Custom's Register Button Action -

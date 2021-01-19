@@ -40,6 +40,7 @@ pod 'Toast-Swift', '~> 5.0.1'
 pod 'Mantis', '~> 1.4.7'
 pod 'ImageSlideshow'
 pod 'FBSDKShareKit'
+pod 'ActiveLabel'
 
 
 end

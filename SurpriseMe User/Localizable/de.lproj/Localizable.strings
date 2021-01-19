@@ -34,6 +34,8 @@
 "TYPE_HERE"                 = "Geben Sie hier ein ...";
 "WELCOME"                   = "Herzlich willkommen";
 "SIGN_TO_CONTINUE"          = "Melden Sie sich an, um fortzufahren";
+"No_ADDRESS_FOUND_VIRTUAL"  = "There is no address found. Switching to the list of Virtual Artist";
+
 "DONT_HAVE_ACCOUNT"         = "Noch keinen Account?";
 "SIGN_UP"                   = "Anmelden";
 "remember_me"               = "Recuérdame";
@@ -316,3 +318,9 @@ Hurra! Ihre Buchung ist bestätigt 🙂";
 "BOOKING_DETAILS"          = "Buchungsdetails";
 "FAILED"                   = "Gescheitert";
 "COMPLETED"                = "abgeschlossen";
+"NO_CHAT_TITLE"            = "No Chat Right Now";
+"REPORT_ARTIST"            = "Report Artist";
+"HOUSE_NUMBER_FLAT"        = "House Number/Flat";
+"DID_ARTIST_AT_LOCATION"   = "Did the artist arrive at your location?";
+"ARTIST_PERFORM_SOON"    = "Your artist performance is starting soon!";
+"ARTIST_COMPLETE_PERFORMANCE" = "You artist has completed the performance";

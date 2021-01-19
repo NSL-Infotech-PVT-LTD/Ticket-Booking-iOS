@@ -315,7 +315,12 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                             let dict = ["latitude":currentLat ,"longitude":currentLong ]
                                             print("the dictionary is \(dict)")
                                             print("the abhishek type value current  is \(whicShowTypeDigital)")
+                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
+                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
                                             //self.viewModelObject.getParamForBookingList(param: dict)
+                                            
+                                            
+                                            
                                             self.locationTf.text = currentAddress
                                         }
                                    }else{

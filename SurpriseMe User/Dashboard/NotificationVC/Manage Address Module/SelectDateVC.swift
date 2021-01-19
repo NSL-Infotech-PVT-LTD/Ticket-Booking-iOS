@@ -52,13 +52,12 @@ class SelectDateVC: UIViewController {
         
         
         if   whicShowTypeDigital == false{
-            //self.imgeTypeBooking.image = UIImage.init(named: "dot.radiowaves.left.and.right")
+            self.imgeTypeBooking.image = UIImage.init(named: "radio (2)")
             lblBookingType.text = "VIRTUAL".localized()
         }else{
-            //self.imgeTypeBooking.image = UIImage.init(named: "person.fill")
+            self.imgeTypeBooking.image = UIImage.init(named: "video-chat")
             lblBookingType.text = "IN-PERSON".localized()
         }
-        
     }
     
     
@@ -161,12 +160,9 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
         print(currentDate)
         
         if self.arrayAvailDate2.contains(currentDate) { //MARK:- SELECTED DATE
-            
             return true
-            
         }else if date .compare(Date()) == .orderedAscending {     //MARK:- PAST DATE
             return false
-            
         }else {
             return false
         }
@@ -197,10 +193,7 @@ extension SelectDateVC: FSCalendarDataSource, FSCalendarDelegate,FSCalendarDeleg
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance,  titleDefaultColorFor date: Date) -> UIColor? {
         
         print(date)
-        
-        
         calendar.appearance.todaySelectionColor = UIColor.systemPink
-        
         let currentDate = self.covertDate(date :date)
         print(currentDate)
         if self.arrayAvailDate2.contains(currentDate)

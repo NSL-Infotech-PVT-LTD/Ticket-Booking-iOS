@@ -34,7 +34,7 @@ class GetArtistModel: NSObject {
     
     
     
-    var shows_image : [JSON]?
+    var shows_image : [String]?
 
     var categoryArtist = [SearchCategoryHomeProfileDetails]()
 
@@ -73,9 +73,8 @@ convenience init(resposne : [String:Any]) {
         social_link_youtube = json[ManageAddressModelKey.social_link_youtube].stringValue
     category = json[ManageAddressModelKey.category_id_details].array
     
-    shows_image = json[ManageAddressModelKey.shows_image].array
+    let imageValue = json[ManageAddressModelKey.shows_image].arrayValue
 
-    
     
     
     converted_digital_price = json[ManageAddressModelKey.converted_digital_price].stringValue

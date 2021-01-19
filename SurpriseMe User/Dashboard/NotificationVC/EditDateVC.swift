@@ -522,7 +522,7 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         cell.viewCell.layer.masksToBounds = true
         
         if numsArraySelection.contains(indexPath.row){
-            cell.viewCell.backgroundColor = UIColor.init(red: 11/255, green: 172/255, blue: 43/255, alpha: 1)
+            cell.viewCell.backgroundColor = UIColor.systemPink
             cell.lblTimeSelect.textColor = UIColor.white
             
         }else{

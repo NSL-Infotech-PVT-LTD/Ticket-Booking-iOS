@@ -50,6 +50,8 @@
 "signup_with_email"         = "Aanmelden met e-mail";
 "or"                        = "of";
 "signup_with_facebook"      = "Aanmelden met Facebook";
+"No_ADDRESS_FOUND_VIRTUAL"  = "There is no address found. Switching to the list of Virtual Artist";
+
 "signup_with_apple"         = "Aanmelden bij Apple";
 "back_to_login"             = "Terug naar Inloggen";
 "by_signup"                 = "Door u aan te melden, gaat u akkoord met onze";
@@ -320,3 +322,9 @@
 "BOOKING_DETAILS"          = "Boekingsdetails";
 "FAILED"                   = "Mislukt";
 "COMPLETED"                = "voltooid";
+"NO_CHAT_TITLE"            = "No Chat Right Now";
+"REPORT_ARTIST"            = "Report Artist";
+"HOUSE_NUMBER_FLAT"        = "House Number/Flat";
+"DID_ARTIST_AT_LOCATION"   = "Did the artist arrive at your location?";
+"ARTIST_PERFORM_SOON"    = "Your artist performance is starting soon!";
+"ARTIST_COMPLETE_PERFORMANCE" = "You artist has completed the performance";

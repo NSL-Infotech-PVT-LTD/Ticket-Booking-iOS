@@ -228,7 +228,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <rect key="frame" x="20" y="240" width="374" height="400"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you new?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-J0-pWd">
-                                                        <rect key="frame" x="117.00000000000001" y="30" width="140.33333333333337" height="30"/>
+                                                        <rect key="frame" x="104.33333333333333" y="30" width="165.66666666666669" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="CQF-Tn-Gh4"/>
                                                         </constraints>
@@ -894,9 +894,9 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96y-9F-ibn">
-                                                <rect key="frame" x="269" y="620" width="98" height="20"/>
+                                                <rect key="frame" x="277" y="620" width="90" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="98" id="i44-Y8-DMW"/>
+                                                    <constraint firstAttribute="width" constant="90" id="i44-Y8-DMW"/>
                                                     <constraint firstAttribute="height" constant="20" id="zcN-AW-Xb1"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
@@ -914,10 +914,10 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have account yet ? " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCk-sV-Mbx">
-                                                <rect key="frame" x="89" y="621" width="180" height="18"/>
+                                                <rect key="frame" x="54" y="621" width="220" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="it3-b7-qup"/>
-                                                    <constraint firstAttribute="width" constant="180" id="wO1-KA-FP3"/>
+                                                    <constraint firstAttribute="width" constant="220" id="wO1-KA-FP3"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -948,7 +948,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="7cV-I9-mCy" secondAttribute="trailing" constant="28" id="5bv-z7-i1C"/>
-                                            <constraint firstItem="96y-9F-ibn" firstAttribute="leading" secondItem="BCk-sV-Mbx" secondAttribute="trailing" id="7BX-3P-8Gu"/>
+                                            <constraint firstItem="96y-9F-ibn" firstAttribute="leading" secondItem="BCk-sV-Mbx" secondAttribute="trailing" constant="3" id="7BX-3P-8Gu"/>
                                             <constraint firstAttribute="trailing" secondItem="Fqf-D8-ys5" secondAttribute="trailing" constant="10" id="8IE-20-HeJ"/>
                                             <constraint firstItem="PIN-Fy-tk2" firstAttribute="top" secondItem="vLX-pb-H4O" secondAttribute="top" id="9Ar-vc-fhZ"/>
                                             <constraint firstAttribute="trailing" secondItem="iPz-e8-fMV" secondAttribute="trailing" id="B2E-9C-s8R"/>
@@ -967,7 +967,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                             <constraint firstAttribute="trailing" secondItem="KZ5-XB-kyB" secondAttribute="trailing" id="Xd9-wg-VUR"/>
                                             <constraint firstItem="BCk-sV-Mbx" firstAttribute="top" secondItem="sbL-au-DjE" secondAttribute="bottom" constant="52" id="XxK-wJ-93o"/>
                                             <constraint firstItem="iPz-e8-fMV" firstAttribute="leading" secondItem="vLX-pb-H4O" secondAttribute="leading" id="dGT-Ov-Yc6"/>
-                                            <constraint firstItem="BCk-sV-Mbx" firstAttribute="centerX" secondItem="vLX-pb-H4O" secondAttribute="centerX" constant="-28" id="dKo-Nl-vc1"/>
+                                            <constraint firstItem="BCk-sV-Mbx" firstAttribute="centerX" secondItem="vLX-pb-H4O" secondAttribute="centerX" constant="-43" id="dKo-Nl-vc1"/>
                                             <constraint firstItem="1Rn-BO-BnL" firstAttribute="top" secondItem="JTx-r2-4E3" secondAttribute="bottom" constant="13" id="e2B-dz-jcb"/>
                                             <constraint firstItem="96y-9F-ibn" firstAttribute="centerY" secondItem="BCk-sV-Mbx" secondAttribute="centerY" id="f2X-s9-VvK"/>
                                             <constraint firstItem="7cV-I9-mCy" firstAttribute="top" secondItem="1Rn-BO-BnL" secondAttribute="bottom" constant="19" id="kjY-5e-sSF"/>
@@ -1247,6 +1247,17 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBX-bv-1Vg">
+                                                                <rect key="frame" x="297" y="27.666666666666686" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="4ZM-tg-NZ0"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="MGa-Cc-IJq"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button" image="Group 48"/>
+                                                                <connections>
+                                                                    <action selector="btnPasswordVisibleAction:" destination="oxo-fD-w5Y" eventType="touchUpInside" id="Z3F-jn-PCm"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
@@ -1255,7 +1266,9 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                             <constraint firstAttribute="bottom" secondItem="Eiu-1j-iqv" secondAttribute="bottom" constant="17.5" id="FeY-ZC-Quj"/>
                                                             <constraint firstItem="wST-dn-JBn" firstAttribute="leading" secondItem="Xuk-vd-Y8Y" secondAttribute="leading" constant="15" id="OaC-Nn-A5e"/>
                                                             <constraint firstItem="QAz-pJ-NL4" firstAttribute="leading" secondItem="wST-dn-JBn" secondAttribute="trailing" constant="12" id="Uvx-2v-QWD"/>
+                                                            <constraint firstItem="oBX-bv-1Vg" firstAttribute="centerY" secondItem="Xuk-vd-Y8Y" secondAttribute="centerY" id="aQr-9d-3dT"/>
                                                             <constraint firstItem="Eiu-1j-iqv" firstAttribute="top" secondItem="QAz-pJ-NL4" secondAttribute="bottom" constant="10" id="fHG-lr-BR0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="oBX-bv-1Vg" secondAttribute="trailing" constant="20" id="g2I-hK-Xd9"/>
                                                             <constraint firstItem="wST-dn-JBn" firstAttribute="top" secondItem="Xuk-vd-Y8Y" secondAttribute="top" constant="15" id="qDn-ug-fRt"/>
                                                             <constraint firstItem="Eiu-1j-iqv" firstAttribute="leading" secondItem="QAz-pJ-NL4" secondAttribute="leading" id="vEZ-Yh-hUp"/>
                                                             <constraint firstAttribute="trailing" secondItem="QAz-pJ-NL4" secondAttribute="trailing" constant="20" id="vmB-j9-EYK"/>
@@ -1300,6 +1313,17 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 <fontDescription key="fontDescription" name="Quicksand-Medium" family="Quicksand" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                                             </textField>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebo-0G-zbm">
+                                                                <rect key="frame" x="297" y="27.666666666666686" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="8T5-Pk-syX"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="ib5-KG-4T3"/>
+                                                                </constraints>
+                                                                <state key="normal" image="Group 48"/>
+                                                                <connections>
+                                                                    <action selector="btnConfPasswordAction:" destination="oxo-fD-w5Y" eventType="touchUpInside" id="Vx1-3h-UZG"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
@@ -1311,6 +1335,8 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                             <constraint firstItem="tNb-kU-Vfp" firstAttribute="leading" secondItem="tfZ-43-3A0" secondAttribute="leading" constant="15" id="V9L-ix-ldX"/>
                                                             <constraint firstAttribute="height" constant="80" id="ccH-b5-sWH"/>
                                                             <constraint firstAttribute="trailing" secondItem="2Y4-gq-OLZ" secondAttribute="trailing" constant="36" id="cis-tV-g6H"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ebo-0G-zbm" secondAttribute="trailing" constant="20" id="es6-nW-Y81"/>
+                                                            <constraint firstItem="Ebo-0G-zbm" firstAttribute="centerY" secondItem="tfZ-43-3A0" secondAttribute="centerY" id="rIh-Pg-6hn"/>
                                                             <constraint firstItem="tNb-kU-Vfp" firstAttribute="top" secondItem="tfZ-43-3A0" secondAttribute="top" constant="15" id="tYP-rc-WnV"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
@@ -1451,7 +1477,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iXY-rg-qr4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4444" y="382"/>
+            <point key="canvasLocation" x="4443.4782608695659" y="381.929347826087"/>
         </scene>
         <!--Terms ProfileVC-->
         <scene sceneID="DUc-9Y-0gn">

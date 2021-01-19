@@ -1,5 +1,6 @@
 PODS:
   - AARatingBar (1.1)
+  - ActiveLabel (1.1.0)
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
@@ -150,6 +151,7 @@ PODS:
 
 DEPENDENCIES:
   - AARatingBar
+  - ActiveLabel
   - Alamofire (~> 4.0)
   - AlamofireImage
   - AMDots
@@ -184,6 +186,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AARatingBar
+    - ActiveLabel
     - Alamofire
     - AlamofireImage
     - AMDots
@@ -230,6 +233,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AARatingBar: 62f56244aaa436c0379dc54e398e90d337f097b8
+  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   AMDots: 11298aaac1c98820c31c4cc85abf9ab46f922294
@@ -274,6 +278,6 @@ SPEC CHECKSUMS:
   youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: fadb1b6595370c8e0b398348a3370a1ba9e48d6e
+PODFILE CHECKSUM: 05ae3e8891d8654a814118131b0d7d8b1b1f99b6
 
 COCOAPODS: 1.10.0

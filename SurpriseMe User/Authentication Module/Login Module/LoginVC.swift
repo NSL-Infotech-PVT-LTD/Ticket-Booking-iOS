@@ -130,15 +130,15 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     }
     
     @IBAction func btnHidePasswordAction(_ sender: UIButton) {
-        if  sender.isSelected == false{
+        if sender.isSelected == false{
             sender.isSelected = true
             self.tfPassword.isSecureTextEntry = false
-            //btnPasswordConfirm.setImage(#imageLiteral(resourceName: "eye"), for: .normal)
         }else{
             sender.isSelected = false
             self.tfPassword.isSecureTextEntry = true
-            // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
         }
+        
+       
     }
     
     @IBAction func btnLoginAction(_ sender: UIButton) {

@@ -88,7 +88,8 @@ class FilterViewController: UIViewController {
         priceLtoHLbl.text = "PRICE_LOW_HIGH".localized()
         priceHtoLOut.text = "PRICE_HIGH_LOW".localized()
         btnApplySearch.setTitle("APPLY_SEARCH".localized(), for: .normal)
-        ratingSlider.labels = ["5","4.5","4.0","3.5","Any"]
+     // ratingSlider.labels = ["5","4.5 +","4.0 +","3.5 +","Any"]
+        ratingSlider.labels = ["Any" , "3.5" ,"4.0" , "4.5" ,"5.0"]
         countLbl_OUt.layer.borderColor = UIColor.lightGray.cgColor
         countLbl_OUt.layer.borderWidth = 1
         countLbl_OUt.layer.cornerRadius = 6
@@ -110,32 +111,126 @@ class FilterViewController: UIViewController {
     }
     
     @objc func dateChanged(_ sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+//
+//
         
-        print(formatter.string(from: datePicker.date))
-        startDate = formatter.string(from: datePicker.date)
-        print(startDate)
-        self.lblFromDate.text = startDate
-        startDateValue = startDate
-        self.view.endEditing(true)
+        if toDateLbl.text ?? "" == "To"{
+            let formatter1 = DateFormatter()
+            formatter1.dateFormat = "MMM d, yyyy"
+            self.lblFromDate.text = formatter1.string(from: datePicker.date)
+            print(startDate)
+            
+            let formatter = DateFormatter()
+                   formatter.dateFormat = "yyyy-MM-dd"
+                   print(formatter.string(from: datePicker.date))
+                   startDate = formatter.string(from: datePicker.date)
+                   print(startDate)
+            
+            startDateValue = startDate
+            self.view.endEditing(true)
+        }else{
+            if secondDatePicker.date < datePicker.date {
+                  NSLog("Mishra");
+              self.showSimpleAlert(Title: "Error", message: "From date  should not greater than To date", inClass: self)
+              }else if secondDatePicker.date > datePicker.date{
+                  NSLog("Abhishek");
+                  print("date 2 is greater")
+                
+                
+                let formatter1 = DateFormatter()
+                formatter1.dateFormat = "MMM d, yyyy"
+                self.lblFromDate.text = formatter1.string(from: datePicker.date)
+                
+                
+                let formatter = DateFormatter()
+                       formatter.dateFormat = "yyyy-MM-dd"
+                       print(formatter.string(from: datePicker.date))
+                       startDate = formatter.string(from: datePicker.date)
+                       print(startDate)
+                
+                print(startDate)
+                startDateValue = startDate
+                self.view.endEditing(true)
+              }else{
+                let formatter1 = DateFormatter()
+                formatter1.dateFormat = "MMM d, yyyy"
+                self.lblFromDate.text = formatter1.string(from: datePicker.date)
+                
+                let formatter = DateFormatter()
+                       formatter.dateFormat = "yyyy-MM-dd"
+                       print(formatter.string(from: datePicker.date))
+                       startDate = formatter.string(from: datePicker.date)
+                       print(startDate)
+                print(startDate)
+                startDateValue = startDate
+                self.view.endEditing(true)
+              }
+        }
     }
     
     @objc func seconddateChanged(_ sender: UIDatePicker) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+       
         
-        print(formatter.string(from: secondDatePicker.date))
+        if lblFromDate.text ?? "" == "From"{
+            let formatter1 = DateFormatter()
+            formatter1.dateFormat = "MMM d, yyyy"
+            self.toDateLbl.text = formatter1.string(from: secondDatePicker.date)
+
+let formatter = DateFormatter()
+formatter.dateFormat = "yyyy-MM-dd"
+print(formatter.string(from: secondDatePicker.date))
+endDate = formatter.string(from: secondDatePicker.date)
+  print(endDate)
+            endDateValue = endDate
+            self.view.endEditing(true)
+        }else{
+            if secondDatePicker.date < datePicker.date{
+                  NSLog("Mishra");
+              self.showSimpleAlert(Title: "Error", message: "To Date should greater than From date", inClass: self)
+              }else if secondDatePicker.date > datePicker.date{
+                  NSLog("Abhishek");
+                  print("date 2 is greater")
+                              let formatter1 = DateFormatter()
+                              formatter1.dateFormat = "MMM d, yyyy"
+                              self.toDateLbl.text = formatter1.string(from: secondDatePicker.date)
+                  
+                  let formatter = DateFormatter()
+                  formatter.dateFormat = "yyyy-MM-dd"
+                  print(formatter.string(from: secondDatePicker.date))
+                  endDate = formatter.string(from: secondDatePicker.date)
+                    print(endDate)
+                              endDateValue = endDate
+                              self.view.endEditing(true)
+              }else if secondDatePicker.date == datePicker.date{
+                  NSLog("Abhishek");
+                  print("date 2 is greater")
+                              let formatter1 = DateFormatter()
+                              formatter1.dateFormat = "MMM d, yyyy"
+                              self.toDateLbl.text = formatter1.string(from: secondDatePicker.date)
+                  
+                  let formatter = DateFormatter()
+                  formatter.dateFormat = "yyyy-MM-dd"
+                  print(formatter.string(from: secondDatePicker.date))
+                  endDate = formatter.string(from: secondDatePicker.date)
+                    print(endDate)
+                              endDateValue = endDate
+                              self.view.endEditing(true)
+              }else{
+                  let formatter1 = DateFormatter()
+                  formatter1.dateFormat = "MMM d, yyyy"
+                  self.toDateLbl.text = formatter1.string(from: secondDatePicker.date)
+                  
+                  let formatter = DateFormatter()
+                  formatter.dateFormat = "yyyy-MM-dd"
+                  print(formatter.string(from: secondDatePicker.date))
+                  endDate = formatter.string(from: secondDatePicker.date)
+                  print(endDate)
+                  endDateValue = endDate
+                  self.view.endEditing(true)
+              }
+        }
         
-        endDate = formatter.string(from: secondDatePicker.date)
-        print(endDate)
-        
-        self.toDateLbl.text = endDate
-        
-        
-        endDateValue = endDate
-        
-        self.view.endEditing(true)
+      
     }
     
     
@@ -158,7 +253,8 @@ class FilterViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.viewDateContainer.isHidden = true
         
-        
+        self.distanceSlider.minimumValue = 50
+        self.distanceSlider.maximumValue = 200
         
         if #available(iOS 13.4, *) {
             datePicker.preferredDatePickerStyle = .wheels
@@ -170,7 +266,6 @@ class FilterViewController: UIViewController {
         
         datePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        secondDatePicker.minimumDate = Calendar.current.date(byAdding: .day, value: +1, to: Date())
 secondDatePicker.addTarget(self, action: #selector(seconddateChanged(_:)), for: .valueChanged)
 sortByValue = "asc"
         
@@ -188,23 +283,21 @@ sortByValue = "asc"
         if  dictFilter.count > 0{
             
             let distance = dictFilter["distance"] as? Int
-            self.lblDistance.text = "\(distance ?? 0)km"
+            self.lblDistance.text = "\(distance ?? 0)Miles"
             distanceSlider.setValue(Float(distance ?? 0), animated: true)
             let sliderValue = dictFilter["rating"] as? Double
             
             
             if sliderValue == 4.5{
-                ratingSlider.setIndex(1, animated: true)
-                
+                ratingSlider.setIndex(3, animated: true)
             }else if sliderValue == 4.0{
                 ratingSlider.setIndex(2, animated: true)
                 
             }else if sliderValue == 3.5{
-                ratingSlider.setIndex(3, animated: true)
+                ratingSlider.setIndex(1, animated: true)
                 
             }else {
-                ratingSlider.setIndex(4, animated: true)
-                
+                ratingSlider.setIndex(0, animated: true)
             }
             
             
@@ -212,26 +305,37 @@ sortByValue = "asc"
             
             print("the start date is \(startDatevalue)")
             
-            self.lblFromDate.text = startDatevalue
-            datePicker.datePickerMode = .date
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat =  "YYYY-MM-dd"
-            let date = dateFormatter.date(from: startDatevalue ?? "")
-            datePicker.date = date ?? Date()
-            
+            if startDatevalue ?? "" == ""{
+                self.toDateLbl.text = "from"
+            }else{
+                
+                let showStartDate = dictFilter["showStartDate"] as? String
+                
+                self.lblFromDate.text = showStartDate
+                datePicker.datePickerMode = .date
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat =  "YYYY-MM-dd"
+                let date = dateFormatter.date(from: startDatevalue ?? "")
+                datePicker.date = date ?? Date()
+            }
             
             let endDateValue = dictFilter["end_Date"] as? String
             print("the start date is \(endDateValue)")
             
-            self.toDateLbl.text = endDateValue
-            datePicker.datePickerMode = .date
-            let dateFormatter1 = DateFormatter()
-            dateFormatter1.dateFormat =  "YYYY-MM-dd"
-            let date1 = dateFormatter1.date(from: endDateValue ?? "")
-            secondDatePicker.date = date1 ?? Date()
+            if endDateValue ?? "" == ""{
+                self.toDateLbl.text = "to"
+            }else{
+                
+                let showStartDate = dictFilter["showendDate"] as? String
+                self.toDateLbl.text = showStartDate
+                datePicker.datePickerMode = .date
+                let dateFormatter1 = DateFormatter()
+                dateFormatter1.dateFormat =  "YYYY-MM-dd"
+                let date1 = dateFormatter1.date(from: endDateValue ?? "")
+                secondDatePicker.date = date1 ?? Date()
+            }
             
-            
-            let selectionValue = dictFilter["selection"] as? String
+           let selectionValue = dictFilter["selection"] as? String
             if  selectionValue == "desc"{
                 btnFirst.setImage(UIImage(named: "tick_unselect"), for: .normal)
                 btnSecond.setImage(UIImage(named: "tick"), for: .normal)
@@ -242,19 +346,10 @@ sortByValue = "asc"
                 sortByValue = "asc"
             }
         }else{
-            ratingSlider.setIndex(4, animated: true)
+            ratingSlider.setIndex(0, animated: true)
         }
         
-        
-        
-        
-        
-        
-        
-        
-               
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchHappen(_:)))
+         let tap = UITapGestureRecognizer(target: self, action: #selector(self.touchHappen(_:)))
         fromView_out.addGestureRecognizer(tap)
         fromView_out.isUserInteractionEnabled = true
         //
@@ -311,7 +406,7 @@ sortByValue = "asc"
     
     @IBAction func toBtnTap(_ sender: Any) {
         isFirstSelected = true
-        self.viewDateContainer.isHidden = false
+                self.viewDateContainer.isHidden = false
         self.secondDatePicker.isHidden = false
         self.datePicker.isHidden = true
     }
@@ -352,22 +447,22 @@ sortByValue = "asc"
     @IBAction func ratingSLiderOnSlide(_ sender: StepSlider) {
         print(sender.index)
         if sender.index == 0{
+            self.selectedRating = 0
         }else if sender.index == 1{
-            self.selectedRating = 4.5
+            self.selectedRating = 3.5
         }else if sender.index == 2{
             self.selectedRating = 4.0
         }else if sender.index == 3{
-            self.selectedRating = 3.5
+            self.selectedRating = 4.5
         }else if sender.index == 4{
-            self.selectedRating = 0.0
+            self.selectedRating = 0
         }
     }
     
     @IBAction func distanceSliderOnSLide(_ sender: UISlider) {
         print(sender.value)
-        
-        self.lblDistance.text = "\(Int(sender.value))km"
-        self.distance = Int(sender.value)
+        self.lblDistance.text =  "\((Int(sender.value)))" + "Miles"
+        self.distance = ((Int(sender.value)))
     }
     
     @IBAction func applySearchBtn(_ sender: Any) {
@@ -377,22 +472,37 @@ sortByValue = "asc"
         
         if   whicShowTypeDigital == false{
             //
-            let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
-            print(dataParam)
             
+            if selectedRating == 0.0{
+                let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDateValue,"to_date":endDateValue,"rating":"\(0)","radius":"\(distance)"] as [String : Any]
+                print(dataParam)
+                
+                
+                self.objectViewModel.getParamForGetProfile(param: dataParam)
+            }else{
+                let dataParam = ["limit":"20","search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"digital","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+                print(dataParam)
+                
+                self.objectViewModel.getParamForGetProfile(param: dataParam)
+            }
             
-            self.objectViewModel.getParamForGetProfile(param: dataParam)
+          
             
         }else{
-            let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
-            print(dataParam)
-            self.objectViewModel.getParamForGetProfile(param: dataParam)
-            
-        }
+            if selectedRating == 0.0{
+                let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDateValue,"to_date":endDateValue,"rating":"\(0)","radius":"\(distance)"] as [String : Any]
+                print(dataParam)
+                self.objectViewModel.getParamForGetProfile(param: dataParam)
+            }else{
+                let dataParam = ["limit":"20","latitude":currentLat,"longitude":currentLong,"search":searchTextValueData,"category_ids":"\(arrayCategorySelected)","sort_by":sortByValue,"show_type":"live","from_date":startDateValue,"to_date":endDateValue,"rating":"\(selectedRating)","radius":"\(distance)"] as [String : Any]
+                print(dataParam)
+                self.objectViewModel.getParamForGetProfile(param: dataParam)
+            }
+         }
         
         
         
-        dictFilter = ["distance":distance , "rating" : selectedRating , "selection":sortByValue ,"start_Date":startDateValue,"end_Date":endDateValue]
+        dictFilter = ["distance":distance , "rating" : selectedRating , "selection":sortByValue ,"start_Date":startDateValue,"end_Date":endDateValue , "showStartDate":self.lblFromDate.text ?? "","showendDate":self.toDateLbl.text ?? ""]
         
         print("the selected filter is \(dictFilter)")
         

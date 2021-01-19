@@ -32,8 +32,6 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var lblLogout: UILabel!
     @IBOutlet weak var lblEmail: UILabel!
     @IBOutlet weak var lblUserName: UILabel!
-    
-    
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var updateBtn: UIButton!

@@ -25,28 +25,25 @@
 "CHOOSE_LAGUAGE_SUBTITTEL"  = "we will served on the basis of your selection.";
 //WalkThrough
 "GET_STARTED"               = "Get Started";
-"BIRTHDAY_SURPRISE"         = "Singers at your doorstep";
-"DJ_PERFORMERSDj"           = "Virtual performances";
-"DIGITAL_PERFORMANCE"       = "Surprise your loved ones";
+"BIRTHDAY_SURPRISE"         = "Hire artists in a few seconds";
+"DJ_PERFORMERSDj"           = "In-person performance at your location";
+"DIGITAL_PERFORMANCE"       = "Virtual performance through Skype, Zoom, etc.";
 "DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
 "NO_BOOKING_RIGHT"          = "No Booking Right Now";
 "UNABLE_FIND_BOOKING_PAGE"  = "Unable to find booking on this page";
 "VIRTUAL_SHOW_HEADER"       = "Virtual";
 "IN_PERSON_SHOW_HEADER"     = "In-Person";
-
 "TERMSACONDITION"           = "Terms And Conditions";
 "PRIVACY_POLICY"            = "Privacy Policy";
 "ABOUT_US"                  = "About Us";
 "CHANGE_LANG"               = "Change Language";
-
-
 //Login
 "EMAIL_ADDRESS"             = "E-mail Address";
 "PASSWORD"                  = "Password";
 "TYPE_HERE"                 = "Type here...";
 "WELCOME"                   = "Welcome";
 "SIGN_TO_CONTINUE"          = "Sign In To Continue";
-"DONT_HAVE_ACCOUNT"         = "Don't have account yet?";
+"DONT_HAVE_ACCOUNT"         = "Don't have an account yet?";
 "SIGN_UP"                   = "Sign up";
 "remember_me"               = "Remember me";
 "forget_password"           = "Forgot Password?";
@@ -67,23 +64,21 @@
 "PLEASE_ENTER_USERNAME"     = "Please enter your username";
 "DO_YOU_WANT_LOGOUT"        = "Do you want to logout?";
 "DO_WANT_PROFILE"           = "Do you want to save your profile?";
-
-
 "OLD_PASSWORD"              = "Old Password";
 "NEW_PASSWORD"              = "New Password";
 "CONFIRM_PASSWORD"          = "Confirm Password";
 
+"Register with SurpriseMe.";
 //Proifle -
-
 //Social Login
-"register_title"            = "Register with us in surpriseme.";
+"register_title"            = "Register with SurpriseMe.";
 "are_you_new"               = "Are you new?";
 "signup_with_email"         = "Signup with Email";
 "or"                        = "or";
 "signup_with_facebook"      = "Signup with facebook";
 "signup_with_apple"         = "Signup with Apple";
 "back_to_login"             = "Back to login";
-"by_signup"                 = "By signing up,you are agree with our";
+"by_signup"                 = "By signing up, you agree with our";
 "terms_condition"           = "Terms & Conditions";
 //SignUp
 "fillup_detail"             = "Fill up details";
@@ -97,18 +92,12 @@
 "back_to_login"             = "Back to login";
 "BACK_TO_LOGIN"             = "Back to login";
 "MAIN_TITLE"                = "Fill up details";
-"REGISTER_TITLE"            = "Register with us in";
-"SURPRISE_TITLE"            = "surprise";
-"ME_TITLE"                  = "me";
+"REGISTER_TITLE"            = "Register with";
+"SURPRISE_TITLE"            = "Surprise";
+"ME_TITLE"                  = "Me";
 "BY_SIGNING_AGREEE"        = "";
-
-
-
 "ENTER_OLD_PASSWRD"         = "Enter your old password";
 "ENTER_YOUR_PASSWRD"         = "Enter your password";
-
-
-
 //Forget Password
 "EMAIL_ADDRESS"             = "E-mail Address";
 "TYPE_HERE"                 = "Type here...";
@@ -121,8 +110,8 @@
 //Home VC
 "view_profile"              = "View Profile";
 "your_location"             = "Your Location";
-"search_for_artist"         = "Search for Artist, Singer etc.";
-"book_artist_title"         = "Book Artist You Listen";
+"search_for_artist"         = "Search for your favourite Artists, Singers etc.";
+"book_artist_title"         = "Book Artists from 30+ countries";
 "see_artist_profile"        = "Check Artist Profile";
 "book"                      = "Book";
 "PROFILE"                   = "Profile";
@@ -137,8 +126,6 @@
 "PLEASE_ENTER_USERNAME"     = "Please enter your username";
 "DO_YOU_WANT_LOGOUT"        = "Do you want to logout?";
 "DO_WANT_PROFILE"           = "Do you want to save your profile?";
-
-
 //Schuedule booking
 "select_booking_Title"      = "Schedule Book";
 "Booking_Edit"              = "You may edit the booking slots for your performances.";
@@ -147,13 +134,10 @@
 "Proceed"                   = "Proceed";
 "book_now"                  = "Book Now";
 "live_booking_detail"       = "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming       platform.";
-"digital_booking_detail"    = "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming                                  platform.";
-
-
-
+"digital_booking_detail"    = "We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming  platform.";
 //Calander
-"select_date_booking"       = "Select your date";
-"check_availabilty"         = "Select the slots best suitable to you";
+"select_date_booking"       = "Select Date of booking";
+"check_availabilty"         = "To check availabilty of artist on your selected date";
 "AVAILABLE"                 = "Available";
 "UNAVAILABLE"               = "Unavailable";
 "VIRTUAL"                   = "VIRTUAL";
@@ -161,33 +145,33 @@
 //Edit Date
 "select_time_booking"       = "Select time of booking";
 "multiple_slot"             = "you may select multiple slot in a row.";
-"choose_another_date"       = "Artist is not available on this date . Please Choose another date";
+"choose_another_date"       = "Sorry, the Artist is not available on this date . Please choose another date";
 "clear_all"                 = "Clear All";
 "available"                 = "Available";
 "unavailable"               = "Unavailable";
 "proceed_checkout"          = "Proceed to checkout";
-"POPUP_CONFIRM"             = "Once the booking is confirmed by you, it will be on hold till we receive the payment. Click Confirm to proceed OR Cancel to go back";
+"POPUP_CONFIRM"             = "Once the booking is confirmed, it will be on hold till the payment is received, or click cancel to check slots again !";
 "BELOW_IDEAL_AVAILABE_NETHERLAND" = "Below IDEAL insert Only for customers in Netherlands";
-"SELECT_SLOT_ALERT"         = "Please select Any Slot";
-"CONT_BOOK_SLOT"            = "You cannot book because slot is already book in this range";
+"SELECT_SLOT_ALERT"         = "Please select any Slot";
+"CONT_BOOK_SLOT"            = "You cannot book because this slot is already booked. Please try another time slot ";
 "ARTIST_ALREADY_BOOK"       = "Artist is already booked";
 "ARTIST_NOT_AVAIABLE"       = "Artist is not available";
 "BOOKING_CRNF_SUCCESS"      = "Hurray ! your booking is confirmed 🙂";
 //CAED PAYMENT LIST
 "SELECT_CARD"               = "Select Card";
-"CARD_METHOD"               = "Choose your card method of payment";
+"CARD_METHOD"               = "Choose the type of card for the payment";
 "ADD_CARD"                  = "+ Add Card";
 "CARD_NUMBER"               = "Card Number";
 "EXPIRE"                    = "Expires";
 "CVV"                       = "CVV";
 "SELECT_CARD"               = "Please select any card";
-"CANCEL_SLOT"               = "If you click yes your booking will be canceled from on hold and other customer can book same slot.";
+"CANCEL_SLOT"               = "If you click yes, your booking will be canceled from on-hold and will be available for other customers to book.";
 "CARD_REMOVE"               = "Do you want to delete this card ?";
 //Success Payment VC
 "PAYMENT_DONE"              = "Payment Done";
-"READY_FOR_SHOW"            = "Hurray you can get ready for show";
+"READY_FOR_SHOW"            = "Hurray! you can get ready for show";
 "PAYMENT_FAIL"              = "Payment Failed!";
-"PAYMENT_FAIL_DETAIL"       = "You can pay again from booking detail Screen";
+"PAYMENT_FAIL_DETAIL"       = "You can pay again from the booking detail screen";
 "DO_NOT_PRESS"              = "Do not Press Or Go Back";
 //LoaderVC
 "PAYMENT_PROCESSING"        = "Payment Processing";
@@ -214,7 +198,6 @@
 "HOME"                      = "Home";
 "WORK"                      = "Work";
 "NO_VIDEO_UPLOADED"         = "No video is uploaded yet";
-
 //NotificationVC
 "NO_NOTIFICATION"           = "No Notifications found";
 "NOTI_TITLE"                = "Notifications";
@@ -256,20 +239,21 @@
 "UNABLE_TO_FIND"            = "Unable to find artist on this page.Please search for another.";
 //HOmeViewController
 "NO_DATA_FOUND"             = "No Data Found";
-"NEW_ARTIST"                = "New Artist";
-"CHOOSE_SHOW"               = "Choose the show you want to search";
+"NEW_ARTIST"                = "New Artist(No rating yet)";
+"CHOOSE_SHOW"               = "Choose the preferred medium of performance";
 "CHOOSE_SHOW_DETAIL"        = "we are now ready with the next of entertaintment.we are proud to announce our in-house line streaming plateform.";
 "VIRTUAL_SHOW"              = "Virtual Show";
 "IN_PERSON_SHOW"            = "In-Person Show";
+"No_ADDRESS_FOUND_VIRTUAL"  = "There is no address found. Switching to the list of Virtual Artist";
 "SELECT"                    = "Select";
-"SEETING_UP"                = "Awesome ! we are curating artists for you. Hold on a second";
+"SEETING_UP"                = "We are curating the list of artists for you. Please hang on...";
 "SEETING_UP_DETAIL_IN_PERSON" = "Artists visit location of your choice";
 "SEETING_UP_DETAIL_VIRTUAL"  = "Artists perfrom virtually using Skype, Zoom, Hangouts, etc.";
 "SEETING_UP_DETAIL"         = "we are now ready with the next of entertaintment.we are proud to announce our in-house line streaming plateform.";
 "PLEASE_WAIT"               = "Please wait";
 "MESSAGES"                  = "Messages";
 "BOOKINGS"                  = "Booking";
-"BEFORE_PAYMENT_PROCESS"    = "You May Edit The BookingSlot,Before Payment Process.";
+"BEFORE_PAYMENT_PROCESS"    = "You may edit the booking slot before the payment process.";
 "BOOKINGS_DETAILS"          = "Booking Details";
 "MUSICIANS_HEARTS"          =  "Musicians want to be the loud voice for so many quiet hearts";
 "MUSIC_UNIVERSAL_LANG"      =  "Music is the universal language of mankind";
@@ -328,4 +312,10 @@
 "BOOKING_DETAILS"          = "Booking Details";
 "FAILED"                   = "Failed";
 "COMPLETED"                = "completed";
-
+"NO_CHAT_TITLE"            = "No Chat Right Now";
+"REPORT_ARTIST"            = "Report Artist";
+"HOUSE_NUMBER_FLAT"        = "House Number/Flat";
+"DID_ARTIST_AT_LOCATION"   = "Did the artist arrive at your location?";
+"ARTIST_PERFORM_SOON"    = "Your artist performance is starting soon!";
+"ARTIST_COMPLETE_PERFORMANCE" = "You artist has completed the performance";
+"ARTIST_WILL_REACHED"        = "Artist will reach at your location";

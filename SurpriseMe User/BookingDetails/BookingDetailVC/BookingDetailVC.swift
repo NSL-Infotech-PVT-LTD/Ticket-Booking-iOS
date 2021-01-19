@@ -478,16 +478,7 @@ class BookingDetailVC: UIViewController {
             controller.bookingID = dictProfile?.id ?? 0
             navigationController?.pushViewController(controller, animated: true)
         }
-        
-        
-        
-        
-        //        userArtistID =  dictProfile?.artist_detail?.ID ?? 0
-        //        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
-        //        let controller = storyboard.instantiateViewController(withIdentifier: "FriendMsgVC") as! FriendMsgVC
-        //        controller.name = dictProfile?.artist_detail?.name ?? ""
-        //        controller.userImage = dictProfile?.artist_detail?.imageProfile ?? ""
-        //        navigationController?.pushViewController(controller, animated: true)
+     
     }
     
     func convertDateToStringBook(profile : String)-> String{
@@ -825,13 +816,7 @@ class BookingDetailVC: UIViewController {
                     
                 }
             }
-            
-            
-            
-            
-            
-            
-            self.btnStatus.isHidden = false
+           self.btnStatus.isHidden = false
             self.btnChatTopBar.isHidden = false
             lblPaymentStatus.text = "NOT_PAID".localized()
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
@@ -1069,9 +1054,9 @@ class BookingDetailVC: UIViewController {
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
             if returnValue == true{
-                self.btnStatus.setTitle("Did Artist reach at your location?", for: .normal)
+                self.btnStatus.setTitle("DID_ARTIST_REACHED".localized(), for: .normal)
             }else{
-                self.btnStatus.setTitle("Artist will reach at your location", for: .normal)
+                self.btnStatus.setTitle("ARTIST_WILL_REACHED".localized(), for: .normal)
             }
         }else if dataItem?.status == "processing"{
             //            self.btnStatus.isHidden = false
@@ -1137,7 +1122,7 @@ class BookingDetailVC: UIViewController {
             
             
             
-            self.btnStatus.setTitle("Your artist is start to perform!", for: .normal)
+            self.btnStatus.setTitle("ARTIST_PERFORM_SOON".localized(), for: .normal)
         }else if dataItem?.status == "completed"{
             self.btnStatus.isHidden = false
             self.viewContainerRating.isHidden = true
@@ -1195,7 +1180,7 @@ class BookingDetailVC: UIViewController {
             
             self.btnChatTopBar.isHidden = false
             lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
-            self.btnStatus.setTitle("You artist completed his performance", for: .normal)
+            self.btnStatus.setTitle("ARTIST_COMPLETE_PERFORMANCE".localized(), for: .normal)
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
             self.btnStatus.setTitle("RATE_YOUR_ARTIST".localized(), for: .normal)
@@ -1218,7 +1203,6 @@ class BookingDetailVC: UIViewController {
                 
             }else if dataItem?.reportReason?.report == "unable to call"{
                 self.btnReadMore.isHidden = true
-                
                 
             }else{
                 self.btnReadMore.isHidden = false

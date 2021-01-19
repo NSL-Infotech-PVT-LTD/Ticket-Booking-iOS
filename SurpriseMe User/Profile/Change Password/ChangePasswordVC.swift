@@ -21,6 +21,15 @@ class ChangePasswordVC: UIViewController {
     @IBOutlet weak var lblConfirmPassword: UILabel!
     @IBOutlet weak var lblOldPassword: UILabel!
     
+    @IBOutlet weak var btnOldPassword: UIButton!
+    
+    @IBOutlet weak var btnNewPassword: UIButton!
+    
+    @IBOutlet weak var btnConfPassword: UIButton!
+    
+    
+    
+    
      //MARK:- Variale -
     var modelObject = ChangePasswordViewModel()
     
@@ -45,6 +54,53 @@ class ChangePasswordVC: UIViewController {
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.back()
     }
+    
+    
+    @IBAction func btnNewPasswordAction(_ sender: UIButton) {
+        
+        
+        if  sender.isSelected == false{
+            sender.isSelected = true
+            self.tfPassword.isSecureTextEntry = false
+//           btnPasswordConfirm.setImage(#imageLiteral(resourceName: "eye"), for: .normal)
+        }else{
+            sender.isSelected = false
+            self.tfPassword.isSecureTextEntry = true
+            // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
+        }
+        
+       
+    }
+    
+    @IBAction func btnOldPassVisibleAction(_ sender: UIButton) {
+        
+        
+        if  sender.isSelected == false{
+            sender.isSelected = true
+            self.oldPassword.isSecureTextEntry = false
+//           btnPasswordConfirm.setImage(#imageLiteral(resourceName: "eye"), for: .normal)
+        }else{
+            sender.isSelected = false
+            self.oldPassword.isSecureTextEntry = true
+            // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
+        }
+       
+    }
+    
+    @IBAction func btnConfPasswordHide(_ sender: UIButton) {
+        
+        if  sender.isSelected == false{
+            sender.isSelected = true
+            self.tfConfirmPassword.isSecureTextEntry = false
+//           btnPasswordConfirm.setImage(#imageLiteral(resourceName: "eye"), for: .normal)
+        }else{
+            sender.isSelected = false
+            self.tfConfirmPassword.isSecureTextEntry = true
+            // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
+        }
+       
+    }
+    
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
         guard oldPassword.text?.count ?? 0 > 0 else {

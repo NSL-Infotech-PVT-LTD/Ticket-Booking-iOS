@@ -14,9 +14,7 @@ class ReviewVC: UIViewController {
     @IBOutlet weak var viewBack: UIView!
     @IBOutlet weak var ReviewTableView: UITableView!
     @IBOutlet weak var viewAvgRate: CosmosView!
-    
     @IBOutlet weak var lblReviewAndRate: UILabel!
-    
     @IBOutlet weak var btnBack: UIButton!
     
     //Mark: Variables
@@ -28,7 +26,6 @@ class ReviewVC: UIViewController {
     //For Pagination
     var pageInt = 1
     var isLoadMore = Bool()
-    
     var refreshControl = UIRefreshControl()
     
     //MARK:- View's Life Cycle -
