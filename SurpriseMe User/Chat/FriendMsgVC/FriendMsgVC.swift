@@ -47,7 +47,8 @@ class FriendMsgVC: UIViewController {
     var freindNameImage = String()
     var current_page = 1
     var dateForHeader = [String]()
-
+    var sendMessageValue = String()
+    
     
     @IBOutlet weak var viewImgTappedView: UIView!
     
@@ -147,19 +148,19 @@ class FriendMsgVC: UIViewController {
                 
                 if useriD == reciverData.sender_id{
                     userArtistID = reciverData.receiver_id ?? 0
-
+                    
                 }else{
                     userArtistID = reciverData.sender_id ?? 0
-
+                    
                 }
                 
-//                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-//                if userName == reciverData.receiver_name ?? ""{
-//                    userArtistID = reciverData.sender_id ?? 0
-//
-//                }else{
-//                    userArtistID = reciverData.receiver_id ?? 0
-//                }
+                //                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                //                if userName == reciverData.receiver_name ?? ""{
+                //                    userArtistID = reciverData.sender_id ?? 0
+                //
+                //                }else{
+                //                    userArtistID = reciverData.receiver_id ?? 0
+                //                }
             }
         }
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
@@ -201,11 +202,11 @@ class FriendMsgVC: UIViewController {
                 userArtistID =  reciverData.receiver_id ?? 0
             }else{
                 userArtistID =  reciverData.sender_id ?? 0
-
+                
             }
             
             
-//            let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+            //            let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
 //            if userName == reciverData.receiver_name ?? ""{
 //                userArtistID =  reciverData.sender_id ?? 0
 //            }else{
@@ -453,7 +454,10 @@ class FriendMsgVC: UIViewController {
     
     @IBAction func btnSendmessageAction(_ sender: UIButton) {
         var message = txtMssg.text ?? ""
+        sendMessageValue = message
         message = message.trimmingCharacters(in: .whitespacesAndNewlines)
+//        message = message.replacingOccurrences(of: "\r", with: "\\r")
+        message = message.replacingOccurrences(of: "\r", with: "\\r")
         if message.count == 0 || txtMssg.text == "Type your message"{
             return
         }
@@ -465,6 +469,8 @@ class FriendMsgVC: UIViewController {
                 let data = Data(data1.utf8)
                 if SocketConnectionManager.shared.socket.isConnected {
                     SocketConnectionManager.shared.socket.write(data: data)
+                    let dataValue = String(decoding: data, as: UTF8.self)
+print("the value is \(dataValue)")
                     txtMssg.text = ""
                 }else{
                     SocketConnectionManager.shared.socket.connect()
@@ -474,6 +480,11 @@ class FriendMsgVC: UIViewController {
                 let data = Data(data1.utf8)
                 if SocketConnectionManager.shared.socket.isConnected {
                     SocketConnectionManager.shared.socket.write(data: data)
+                    let dataValue = String(decoding: data, as: UTF8.self)
+print("the value is \(dataValue)")
+                    
+                    
+                    
                     txtMssg.text = ""
                 }else{
                     SocketConnectionManager.shared.socket.connect()
@@ -491,6 +502,8 @@ class FriendMsgVC: UIViewController {
                         let data = Data(data1.utf8)
                         if SocketConnectionManager.shared.socket.isConnected {
                             SocketConnectionManager.shared.socket.write(data: data)
+                            let dataValue = String(decoding: data, as: UTF8.self)
+print("the value is \(dataValue)")
                             txtMssg.text = ""
                         }else{
                             SocketConnectionManager.shared.socket.connect()
@@ -500,6 +513,9 @@ class FriendMsgVC: UIViewController {
                         let data = Data(data1.utf8)
                         if SocketConnectionManager.shared.socket.isConnected {
                             SocketConnectionManager.shared.socket.write(data: data)
+                            let dataValue = String(decoding: data, as: UTF8.self)
+print("the value is \(dataValue)")
+
                             txtMssg.text = ""
                         }else{
                             SocketConnectionManager.shared.socket.connect()
@@ -582,76 +598,7 @@ class FriendMsgVC: UIViewController {
         }
         return nil
     }
-    
-    
-    
-    
-    @objc func normalTapReviewver(_ sender: UIGestureRecognizer){
-        if sender.state == UIGestureRecognizer.State.ended {
-                   let tapLocation = sender.location(in: self.msgTableView)
-                   if let tapIndexPath = self.msgTableView.indexPathForRow(at: tapLocation) {
-                    let input = chatHistoryData[tapIndexPath.row].message
-                    let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                    let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input?.utf16.count ?? 0))
-                    for match in matches {
-                        guard let range = Range(match.range, in: input ?? "") else { continue }
-                        let url = input?[range]
-                        print(url)
-                        
-                        var string = url
-
-                        if string?.range(of:"https://") != nil {
-                            print("exists")
-                            if let url = URL(string: String(url ?? "")) {
-                                UIApplication.shared.open(url)
-                            }
-                        }else{
-                            if let url = URL(string: "https://" + String(url ?? "")) {
-                                UIApplication.shared.open(url)
-                            }
-                        }
- }
-                 }
-        }
-    }
-    
-    
-    
-    
-    
-    @objc func normalTap(_ sender: UIGestureRecognizer){
-
-        if sender.state == UIGestureRecognizer.State.ended {
-                   let tapLocation = sender.location(in: self.msgTableView)
-                   if let tapIndexPath = self.msgTableView.indexPathForRow(at: tapLocation) {
-                    print("Normal tap \(tapIndexPath.row)")
-                    let input = chatHistoryData[tapIndexPath.row].message
-                    let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                    let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input?.utf16.count ?? 0))
-                    for match in matches {
-                        guard let range = Range(match.range, in: input ?? "") else { continue }
-                        let url = input?[range]
-                        print(url)
-
-                        var string = url
-
-                        if string?.range(of:"https://") != nil {
-                            print("exists")
-                            if let url = URL(string: String(url ?? "")) {
-                                UIApplication.shared.open(url)
-                            }
-                        }else{
-                            if let url = URL(string: "https://" + String(url ?? "")) {
-                                UIApplication.shared.open(url)
-                            }
-                        }
-                    }
-                }
-        }
-        
-        
-        
-    }
+   
     
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
@@ -666,6 +613,60 @@ class FriendMsgVC: UIViewController {
             UIApplication.shared.windows.first?.makeKeyAndVisible()
         }else{
             self.navigationController?.popViewController(animated: true)
+        }
+    }
+    @objc func normalTapReviewver(_ sender: UIGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.ended {
+            let tapLocation = sender.location(in: self.msgTableView)
+            if let tapIndexPath = self.msgTableView.indexPathForRow(at: tapLocation) {
+                let input = chatHistoryData[tapIndexPath.row].message
+                let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+                let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input?.utf16.count ?? 0))
+                for match in matches {
+                    guard let range = Range(match.range, in: input ?? "") else { continue }
+                    let url = input?[range]
+                    print(url)
+                    var string = url
+                    if string?.range(of:"https://") != nil {
+                        print("exists")
+                        if let url = URL(string: String(url ?? "")) {
+                            UIApplication.shared.open(url)
+                        }
+                    }else{
+                        if let url = URL(string: "https://" + String(url ?? "")) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc func normalTap(_ sender: UIGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.ended {
+            let tapLocation = sender.location(in: self.msgTableView)
+            if let tapIndexPath = self.msgTableView.indexPathForRow(at: tapLocation) {
+                print("Normal tap \(tapIndexPath.row)")
+                let input = chatHistoryData[tapIndexPath.row].message
+                let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+                let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input?.utf16.count ?? 0))
+                for match in matches {
+                    guard let range = Range(match.range, in: input ?? "") else { continue }
+                    let url = input?[range]
+                    print(url)
+                    var string = url
+                    if string?.range(of:"https://") != nil {
+                        print("exists")
+                        if let url = URL(string: String(url ?? "")) {
+                            UIApplication.shared.open(url)
+                        }
+                    }else{
+                        if let url = URL(string: "https://" + String(url ?? "")) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -714,7 +715,20 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap))
             SendCell.addGestureRecognizer(tapGesture)
             SendCell.lblTime.text =  timeStamp
+            
+            
+            //MARK: UNDERLINE
+//            let input = chatHistoryData[indexPath.row].message ?? ""
+//            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+//            let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input.utf16.count ?? 0))
+//            for match in matches {
+//                guard let range = Range(match.range, in: input ?? "") else { continue }
+//                let url = input[range]
+//                print(url)
+//                SendCell.lblSendMsg.underline(text: String(url ?? ""))
+//            }
             return SendCell
+        
         }else{
             guard let ReceiveCell = tableView.dequeueReusableCell(withIdentifier: "recievedTableViewCell", for: indexPath) as? recievedTableViewCell else {
                 return UITableViewCell()
@@ -738,6 +752,18 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             let urlImage = URL(string: urlStringaa)!
             ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "image_placeholder"))
+            
+            //MARK: UNDERLINE
+//            let input = chatHistoryData[indexPath.row].message ?? ""
+//            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+//            let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input.utf16.count ?? 0))
+//            for match in matches {
+//                guard let range = Range(match.range, in: input ?? "") else { continue }
+//                let url = input[range]
+//                print(url)
+//                ReceiveCell.lblReceiveMsg.underline(text: String(url ?? ""))
+//            }
+            
             return ReceiveCell
         }
     }
@@ -787,37 +813,41 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                 }
             }
         }
+        
+        let date = Date()
+        let formatter = DateFormatter()
+
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        let result = formatter.string(from: date)
+
+        
+        
+        
+        
+        
+        print("the time in utc is \(result)")
+        
+        
+        let dateString = result
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let s = dateFormatter.date(from: dateString)
+        print(s)
+        let utcTime = self.localToUTC(dateStr: formatter.string(from: s ?? Date()))
+
+        print("the time in utc is \(utcTime)")
+
+        
         if reciverID == receiver_id && useriD == sender_id || useriD == receiver_id  {
             
             
           
             
-            let date = Date()
-            let formatter = DateFormatter()
-
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-            let result = formatter.string(from: date)
-
-            
-            
-            
-            
-            
-            print("the time in utc is \(result)")
-            
-            
-            let dateString = result
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let s = dateFormatter.date(from: dateString)
-            print(s)
-            let utcTime = self.localToUTC(dateStr: formatter.string(from: s ?? Date()))
-
-            print("the time in utc is \(utcTime)")
-
-            
             chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage , "created_at" : utcTime]))
+        }else{
+//            chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": sendMessageValue, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage , "created_at" : utcTime]))
+        }
             DispatchQueue.main.async {
                 
                if self.chatHistoryData.count == 0 {
@@ -844,7 +874,7 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                 self.msgTableView.reloadData()
 
             }
-        }
+        
     }
 }
 
@@ -894,4 +924,16 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
         showSimpleAlert(Title: errorTitle, message: errorMessage, inClass: self)
     }
     
+}
+
+extension UILabel {
+    func underline(text: String ) {
+        if let textString = self.text {
+          let attributedString = NSMutableAttributedString(string: textString)
+            attributedString.addAttribute(NSAttributedString.Key.underlineStyle,
+                                          value: NSUnderlineStyle.single.rawValue,
+                                          range: NSRange(location: 0, length: attributedString.length))
+          attributedText = attributedString
+        }
+    }
 }
