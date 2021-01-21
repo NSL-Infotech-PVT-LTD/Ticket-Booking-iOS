@@ -71,7 +71,24 @@ class ManageAddressVC: UIViewController {
     }
     
     @IBAction func btnBackAction(_ sender: UIButton) {
-        self.back()
+//
+        let selectedStreetAddress = (UserDefaults.standard.string(forKey: "isSelectedValue") ?? "")
+        let selectedValue = UserDefaults.standard.integer(forKey: "SelectedIdValue")
+        
+        print("the selected \(selectedValue)")
+        
+        
+          if modelObject.count > 0{
+            if  selectedStreetAddress == ""{
+                Helper.showOKAlert(onVC: self, title: "Error", message: "Please select address")
+            }else{
+                self.back()
+            }
+        }else{
+            self.back()
+
+        }
+        
     }
     
     @objc func btnEditTapped(_ sender: UIButton){
@@ -117,6 +134,24 @@ class ManageAddressVC: UIViewController {
                // add the actions (buttons)
         alert.addAction(UIAlertAction(title: "YES".localized(), style: UIAlertAction.Style.destructive, handler: { action in
                           // do something like...
+            
+            
+            
+            let selectedIdValue = UserDefaults.standard.integer(forKey: "SelectedIdValue")
+            
+            if selectedIdValue == modelData.id{
+                UserDefaults.standard.set("", forKey: "isSelectedValue")
+                UserDefaults.standard.set( 0.0, forKey: "SelectedLatValue")
+                UserDefaults.standard.set( "", forKey: "SelectedStreetAddress")
+                UserDefaults.standard.set( 0.0, forKey: "SelectedLongValue")
+                UserDefaults.standard.set( -1, forKey: "SelectedIdValue")
+                
+                
+            }else{
+                
+            }
+            
+            
                     self.objectViewModel.getParamForDeleteAddress(param: param as [String : Any])
                       }))
         alert.addAction(UIAlertAction(title: "CANCEL".localized(), style: UIAlertAction.Style.cancel, handler: nil))
@@ -155,11 +190,29 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         cell.btnEdit.tag = indexPath.row
         cell.btnDelete.tag = indexPath.row
         cell.btnSeeArtist12.tag = indexPath.row
-        if data.street_address == selectedAddress || index == indexPath.row{
-            cell.imgSelected.image = #imageLiteral(resourceName: "Selected")
+        
+        
+        let selectedIdValue = UserDefaults.standard.integer(forKey: "SelectedIdValue")
+        
+        if selectedIdValue == data.id {
+                        cell.imgSelected.image = #imageLiteral(resourceName: "Selected")
+
         }else{
-            cell.imgSelected.image = #imageLiteral(resourceName: "Ellipse 111")
+                        cell.imgSelected.image = #imageLiteral(resourceName: "Ellipse 111")
+
         }
+        
+        
+        
+
+        
+        
+        
+//        if data.street_address == selectedAddress || index == indexPath.row{
+//            cell.imgSelected.image = #imageLiteral(resourceName: "Selected")
+//        }else{
+//            cell.imgSelected.image = #imageLiteral(resourceName: "Ellipse 111")
+//        }
         
 //        if indexSelected == indexPath.row{
 //            cell.viewContainer.backgroundColor = #colorLiteral(red: 0.5490196078, green: 0.5579355955, blue: 0.6253077388, alpha: 0.2)
@@ -221,10 +274,25 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
         cell.viewContainer.backgroundColor = .lightGray
         let dataItem = modelObject[indexPath.row]
         currentAddress = dataItem.street_address ?? ""
+        
+        UserDefaults.standard.set(dataItem.street_address ?? "", forKey: "SelectedStreetAddress")
+        
+        
+        UserDefaults.standard.set("Selected", forKey: "isSelectedValue")
+        
+        
+        
+        
         locationCurrentTitle = dataItem.name ?? ""
         customAddress = true
         currentLat = dataItem.lat ?? 0.0
+        UserDefaults.standard.set(dataItem.lat ?? 0.0, forKey: "SelectedLatValue")
+
+        UserDefaults.standard.set(dataItem.street_address ?? "", forKey: "SelectedStreetAddress")
         currentLong = dataItem.long ?? 0.0
+        UserDefaults.standard.set(dataItem.long ?? 0.0, forKey: "SelectedLongValue")
+        UserDefaults.standard.set(dataItem.id ?? 0, forKey: "SelectedIdValue")
+
         index = indexPath.row
         indexSelected = indexPath.row
         self.tblAddress.reloadData()
@@ -241,9 +309,10 @@ extension ManageAddressVC :UITableViewDataSource,UITableViewDelegate{
 
 //Error handling Signup Api Here:-
 extension ManageAddressVC: ManageAddressViewModelProtocol {
-    func addAddress() {
+    func addAddress(isEdit: Bool) {
         
     }
+    
     
     func successAlert(susccessTitle: String, successMessage: String, from: Bool) {
         

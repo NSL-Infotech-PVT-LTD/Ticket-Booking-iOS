@@ -46,6 +46,8 @@ var dictFilter = [String:Any]()
 var SelfImage = String()
 var addressIDEdit = String()
 var addressTypeEdit = String()
+var addressStreetAddressAfterEdit = String()
+
 var addressAdditionalDetailEdit = String()
 var addressLandMarkEdit = String()
 var otherAddresssFeildValue = String()

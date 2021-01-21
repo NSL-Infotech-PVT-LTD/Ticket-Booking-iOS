@@ -16,7 +16,7 @@ protocol ManageAddressViewModelProtocol {
     func manageAddressApiResponse(message: String, modelArray: [ManageAddressModel],isError : Bool)
     func errorAlert(errorTitle: String, errorMessage: String)
     func successAlert(susccessTitle: String, successMessage: String,from:Bool)
-    func addAddress()
+    func addAddress(isEdit : Bool)
 
 }
 
@@ -56,7 +56,7 @@ class ManageAddressViewModel {
                                                    if let status = result["status"] as? Bool {
                                                        if status ==  true{
                                                         let dictData = result["data"] as? [String:Any]
-                                                        self.delegate?.addAddress()
+                                                        self.delegate?.addAddress(isEdit: true)
                                                        }
                                                        else{
                                                        }
@@ -93,7 +93,7 @@ class ManageAddressViewModel {
                                                if let status = result["status"] as? Bool {
                                                    if status ==  true{
                                                     let dictData = result["data"] as? [String:Any]
-                                                    self.delegate?.addAddress()
+                                                    self.delegate?.addAddress(isEdit: false)
                                                    }
                                                    else{
                                                    }

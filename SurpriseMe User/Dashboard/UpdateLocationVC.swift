@@ -44,6 +44,11 @@ class UpdateLocationVC: UIViewController {
     var modelObjectDict = ManageAddressModel()
     var locationManager = CLLocationManager()
     var isCurrentLocation = false
+    var selectedFirstIndexAddress = String()
+    var selectedFirstIndexId = Int()
+    var selectedFirstIndexLat = Double()
+    var selectedFirstIndexLong = Double()
+
     
     //MARK:- View's Life Cycle -
     override func viewDidLoad() {
@@ -91,9 +96,15 @@ class UpdateLocationVC: UIViewController {
     
     func setEditAddressAgain()  {
         
-        self.lblAddressTextValue.text =  addressSelected
-        self.getAddress(address: addressSelected)
-        if addressLandMarkEdit  == "N/A" || addressLandMarkEdit  == ""{
+        if addressSelected == ""{
+            self.lblAddressTextValue.text =  addressStreetAddressAfterEdit
+            self.getAddress(address: addressStreetAddressAfterEdit)
+        }else{
+            self.lblAddressTextValue.text =  addressSelected
+            self.getAddress(address: addressSelected)
+        }
+        
+       if addressLandMarkEdit  == "N/A" || addressLandMarkEdit  == ""{
         }else{
             self.tfLandMark.text = addressLandMarkEdit
         }
@@ -214,6 +225,7 @@ class UpdateLocationVC: UIViewController {
     
     func setMarkerCustomLocation()  {
         self.lblAddressTextValue.text =  addressSelected
+        print("hii i am abhishek mishra")
         self.getAddress(address: addressSelected)
     }
     
@@ -274,43 +286,109 @@ class UpdateLocationVC: UIViewController {
         var dictParam = [String : Any]()
         if addressType == "Other"{
             if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
-                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                
+                if otherAddressTF.text! == ""{
+                    
+                    dictParam = ["name":"Other","longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }else{
+                    dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }
+                
+                
+                
+            
             }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
-                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                
+                if otherAddressTF.text! == ""{
+                    
+                    dictParam = ["name":"Other","longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }else{
+                    dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }
+                
+                
             }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
-                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                
+                
+                if otherAddressTF.text! == ""{
+                    dictParam = ["name":"Other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }else{
+                    dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }
+                
+                
+               
             }
             else{
-                dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                
+                if otherAddressTF.text! == ""{
+                    dictParam = ["name":"Other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }else{
+                    dictParam = ["name":otherAddressTF.text!,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
+                }
+                
+                
+                
             }
         }else{
             if addressType == ""{
                 if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
                     dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
                     dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
                     dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }
                 else{
                     dictParam = ["name":"other","longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }
                 
             }else{
                 if self.tfLandMark.text! == "" && self.tfHouserNumber.text! == ""{
                     dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }else  if self.tfLandMark.text! == "" && self.tfHouserNumber.text! != ""{
                     dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":"N/A","zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }else  if self.tfLandMark.text! != "" && self.tfHouserNumber.text! == ""{
                     dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":"N/A","city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }
                 else{
                     dictParam = ["name":addressType,"longitude":addressLong,"latitude":addressLat,"country":self.tfLandMark.text!,"zip":"zip","state":self.tfHouserNumber.text!,"city":"city","street_address":self.lblAddressTextValue.text!]
+                    print("the dict param is totally \(dictParam)")
+                    self.objectViewModel.getParamForAddAddress(param: dictParam)
                 }
             }
         }
-        print("the dict param is totally \(dictParam)")
-        self.objectViewModel.getParamForAddAddress(param: dictParam)
+       
     }
     
     
@@ -386,6 +464,23 @@ class UpdateLocationVC: UIViewController {
             }
         }
         self.objectViewModel.getParamForEditAddress(param: dictParam)
+        
+        selectedFirstIndexLat = dictParam["latitude"] as? Double ?? 0.0
+        selectedFirstIndexLong = dictParam["longitude"] as? Double ?? 0.0
+        selectedFirstIndexAddress = dictParam["street_address"] as? String ?? ""
+        selectedFirstIndexId = dictParam["id"] as? Int ?? 0
+
+        
+//        selectedFirstIndexLat, forKey: "SelectedLatValue")
+//        UserDefaults.standard.set( selectedFirstIndexAddress, forKey: "SelectedStreetAddress")
+//        UserDefaults.standard.set( selectedFirstIndexLong, forKey: "SelectedLongValue")
+//        UserDefaults.standard.set( selectedFirstIndexId
+//
+        
+        
+        
+        
+        
     }
     
     func setAddressEditAgain()  {
@@ -451,6 +546,9 @@ class UpdateLocationVC: UIViewController {
             }
         }
         self.objectViewModel.getParamForEditAddress(param: dictParam)
+        selectedFirstIndexLat = dictParam["latitude"] as? Double ?? 0.0
+        selectedFirstIndexLong = dictParam["longitude"] as? Double ?? 0.0
+        selectedFirstIndexAddress = dictParam["street_address"] as? String ?? ""
     }
     
     
@@ -516,26 +614,65 @@ extension UpdateLocationVC : GMSMapViewDelegate{
 
 //Error handling Signup Api Here:-
 extension UpdateLocationVC: ManageAddressViewModelProtocol {
-    func addAddress() {
+    func addAddress(isEdit: Bool) {
         print("added successfully")
         
-        for controller in self.navigationController!.viewControllers as Array {
-            if controller.isKind(of: ManageAddressVC.self) {
-                self.navigationController!.popToViewController(controller, animated: true)
-                isEditAddress = false
-                isEditAddress = false
-                isEditValue = false
-                isEditAddress = false
-                isEditValue = false
-                isEditAddress = false
-                addressIDEdit = ""
-                addressTypeEdit =  ""
-                addressAdditionalDetailEdit = ""
-                addressLandMarkEdit =  ""
-                otherAddresssFeildValue = ""
-                break
+        
+        if isEdit == true{
+            
+            UserDefaults.standard.set( selectedFirstIndexLat, forKey: "SelectedLatValue")
+            UserDefaults.standard.set( selectedFirstIndexAddress, forKey: "SelectedStreetAddress")
+            UserDefaults.standard.set( selectedFirstIndexLong, forKey: "SelectedLongValue")
+          //  UserDefaults.standard.set( selectedFirstIndexId, forKey: "SelectedIdValue")
+            
+            
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: ManageAddressVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    isEditAddress = false
+                    isEditAddress = false
+                    isEditValue = false
+                    isEditAddress = false
+                    isEditValue = false
+                    isEditAddress = false
+                    addressIDEdit = ""
+                    addressTypeEdit =  ""
+                    addressAdditionalDetailEdit = ""
+                    addressLandMarkEdit =  ""
+                    otherAddresssFeildValue = ""
+                    break
+                }
+            }
+            
+            
+        }else{
+            for controller in self.navigationController!.viewControllers as Array {
+                if controller.isKind(of: ManageAddressVC.self) {
+                    self.navigationController!.popToViewController(controller, animated: true)
+                    isEditAddress = false
+                    isEditAddress = false
+                    isEditValue = false
+                    isEditAddress = false
+                    isEditValue = false
+                    isEditAddress = false
+                    addressIDEdit = ""
+                    addressTypeEdit =  ""
+                    addressAdditionalDetailEdit = ""
+                    addressLandMarkEdit =  ""
+                    otherAddresssFeildValue = ""
+                    break
+                }
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        
+       
     }
     
     func manageAddressApiResponse(message: String, modelArray response:  [ManageAddressModel],isError :Bool) {
@@ -698,6 +835,7 @@ extension UpdateLocationVC {
         }
         addressIDEdit = "\(modelObjectDict.id ?? 0)"
         addressTypeEdit = modelObjectDict.name ?? ""
+        addressStreetAddressAfterEdit = modelObjectDict.street_address ?? ""
         addressAdditionalDetailEdit = modelObjectDict.state ?? ""
         addressLandMarkEdit = modelObjectDict.country ?? ""
         otherAddresssFeildValue = self.otherAddressTF.text ?? ""
