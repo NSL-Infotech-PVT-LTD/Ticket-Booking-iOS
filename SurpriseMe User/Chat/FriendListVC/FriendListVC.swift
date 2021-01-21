@@ -57,7 +57,7 @@ class FriendListVC: UIViewController {
                         if status ==  true{
                             if let dataDetail = response["data"] as? [String : Any]{
                                 //pagination is start from here ..
-                                if self.pageInt == 1{
+//                                if self.pageInt == 1{
                                     self.arrayFreind.removeAll()
                                     if let data = dataDetail["list"] as? [[String:Any]] {
                                         for getcategory in data {
@@ -66,22 +66,22 @@ class FriendListVC: UIViewController {
                                         }
                                     }
                                     print("the number of running arrayFreind is \(self.arrayFreind.count)")
-                                }else{
-                                    self.arrayFreindLoadMore.removeAll()
-                                    if let data = dataDetail["list"] as? [[String:Any]] {
-                                        for getcategory in data {
-                                            print("dictionary paer dlsnfsad \(getcategory)")
-                                            self.arrayFreindLoadMore.append(GetFreindListModel.init(resposne: getcategory ))
-                                        }
-                                    }
-                                    self.arrayFreind = self.arrayFreind + self.arrayFreindLoadMore
-                                    if (self.arrayFreindLoadMore.count == 0){
-                                        self.isLoadMore = true
-                                    }else{
-                                        self.isLoadMore = false
-                                    }
-                                    print("the number of running fixture is \(self.arrayFreindLoadMore.count)")
-                                }
+//                                }else{
+//                                    self.arrayFreindLoadMore.removeAll()
+//                                    if let data = dataDetail["list"] as? [[String:Any]] {
+//                                        for getcategory in data {
+//                                            print("dictionary paer dlsnfsad \(getcategory)")
+//                                            self.arrayFreindLoadMore.append(GetFreindListModel.init(resposne: getcategory ))
+//                                        }
+//                                    }
+//                                    self.arrayFreind = self.arrayFreind + self.arrayFreindLoadMore
+//                                    if (self.arrayFreindLoadMore.count == 0){
+//                                        self.isLoadMore = true
+//                                    }else{
+//                                        self.isLoadMore = false
+//                                    }
+//                                    print("the number of running fixture is \(self.arrayFreindLoadMore.count)")
+//                                }
                               print("the freind List is \(self.arrayFreind.count)")
                                 
                                 
@@ -142,9 +142,9 @@ class FriendListVC: UIViewController {
             print("scrollViewDidEndDragging")
             if isLoadMore == false{
                 self.pageInt = self.pageInt + 1
-                print("scrollViewDidEndDragging page number is \(self.pageInt)")
-                let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
-                self.hideTable(page: self.pageInt)
+                //print("scrollViewDidEndDragging page number is \(self.pageInt)")
+               // let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
+                //self.hideTable(page: self.pageInt)
             }
         }
     }
