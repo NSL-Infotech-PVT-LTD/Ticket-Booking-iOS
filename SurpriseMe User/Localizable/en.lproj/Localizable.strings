@@ -191,8 +191,8 @@
 "STRIPE"                    = "Stripe";
 "ADD_CARD_TITLE"            = "Add Card";
 //UpdateLocationVC
-"ADD_DETAILS"               = "Full Address";
-"LANDMARK"                  = "Landmark";
+"ADD_DETAILS"               = "full address (if different from location)";
+"LANDMARK"                  = "Additional information (optional)";
 "OTHER_ADD"                 = "Enter other address";
 "SAVE_ADD"                  = "Save Address";
 "HOME"                      = "Home";

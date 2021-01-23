@@ -79,7 +79,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     var mobelObject =  [ManageAddressModel]()
     var isDigital = Bool()
     var showTyepValue = String()
-
+    
     
     //MARK:- View's Life cycle -
     override func viewDidLoad() {
@@ -133,9 +133,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         selectedType = "digital"
         viewLivePersonHeader.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
         viewHeaderVirtual.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-       
-        
-        
         
         self.locationTf.isHidden = true
         self.tableView_out.isHidden = true
@@ -145,10 +142,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         self.viewUpdateLocation.isUserInteractionEnabled = false
         self.getDataBookingList(pageNumber: 1)
         
-        
-        
-        //self.getDataBookingList(pageNumber: 1)
-        
     }
     
     @objc func handletapview12(_ sender: UITapGestureRecognizer? = nil) {
@@ -156,7 +149,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         self.viewPopupSubview.isHidden = true
         self.viewSettingUpShowType.isHidden = true
         self.viewPopupContainer.isHidden = true
-//        self.SetFinalType()
+        //        self.SetFinalType()
         isDigital = false
         whicShowTypeDigital = true
         selectedType = "live"
@@ -181,7 +174,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 print("the dictionary is \(dict)")
                 self.locationTf.text = currentAddress
             }
-       }else{
+        }else{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
             let transition = CATransition()
@@ -304,29 +297,16 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                         
                                         let selectedStreetAddress = (UserDefaults.standard.string(forKey: "SelectedStreetAddress") ?? "")
                                         print("the selected address is \(selectedStreetAddress)")
-                                        
-                                       
-
-                                        
-                                        
                                         if selectedStreetAddress != ""{
-                                            
-                                            
-                                           print("the selected address is dv ABbishek mishra")
-                                            
-                                            
+                                            print("the selected address is dv ABbishek mishra")
                                             let selectedSaveLat = UserDefaults.standard.double(forKey: "SelectedLatValue")
-                                            
                                             let selectedSaveLong = UserDefaults.standard.double(forKey: "SelectedLongValue")
-                                            
-                                            
-                                            
                                             self.currentLocationGet()
                                             self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
                                             self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
                                             self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
                                             self.locationTf.text = selectedStreetAddress
-                                             currentLat = selectedSaveLat
+                                            currentLat = selectedSaveLat
                                             currentLong = selectedSaveLong
                                             currentAddress =  self.locationTf.text!
                                             print("the abhishek type value current location is \(whicShowTypeDigital)")
@@ -349,45 +329,45 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                         }
                                         
                                         
-
                                         
                                         
                                         
                                         
                                         
-//
-//                                        if customAddress == false{
-//                                            self.currentLocationGet()
-//                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-//                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
-//                                            self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
-//                                            self.locationTf.text = self.mobelObject[0].street_address ?? ""
-//                                             currentLat = self.mobelObject[0].lat ?? 0.0
-//                                            currentLong = self.mobelObject[0].long ?? 0.0
-//                                            currentAddress =  self.locationTf.text!
-//                                            print("the abhishek type value current location is \(whicShowTypeDigital)")
-//
-//                                        }else{
-//                                            let dict = ["latitude":currentLat ,"longitude":currentLong ]
-//                                            print("the dictionary is \(dict)")
-//                                            print("the abhishek type value current  is \(whicShowTypeDigital)")
-//                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-//                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
-//                                            //self.viewModelObject.getParamForBookingList(param: dict)
-//
-//
-//
-//                                            self.locationTf.text = currentAddress
-//                                        }
-                                   }else{
+                                        
+                                        //
+                                        //                                        if customAddress == false{
+                                        //                                            self.currentLocationGet()
+                                        //                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
+                                        //                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
+                                        //                                            self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
+                                        //                                            self.locationTf.text = self.mobelObject[0].street_address ?? ""
+                                        //                                             currentLat = self.mobelObject[0].lat ?? 0.0
+                                        //                                            currentLong = self.mobelObject[0].long ?? 0.0
+                                        //                                            currentAddress =  self.locationTf.text!
+                                        //                                            print("the abhishek type value current location is \(whicShowTypeDigital)")
+                                        //
+                                        //                                        }else{
+                                        //                                            let dict = ["latitude":currentLat ,"longitude":currentLong ]
+                                        //                                            print("the dictionary is \(dict)")
+                                        //                                            print("the abhishek type value current  is \(whicShowTypeDigital)")
+                                        //                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
+                                        //                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
+                                        //                                            //self.viewModelObject.getParamForBookingList(param: dict)
+                                        //
+                                        //
+                                        //
+                                        //                                            self.locationTf.text = currentAddress
+                                        //                                        }
+                                    }else{
                                         self.isDigital = true
                                         self.getDataBookingList(pageNumber: 1)
                                         self.viewUpdateLocation.isUserInteractionEnabled = false
-                                    print("the abhishek type value current  is \(whicShowTypeDigital)")
-                                    self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-                                    self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
- self.btnDigitalTop.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                                    
+                                        print("the abhishek type value current  is \(whicShowTypeDigital)")
+                                        self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
+                                        self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
+                                        self.btnDigitalTop.setImage(UIImage.init(named: "digital_active"), for: .normal)
+                                        
                                         self.btnLiveTop.setImage(UIImage.init(named: "Live_unactive"), for: .normal)
                                         self.lblYourLocationLblTitle.isHidden = true
                                         self.locationTf.isHidden = true
@@ -443,10 +423,10 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                 // add the actions (buttons)
                                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
                                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
-                               // show the alert
+                                // show the alert
                                 self.present(alert, animated: true, completion: nil)
                             }
-                         }
+                        }
                     }
                 }
                 else {
@@ -467,7 +447,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         isDigital = false
         whicShowTypeDigital = true
         selectedType = "live"
-     }
+    }
     
     @IBAction func btnDigital(_ sender: UIButton) {
         showTyepValue = "Digital"
@@ -484,7 +464,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             imgShowTypeSetting.image = UIImage.init(named: "digital")
             self.lblShowTypeValueArtist.text = "VIRTUAL_SHOW".localized()
             lblSettingUPDetail.text = "SEETING_UP_DETAIL_VIRTUAL".localized()
-          }else{
+        }else{
             imgShowTypeSetting.image = UIImage.init(named: "live")
             self.lblShowTypeValueArtist.text = "IN_PERSON_SHOW".localized()
             lblSettingUPDetail.text = "SEETING_UP_DETAIL_IN_PERSON".localized()
@@ -514,7 +494,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             self.getDataBookingList(pageNumber: 1)
             lblSettingUPDetail.text = "SEETING_UP_DETAIL_VIRTUAL".localized()
             self.viewUpdateLocation.isUserInteractionEnabled = false
-         }else{
+        }else{
             
             
             viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
@@ -539,17 +519,17 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 if  selectedStreetAddress != ""{
                     
                     
-                   print("the selected address is dv ABbishek mishra")
+                    print("the selected address is dv ABbishek mishra")
                     
                     
                     let selectedSaveLat = UserDefaults.standard.double(forKey: "SelectedLatValue")
                     
                     print("the selected address is dv SelectedLatValue mishra\(selectedSaveLat)")
-
+                    
                     
                     let selectedSaveLong = UserDefaults.standard.double(forKey: "SelectedLongValue")
                     print("the selected address is dv SelectedLongValue mishra\(selectedSaveLong)")
-
+                    
                     
                     
                     self.currentLocationGet()
@@ -557,7 +537,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                     self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
                     self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
                     self.locationTf.text = selectedStreetAddress
-                     currentLat = selectedSaveLat
+                    currentLat = selectedSaveLat
                     currentLong = selectedSaveLong
                     currentAddress =  self.locationTf.text!
                     print("the abhishek type value current location is \(whicShowTypeDigital)")
@@ -583,20 +563,20 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 
                 
                 
-//                if customAddress == false{
-//                    self.currentLocationGet()
-//                    self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
-//                    self.locationTf.text = self.mobelObject[0].street_address ?? ""
-//                    currentLat = self.mobelObject[0].lat ?? 0.0
-//                    currentLong = self.mobelObject[0].long ?? 0.0
-//                    currentAddress =  self.locationTf.text!
-//                    self.getDataBookingList(pageNumber: 1)
-//                 }else{
-//                    let dict = ["latitude":currentLat ,"longitude":currentLong ]
-//                    print("the dictionary is \(dict)")
-//                    //self.viewModelObject.getParamForBookingList(param: dict)
-//                    self.locationTf.text = currentAddress
-//                }
+                //                if customAddress == false{
+                //                    self.currentLocationGet()
+                //                    self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
+                //                    self.locationTf.text = self.mobelObject[0].street_address ?? ""
+                //                    currentLat = self.mobelObject[0].lat ?? 0.0
+                //                    currentLong = self.mobelObject[0].long ?? 0.0
+                //                    currentAddress =  self.locationTf.text!
+                //                    self.getDataBookingList(pageNumber: 1)
+                //                 }else{
+                //                    let dict = ["latitude":currentLat ,"longitude":currentLong ]
+                //                    print("the dictionary is \(dict)")
+                //                    //self.viewModelObject.getParamForBookingList(param: dict)
+                //                    self.locationTf.text = currentAddress
+                //                }
                 
             }else{
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
@@ -703,7 +683,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 print("the dictionary is \(dict)")
                 self.locationTf.text = currentAddress
             }
-       }else{
+        }else{
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
             let transition = CATransition()
@@ -1038,7 +1018,6 @@ extension HOmeViewController : CLLocationManagerDelegate{
                 if let results = responseJson.object(forKey: "results")! as? [NSDictionary] {
                     if results.count > 0 {
                         if let addressComponents = results[0]["address_components"]! as? [NSDictionary] {
-                            
                             if self.locationTf.text == ""{
                             }
                             currentAddress = self.locationTf.text!

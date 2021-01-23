@@ -55,26 +55,35 @@ class cardPaymentList: UIViewController {
     
     @IBAction func btnPayNowAction(_ sender: UIButton) {
         
-        let buttonTitle = sender.titleLabel?.text
         
-        if buttonTitle ?? "" == "Add Card"{
-            self.back()
-        }else{
+        if Reachability.isConnectedToNetwork() {
+            let buttonTitle = sender.titleLabel?.text
             
-            if cardID == ""{
-                Helper.showOKAlert(onVC: self, title: "SELECT_CARD".localized(), message: "")
+            if buttonTitle ?? "" == "Add Card"{
+                self.back()
             }else{
-                let param = ["booking_id":bookingPaymentID ?? 0 , "status":"confirmed" , "card_id":cardID,"payment_method":"card"] as [String : Any]
-                let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
-                let navController = UINavigationController(rootViewController: VC1)
-                navController.modalPresentationStyle = .overCurrentContext
-                navController.isNavigationBarHidden = true
-                self.present(navController, animated:true, completion: nil)
-                self.getPaymentForBooking(param: param)
+                
+                if cardID == ""{
+                    Helper.showOKAlert(onVC: self, title: "SELECT_CARD".localized(), message: "")
+                }else{
+                    let param = ["booking_id":bookingPaymentID ?? 0 , "status":"confirmed" , "card_id":cardID,"payment_method":"card"] as [String : Any]
+                    let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoaderVC") as! LoaderVC
+                    let navController = UINavigationController(rootViewController: VC1)
+                    navController.modalPresentationStyle = .overCurrentContext
+                    navController.isNavigationBarHidden = true
+                    self.present(navController, animated:true, completion: nil)
+                    self.getPaymentForBooking(param: param)
+                }
+                
             }
-            
+
+        }else{
+            Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: "INTERNET_CONN".localized())
         }
         
+        
+        
+                
     }
     
     

@@ -26,7 +26,17 @@ class LoaderVC: UIViewController {
         lblDoNotBack.text = "DO_NOT_PRESS".localized()
         
         viewActivityIndicator.startAnimating()
-        gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+        
+        
+        if Reachability.isConnectedToNetwork() {
+            gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+            
+        }else{
+            self.dismiss(animated: true) {
+                Helper.showOKAlert(onVC: self, title: "ERROR".localized(), message: "INTERNET_CONN".localized())
+            }
+        }
+        
         
     }
     

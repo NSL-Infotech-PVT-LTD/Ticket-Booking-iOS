@@ -34,8 +34,13 @@ class LanguageVC: UIViewController {
     
 //    @IBOutlet weak var btnNext: UIButton!
     var language = "en"
-    var languageArray = ["English (US)","Dutch","German","Spanish"]
-    var languageCodeArray = ["en","nl","de","es"]
+    //var languageArray = ["English (US)","Dutch","German","Spanish"]
+    
+    var languageArray = ["English (US)"]
+    var languageCodeArray = ["en"]
+
+
+   // var languageCodeArray = ["en","nl","de","es"]
     var selectedIndex = 0
     var selectedLanguage = String()
 

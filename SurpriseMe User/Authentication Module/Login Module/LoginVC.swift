@@ -201,8 +201,7 @@ extension LoginVC: LoginViewModelProtocol {
             
         }else{
             Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: message, btnOkTitle: "DONE".localized()) {
-                self.tfEmail.text = nil
-                self.tfPassword.text = nil
+                
             }
         }
         

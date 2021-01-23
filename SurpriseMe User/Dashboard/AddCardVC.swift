@@ -161,12 +161,15 @@ class AddCardVC: UIViewController {
             Helper.showOKAlert(onVC: self, title: "Enter Card Number", message: "")
             
         }else if txtExpire.text == ""{
-            Helper.showOKAlert(onVC: self, title: "Enter Card Expire Date", message: "")
+            Helper.showOKAlert(onVC: self, title: "Enter Card Expire Month", message: "")
             
         }else if txtYYYY.text == ""{
+            Helper.showOKAlert(onVC: self, title: "Enter Expire Year", message: "")
+            
+        }else if txtCVV.text == ""{
             Helper.showOKAlert(onVC: self, title: "Enter CVV Number", message: "")
             
-        }else{
+        } else{
             LoaderClass.shared.loadAnimation()
             
             

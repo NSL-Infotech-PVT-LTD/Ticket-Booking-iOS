@@ -2207,10 +2207,9 @@
                                         <rect key="frame" x="0.0" y="61.5" width="295" height="57"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQw-aU-Qa7">
-                                                <rect key="frame" x="0.0" y="2" width="239" height="17"/>
+                                                <rect key="frame" x="0.0" y="2" width="287" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="Abu-dW-v0x"/>
-                                                    <constraint firstAttribute="width" constant="239" id="Jus-Hi-5vx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.35294117650000001" green="0.4039215686" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2227,6 +2226,7 @@
                                             <constraint firstItem="kqX-Kh-3py" firstAttribute="top" secondItem="aQw-aU-Qa7" secondAttribute="bottom" constant="2" id="Klb-H8-1BK"/>
                                             <constraint firstAttribute="trailing" secondItem="kqX-Kh-3py" secondAttribute="trailing" id="Man-ym-lhr"/>
                                             <constraint firstAttribute="bottom" secondItem="kqX-Kh-3py" secondAttribute="bottom" constant="3" id="RaD-I3-Ewg"/>
+                                            <constraint firstAttribute="trailing" secondItem="aQw-aU-Qa7" secondAttribute="trailing" constant="8" id="VSU-tq-iAL"/>
                                             <constraint firstItem="kqX-Kh-3py" firstAttribute="leading" secondItem="zow-iZ-f6F" secondAttribute="leading" id="pQF-NT-HH4"/>
                                             <constraint firstItem="aQw-aU-Qa7" firstAttribute="leading" secondItem="zow-iZ-f6F" secondAttribute="leading" id="rcA-gv-glD"/>
                                             <constraint firstItem="aQw-aU-Qa7" firstAttribute="top" secondItem="zow-iZ-f6F" secondAttribute="top" constant="2" id="xkJ-Wp-rpI"/>
@@ -2241,9 +2241,8 @@
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Landmark" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNH-Xt-7am">
-                                                <rect key="frame" x="4" y="0.0" width="80" height="17"/>
+                                                <rect key="frame" x="4" y="0.0" width="283" height="17"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="9Qa-w3-BAL"/>
                                                     <constraint firstAttribute="height" constant="17" id="nBc-4W-alS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2255,6 +2254,7 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="4ot-LE-0VZ" secondAttribute="bottom" constant="2" id="DxG-CG-Fw4"/>
                                             <constraint firstItem="4ot-LE-0VZ" firstAttribute="leading" secondItem="BpO-Hd-8uN" secondAttribute="leading" constant="4" id="N6P-5q-wPH"/>
+                                            <constraint firstAttribute="trailing" secondItem="eNH-Xt-7am" secondAttribute="trailing" constant="8" id="RtO-yR-Brw"/>
                                             <constraint firstItem="eNH-Xt-7am" firstAttribute="leading" secondItem="BpO-Hd-8uN" secondAttribute="leading" constant="4" id="Uwr-bQ-T3h"/>
                                             <constraint firstItem="eNH-Xt-7am" firstAttribute="top" secondItem="BpO-Hd-8uN" secondAttribute="top" id="iUX-OG-WMp"/>
                                             <constraint firstAttribute="trailing" secondItem="4ot-LE-0VZ" secondAttribute="trailing" constant="5" id="kih-xl-PYv"/>
@@ -3188,7 +3188,7 @@
                                 <rect key="frame" x="0.0" y="143" width="375" height="524"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Notifications found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46P-Dm-abn">
-                                        <rect key="frame" x="64.5" y="120.5" width="246.5" height="26"/>
+                                        <rect key="frame" x="82.5" y="121.5" width="210.5" height="24.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="21"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -3891,16 +3891,16 @@
                                 <rect key="frame" x="0.0" y="180" width="375" height="73"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select time of booking  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJE-Md-Wux">
-                                        <rect key="frame" x="24" y="6" width="226" height="18.5"/>
+                                        <rect key="frame" x="24" y="6" width="226" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="15"/>
                                         <color key="textColor" red="0.21176470588235294" green="0.22352941176470587" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qZ-nC-QPW">
-                                        <rect key="frame" x="24" y="28.5" width="351" height="12.5"/>
+                                        <rect key="frame" x="24" y="27.5" width="351" height="13.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Path 30" translatesAutoresizingMaskIntoConstraints="NO" id="OIa-2M-PfD">
-                                                <rect key="frame" x="0.0" y="6" width="208" height="0.5"/>
+                                                <rect key="frame" x="0.0" y="6.5" width="208" height="0.5"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -4145,7 +4145,7 @@
                                 </cells>
                             </collectionView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FeE-4H-i3f">
-                                <rect key="frame" x="37.5" y="587" width="175" height="50"/>
+                                <rect key="frame" x="37.5" y="587" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91764705882352937" green="0.035294117647058823" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="DFf-RK-KTk"/>
@@ -7281,7 +7281,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iDeal Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9WS-pj-xrA">
-                                        <rect key="frame" x="28" y="83" width="278" height="32"/>
+                                        <rect key="frame" x="28" y="83" width="278" height="30.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="278" id="bRW-Cq-XCz"/>
                                         </constraints>
@@ -7290,23 +7290,23 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bank" translatesAutoresizingMaskIntoConstraints="NO" id="v7X-5r-NNq">
-                                        <rect key="frame" x="55" y="152" width="20" height="20"/>
+                                        <rect key="frame" x="55" y="150.5" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="doD-Nw-8Ua"/>
                                             <constraint firstAttribute="height" constant="20" id="eXB-ar-Dja"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Bank Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdq-8N-3rg">
-                                        <rect key="frame" x="87" y="153.5" width="141" height="17.5"/>
+                                        <rect key="frame" x="87" y="152" width="141" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" red="0.2470588235" green="0.23921568630000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rB6-CO-tiX">
-                                        <rect key="frame" x="36" y="189" width="303" height="66"/>
+                                        <rect key="frame" x="36" y="187.5" width="303" height="66"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Bank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vz3-Ip-cYH">
-                                                <rect key="frame" x="15" y="23" width="228" height="20"/>
+                                                <rect key="frame" x="15" y="23.5" width="228" height="19"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
                                                 <color key="textColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -7345,14 +7345,14 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-shape" translatesAutoresizingMaskIntoConstraints="NO" id="5RA-Pq-ko5">
-                                        <rect key="frame" x="57" y="303" width="20" height="20"/>
+                                        <rect key="frame" x="57" y="301.5" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="iqH-WB-Inx"/>
                                             <constraint firstAttribute="width" constant="20" id="lgC-XX-yTB"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Holder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBB-MD-O9R">
-                                        <rect key="frame" x="89" y="304.5" width="158.5" height="17.5"/>
+                                        <rect key="frame" x="89" y="303" width="158.5" height="17.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" red="0.2470588235" green="0.23921568630000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -7368,7 +7368,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmR-m8-EJN">
-                                        <rect key="frame" x="36" y="339" width="303" height="52"/>
+                                        <rect key="frame" x="36" y="337.5" width="303" height="52"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N62-Bz-guj">
                                                 <rect key="frame" x="10" y="6" width="283" height="40"/>
@@ -7397,7 +7397,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVy-eS-ZOU">
-                                        <rect key="frame" x="40" y="468" width="295" height="46"/>
+                                        <rect key="frame" x="40" y="466.5" width="295" height="46"/>
                                         <color key="backgroundColor" red="0.79607843140000001" green="0.79607843140000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="f8a-bY-bJh"/>
@@ -7689,7 +7689,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiry Date of Card" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvd-bk-MnI">
-                                                                <rect key="frame" x="4" y="12.5" width="139.5" height="20"/>
+                                                                <rect key="frame" x="4" y="12.5" width="122.5" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="6IR-ma-4Gu"/>
                                                                 </constraints>
@@ -8225,7 +8225,7 @@ Ipsum has been the industry's standard dummy text ever</string>
             <size key="intrinsicContentSize" width="335" height="44"/>
         </designable>
         <designable name="8Tx-eP-nmW">
-            <size key="intrinsicContentSize" width="103" height="31"/>
+            <size key="intrinsicContentSize" width="92" height="30"/>
         </designable>
         <designable name="X83-W6-e1s">
             <size key="intrinsicContentSize" width="58" height="10"/>
