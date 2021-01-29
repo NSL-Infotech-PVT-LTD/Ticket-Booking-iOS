@@ -106,6 +106,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.view.isUserInteractionEnabled = false
         lblChosseShowDetail.isHidden = true
         viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
         viewLivePersonHeader.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
@@ -257,6 +258,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             controller.modalPresentationStyle = .overFullScreen
             self.present(controller,animated: true)
         }else{
+
             self.btnViewProfile.setTitle("view_profile".localized(), for: .normal)
             //self.lblYourLocation.text = "your_location".localized()
             self.searchTxt.placeholder = "search_for_artist".localized()
@@ -291,6 +293,8 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 imgUserProfile.isUserInteractionEnabled = true
                 imgUserProfile.addGestureRecognizer(tapviewimgUserProfile)
             }
+//            self.view.isUserInteractionEnabled = true
+
         }
     }
     
@@ -298,6 +302,10 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         self.viewPopupSubview.isHidden = false
         self.viewSettingUpShowType.isHidden = true
         self.viewPopupContainer.isHidden = false
+        self.searchTxt.isUserInteractionEnabled = true
+        self.view.isUserInteractionEnabled = true
+
+
     }
     
     func getManageAddressData(param: [String: Any]) {
@@ -308,6 +316,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.addresslist, method: .get, param: [:], header: headerToken) { (response, error) in
                 print(response)
                 LoaderClass.shared.stopAnimation()
+                self.view.isUserInteractionEnabled = true
                 if error == nil {
                     let result = response
                     if let status = result["status"] as? Bool {
@@ -321,6 +330,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                 })
                             }
                             if showTypeTrueOrFalse == false{
+                                self.searchTxt.isUserInteractionEnabled = false
                                 self.showPopupContainer()
                             }else{
                                 if whicShowTypeDigital == false{
@@ -483,6 +493,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     }
     
     @objc func runTimedCode() {
+
         self.viewPopupSubview.isHidden = true
         self.viewSettingUpShowType.isHidden = true
         self.viewPopupContainer.isHidden = true

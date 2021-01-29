@@ -32,6 +32,7 @@
 "EMAIL_ADDRESS"             = "E-mailadres";
 "ENTER_YOUR_MAIL"           = "Introduce tu correo electrónico";
 "No_ADDRESS_FOUND_VIRTUAL"  = "There is no address found. Switching to the list of Virtual Artist";
+"WRITE_YOUR_REASON"         = "Write your reason...";
 
 
 "PASSWORD"                  = "Contraseña";

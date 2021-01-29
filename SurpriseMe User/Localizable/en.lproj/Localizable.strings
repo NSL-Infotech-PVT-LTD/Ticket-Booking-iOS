@@ -125,7 +125,6 @@
 "PLEASE_SELECT_OPTION"      = "Please Select an Option";
 "GALLERY"                   = "Gallery";
 "CAMERA"                    = "Camera";
-"PLEASE_ENTER_USERNAME"     = "Please enter your username";
 "DO_YOU_WANT_LOGOUT"        = "Do you want to logout?";
 "DO_WANT_PROFILE"           = "Do you want to save your profile?";
 //Schuedule booking
@@ -185,6 +184,7 @@
 "BANK_NAME_TITLE"           = "Choose Bank Name";
 "HOLDER_NAME"               = "Account Holder Name";
 "SELECT_BANK"               = "Select Bank";
+"WRITE_YOUR_REASON"         = "Write your reason...";
 //ADD CARD
 "CARD_HOLDER_NAME"          = "Card Holder Name";
 "ENTER_NAME"                = "Enter Name";

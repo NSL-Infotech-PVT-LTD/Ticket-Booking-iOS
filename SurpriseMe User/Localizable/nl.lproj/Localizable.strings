@@ -317,6 +317,8 @@
 "SEARCH_CITY_AREA"          = "Doorzoek een stad, gebied";
 "SAVED_LOCATION"            = "Opgeslagen locatie";
 "RATE_REVIEW"               = "Beoordeling en beoordeling";
+"WRITE_YOUR_REASON"         = "Write your reason...";
+
 "LOCATION_VALUE_DATE"       = "Plaats";
 "CANCEL_BOOKING"            = "Boeking annuleren";
 "NOT_PAID"                   = "Niet betaald";

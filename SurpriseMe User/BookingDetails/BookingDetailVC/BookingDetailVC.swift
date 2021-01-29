@@ -1180,10 +1180,11 @@ class BookingDetailVC: UIViewController {
             
             self.btnChatTopBar.isHidden = false
             lblPaymentStatus.text =  "Paid: " + "\(dataItem?.customer_currency ?? "")" + " " + "\(dataItem?.price ?? 0.0)"
-            self.btnStatus.setTitle("ARTIST_COMPLETE_PERFORMANCE".localized(), for: .normal)
+            self.btnStatus.isUserInteractionEnabled = true
+           // self.btnStatus.setTitle("ARTIST_COMPLETE_PERFORMANCE".localized(), for: .normal)
             self.btnStatus.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
             self.btnStatus.setTitleColor(.white, for: .normal)
-            self.btnStatus.setTitle("RATE_YOUR_ARTIST".localized(), for: .normal)
+            self.btnStatus.setTitle("Rate your artist", for: .normal)
         }else if dataItem?.status == "report"{
             cosmoViewRating.isHidden = true
             lblReviewTitleHeader.text = "REPORT".localized()

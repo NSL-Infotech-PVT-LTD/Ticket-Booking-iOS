@@ -19,6 +19,8 @@
 "ALERT"                     = "Aufmerksam";
 "NO_DATA"                   = "Keine Karte verfügbar";
 "OTHER"                     = "Andere";
+"WRITE_YOUR_REASON"         = "Write your reason...";
+
 //Language_VC
 "CHOOSE_PREFFERED"          = "Wählen Sie Ihre bevorzugte Sprache";
 "CHOOSE_LAGUAGE_SUBTITTEL"  = "Wir werden auf der Grundlage Ihrer Auswahl bedient";
