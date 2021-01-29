@@ -45,20 +45,15 @@ class SelectPaymentVC: UIViewController {
             let dict = ["search":"","limit":"20"]
             
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
-                print(response)
                 LoaderClass.shared.stopAnimation()
                 if error == nil {
                     let result = response
-                    
                     arrayCardListCommom.removeAll()
                     if let status = result["status"] as? Bool {
                         if status ==  true{
-                            
-                            
                             let dataDict = result["data"] as? [String : Any]
                             if let dataArray = dataDict?["data"] as? [[String : Any]]{
                                 for index in dataArray{
-                                    print("the index value is \(index)")
                                     let dataDict = GetCardModel.init(resposne: index)
                                     arrayCardListCommom.append(dataDict)
                                 }
@@ -122,13 +117,8 @@ class SelectPaymentVC: UIViewController {
     func callApiDeletebookingSlot(param: [String: Any]){
         
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-        print("the token is \(headerToken)")
-        
         if Reachability.isConnectedToNetwork() {
-            // LoaderClass.shared.loadAnimation()
-            
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.changeBookingStatus, method: .post, param: param, header: headerToken) { (response, error) in
-                print(response)
                 LoaderClass.shared.stopAnimation()
                 if error == nil {
                     let result = response

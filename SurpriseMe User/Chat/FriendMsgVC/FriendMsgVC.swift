@@ -482,9 +482,6 @@ print("the value is \(dataValue)")
                     SocketConnectionManager.shared.socket.write(data: data)
                     let dataValue = String(decoding: data, as: UTF8.self)
 print("the value is \(dataValue)")
-                    
-                    
-                    
                     txtMssg.text = ""
                 }else{
                     SocketConnectionManager.shared.socket.connect()
@@ -492,9 +489,7 @@ print("the value is \(dataValue)")
             }
             else{
                 if reciverData.receiver_id ?? 0 != 0{
-                    
-                    
-                    let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                     let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
                     print("the user id is \(useriD  )")
                     
                     if useriD == reciverData.sender_id{

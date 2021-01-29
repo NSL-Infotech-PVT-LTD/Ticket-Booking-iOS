@@ -527,8 +527,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
             
         }else{
             if arrayBookingSlot.contains(indexPath.item){
-                print("the number is abhishek mishra3")
-                
                 if self.arrayBookingSlotStatus[indexPath.item] == 1{
                     arrayBookingSlotSelection.append(indexPath.item)
                     cell.viewCell.backgroundColor = UIColor.init(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
@@ -544,6 +542,7 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
         }
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         for i in 0...arrayInteger.count - 1{
             print(arrayInteger[i])
@@ -552,8 +551,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
                 arrNotSelect.append(arrayInteger[i])
             }
         }
-        
-        print("the array is not is \(arrNotSelect)")
         let arrNotSelectSet = Set(arrNotSelect)
         arrNotSelect = arrNotSelectSet.map({$0})
         let dataItem = aarayTimeSecond[indexPath.row]
@@ -595,7 +592,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
                 
                 if first != -1 && second != -1{
                     let boolValue =  self.fizzinAndBuzzin(start: first, end: second)
-                    print("the bool value is \(boolValue)")
                     if boolValue == false{
                     }else{
                     }
@@ -626,7 +622,6 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
 extension EditDateVC : BookingStoreViewModelProtocol{
     func bookingStoreApiResponse(message: String, response: [String : Any], isError: Bool) {
         
-        print("the respons is \(response)")
         let dictValue = response["data"] as? [String:Any]
         let dictAddress = response["address"] as? [String:Any]
         if isError == true{
@@ -665,20 +660,14 @@ extension EditDateVC : BookingStoreViewModelProtocol{
                     transition.timingFunction = CAMediaTimingFunction(name: .default)
                     transition.type = .fade
                     transition.subtype = .fromRight
-                    print("the booking id is \(dictAddress?["id"])")
                     self.bookingID = dictAddress?["id"] as? Int
                     bookingPaymentID = dictAddress?["id"] as? Int
                     controller.hidesBottomBarWhenPushed = true
                     self.navigationController?.view.layer.add(transition, forKey: kCATransition)
                     self.navigationController?.pushViewController(controller, animated: false)
                 }
-
             }
-            
-            
-            
-            
-        }
+         }
     }
     
     func errorAlert(errorTitle: String, errorMessage: String) {

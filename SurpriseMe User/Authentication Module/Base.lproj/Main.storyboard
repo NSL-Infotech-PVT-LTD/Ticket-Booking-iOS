@@ -88,12 +88,12 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfN-HL-Ygm">
-                                                    <rect key="frame" x="30" y="532.66666666666663" width="391" height="35"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfN-HL-Ygm">
+                                                    <rect key="frame" x="30" y="501" width="391" height="67"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="oi2-5O-HTQ"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="oi2-5O-HTQ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -184,7 +184,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2059.3457943925232" y="114.68682505399569"/>
+            <point key="canvasLocation" x="2057.971014492754" y="114.1304347826087"/>
         </scene>
         <!--Social LoginVC-->
         <scene sceneID="o01-6O-ZGf">
@@ -1829,7 +1829,7 @@ language</string>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we will served on the basis of your selection." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-ED-sAi">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we will served on the basis of your selection." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xjv-ED-sAi">
                                                 <rect key="frame" x="20" y="228" width="374" height="13"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="13" id="lDV-T5-Mgy"/>

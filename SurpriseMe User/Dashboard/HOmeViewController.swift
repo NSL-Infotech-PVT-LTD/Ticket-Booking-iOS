@@ -98,6 +98,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         lblSettingUp.text = "SEETING_UP".localized()
         //        lblSettingUPDetail.text = "SEETING_UP_DETAIL".localized()
         btnPleaseWait.setTitle("PLEASE_WAIT".localized(), for: .normal)
+        self.setStripKey()
     }
     
     
@@ -195,6 +196,56 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     }
     
     
+    func setStripKey()  {
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        LoaderClass.shared.loadAnimation()
+        if Reachability.isConnectedToNetwork() {
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.stripeKey, method: .get, param: [:], header: headerToken) { (response, error) in
+                print(response)
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    let result = response
+                    print("the response is \(response)")
+                    
+                    let  public_key = response["public_key"] as? String
+                    Stripe.setDefaultPublishableKey(public_key ?? "")
+                    
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                           
+                    }
+                    else {
+                        if let error_message = response["error"] as? String {
+                            if error_message == "Invalid AUTH Token"{
+                                let alert = UIAlertController(title: "ERROR".localized(), message: error_message, preferredStyle: UIAlertController.Style.alert)
+                                // add the actions (buttons)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            }else{
+                                let alert = UIAlertController(title: "ERROR".localized(), message: error_message, preferredStyle: UIAlertController.Style.alert)
+                                // add the actions (buttons)
+                                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+                                // show the alert
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                        }
+                    }
+                }
+                else {
+                  
+                }
+            }
+        else{
+            LoaderClass.shared.stopAnimation()
+            //                self.delegate?.errorAlert(errorTitle: "Internet Error", errorMessage: "Please Check your Internet Connection")
+        }
+    }
+            
+        }
+    }
+    
+    
     func setHomeData(){
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -210,7 +261,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             //self.lblYourLocation.text = "your_location".localized()
             self.searchTxt.placeholder = "search_for_artist".localized()
             self.lblBookArtistTitle.text = "book_artist_title".localized()
-            print("the user custom address is \(currentAddress)")
             self.viewPopupSubview.isHidden = true
             self.viewSettingUpShowType.isHidden = true
             self.viewPopupContainer.isHidden = true
@@ -273,7 +323,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                             if showTypeTrueOrFalse == false{
                                 self.showPopupContainer()
                             }else{
-                                print("the digital type value is \(whicShowTypeDigital)")
                                 if whicShowTypeDigital == false{
                                     self.isDigital = true
                                     self.getDataBookingList(pageNumber: 1)
@@ -294,11 +343,8 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                     self.isDigital = false
                                     if self.mobelObject.count > 0{
                                         
-                                        
                                         let selectedStreetAddress = (UserDefaults.standard.string(forKey: "SelectedStreetAddress") ?? "")
-                                        print("the selected address is \(selectedStreetAddress)")
                                         if selectedStreetAddress != ""{
-                                            print("the selected address is dv ABbishek mishra")
                                             let selectedSaveLat = UserDefaults.standard.double(forKey: "SelectedLatValue")
                                             let selectedSaveLong = UserDefaults.standard.double(forKey: "SelectedLongValue")
                                             self.currentLocationGet()
@@ -311,10 +357,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                             currentAddress =  self.locationTf.text!
                                             print("the abhishek type value current location is \(whicShowTypeDigital)")
                                         }else{
-                                            
-                                            
-                                            print("the selected address is dv ABbishek mishra")
-                                            
+                                          
                                             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                                             let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
                                             let transition = CATransition()
@@ -327,38 +370,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                             self.navigationController?.view.layer.add(transition, forKey: kCATransition)
                                             self.navigationController?.pushViewController(controller, animated: false)
                                         }
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        //
-                                        //                                        if customAddress == false{
-                                        //                                            self.currentLocationGet()
-                                        //                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-                                        //                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
-                                        //                                            self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
-                                        //                                            self.locationTf.text = self.mobelObject[0].street_address ?? ""
-                                        //                                             currentLat = self.mobelObject[0].lat ?? 0.0
-                                        //                                            currentLong = self.mobelObject[0].long ?? 0.0
-                                        //                                            currentAddress =  self.locationTf.text!
-                                        //                                            print("the abhishek type value current location is \(whicShowTypeDigital)")
-                                        //
-                                        //                                        }else{
-                                        //                                            let dict = ["latitude":currentLat ,"longitude":currentLong ]
-                                        //                                            print("the dictionary is \(dict)")
-                                        //                                            print("the abhishek type value current  is \(whicShowTypeDigital)")
-                                        //                                            self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-                                        //                                            self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
-                                        //                                            //self.viewModelObject.getParamForBookingList(param: dict)
-                                        //
-                                        //
-                                        //
-                                        //                                            self.locationTf.text = currentAddress
-                                        //                                        }
                                     }else{
                                         self.isDigital = true
                                         self.getDataBookingList(pageNumber: 1)
@@ -430,8 +441,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                     }
                 }
                 else {
-                    //                    self.delegate?.exploreErrorAlert(errorTitle: Alerts.Error, errorMessage: error as! String)
-                    //                                    self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                  
                 }
             }
         }else{
@@ -476,15 +486,10 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         self.viewPopupSubview.isHidden = true
         self.viewSettingUpShowType.isHidden = true
         self.viewPopupContainer.isHidden = true
-        print("hii i am abhishek")
         showTypeTrueOrFalse = true
         if showTyepValue == "Digital"{
-            
-            
             viewLivePersonHeader.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
             viewHeaderVirtual.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-            
-            
             self.lblShowTypeValueArtist.text = "Virtual Show"
             imgShowTypeSetting.image = UIImage.init(named: "digital")
             self.btnDigitalTop.setImage(UIImage.init(named: "digital_active"), for: .normal)
@@ -495,11 +500,8 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             lblSettingUPDetail.text = "SEETING_UP_DETAIL_VIRTUAL".localized()
             self.viewUpdateLocation.isUserInteractionEnabled = false
         }else{
-            
-            
             viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
             viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
-            
             imgShowTypeSetting.image = UIImage.init(named: "live")
             lblSettingUPDetail.text = "SEETING_UP_DETAIL_IN_PERSON".localized()
             self.btnDigitalTop.setImage(UIImage.init(named: "digital_unactive"), for: .normal)
@@ -509,29 +511,10 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             self.locationTf.isHidden = false
             self.viewUpdateLocation.isUserInteractionEnabled = true
             if self.mobelObject.count > 0{
-                
                 let selectedStreetAddress = (UserDefaults.standard.string(forKey: "SelectedStreetAddress") ?? "")
-                print("the selected address is \(selectedStreetAddress)")
-                
-                
-                
-                
                 if  selectedStreetAddress != ""{
-                    
-                    
-                    print("the selected address is dv ABbishek mishra")
-                    
-                    
                     let selectedSaveLat = UserDefaults.standard.double(forKey: "SelectedLatValue")
-                    
-                    print("the selected address is dv SelectedLatValue mishra\(selectedSaveLat)")
-                    
-                    
                     let selectedSaveLong = UserDefaults.standard.double(forKey: "SelectedLongValue")
-                    print("the selected address is dv SelectedLongValue mishra\(selectedSaveLong)")
-                    
-                    
-                    
                     self.currentLocationGet()
                     self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
                     self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
@@ -540,12 +523,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                     currentLat = selectedSaveLat
                     currentLong = selectedSaveLong
                     currentAddress =  self.locationTf.text!
-                    print("the abhishek type value current location is \(whicShowTypeDigital)")
                 }else{
-                    
-                    
-                    print("the selected address is  mishra")
-                    
                     let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
                     let transition = CATransition()
@@ -558,26 +536,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                     self.navigationController?.view.layer.add(transition, forKey: kCATransition)
                     self.navigationController?.pushViewController(controller, animated: false)
                 }
-                
-                
-                
-                
-                
-                //                if customAddress == false{
-                //                    self.currentLocationGet()
-                //                    self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
-                //                    self.locationTf.text = self.mobelObject[0].street_address ?? ""
-                //                    currentLat = self.mobelObject[0].lat ?? 0.0
-                //                    currentLong = self.mobelObject[0].long ?? 0.0
-                //                    currentAddress =  self.locationTf.text!
-                //                    self.getDataBookingList(pageNumber: 1)
-                //                 }else{
-                //                    let dict = ["latitude":currentLat ,"longitude":currentLong ]
-                //                    print("the dictionary is \(dict)")
-                //                    //self.viewModelObject.getParamForBookingList(param: dict)
-                //                    self.locationTf.text = currentAddress
-                //                }
-                
             }else{
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "ManageAddressVC") as! ManageAddressVC
@@ -637,11 +595,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             self.locationManager.requestWhenInUseAuthorization()
             self.locationManager.startUpdatingLocation()
             let getLatLong = locationManager.location
-            print("Location services are not enabled");
-            print("the user custom address is \(currentAddress)")
-            print("the user custom address is \(self.locationTf.text!)")
         } else {
-            print("Location services are not enabled");
         }
     }
     
@@ -713,14 +667,10 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
             self.locationManager.requestWhenInUseAuthorization()
             self.locationManager.startUpdatingLocation()
             let getLatLong = locationManager.location
-            print("Location services are not enabled");
             self.getAddressFromLatLon(pdblLatitude: getLatLong?.coordinate.latitude ?? 0.0, withLongitude: getLatLong?.coordinate.longitude ?? 0.0)
             currentLat = getLatLong?.coordinate.latitude ?? 0.0
             currentLong = getLatLong?.coordinate.longitude ?? 0.0
-            print("the user custom address is \(currentAddress)")
-            print("the user custom address is \(self.locationTf.text!)")
         } else {
-            print("Location services are not enabled");
         }
     }
     
@@ -808,7 +758,6 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if ((tableView_out.contentOffset.y + tableView_out.frame.size.height) >= tableView_out.contentSize.height)
         {
-            print("scrollViewDidEndDragging")
             if isLoadMore == false{
                 self.pageInt = self.pageInt + 1
                 print("scrollViewDidEndDragging page number is \(self.pageInt)")

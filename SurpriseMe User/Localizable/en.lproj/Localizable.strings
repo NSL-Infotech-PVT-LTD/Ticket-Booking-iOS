@@ -61,7 +61,7 @@
 "PLEASE_SELECT_OPTION"      = "Please Select an Option";
 "GALLERY"                   = "Gallery";
 "CAMERA"                    = "Camera";
-"PLEASE_ENTER_USERNAME"     = "Please enter your username";
+"PLEASE_ENTER_USERNAME"     = "Enter your username";
 "DO_YOU_WANT_LOGOUT"        = "Do you want to logout?";
 "DO_WANT_PROFILE"           = "Do you want to save your profile?";
 "OLD_PASSWORD"              = "Old Password";
@@ -95,9 +95,11 @@
 "REGISTER_TITLE"            = "Register with";
 "SURPRISE_TITLE"            = "Surprise";
 "ME_TITLE"                  = "Me";
-"BY_SIGNING_AGREEE"        = "";
+"BY_SIGNING_AGREEE"         = "";
 "ENTER_OLD_PASSWRD"         = "Enter your old password";
-"ENTER_YOUR_PASSWRD"         = "Enter your password";
+"ENTER_YOUR_PASSWRD"        = "Enter your password";
+"ENTER_YOUR_CONFIRM_PASSWRD" = "Enter your confirm password";
+"password_should_atleast_eight_character"                          = "Password should be atleast 8 character";
 //Forget Password
 "EMAIL_ADDRESS"             = "E-mail Address";
 "TYPE_HERE"                 = "Type here...";

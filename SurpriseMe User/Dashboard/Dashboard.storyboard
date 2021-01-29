@@ -302,7 +302,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Artist You Listen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfW-ng-h90">
-                                                <rect key="frame" x="20" y="63" width="209.5" height="20"/>
+                                                <rect key="frame" x="20" y="63" width="178" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="e93-x0-jr9"/>
                                                 </constraints>
@@ -378,7 +378,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diljit Doshanj" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7v-U0-WHY">
-                                                                    <rect key="frame" x="20" y="205" width="92" height="15"/>
+                                                                    <rect key="frame" x="20" y="205" width="76" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15" id="7fG-MF-gWY"/>
                                                                     </constraints>
@@ -4660,13 +4660,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist #1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1S-Vl-cwp">
-                                                                <rect key="frame" x="83" y="4" width="189" height="34.5"/>
+                                                                <rect key="frame" x="83" y="4" width="189" height="33"/>
                                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X83-W6-e1s" customClass="CosmosView" customModule="Cosmos">
-                                                                <rect key="frame" x="83" y="42.5" width="60" height="10"/>
+                                                                <rect key="frame" x="83" y="41" width="60" height="10"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="10" id="Doy-94-fiD"/>
@@ -4693,7 +4693,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yc-k6-97M">
-                                                                <rect key="frame" x="164" y="33" width="66" height="29"/>
+                                                                <rect key="frame" x="164" y="31.5" width="66" height="29"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="66" id="YtF-at-1G8"/>
                                                                     <constraint firstAttribute="height" constant="29" id="jup-3R-7DM"/>
@@ -4733,7 +4733,7 @@
                                                                 </connections>
                                                             </button>
                                                             <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHb-9q-lnp">
-                                                                <rect key="frame" x="80" y="37" width="146" height="20"/>
+                                                                <rect key="frame" x="80" y="35.5" width="146" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="146" id="5zN-kp-Na3"/>
                                                                     <constraint firstAttribute="height" constant="20" id="g9a-qA-9XI"/>
@@ -4853,7 +4853,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Per Hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeC-Af-cd4">
-                                                                <rect key="frame" x="1" y="4" width="23" height="8"/>
+                                                                <rect key="frame" x="4" y="4" width="20" height="8"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="8" id="Dh6-cH-Opo"/>
                                                                 </constraints>
@@ -4963,7 +4963,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Per Hour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLd-Qy-Pge">
-                                                                <rect key="frame" x="1" y="4" width="23" height="8"/>
+                                                                <rect key="frame" x="4" y="4" width="20" height="8"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="8" id="BdO-oO-QNy"/>
                                                                 </constraints>
@@ -5021,7 +5021,7 @@
                                                 <rect key="frame" x="18" y="636" width="335" height="111"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R03-g6-gvn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="59" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="Ud5-tS-tmF"/>
                                                         </constraints>
@@ -5096,7 +5096,7 @@
                                                 <rect key="frame" x="18" y="769" width="335" height="138"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social Media handles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdZ-ED-TpO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="176.5" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="153" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="HcW-G8-q0x"/>
                                                         </constraints>
@@ -5404,7 +5404,7 @@
                                                 <rect key="frame" x="18" y="935" width="335" height="257"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXt-9g-ahE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="18"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="18"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="Sfl-4V-900"/>
                                                         </constraints>
@@ -5436,7 +5436,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yo-gZ-cXS">
-                                                        <rect key="frame" x="0.0" y="221" width="78" height="16"/>
+                                                        <rect key="frame" x="0.0" y="221" width="69" height="16"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="16" id="2Ev-Tk-K0F"/>
                                                         </constraints>
@@ -6252,19 +6252,19 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Person Booking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-LQ-M87">
-                                                        <rect key="frame" x="40" y="8.5" width="150" height="20"/>
+                                                        <rect key="frame" x="40" y="8.5" width="132" height="19"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
                                                         <color key="textColor" red="0.21176470589999999" green="0.22352941179999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming platform." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6B-OG-HBD">
-                                                        <rect key="frame" x="40" y="33.5" width="189" height="73.5"/>
+                                                        <rect key="frame" x="40" y="32.5" width="189" height="56"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bor-XP-Hzi">
-                                                        <rect key="frame" x="40" y="117" width="100" height="40"/>
+                                                        <rect key="frame" x="40" y="98.5" width="100" height="40"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="02C-JT-f91"/>
@@ -6327,19 +6327,19 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Virtual Show Booking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-tx-BuD">
-                                                        <rect key="frame" x="40" y="18.5" width="176.5" height="20"/>
+                                                        <rect key="frame" x="40" y="18.5" width="153.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
                                                         <color key="textColor" red="0.21176470589999999" green="0.22352941179999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming platform." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pih-g5-FWn">
-                                                        <rect key="frame" x="40" y="43.5" width="189" height="73.5"/>
+                                                        <rect key="frame" x="40" y="42.5" width="189" height="56"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iN-6o-nd9">
-                                                        <rect key="frame" x="40" y="127" width="100" height="40"/>
+                                                        <rect key="frame" x="40" y="108.5" width="100" height="40"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="DDD-TC-KKH"/>
@@ -7297,7 +7297,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Bank Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sdq-8N-3rg">
-                                        <rect key="frame" x="87" y="152" width="141" height="17.5"/>
+                                        <rect key="frame" x="87" y="152.5" width="126" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" red="0.2470588235" green="0.23921568630000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -7352,7 +7352,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Holder Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBB-MD-O9R">
-                                        <rect key="frame" x="89" y="303" width="158.5" height="17.5"/>
+                                        <rect key="frame" x="89" y="303.5" width="139" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" red="0.2470588235" green="0.23921568630000001" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -8221,14 +8221,8 @@ Ipsum has been the industry's standard dummy text ever</string>
         </scene>
     </scenes>
     <designables>
-        <designable name="6af-Mv-ypk">
-            <size key="intrinsicContentSize" width="335" height="44"/>
-        </designable>
         <designable name="8Tx-eP-nmW">
-            <size key="intrinsicContentSize" width="92" height="30"/>
-        </designable>
-        <designable name="X83-W6-e1s">
-            <size key="intrinsicContentSize" width="58" height="10"/>
+            <size key="intrinsicContentSize" width="103" height="31"/>
         </designable>
         <designable name="cbe-5q-ftE">
             <size key="intrinsicContentSize" width="21.5" height="22"/>
@@ -8236,14 +8230,8 @@ Ipsum has been the industry's standard dummy text ever</string>
         <designable name="p89-Hf-dPK">
             <size key="intrinsicContentSize" width="116" height="31"/>
         </designable>
-        <designable name="tm4-7a-fIX">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
         <designable name="uHx-a5-ZSd">
             <size key="intrinsicContentSize" width="14" height="22"/>
-        </designable>
-        <designable name="wC1-2u-GCa">
-            <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>
     </designables>
     <resources>

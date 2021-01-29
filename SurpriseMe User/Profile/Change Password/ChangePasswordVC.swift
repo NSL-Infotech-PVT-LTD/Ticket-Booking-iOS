@@ -44,9 +44,9 @@ class ChangePasswordVC: UIViewController {
     }
     
     func setlocalisation()  {
-        self.lblNewPassword.text = "OLD_PASSWORD".localized()
-        self.lblConfirmPassword.text = "NEW_PASSWORD".localized()
-        self.lblOldPassword.text = "CONFIRM_PASSWORD".localized()
+        self.lblNewPassword.text = "NEW_PASSWORD".localized()
+        self.lblConfirmPassword.text = "CONFIRM_PASSWORD".localized()
+        self.lblOldPassword.text = "OLD_PASSWORD".localized()
         btnBack.setTitle("back".localized(), for: .normal)
         btnContinue.setTitle("continue".localized(), for: .normal)
     }
@@ -58,7 +58,6 @@ class ChangePasswordVC: UIViewController {
     
     @IBAction func btnNewPasswordAction(_ sender: UIButton) {
         
-        
         if  sender.isSelected == false{
             sender.isSelected = true
             self.tfPassword.isSecureTextEntry = false
@@ -68,8 +67,6 @@ class ChangePasswordVC: UIViewController {
             self.tfPassword.isSecureTextEntry = true
             // btnPasswordConfirm.setImage(#imageLiteral(resourceName: "icons8-hide-24"), for: .normal)
         }
-        
-       
     }
     
     @IBAction func btnOldPassVisibleAction(_ sender: UIButton) {
@@ -103,16 +100,25 @@ class ChangePasswordVC: UIViewController {
     
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
+        
         guard oldPassword.text?.count ?? 0 > 0 else {
             Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_OLD_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
             }
             return
         }
+        
         guard tfPassword.text?.count ?? 0 > 0 else {
             Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
             }
             return
         }
+        
+        guard tfConfirmPassword.text?.count ?? 0 > 0 else {
+            Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_CONFIRM_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
+            }
+            return
+        }
+        
         let dictParam  = ["old_password":oldPassword.text!,"password":tfPassword.text!,"confirm_password":tfConfirmPassword.text!]
         print("the dict param is \(dictParam)")
         self.modelObject.getParamForChangepassword(param: dictParam)

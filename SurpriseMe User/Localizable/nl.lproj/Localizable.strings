@@ -71,6 +71,9 @@
 "REGISTER_TITLE"            = "Registreer bij ons in";
 "SURPRISE_TITLE"            = "verrassing";
 "ME_TITLE"                  = "me";
+"ENTER_YOUR_CONFIRM_PASSWRD" = "Enter your confirm password";
+
+"password_should_atleast_eight_character"                          = "Password should be atleast 8 character";
 //Forget Password
 "EMAIL_ADDRESS"             = "E-mail Address";
 "continue"                  = "Doorgaan met";

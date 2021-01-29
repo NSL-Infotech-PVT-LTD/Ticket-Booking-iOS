@@ -69,8 +69,10 @@
 "REGISTER_TITLE"            = "Registrate con nosotros en";
 "SURPRISE_TITLE"            = "sorpresa";
 "ME_TITLE"                  = "yo";
+"ENTER_YOUR_CONFIRM_PASSWRD" = "Enter your confirm password";
 
 
+"password_should_atleast_eight_character"                          = "Password should be atleast 8 character";
 
 "ENTER_OLD_PASSWRD"         = "Enter your old password";
 "ENTER_YOUR_PASSWRD"         = "Enter your password";

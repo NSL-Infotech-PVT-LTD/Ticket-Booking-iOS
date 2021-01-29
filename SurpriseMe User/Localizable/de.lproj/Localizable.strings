@@ -69,6 +69,9 @@
 "ME_TITLE"                  = "mich";
 "ENTER_OLD_PASSWRD"         = "Geben Sie Ihr altes Passwort ein";
 "ENTER_YOUR_PASSWRD"         = "Geben Sie Ihr Passwort ein";
+"ENTER_YOUR_CONFIRM_PASSWRD" = "Enter your confirm password";
+
+"password_should_atleast_eight_character"                          = "Password should be atleast 8 character";
 //Forget Password
 "EMAIL_ADDRESS"             = "E-mail Address";
 "continue"                  = "Fortsetzen";

@@ -90,7 +90,7 @@ struct StringFile {
     static let Enter_Password = "Enter your password"
     static let Enter_Email = "Enter your email"
     static let Enter_UserName = "Enter your user name"
-    static let Publish_Key = "pk_test_51HcYaaDVPC7KpoaUBqxarUUagXrI14GRCicyaZt8NztibJ4G9Y7KMtunrcWTg5PDm3PzcuBe1zkFFJiJRt1mXs8s009njabz8l"
+//    static let Publish_Key = "pk_test_51HcYaaDVPC7KpoaUBqxarUUagXrI14GRCicyaZt8NztibJ4G9Y7KMtunrcWTg5PDm3PzcuBe1zkFFJiJRt1mXs8s009njabz8l"
 //        static let Publish_Key =    "pk_live_51HcYaaDVPC7KpoaU4BhQKv4qykAVVtz3TYma2nb9Yuztmb5B3EsfDaNwA3KZpDHqNv9lRlZRKVvbo5grhmRrB3bl006lVXgjmr"
 
     
@@ -188,11 +188,9 @@ struct Api {
     static let TermsAndCondi               = basePublicUrl + "config/terms_and_conditions"
     static let AboutUs               = basePublicUrl + "config/about_us"
     static let PrivacyPolicyApi               = basePublicUrl + "config/privacy_policy"
-
     
-    
-    
-    //String Files -
+    static let stripeKey    = basePublicUrl + "payment-config"
+      //String Files -
     
 }
 

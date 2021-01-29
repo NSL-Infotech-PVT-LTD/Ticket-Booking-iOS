@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.registerForRemoteNotifications()
         
-        Stripe.setDefaultPublishableKey(StringFile.Publish_Key)
+//        Stripe.setDefaultPublishableKey(StringFile.Publish_Key)
         
         
         

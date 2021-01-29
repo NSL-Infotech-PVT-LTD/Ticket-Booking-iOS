@@ -119,7 +119,15 @@ class SignupVC: UIViewController {
         }else if tfConfirmPassword.text?.count ?? 0  == 0{
            Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: StringFile.Enter_Confirm_Password, btnOkTitle: StringFile.OK) {
             }
-        }else if (tfPassword.text!) != (tfConfirmPassword.text!) {
+        }else if tfPassword.text?.count ?? 0  < 8{
+            Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: "password_should_atleast_eight_character".localized(), btnOkTitle: StringFile.OK) {
+             }
+         }else if tfConfirmPassword.text?.count ?? 0  < 8{
+            Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: StringFile.Enter_Confirm_Password, btnOkTitle: StringFile.OK) {
+             }
+         }
+        
+        else if (tfPassword.text!) != (tfConfirmPassword.text!) {
             Helper.showOKAlert(onVC: self, title: "Alert", message: "Password Does not match")
             
         }else {

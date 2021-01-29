@@ -309,7 +309,7 @@ class AddCardVC: UIViewController {
         if isBookingDetails == true{
         self.back()
         }else{
-        let alert = UIAlertController(title: "If you click yes your booking will be canceled from on hold and other customer can book same slot.", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "CANCEL_SLOT".localized(), message: "", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "No", style: .default) { (alert) in
         }
         let confirm = UIAlertAction(title: "Yes", style: .destructive) { (alert) in
