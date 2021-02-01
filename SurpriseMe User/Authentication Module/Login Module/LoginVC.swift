@@ -13,6 +13,8 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     
     //MARK:- Outlets -
     
+    @IBOutlet weak var conTView: UIView!
+    @IBOutlet weak var showViewLan: UIView!
     @IBOutlet var btnLogin: UIButton!
     @IBOutlet weak var btnChange: UIButton!
     @IBOutlet weak var tfEmail: UITextField!
@@ -42,6 +44,11 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         loginViewModel.delegate = self
+        
+        
+        self.showViewLan.isHidden = true
+        self.conTView.isHidden = true
+
         
         self.lblWelcome.text = "WELCOME".localized()
         self.lblSignInToContinue.text = "SIGN_TO_CONTINUE".localized()
@@ -85,13 +92,40 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     
     
     
+    @IBAction func btnGoBackAction(_ sender: UIButton) {
+        self.showViewLan.isHidden = true
+        self.conTView.isHidden = true
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+        transition.type = CATransitionType(rawValue: "flip")
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromBottom
+       // conTView.layer.removeAnimation(forKey: kCATransition)
+        showViewLan.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
+
+    }
+    
+    
+    
     @IBAction func btnChangeLanguageAction(_ sender: UIButton) {
-        //        let story = UIStoryboard(name: "Main", bundle:nil)
-        //                   let vc = story.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
-        //        let navController = UINavigationController(rootViewController: vc)
-        //                vc.modalPresentationStyle = .overCurrentContext
-        //               vc.hidesBottomBarWhenPushed = true
-        //        navController.pushViewController(vc, animated: true)
+//        self.showViewLan.isHidden = false
+//        self.conTView.isHidden = false
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+//        transition.type = CATransitionType(rawValue: "flip")
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromTop
+//        //conTView.layer.add(transition, forKey: kCATransition)
+//        showViewLan.layer.add(transition, forKey: kCATransition)
+//                let story = UIStoryboard(name: "Main", bundle:nil)
+//                           let vc = story.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
+//                let navController = UINavigationController(rootViewController: vc)
+//                        vc.modalPresentationStyle = .overCurrentContext
+//                       vc.hidesBottomBarWhenPushed = true
+//                navController.pushViewController(vc, animated: true)
         
         self.presentViewController(viewController : "LanguageVC", value: "Main")
         
@@ -108,7 +142,6 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
             UserDefaults.standard.set(false, forKey: "RememberMe")
             UserDefaults.standard.set("", forKey: "UserName")
             UserDefaults.standard.set("", forKey: "Password")
-            
             
             btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
             

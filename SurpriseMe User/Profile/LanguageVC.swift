@@ -30,17 +30,21 @@ class LanguageVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
+    @IBOutlet weak var backViewContainer: UIView!
+    @IBOutlet weak var backViewLanguageView: UIView!
+    
+    
     @IBOutlet weak var btnBack: UIButton!
     
 //    @IBOutlet weak var btnNext: UIButton!
     var language = "en"
-    //var languageArray = ["English (US)","Dutch","German","Spanish"]
+    var languageArray = ["English (US)","Dutch","German","Spanish"]
     
-    var languageArray = ["English (US)"]
-    var languageCodeArray = ["en"]
+   // var languageArray = ["English (US)"]
+   // var languageCodeArray = ["en"]
 
 
-   // var languageCodeArray = ["en","nl","de","es"]
+   var languageCodeArray = ["en","nl","de","es"]
     var selectedIndex = 0
     var selectedLanguage = String()
 
@@ -93,6 +97,22 @@ class LanguageVC: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+       
+        
+        self.backViewContainer.isHidden = false
+               self.backViewLanguageView.isHidden = false
+               let transition = CATransition()
+               transition.duration = 0.5
+               transition.timingFunction = CAMediaTimingFunction(name: .linear)
+               transition.type = CATransitionType(rawValue: "flip")
+               transition.type = CATransitionType.push
+               transition.subtype = CATransitionSubtype.fromTop
+               //conTView.layer.add(transition, forKey: kCATransition)
+        backViewLanguageView.layer.add(transition, forKey: kCATransition)
+    }
+    
     
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.dismiss(animated: true) {
@@ -100,6 +120,16 @@ class LanguageVC: UIViewController {
             Bundle.setLanguage(lang: self.language)
             UserDefaults.standard.setValue(self.language, forKey: "app_lang")
         }
+    }
+    
+    
+    @IBAction func btnBackLanguageAction(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+            isCameFromCL = ""
+            Bundle.setLanguage(lang: self.language)
+            UserDefaults.standard.setValue(self.language, forKey: "app_lang")
+        }
+       
     }
     
     @IBAction func btnNextOnPress(_ sender: UIButton) {

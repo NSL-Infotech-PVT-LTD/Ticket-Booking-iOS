@@ -41,7 +41,7 @@ class WalkThroughVC: UIViewController {
     
     @IBAction func btnGetStartedAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
+        let controller = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -82,6 +82,7 @@ extension WalkThroughVC : UICollectionViewDelegate,UICollectionViewDataSource,UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CustomWalkThroughCell
         cell.imgWalkThrough.image = UIImage.init(named: imgArray[indexPath.row])
         cell.lblTitleWalkThrough.text = arrayHeader[indexPath.row]
+        cell.lblDescriptionWalkThrough.isHidden = true
         //scell.lblDescriptionWalkThrough.text = arrayDescHeader[indexPath.row]
         
         cell.heightConstant.constant = view.frame.size.height

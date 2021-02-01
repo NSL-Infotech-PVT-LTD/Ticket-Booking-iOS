@@ -8221,8 +8221,14 @@ Ipsum has been the industry's standard dummy text ever</string>
         </scene>
     </scenes>
     <designables>
+        <designable name="6af-Mv-ypk">
+            <size key="intrinsicContentSize" width="335" height="44"/>
+        </designable>
         <designable name="8Tx-eP-nmW">
-            <size key="intrinsicContentSize" width="103" height="31"/>
+            <size key="intrinsicContentSize" width="92" height="30"/>
+        </designable>
+        <designable name="X83-W6-e1s">
+            <size key="intrinsicContentSize" width="58" height="10"/>
         </designable>
         <designable name="cbe-5q-ftE">
             <size key="intrinsicContentSize" width="21.5" height="22"/>
@@ -8230,8 +8236,14 @@ Ipsum has been the industry's standard dummy text ever</string>
         <designable name="p89-Hf-dPK">
             <size key="intrinsicContentSize" width="116" height="31"/>
         </designable>
+        <designable name="tm4-7a-fIX">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
         <designable name="uHx-a5-ZSd">
             <size key="intrinsicContentSize" width="14" height="22"/>
+        </designable>
+        <designable name="wC1-2u-GCa">
+            <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>
     </designables>
     <resources>

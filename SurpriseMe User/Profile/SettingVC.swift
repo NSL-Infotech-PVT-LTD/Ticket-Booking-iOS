@@ -26,6 +26,13 @@ class SettingVC: UIViewController, STPAuthenticationContext {
     @IBOutlet weak var lblTermsAndConditions: UILabel!
     @IBOutlet weak var btnBack: UIButton!
     
+    @IBOutlet weak var viewChangeLaguage: UIView!
+    @IBOutlet weak var viewChangeLagContainer: UIView!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewHeader.addBottomShadow()
@@ -41,6 +48,8 @@ class SettingVC: UIViewController, STPAuthenticationContext {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setLocalisation()
+        self.viewChangeLaguage.isHidden = true
+        self.viewChangeLagContainer.isHidden = true
     }
     
     func setLocalisation()  {
@@ -53,6 +62,22 @@ class SettingVC: UIViewController, STPAuthenticationContext {
     
     @objc func handletapChangeLag(_ sender: UITapGestureRecognizer? = nil) {
         isCameFromCL = "Setting"
+//        self.viewChangeLaguage.isHidden = false
+//        self.viewChangeLagContainer.isHidden = false
+//        
+//       
+//        
+//        
+//        
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+//        transition.type = CATransitionType(rawValue: "flip")
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromTop
+//        viewChangeLaguage.layer.add(transition, forKey: kCATransition)
+        
+        
         self.presentViewController(viewController : "LanguageVC", value: "Main")
     }
     
@@ -74,5 +99,20 @@ class SettingVC: UIViewController, STPAuthenticationContext {
     
     @IBAction func btnBackAction(_ sender: UIButton) {
         self.back()
+    }
+    
+    @IBAction func btnBackActionLange(_ sender: UIButton) {
+        self.viewChangeLaguage.isHidden = true
+        self.viewChangeLagContainer.isHidden = true
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: .linear)
+        transition.type = CATransitionType(rawValue: "flip")
+        transition.type = CATransitionType.push
+        transition.subtype = CATransitionSubtype.fromBottom
+        //viewChangeLagContainer.layer.removeAnimation(forKey: kCATransition)
+        viewChangeLaguage.layer.add(transition, forKey: kCATransition)
+        self.dismiss(animated: false, completion: nil)
     }
 }
