@@ -81,6 +81,7 @@ class UpdateLocationVC: UIViewController {
         else{
             self.setMarkerCustomLocation()
         }
+        currentLocationGet()
         
     }
     
@@ -215,10 +216,7 @@ class UpdateLocationVC: UIViewController {
                     let location = GMSCameraPosition.camera(withLatitude:latitude, longitude: lognitude, zoom: 19.0)
                     self.mapView.camera = location
                 }else{
-                    
                 }
-                
-                
             }
         }
     }
@@ -241,21 +239,14 @@ class UpdateLocationVC: UIViewController {
             let getLatLong = locationManager.location
             var location = GMSCameraPosition()
             print("Location services are not enabled");
-            
             isCurrentLocation = true
-            
             currentLat = getLatLong?.coordinate.latitude ?? 0.0
             currentLong = getLatLong?.coordinate.longitude ?? 0.0
-            
             location = GMSCameraPosition.camera(withLatitude: currentLat, longitude: currentLong, zoom: 19.0)
-            //
             mapView.camera = location
-            
-            
         } else {
             print("Location services are not enabled");
         }
-        
     }
     
     

@@ -946,7 +946,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4I-fp-FMk">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4I-fp-FMk">
                                 <rect key="frame" x="40" y="311" width="295" height="44"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 1397" translatesAutoresizingMaskIntoConstraints="NO" id="Ltb-Nu-vzD">
@@ -1110,6 +1110,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="A8g-rO-Sbi"/>
+                                <exclude reference="tKW-AF-hAf"/>
                             </mask>
                         </variation>
                     </view>

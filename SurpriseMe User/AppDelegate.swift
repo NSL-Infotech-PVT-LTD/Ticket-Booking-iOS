@@ -41,11 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
-        
-        
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-        
-        
         self.setInitialSetup()
         FirebaseApp.configure()
         Messaging.messaging().delegate = self

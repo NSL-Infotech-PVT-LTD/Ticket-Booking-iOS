@@ -28,7 +28,6 @@
 "BIRTHDAY_SURPRISE"         = "Hire artists in a few seconds";
 "DJ_PERFORMERSDj"           = "In-person performance at your location";
 "DIGITAL_PERFORMANCE"       = "Virtual performance through Skype, Zoom, etc.";
-"DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
 "NO_BOOKING_RIGHT"          = "No Booking Right Now";
 "UNABLE_FIND_BOOKING_PAGE"  = "Unable to find booking on this page";
 "VIRTUAL_SHOW_HEADER"       = "Virtual";
@@ -125,7 +124,6 @@
 "PLEASE_SELECT_OPTION"      = "Please Select an Option";
 "GALLERY"                   = "Gallery";
 "CAMERA"                    = "Camera";
-"PLEASE_ENTER_USERNAME"     = "Please enter your username";
 "DO_YOU_WANT_LOGOUT"        = "Do you want to logout?";
 "DO_WANT_PROFILE"           = "Do you want to save your profile?";
 //Schuedule booking
@@ -177,7 +175,7 @@
 "DO_NOT_PRESS"              = "Do not Press Or Go Back";
 //LoaderVC
 "PAYMENT_PROCESSING"        = "Payment Processing";
-"PAYMENT_PRO_DETAIL"        = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                   standard dummy text ever";
+
 //Choose your Currency
 "CHOOSE_CURRENCY"           = "Choose your Currency";
 // IDEALBank

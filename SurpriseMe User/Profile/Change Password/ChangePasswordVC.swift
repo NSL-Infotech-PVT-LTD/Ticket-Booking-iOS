@@ -101,27 +101,33 @@ class ChangePasswordVC: UIViewController {
     
     @IBAction func btnContinueAction(_ sender: UIButton) {
         
-        guard oldPassword.text?.count ?? 0 > 0 else {
+        if oldPassword.text?.count ?? 0 == 0  {
             Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_OLD_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
             }
-            return
         }
-        
-        guard tfPassword.text?.count ?? 0 > 0 else {
+        else if tfPassword.text?.count ?? 0 == 0  {
             Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
             }
             return
         }
         
-        guard tfConfirmPassword.text?.count ?? 0 > 0 else {
+        else if tfConfirmPassword.text?.count ?? 0 == 0  {
             Helper.showOKAlertWithCompletion(onVC: self, title: "ERROR".localized(), message: "ENTER_YOUR_CONFIRM_PASSWRD".localized(), btnOkTitle: "DONE".localized()) {
             }
-            return
+            
+        } else if tfPassword.text?.count ?? 0  < 8{
+            Helper.showOKAlertWithCompletion(onVC: self, title: StringFile.Error, message: "password_should_atleast_eight_character".localized(), btnOkTitle: StringFile.OK) {
+             }
+        }else if (tfPassword.text!) != (tfConfirmPassword.text!) {
+            Helper.showOKAlert(onVC: self, title: "Alert", message: "Password Does not match")
+            
+        }else{
+            let dictParam  = ["old_password":oldPassword.text!,"password":tfPassword.text!,"confirm_password":tfConfirmPassword.text!]
+            print("the dict param is \(dictParam)")
+            self.modelObject.getParamForChangepassword(param: dictParam)
         }
         
-        let dictParam  = ["old_password":oldPassword.text!,"password":tfPassword.text!,"confirm_password":tfConfirmPassword.text!]
-        print("the dict param is \(dictParam)")
-        self.modelObject.getParamForChangepassword(param: dictParam)
+        
     }
 }
 

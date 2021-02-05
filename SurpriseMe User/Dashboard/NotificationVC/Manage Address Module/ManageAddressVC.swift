@@ -76,8 +76,6 @@ class ManageAddressVC: UIViewController {
         let selectedValue = UserDefaults.standard.integer(forKey: "SelectedIdValue")
         
         print("the selected \(selectedValue)")
-        
-        
           if modelObject.count > 0{
             if  selectedStreetAddress == ""{
                 Helper.showOKAlert(onVC: self, title: "Error", message: "Please select address")
@@ -86,7 +84,6 @@ class ManageAddressVC: UIViewController {
             }
         }else{
             self.back()
-
         }
         
     }

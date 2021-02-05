@@ -84,6 +84,11 @@ class SocialLoginVC: UIViewController {
         let tapviewFacebook = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewFacebook(_:)))
         viewFacebook.addGestureRecognizer(tapviewFacebook)
         
+        
+        let lblTermsANDCondView = UITapGestureRecognizer(target: self, action: #selector(self.handlelblTermsANDCondView(_:)))
+        lblTermsANDCond.addGestureRecognizer(lblTermsANDCondView)
+        
+        
         let tapviewEmail = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewEmail(_:)))
         viewSignWithEmail.addGestureRecognizer(tapviewEmail)
         
@@ -117,7 +122,7 @@ class SocialLoginVC: UIViewController {
                                     LoaderClass.shared.loadAnimation()
                                     let language = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
                                     
-                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "fb_id" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? "","lang":language,"image":image ?? ""]
+                                    param = ["name":paramDict["name"] ?? "" , "email" : paramDict["email"] ?? "" , "fb_id" : paramDict["id"] ?? "" , "device_type":"ios","device_token":deviceToken ?? "","lang":"en","image":image ?? ""]
                                     self.loginViewModel.getParamForSignUp(param: param, url: Api.FBregister)
                                 }
                             })
@@ -144,6 +149,14 @@ class SocialLoginVC: UIViewController {
     @objc func handletapviewEmail(_ sender: UITapGestureRecognizer? = nil) {
         self.presentViewController(viewController : "SignupVC", value: "Main")
     }
+    
+    @objc func handlelblTermsANDCondView(_ sender: UITapGestureRecognizer? = nil) {
+        selectedIdentifier = "Terms And Conditions"
+        self.presentViewController(viewController : ViewControllers.TermsProfileVC , value : Storyboard.Main)
+        
+    }
+    
+    
     
 }
 

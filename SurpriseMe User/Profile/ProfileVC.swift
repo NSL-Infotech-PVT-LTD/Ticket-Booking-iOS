@@ -221,7 +221,7 @@ class ProfileVC: UIViewController {
     
     @IBAction func btnUpdateProfileAction(_ sender: UIButton) {
         if self.tfUserName.text == ""{
-            self.showSimpleAlert(Title: "YES".localized(), message: "PLEASE_ENTER_USERNAME".localized(), inClass: self)
+            self.showSimpleAlert(Title: "ERROR".localized(), message: "PLEASE_ENTER_USERNAME".localized(), inClass: self)
         }else{
             self.editProfileBtn.isHidden = false
             self.editImgBtn.isHidden = true

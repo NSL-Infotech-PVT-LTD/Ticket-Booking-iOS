@@ -1215,7 +1215,6 @@ class BookingDetailVC: UIViewController {
             if #available(iOS 11.0, *) {
                 if UIDevice.current.hasNotch {
                     //... consider notch
-                    
                     if dataItem?.type == "live"{
                         btnLiveConcert.setImage(UIImage.init(named: "live_active"), for: .normal)
                         viewHeightLocation.constant = 55
@@ -1226,7 +1225,6 @@ class BookingDetailVC: UIViewController {
                         lblLocationValue.isHidden = true
                         btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
                         thediCornerImage.constant = 145
-                        
                     }
                     
                 } else {
@@ -1306,7 +1304,7 @@ class BookingDetailVC: UIViewController {
                         viewHeightLocation.constant = 0
                         lblLocationValue.isHidden = true
                         btnLiveConcert.setImage(UIImage.init(named: "digital_active"), for: .normal)
-                        thediCornerImage.constant = 195
+                        thediCornerImage.constant = 145
                     }
                 } else {
                     

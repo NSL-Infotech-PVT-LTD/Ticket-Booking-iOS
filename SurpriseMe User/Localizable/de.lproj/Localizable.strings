@@ -27,7 +27,7 @@
 "BIRTHDAY_SURPRISE"         = "Sänger vor Ihrer Haustür";
 "DJ_PERFORMERSDj"           = "Virtuelle Aufführungen";
 "DIGITAL_PERFORMANCE"       = "Überraschen Sie Ihre Lieben";
-"DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
+
 //Login
 "EMAIL_ADDRESS"             = "E-Mail-Addresse";
 "PASSWORD"                  = "Passwort";
@@ -150,7 +150,7 @@ Hurra! Ihre Buchung ist bestätigt 🙂";
 "DO_NOT_PRESS"              = "Drücken Sie nicht oder gehen Sie nicht zurück";
 //LoaderVC
 "PAYMENT_PROCESSING"        = "Zahlungsabwicklung";
-"PAYMENT_PRO_DETAIL"        = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                   standard dummy text ever";
+
 //Choose your Currency
 "CHOOSE_CURRENCY"           = "Wählen Sie Ihre Währung";
 // IDEALBank

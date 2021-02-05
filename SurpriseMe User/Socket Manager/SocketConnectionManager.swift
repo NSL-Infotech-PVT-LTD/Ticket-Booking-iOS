@@ -17,8 +17,10 @@ protocol chatDetailForChatVCProtocol {
     func cDetail(receiver_name: String, sender_id: Int, reply_id: Int, id: Int, receiver_image: String, sender_name: String, type: String, message: String, receiver_id: Int, message_id: Int, sender_image: String, is_read: Int, attachment: String, thumbnailImage: String)
 }
 
+
+
 class SocketConnectionManager : WebSocketDelegate {
-    var socket = WebSocket(url: URL(string: "ws://23.20.179.178:8080")!)
+    var socket = WebSocket(url: URL(string: "ws://167.71.9.146:8080")!)
     var vc: SocketConnectionManagerDelegate?
     var chatDataHold = ChatModel()
     var chatDelegate: chatDetailForChatVCProtocol?

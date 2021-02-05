@@ -175,12 +175,12 @@ FBSDKAppEventName FBSDKAppEventNameFBSessionAuthStart = @"fb_mobile_login_start"
 FBSDKAppEventName FBSDKAppEventNameFBSessionAuthEnd = @"fb_mobile_login_complete";
 FBSDKAppEventName FBSDKAppEventNameFBSessionAuthMethodStart = @"fb_mobile_login_method_start";
 FBSDKAppEventName FBSDKAppEventNameFBSessionAuthMethodEnd = @"fb_mobile_login_method_complete";
+FBSDKAppEventName FBSDKAppEventNameFBSessionAuthHeartbeat = @"fb_mobile_login_heartbeat";
 
 FBSDKAppEventName FBSDKAppEventNameFBReferralStart = @"fb_referral_start";
 FBSDKAppEventName FBSDKAppEventNameFBReferralEnd = @"fb_referral_end";
 
 FBSDKAppEventName FBSDKAppEventNameFBSDKLikeButtonImpression = @"fb_like_button_impression";
-FBSDKAppEventName FBSDKAppEventNameFBSDKLoginButtonImpression = @"fb_login_button_impression";
 FBSDKAppEventName FBSDKAppEventNameFBSDKSendButtonImpression = @"fb_send_button_impression";
 FBSDKAppEventName FBSDKAppEventNameFBSDKShareButtonImpression = @"fb_share_button_impression";
 FBSDKAppEventName FBSDKAppEventNameFBSDKLiveStreamingButtonImpression = @"fb_live_streaming_button_impression";
@@ -211,8 +211,6 @@ FBSDKAppEventName FBSDKAppEventNameFBSDKEventMessengerShareDialogShow = @"fb_mes
 FBSDKAppEventName FBSDKAppEventNameFBSDKEventAppInviteShareDialogShow = @"fb_app_invite_share_show";
 
 FBSDKAppEventName FBSDKAppEventNameFBSessionFASLoginDialogResult = @"fb_mobile_login_fas_dialog_result";
-
-FBSDKAppEventName FBSDKAppEventNameImplementsApplicationDidFinishLaunching = @"fb_sdk_implements_did_finish_launching";
 
 FBSDKAppEventName FBSDKAppEventNameFBSDKLiveStreamingStart = @"fb_sdk_live_streaming_start";
 FBSDKAppEventName FBSDKAppEventNameFBSDKLiveStreamingStop = @"fb_sdk_live_streaming_stop";
@@ -920,23 +918,9 @@ static NSString *g_overrideAppID = nil;
                                    accessToken:accessToken];
 }
 
-#ifdef DEBUG
-static dispatch_once_t *onceTokenPointer;
-+ (void)resetSingleton
-{
-  if (onceTokenPointer) {
-    *onceTokenPointer = 0;
-  }
-}
-
-#endif
-
 + (FBSDKAppEvents *)singleton
 {
   static dispatch_once_t onceToken;
-#ifdef DEBUG
-  onceTokenPointer = &onceToken;
-#endif
   static FBSDKAppEvents *shared = nil;
   dispatch_once(&onceToken, ^{
     shared = [[self alloc] init];

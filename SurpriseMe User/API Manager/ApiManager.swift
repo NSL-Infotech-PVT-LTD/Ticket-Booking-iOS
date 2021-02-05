@@ -131,16 +131,22 @@ struct ViewControllers {
 
 
 struct Api {
+    /*Chat 167.71.9.146:8080
+    API Endpoint https://surprise-me.co/api/
+    Uploads Endpoint https://surprise-me.co/uploads/
+
+    Ravi Rakesh Abhishek Loveleen
+
+    Kindly update base url accordingly*/
+ //MARK : SurpriseMe User API
+    static let baseUrl = "https://surprise-me.co/api/customer/"
+    static let basePublicUrl = "https://surprise-me.co/api/"
     
-    //MARK : SurpriseMe User API
-    static let baseUrl = "https://dev.netscapelabs.com/surpriseme/public/api/customer/"
-    static let basePublicUrl = "https://dev.netscapelabs.com/surpriseme/public/api/"
+    static let baseAuthUrl = "https://surprise-me.co/api/"
+    static let imageURL = "https://surprise-me.co/uploads/users/customer/"
     
-    static let baseAuthUrl = "https://dev.netscapelabs.com/surpriseme/public/api/"
-    static let imageURL = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/customer/"
-    
-    static let imageURLArtist = "https://dev.netscapelabs.com/surpriseme/public/uploads/users/artist/"
-    static let videoUrl = "https://dev.netscapelabs.com/surpriseme/public/uploads/artist/videos/"
+    static let imageURLArtist = "https://surprise-me.co/uploads/users/artist/"
+    static let videoUrl = "https://surprise-me.co/uploads/artist/videos/"
     
     static let videoUrlThumbnail = videoUrl + "thumbnail/"
 

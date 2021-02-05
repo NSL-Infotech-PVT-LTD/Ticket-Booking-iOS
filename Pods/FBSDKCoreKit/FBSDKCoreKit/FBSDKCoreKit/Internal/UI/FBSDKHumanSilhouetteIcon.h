@@ -16,15 +16,17 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "TargetConditionals.h"
 
-@class FBSDKAccessToken;
+#if !TARGET_OS_TV
 
-NS_SWIFT_NAME(AccessTokenCaching)
-@protocol FBSDKAccessTokenCaching<NSObject>
+#import <UIKit/UIKit.h>
 
-@property (nonatomic, copy) FBSDKAccessToken *accessToken;
+#import "FBSDKIcon.h"
 
-- (void)clearCache;
+NS_SWIFT_NAME(HumanSilhouetteIcon)
+@interface FBSDKHumanSilhouetteIcon : FBSDKIcon
 
 @end
+
+#endif

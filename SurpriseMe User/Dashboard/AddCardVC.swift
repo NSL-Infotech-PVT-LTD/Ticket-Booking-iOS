@@ -171,13 +171,7 @@ class AddCardVC: UIViewController {
             
         } else{
             LoaderClass.shared.loadAnimation()
-            
-            
-            //            txtExpire
-            //
-            //            txtExpire
-            
-            
+          
             let cardParams = STPCardParams()
             cardParams.number = txtCardNumber.text!
             cardParams.name = txtCardHolderName.text!
@@ -188,9 +182,7 @@ class AddCardVC: UIViewController {
                 guard let token = token, error == nil else {
                     // Present error to user...
                     LoaderClass.shared.stopAnimation()
-
                     Helper.showOKAlert(onVC: self, title: "Error", message: error?.localizedDescription ?? "")
-                    
                     
                     return
                 }

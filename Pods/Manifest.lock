@@ -7,20 +7,20 @@ PODS:
   - AMDots (1.0.2)
   - Cosmos (22.1.0)
   - DropDown (2.3.13)
-  - FBSDKCoreKit (8.2.0):
-    - FBSDKCoreKit/Basics (= 8.2.0)
-    - FBSDKCoreKit/Core (= 8.2.0)
-  - FBSDKCoreKit/Basics (8.2.0)
-  - FBSDKCoreKit/Core (8.2.0):
+  - FBSDKCoreKit (9.0.0):
+    - FBSDKCoreKit/Basics (= 9.0.0)
+    - FBSDKCoreKit/Core (= 9.0.0)
+  - FBSDKCoreKit/Basics (9.0.0)
+  - FBSDKCoreKit/Core (9.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (8.2.0):
-    - FBSDKLoginKit/Login (= 8.2.0)
-  - FBSDKLoginKit/Login (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
-  - FBSDKShareKit (8.2.0):
-    - FBSDKShareKit/Share (= 8.2.0)
-  - FBSDKShareKit/Share (8.2.0):
-    - FBSDKCoreKit (~> 8.2.0)
+  - FBSDKLoginKit (9.0.0):
+    - FBSDKLoginKit/Login (= 9.0.0)
+  - FBSDKLoginKit/Login (9.0.0):
+    - FBSDKCoreKit (~> 9.0.0)
+  - FBSDKShareKit (9.0.0):
+    - FBSDKShareKit/Share (= 9.0.0)
+  - FBSDKShareKit/Share (9.0.0):
+    - FBSDKCoreKit (~> 9.0.0)
   - Firebase (6.32.2):
     - Firebase/Core (= 6.32.2)
   - Firebase/Analytics (6.32.2):
@@ -157,8 +157,9 @@ DEPENDENCIES:
   - AMDots
   - Cosmos (~> 22.1)
   - DropDown
-  - FBSDKLoginKit
-  - FBSDKShareKit
+  - FBSDKCoreKit (~> 9.0)
+  - FBSDKLoginKit (~> 9.0)
+  - FBSDKShareKit (~> 9.0)
   - Firebase
   - Firebase/Analytics
   - Firebase/Crashlytics
@@ -239,9 +240,9 @@ SPEC CHECKSUMS:
   AMDots: 11298aaac1c98820c31c4cc85abf9ab46f922294
   Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
-  FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
-  FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
-  FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
+  FBSDKCoreKit: ac6cc500b8e104bb9a4dd20b1527b5d199123c2e
+  FBSDKLoginKit: e9b6542fdee322333502ab497f628b011dce7d78
+  FBSDKShareKit: e9a5d805d0831489a09dd14fa6fc8ba20d6355f3
   Firebase: 47176280bfba198e531f909cfb1612dad216cb96
   FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
   FirebaseCore: 1d697bb944bf2af5fc248f1a66e165c9dd88bf97
@@ -278,6 +279,6 @@ SPEC CHECKSUMS:
   youtube-ios-player-helper: 40b96e52c22445f0fdc43731cefa32c67075ff81
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 05ae3e8891d8654a814118131b0d7d8b1b1f99b6
+PODFILE CHECKSUM: ae231a32cf1ccd429c2a1843455fda8ec7685725
 
 COCOAPODS: 1.10.0

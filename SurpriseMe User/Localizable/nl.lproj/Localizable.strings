@@ -27,7 +27,6 @@
 "BIRTHDAY_SURPRISE"         = "Zangers voor de deur";
 "DJ_PERFORMERSDj"           = "Virtuele optredens";
 "DIGITAL_PERFORMANCE"       = "Verras uw dierbaren";
-"DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
 //Login
 "EMAIL_ADDRESS"             = "E-mailadres";
 "PASSWORD"                  = "Wachtwoord";
@@ -147,7 +146,7 @@
 "DO_NOT_PRESS"              = "Druk niet op of ga niet terug";
 //LoaderVC
 "PAYMENT_PROCESSING"        = "Verwerking van betalingen";
-"PAYMENT_PRO_DETAIL"        = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                   standard dummy text ever";
+
 //Choose your Currency
 "CHOOSE_CURRENCY"           = "Kies uw valuta";
 // IDEALBank

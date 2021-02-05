@@ -18,15 +18,19 @@
 
 #import <Foundation/Foundation.h>
 
-#if SWIFT_PACKAGE
-#import "FBSDKAccessToken.h"
-#else
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#endif
+NS_ASSUME_NONNULL_BEGIN
 
-#import "FBSDKAccessTokenCaching.h"
+NS_SWIFT_NAME(Nonce)
+@interface FBSDKNonceUtility: NSObject
 
-NS_SWIFT_NAME(AccessTokenCache)
-@interface FBSDKAccessTokenCache : NSObject<FBSDKAccessTokenCaching>
+/**
+   Checks if a string represents a valid nonce.
+ */
++ (BOOL)isValidNonce:(NSString *)nonce;
+
++ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

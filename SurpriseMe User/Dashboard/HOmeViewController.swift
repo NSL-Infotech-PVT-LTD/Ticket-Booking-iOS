@@ -164,7 +164,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         selectedType = "live"
         if self.mobelObject.count > 0{
             if customAddress == false{
-                self.currentLocationGet()
+              //  self.currentLocationGet()
                 self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
                 self.locationTf.text = self.mobelObject[0].street_address ?? ""
                 currentLat = self.mobelObject[0].lat ?? 0.0
@@ -347,7 +347,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                                         if selectedStreetAddress != ""{
                                             let selectedSaveLat = UserDefaults.standard.double(forKey: "SelectedLatValue")
                                             let selectedSaveLong = UserDefaults.standard.double(forKey: "SelectedLongValue")
-                                            self.currentLocationGet()
+                                           // self.currentLocationGet()
                                             self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
                                             self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
                                             self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
@@ -515,7 +515,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
                 if  selectedStreetAddress != ""{
                     let selectedSaveLat = UserDefaults.standard.double(forKey: "SelectedLatValue")
                     let selectedSaveLong = UserDefaults.standard.double(forKey: "SelectedLongValue")
-                    self.currentLocationGet()
+                  //  self.currentLocationGet()
                     self.viewLivePersonHeader.backgroundColor = UIColor.init(red: 0/255.0, green: 145/255.0, blue: 233/255.0, alpha: 1)
                     self.viewHeaderVirtual.backgroundColor = UIColor.init(red: 170/255.0, green: 170/255.0, blue: 170/255.0, alpha: 1)
                     self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
@@ -585,19 +585,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         }
     }
     
-    func currentLocationGet(){
-        //Mark:- Get current Lat/Long.
-        if (CLLocationManager.locationServicesEnabled()) {
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.distanceFilter = 10.0
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.requestWhenInUseAuthorization()
-            self.locationManager.startUpdatingLocation()
-            let getLatLong = locationManager.location
-        } else {
-        }
-    }
+    
     
     
     @IBAction func btnDigitalTopAction(_ sender: UIButton) {
@@ -626,7 +614,7 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         selectedType = "live"
         if self.mobelObject.count > 0{
             if customAddress == false{
-                self.currentLocationGet()
+               // self.currentLocationGet()
                 self.lblYourLocationLblTitle.text = self.mobelObject[0].name ?? ""
                 self.locationTf.text = self.mobelObject[0].street_address ?? ""
                 currentLat = self.mobelObject[0].lat ?? 0.0
@@ -657,23 +645,23 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
     }
     
     
-    func currentLocationGetAgain(){
-        //Mark:- Get current Lat/Long.
-        if (CLLocationManager.locationServicesEnabled()) {
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.distanceFilter = 10.0
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.requestWhenInUseAuthorization()
-            self.locationManager.startUpdatingLocation()
-            let getLatLong = locationManager.location
-            self.getAddressFromLatLon(pdblLatitude: getLatLong?.coordinate.latitude ?? 0.0, withLongitude: getLatLong?.coordinate.longitude ?? 0.0)
-            currentLat = getLatLong?.coordinate.latitude ?? 0.0
-            currentLong = getLatLong?.coordinate.longitude ?? 0.0
-        } else {
-        }
-    }
-    
+//    func currentLocationGetAgain(){
+//        //Mark:- Get current Lat/Long.
+//        if (CLLocationManager.locationServicesEnabled()) {
+//            self.locationManager.delegate = self
+//            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            self.locationManager.distanceFilter = 10.0
+//            self.locationManager.requestAlwaysAuthorization()
+//            self.locationManager.requestWhenInUseAuthorization()
+//            self.locationManager.startUpdatingLocation()
+//            let getLatLong = locationManager.location
+//            self.getAddressFromLatLon(pdblLatitude: getLatLong?.coordinate.latitude ?? 0.0, withLongitude: getLatLong?.coordinate.longitude ?? 0.0)
+//            currentLat = getLatLong?.coordinate.latitude ?? 0.0
+//            currentLong = getLatLong?.coordinate.longitude ?? 0.0
+//        } else {
+//        }
+//    }
+//
     
     func setDashLine()  {
         let color = UIColor(red: 0.78, green: 0.78, blue: 0.78, alpha: 1.00).cgColor
@@ -733,15 +721,12 @@ class HOmeViewController: UIViewController , UIGestureRecognizerDelegate, STPAut
         
     }
     
-    
     @objc func btnBookAction(sender:UIButton)  {
         userArtistID = arrayHomeArtistList[sender.tag].id ?? 0
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
     }
     
-    
     @IBAction func btnNotificationAction(_ sender: UIButton) {
-        
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NotificationVC") as! NotificationVC
         let transition = CATransition()
@@ -951,44 +936,6 @@ extension HOmeViewController: HomeViewModelProtocol ,ProfileViewModelProtocol{
     }
     
     func getProfileApiResponse(message: String, response: [String : Any], isError: Bool) {
-    }
-}
-
-extension HOmeViewController : CLLocationManagerDelegate{
-    
-    //MARK:- start point latitude and longitude convert into Address
-    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double) {
-        let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(pdblLatitude),\(pdblLongitude)&key=\("AIzaSyAeRjBp9uCEHLe-dIdsGVKegO9KzsmHmwA")"
-        Alamofire.request(url).validate().responseJSON { response in
-            switch response.result {
-            case .success:
-                let responseJson = response.result.value! as! NSDictionary
-                print("the location is \(responseJson)")
-                if let results = responseJson.object(forKey: "results")! as? [NSDictionary] {
-                    if results.count > 0 {
-                        if let addressComponents = results[0]["address_components"]! as? [NSDictionary] {
-                            if self.locationTf.text == ""{
-                            }
-                            currentAddress = self.locationTf.text!
-                            break               }
-                    }
-                }
-            case .failure(let error): break
-            }
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if(status == .authorizedWhenInUse || status == .authorizedAlways){
-            manager.requestLocation()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     }
 }
 

@@ -27,7 +27,7 @@
 "BIRTHDAY_SURPRISE"         = "Cantantes en tu puerta";
 "DJ_PERFORMERSDj"           = "Actuaciones virtuales";
 "DIGITAL_PERFORMANCE"       = "Sorprende a tus seres queridos";
-"DETAIL_CONTENT"            = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. LoremIpsum has been the industry's standard                            dummy text ever,Dj Performers,Digital Performers";
+
 //Login
 "EMAIL_ADDRESS"             = "E-mailadres";
 "ENTER_YOUR_MAIL"           = "Introduce tu correo electrónico";
@@ -159,7 +159,7 @@
 "DO_NOT_PRESS"              = "No presione ni retroceda";
 //LoaderVC
 "PAYMENT_PROCESSING"        = "Procesando pago";
-"PAYMENT_PRO_DETAIL"        = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's                                   standard dummy text ever";
+
 
 
 //PROFILE -

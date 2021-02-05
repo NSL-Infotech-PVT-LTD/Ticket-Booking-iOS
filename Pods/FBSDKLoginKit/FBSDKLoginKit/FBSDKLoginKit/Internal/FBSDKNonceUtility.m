@@ -16,29 +16,23 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TargetConditionals.h"
+#import "FBSDKNonceUtility.h"
 
-#if TARGET_OS_TV
+#ifdef FBSDKCOCOAPODS
+ #import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
+ #import "FBSDKCoreKit+Internal.h"
+#endif
 
-#import "FBSDKCoreKitImport.h"
+@implementation FBSDKNonceUtility
 
-#import "FBSDKSharingContent.h"
++ (BOOL)isValidNonce:(NSString *)nonce
+{
+  NSString *string = [FBSDKTypeUtility stringValue:nonce];
+  NSRange whiteSpaceRange = [string rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+  BOOL containsWhitespace = (whiteSpaceRange.location != NSNotFound);
 
-NS_ASSUME_NONNULL_BEGIN
-
-DEVICE_SHARING_DEPRECATED
-NS_SWIFT_NAME(FBDeviceShareButton)
-@interface FBSDKDeviceShareButton : FBSDKDeviceButton
-
-/**
-  The required content to share. The button is disabled until this is set.
-
- @see FBSDKDeviceShareViewController
- */
-@property (nullable, nonatomic, strong) id<FBSDKSharingContent> shareContent;
+  return (([string length] > 0) && !containsWhitespace);
+}
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#endif

@@ -89,10 +89,10 @@ extension WalkThroughVC : UICollectionViewDelegate,UICollectionViewDataSource,UI
         cell.widthConstant.constant = self.view.frame.size.width
         
         if UIDevice.current.hasNotch{
-            cell.bottomLblSizeConstant.constant = 210
+            cell.bottomLblSizeConstant.constant = 120
             
         }else{
-            cell.bottomLblSizeConstant.constant = 150
+            cell.bottomLblSizeConstant.constant = 80
         }
         
         return cell

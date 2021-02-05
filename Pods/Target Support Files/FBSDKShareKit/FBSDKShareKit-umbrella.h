@@ -15,8 +15,6 @@
 #import "FBSDKCameraEffectArguments.h"
 #import "FBSDKCameraEffectTextures.h"
 #import "FBSDKCoreKitImport.h"
-#import "FBSDKDeviceShareButton.h"
-#import "FBSDKDeviceShareViewController.h"
 #import "FBSDKGameRequestContent.h"
 #import "FBSDKGameRequestDialog.h"
 #import "FBSDKHashtag.h"

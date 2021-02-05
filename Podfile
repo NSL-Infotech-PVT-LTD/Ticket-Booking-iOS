@@ -8,7 +8,8 @@ target 'SurpriseMe User' do
   # Pods for SurpriseMe User
 pod 'IQKeyboardManager'
 pod 'Cosmos', '~> 22.1'
-pod 'FBSDKLoginKit'
+pod 'FBSDKLoginKit', '~> 9.0'
+pod 'FBSDKCoreKit', '~> 9.0'
 pod 'Alamofire', '~> 4.0'
 pod 'SwiftyJSON'
 pod 'TagListView', '~> 1.0'
@@ -39,7 +40,7 @@ pod 'AMDots'
 pod 'Toast-Swift', '~> 5.0.1'
 pod 'Mantis', '~> 1.4.7'
 pod 'ImageSlideshow'
-pod 'FBSDKShareKit'
+pod 'FBSDKShareKit', '~> 9.0'
 pod 'ActiveLabel'
 
 

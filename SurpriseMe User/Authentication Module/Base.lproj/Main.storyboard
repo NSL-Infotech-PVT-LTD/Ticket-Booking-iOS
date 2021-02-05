@@ -71,13 +71,11 @@
                                                         <constraint firstAttribute="width" constant="375" id="yCS-g5-yXt"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYb-BY-lxV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYb-BY-lxV">
                                                     <rect key="frame" x="30" y="579.66666666666652" width="391" height="68.333333333333371"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="68.329999999999998" id="j0K-zk-hvo"/>
                                                     </constraints>
-                                                    <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem 
-Ipsum has been the industry's standard dummy text ever</string>
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -92,9 +90,9 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label d" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfN-HL-Ygm">
-                                                    <rect key="frame" x="30" y="501" width="391" height="67"/>
+                                                    <rect key="frame" x="30" y="497" width="391" height="74"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="oi2-5O-HTQ"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="74" id="cWp-Xg-QGL"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -103,14 +101,14 @@ Ipsum has been the industry's standard dummy text ever</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="9ZU-rU-ao3" firstAttribute="leading" secondItem="3hV-nm-XZ6" secondAttribute="leading" constant="10" id="0T3-xc-YZs"/>
-                                                <constraint firstItem="zfN-HL-Ygm" firstAttribute="leading" secondItem="3hV-nm-XZ6" secondAttribute="leading" constant="30" id="13l-S7-jCg"/>
                                                 <constraint firstItem="VYb-BY-lxV" firstAttribute="leading" secondItem="3hV-nm-XZ6" secondAttribute="leading" constant="30" id="Njb-0T-St3"/>
                                                 <constraint firstAttribute="trailing" secondItem="VYb-BY-lxV" secondAttribute="trailing" constant="30" id="SYl-Rk-GGC"/>
                                                 <constraint firstAttribute="bottom" secondItem="qQR-sF-zYr" secondAttribute="bottom" id="TVs-Tl-LMW"/>
-                                                <constraint firstAttribute="trailing" secondItem="zfN-HL-Ygm" secondAttribute="trailing" constant="30" id="UrX-qP-uSV"/>
+                                                <constraint firstAttribute="trailing" secondItem="zfN-HL-Ygm" secondAttribute="trailing" constant="30" id="W8j-ln-rJu"/>
                                                 <constraint firstItem="qQR-sF-zYr" firstAttribute="top" secondItem="3hV-nm-XZ6" secondAttribute="top" id="eBd-pn-dbf"/>
                                                 <constraint firstAttribute="trailing" secondItem="9ZU-rU-ao3" secondAttribute="trailing" constant="10" id="gfR-gR-bTQ"/>
-                                                <constraint firstItem="VYb-BY-lxV" firstAttribute="top" secondItem="zfN-HL-Ygm" secondAttribute="bottom" constant="12" id="mqx-oV-IFB"/>
+                                                <constraint firstItem="VYb-BY-lxV" firstAttribute="top" secondItem="zfN-HL-Ygm" secondAttribute="bottom" constant="8.6699999999999999" id="jap-oR-Xfe"/>
+                                                <constraint firstItem="zfN-HL-Ygm" firstAttribute="leading" secondItem="3hV-nm-XZ6" secondAttribute="leading" constant="30" id="kjM-Gg-KJT"/>
                                                 <constraint firstAttribute="trailing" secondItem="qQR-sF-zYr" secondAttribute="trailing" id="oLD-sJ-79Y"/>
                                                 <constraint firstAttribute="bottom" secondItem="9ZU-rU-ao3" secondAttribute="bottom" constant="25" id="xfN-Ol-LSj"/>
                                                 <constraint firstItem="qQR-sF-zYr" firstAttribute="leading" secondItem="3hV-nm-XZ6" secondAttribute="leading" id="yU7-2C-DAe"/>
@@ -231,7 +229,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <rect key="frame" x="20" y="240" width="374" height="400"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you new?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-J0-pWd">
-                                                        <rect key="frame" x="117.00000000000001" y="30" width="140.33333333333337" height="30"/>
+                                                        <rect key="frame" x="104.33333333333333" y="30" width="165.66666666666669" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="CQF-Tn-Gh4"/>
                                                         </constraints>
@@ -450,19 +448,26 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <action selector="btnTerConditionAction:" destination="Zxg-Tk-gd0" eventType="touchUpInside" id="W2y-r2-XbR"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Signing up,you are agree with our" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xc5-n3-I1t">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Signing up,you are agree with our" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xc5-n3-I1t">
                                                 <rect key="frame" x="36" y="675" width="207" height="26"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfX-LC-tP2">
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfX-LC-tP2">
                                                 <rect key="frame" x="251" y="675" width="127" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="127" id="Q2J-6Z-K3I"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <color key="textColor" systemColor="systemOrangeColor"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Label">
+                                                        <attributes>
+                                                            <color key="NSColor" systemColor="systemOrangeColor"/>
+                                                            <font key="NSFont" metaFont="smallSystem"/>
+                                                            <integer key="NSUnderline" value="1"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -926,7 +931,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                 <color key="textColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-D8-ys5">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-D8-ys5">
                                                 <rect key="frame" x="332" y="33" width="72" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18" id="Ar1-TK-YXJ"/>
@@ -940,7 +945,7 @@ Ipsum has been the industry's standard dummy text ever</string>
                                                     <action selector="btnChangeLanguageAction:" destination="19W-ON-k5f" eventType="touchUpInside" id="t8F-Oj-nNg"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="translate" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-jK-uSw">
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="translate" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-jK-uSw">
                                                 <rect key="frame" x="302" y="27" width="40" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="DPs-MI-Gr9"/>
@@ -1094,6 +1099,11 @@ Ipsum has been the industry's standard dummy text ever</string>
                             <constraint firstItem="APS-8B-xo8" firstAttribute="bottom" secondItem="jDM-Ih-DAV" secondAttribute="bottom" id="fPj-IX-Bh2"/>
                             <constraint firstItem="juO-Y1-BcL" firstAttribute="top" secondItem="APS-8B-xo8" secondAttribute="top" id="rOx-Ps-YMj"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="IUc-zb-tX0"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Hrj-9Y-XNb"/>
                     <connections>
@@ -1626,9 +1636,6 @@ Ipsum has been the industry's standard dummy text ever</string>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tBy-e5-3C6">
                                         <rect key="frame" x="0.0" y="8" width="374" height="535"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five ing versions of Lorem Ipsum</string>
                                         <color key="textColor" red="0.1529411765" green="0.1529411765" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

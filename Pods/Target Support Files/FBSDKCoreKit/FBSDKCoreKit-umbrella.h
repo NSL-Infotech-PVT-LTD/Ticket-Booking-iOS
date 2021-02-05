@@ -23,6 +23,7 @@
 #import "FBSDKUserDataStore.h"
 #import "FBSDKAccessToken.h"
 #import "FBSDKApplicationDelegate.h"
+#import "FBSDKAuthenticationToken.h"
 #import "FBSDKButton.h"
 #import "FBSDKConstants.h"
 #import "FBSDKCopying.h"

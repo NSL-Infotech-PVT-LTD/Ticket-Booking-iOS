@@ -69,6 +69,8 @@ static FBSDKAccessToken *_CreateExpiredAccessToken(FBSDKAccessToken *accessToken
     return accessToken;
   }
   NSDate *expirationDate = [NSDate dateWithTimeIntervalSinceNow:-1];
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wdeprecated-declarations"
   return [[FBSDKAccessToken alloc] initWithTokenString:accessToken.tokenString
                                            permissions:accessToken.permissions.allObjects
                                    declinedPermissions:accessToken.declinedPermissions.allObjects
@@ -79,6 +81,7 @@ static FBSDKAccessToken *_CreateExpiredAccessToken(FBSDKAccessToken *accessToken
                                            refreshDate:expirationDate
                               dataAccessExpirationDate:expirationDate
                                            graphDomain:accessToken.graphDomain];
+  #pragma clange diagnostic pop
 }
 
 #endif
@@ -497,10 +500,8 @@ typedef NS_ENUM(NSUInteger, FBSDKGraphRequestConnectionState) {
     request.HTTPMethod = @"POST";
   }
 
-  NSData *compressedData;
-  if ([request.HTTPMethod isEqualToString:@"POST"] && (compressedData = [body compressedData])) {
-    request.HTTPBody = compressedData;
-    [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
+  if ([request.HTTPMethod isEqualToString:@"POST"]) {
+    [self addBody:body toPostRequest:request];
   } else {
     request.HTTPBody = body.data;
   }
@@ -511,6 +512,17 @@ typedef NS_ENUM(NSUInteger, FBSDKGraphRequestConnectionState) {
   [self logRequest:request bodyLength:(request.HTTPBody.length / 1024) bodyLogger:bodyLogger attachmentLogger:attachmentLogger];
 
   return request;
+}
+
+- (void)addBody:(FBSDKGraphRequestBody *)body toPostRequest:(NSMutableURLRequest *)request
+{
+  NSData *compressedData;
+  if ((compressedData = [body compressedData])) {
+    request.HTTPBody = compressedData;
+    [request setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
+  } else {
+    request.HTTPBody = body.data;
+  }
 }
 
 //
@@ -1033,7 +1045,7 @@ static NSError *_Nullable errorFromResult(id untypedParam, FBSDKGraphRequest *re
   @try {
     if ([error.domain isEqualToString:NSURLErrorDomain] && error.code == kCFURLErrorSecureConnectionFailed) {
       NSOperatingSystemVersion iOS9Version = { .majorVersion = 9, .minorVersion = 0, .patchVersion = 0 };
-      if ([FBSDKInternalUtility isOSRunTimeVersionAtLeast:iOS9Version]) {
+      if ([NSProcessInfo.processInfo isOperatingSystemAtLeastVersion:iOS9Version]) {
         [FBSDKLogger singleShotLogEntry:FBSDKLoggingBehaviorDeveloperErrors
                                logEntry:@"WARNING: FBSDK secure network request failed. Please verify you have configured your "
          "app for Application Transport Security compatibility described at https://developers.facebook.com/docs/ios/ios9"];
@@ -1077,7 +1089,12 @@ static NSError *_Nullable errorFromResult(id untypedParam, FBSDKGraphRequest *re
 {
   NSString *token = request.tokenString ?: request.parameters[kAccessTokenKey];
   if (!token && !(request.flags & FBSDKGraphRequestFlagSkipClientToken) && [FBSDKSettings clientToken].length > 0) {
-    return [NSString stringWithFormat:@"%@|%@", [FBSDKSettings appID], [FBSDKSettings clientToken]];
+    NSString *baseTokenString = [NSString stringWithFormat:@"%@|%@", FBSDKSettings.appID, FBSDKSettings.clientToken];
+    if ([FBSDKAuthenticationToken.currentAuthenticationToken.graphDomain isEqualToString:@"gaming"]) {
+      return [@"GG|" stringByAppendingString:baseTokenString];
+    } else {
+      return baseTokenString;
+    }
   }
   return token;
 }

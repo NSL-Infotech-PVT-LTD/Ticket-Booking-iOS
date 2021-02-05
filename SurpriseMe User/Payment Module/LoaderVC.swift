@@ -22,11 +22,8 @@ class LoaderVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lblPaymentProcess.text = "PAYMENT_PROCESSING".localized()
-        lblPaymentDetail.text = "PAYMENT_PRO_DETAIL".localized()
         lblDoNotBack.text = "DO_NOT_PRESS".localized()
-        
         viewActivityIndicator.startAnimating()
-        
         
         if Reachability.isConnectedToNetwork() {
             gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
