@@ -97,6 +97,38 @@ class FriendMsgVC: UIViewController {
     }
     
     
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom > height {
+            print(" you reached end of the table")
+        }
+    }
+    
+    
+    //Pagination
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if ((msgTableView.contentOffset.y + msgTableView.frame.size.height) <= msgTableView.contentSize.height)
+        {
+            print("scrollViewDidEndDragging")
+            print("scrollViewDidEndDragging page number is \(self.pageInt)")
+            self.pageInt = self.pageInt + 1
+            let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
+            if isLoadMore == true{
+//                var style = ToastStyle()
+//                // this is just one of many style options
+//                style.messageColor = .white
+//                self.view.makeToast("No More Data Found", duration: 3.0, position: .bottom, style: style)
+            }else{
+               // self.getBookingListData(param: self.pageInt)
+            }
+        }
+    }
+    
+    
+    
     func getdate() {
         
         if chatHistoryData.count > 0 {

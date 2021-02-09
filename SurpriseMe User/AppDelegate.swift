@@ -137,18 +137,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK:- Funtion check whether user is login or not -
     func checkUserLogin()  {
-        let lang = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
-        if lang == nil || lang == "" || lang.isEmpty == true {
-            let story = UIStoryboard(name: "Main", bundle:nil)
-            let vc = story.instantiateViewController(withIdentifier: "WalkThroughVC") as! WalkThroughVC
-            let navigationController = UINavigationController(rootViewController: vc)
-            navigationController.isNavigationBarHidden = true
-            vc.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-            UIApplication.shared.windows.first?.rootViewController = navigationController
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
-            
-        }else{
-            if let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool{
+//        let lang = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
+//        if lang == nil || lang == "" || lang.isEmpty == true {
+//            let story = UIStoryboard(name: "Main", bundle:nil)
+//            let vc = story.instantiateViewController(withIdentifier: "WalkThroughVC") as! WalkThroughVC
+//            let navigationController = UINavigationController(rootViewController: vc)
+//            navigationController.isNavigationBarHidden = true
+//            vc.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+//            UIApplication.shared.windows.first?.rootViewController = navigationController
+//            UIApplication.shared.windows.first?.makeKeyAndVisible()
+//
+//        }else{
+             let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool
                 if isLogin == true{
                     let vc = UIStoryboard(name: "Main", bundle: nil)
                     let vc1 = vc.instantiateViewController(withIdentifier: "DashboardTabBarController")
@@ -168,8 +168,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     UIApplication.shared.windows.first?.makeKeyAndVisible()
                 }
             }
-        }
-    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
