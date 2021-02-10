@@ -24,6 +24,10 @@ class ChatHistoryViewModel {
     
     
     var arrayObject = [ChatHistoryModel]()
+    
+    var arrayObjectForPaging = [ChatHistoryModel]()
+
+    
     var delegate: chatHistoryViewModelProtocol?
     
     
@@ -83,7 +87,7 @@ class ChatHistoryViewModel {
                             }
                             else {
 
-//                                self.arrayObjectForPaging.removeAll()
+                                self.arrayObjectForPaging.removeAll()
                                 let chatData = result["data"] as? [String:Any]
 
 
@@ -103,13 +107,15 @@ class ChatHistoryViewModel {
                                         let getIndx = index as! [String: Any]
                                         print("the index value is \(index)")
                                         let dataDict = ChatHistoryModel.init(response: getIndx)
-                                        self.arrayObject.append(dataDict)
+                                        self.arrayObjectForPaging.append(dataDict)
 
-//                                        self.arrayObject = self.arrayObject + self.arrayObjectForPaging
 
                                     }
                                 }
 
+                                                                        self.arrayObject = self.arrayObject + self.arrayObjectForPaging
+
+                                
                                 print("the chat history is \(self.arrayObject.count)")
 
                                 self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false)

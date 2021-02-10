@@ -536,8 +536,6 @@ extension FilterViewController : FilterArtistDataViewModelProtocol{
             self.view!.removeFromSuperview()
             self.removeFromParent()
             self.delegate?.getFilterData(message: "SUCCESS".localized(), response: arrayHomeArtistList)
-            
-            
         }
     }
     

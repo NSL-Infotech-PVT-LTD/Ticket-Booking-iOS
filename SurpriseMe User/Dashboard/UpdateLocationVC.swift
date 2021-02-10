@@ -70,6 +70,7 @@ class UpdateLocationVC: UIViewController {
         self.otherAddressTF.isHidden = true
         self.objectViewModel.delegate = self
         self.btnCross.isHidden = true
+        currentLocationGet()
         lblAddressTextValue.isUserInteractionEnabled = true
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
         lblAddressTextValue.addGestureRecognizer(tapviewAboutUs)
@@ -81,22 +82,16 @@ class UpdateLocationVC: UIViewController {
         else{
             self.setMarkerCustomLocation()
         }
-        currentLocationGet()
-        
     }
-    
     
     @IBAction func btnEditActions(_ sender: UIButton) {
         isEditAddress = true
-        
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
         navigationController?.pushViewController(controller, animated: false)
-        
     }
     
     func setEditAddressAgain()  {
-        
         if addressSelected == ""{
             self.lblAddressTextValue.text =  addressStreetAddressAfterEdit
             self.getAddress(address: addressStreetAddressAfterEdit)
@@ -175,7 +170,6 @@ class UpdateLocationVC: UIViewController {
     
     @objc func handletapviewAboutUs(_ sender: UITapGestureRecognizer? = nil)
     {
-        
         isEditAddress = true
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ManualAddressVC") as! ManualAddressVC
@@ -187,6 +181,9 @@ class UpdateLocationVC: UIViewController {
         self.otherAddressTF.isHidden = true
         self.btnCross.isHidden = true
         addressType = "Other"
+        self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
+        self.btnOther.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+        self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
         self.otherAddressTF.text = ""
         self.stackViews.isHidden = false
     }
@@ -461,17 +458,7 @@ class UpdateLocationVC: UIViewController {
         selectedFirstIndexAddress = dictParam["street_address"] as? String ?? ""
         selectedFirstIndexId = dictParam["id"] as? Int ?? 0
 
-        
-//        selectedFirstIndexLat, forKey: "SelectedLatValue")
-//        UserDefaults.standard.set( selectedFirstIndexAddress, forKey: "SelectedStreetAddress")
-//        UserDefaults.standard.set( selectedFirstIndexLong, forKey: "SelectedLongValue")
-//        UserDefaults.standard.set( selectedFirstIndexId
-//
-        
-        
-        
-        
-        
+  
     }
     
     func setAddressEditAgain()  {
@@ -546,20 +533,13 @@ class UpdateLocationVC: UIViewController {
     @IBAction func btnSaveAddress(_ sender: UIButton) {
         
         if isEditValue == true && isEditAddress == false{
-            
-            
-            self.setEditAddress()
-            //            }
+           self.setEditAddress()
         }else if isEditValue == true && isEditAddress == true{
             setAddressEditAgain()
         }
-        
         else{
-            
             self.setAddress()
-            //}
         }
-        
     }
     
     
@@ -656,15 +636,7 @@ extension UpdateLocationVC: ManageAddressViewModelProtocol {
             }
         }
         
-        
-        
-        
-        
-        
-        
-        
-       
-    }
+ }
     
     func manageAddressApiResponse(message: String, modelArray response:  [ManageAddressModel],isError :Bool) {
         if isError == true{
@@ -770,8 +742,11 @@ extension UpdateLocationVC {
     func setAddressInTextField() {
         
         
-        modelObjectDict = modelObjectAdress
+       // modelObjectDict = modelObjectAdress
         lblAddressTextValue.text = modelObjectDict.street_address ?? ""
+        
+        print("the run is \(modelObjectDict.street_address ?? "")")
+        
         let location = GMSCameraPosition.camera(withLatitude: modelObjectDict.lat ?? 0.0, longitude: modelObjectDict.long ?? 0.0, zoom: 19.0)
         let cameraUpdate = GMSCameraUpdate.setCamera(location)
         CATransaction.begin()
@@ -811,7 +786,7 @@ extension UpdateLocationVC {
             self.btnCross.isHidden = true
             self.otherAddressTF.isHidden = true
         }else if modelObjectDict.name == "other"{
-            self.btnWork.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
+            self.btnWork.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
             self.btnOther.backgroundColor = UIColor.init(red: 234/255, green: 10/255, blue: 97/255.0, alpha: 1)
             self.btnHoe.backgroundColor = UIColor.init(red: 170/255, green: 170/255, blue: 170/255.0, alpha: 1)
             self.stackViews.isHidden = false

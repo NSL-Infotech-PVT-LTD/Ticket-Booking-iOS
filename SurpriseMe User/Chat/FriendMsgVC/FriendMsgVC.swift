@@ -107,25 +107,7 @@ class FriendMsgVC: UIViewController {
         }
     }
     
-    
-    //Pagination
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if ((msgTableView.contentOffset.y + msgTableView.frame.size.height) <= msgTableView.contentSize.height)
-        {
-            print("scrollViewDidEndDragging")
-            print("scrollViewDidEndDragging page number is \(self.pageInt)")
-            self.pageInt = self.pageInt + 1
-            let dictParam = ["limit":"20" , "page":pageInt] as [String : Any]
-            if isLoadMore == true{
-//                var style = ToastStyle()
-//                // this is just one of many style options
-//                style.messageColor = .white
-//                self.view.makeToast("No More Data Found", duration: 3.0, position: .bottom, style: style)
-            }else{
-               // self.getBookingListData(param: self.pageInt)
-            }
-        }
-    }
+   
     
     
     
@@ -727,8 +709,10 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             
             let dateValue = self.convertDateIntoTodaysYesterday(somedate: date)
             print("the date value is \(dateValue)")
+            print("the date value is \(date)")
+
             
-            SendCell.lblSenderTime.text = dateValue
+            SendCell.lblSenderTime.text = date
             print("the created at is \(chatHistoryData[indexPath.row].created_at ?? "")")
             if chatHistoryData[indexPath.row].customValue != "" {
                 print("hello")
@@ -918,8 +902,13 @@ extension FriendMsgVC : SocketConnectionManagerDelegate {
 extension FriendMsgVC: chatHistoryViewModelProtocol {
     func chatHistoryApiResponse(message: String, response: [ChatHistoryModel], receiverDetails: [String : Any], isError: Bool) {
         if message == "success" {
+            
+            
             chatHistoryData = response.map({$0}).reversed()
-            self.scrollToBottom()
+//            if current_page == 1 {
+//                self.scrollToBottom()
+//            }
+//            self.scrollToBottom()
             if chatHistoryData.count == 0 {
                 self.firstTimeView.isHidden = false
                 let date = Date()
@@ -941,7 +930,6 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
                 getdate()
                 filterReceivedMessageDataAccordingDate()
                 msgTableView.reloadData()
-                
             }
             msgTableView.reloadData()
             if comingFrom == "NotificationTabs" || comingFrom == "NotificationTabsTouch"{

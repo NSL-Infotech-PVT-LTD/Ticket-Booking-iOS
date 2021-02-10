@@ -59,6 +59,7 @@ class ManageAddressViewModel {
                                                         self.delegate?.addAddress(isEdit: true)
                                                        }
                                                        else{
+                         self.delegate?.errorAlert(errorTitle: "String", errorMessage: "String")
                                                        }
                                                    }
                                                    else {
@@ -96,7 +97,7 @@ class ManageAddressViewModel {
                                                     self.delegate?.addAddress(isEdit: false)
                                                    }
                                                    else{
-                                                   }
+                                                    self.delegate?.errorAlert(errorTitle: "String", errorMessage: "String")                                                   }
                                                }
                                                else {
                                                    if let error_message = response["error"] as? [String:Any] {

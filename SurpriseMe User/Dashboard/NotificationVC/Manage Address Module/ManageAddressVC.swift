@@ -94,7 +94,6 @@ class ManageAddressVC: UIViewController {
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                let controller = storyboard.instantiateViewController(withIdentifier: "UpdateLocationVC") as! UpdateLocationVC
         controller.isEdit = true
-        
         isEditValue = true
         controller.modelObjectDict = modelData
         modelObjectAdress = modelData
