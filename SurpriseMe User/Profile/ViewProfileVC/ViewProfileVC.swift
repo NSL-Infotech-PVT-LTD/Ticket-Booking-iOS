@@ -48,6 +48,14 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var imgProfileYoutube: UIImageView!
     @IBOutlet weak var imgProfileInsta: UIImageView!
+    
+    
+    @IBOutlet weak var reportTxtViewValue: UITextView!
+    
+    @IBOutlet weak var viewReportTxtView: UIView!
+    
+    
+    @IBOutlet weak var viewReportContainer: UIView!
     @IBOutlet weak var playerView: WKYTPlayerView!
     @IBOutlet weak var lblInstaLink: UILabel!
     @IBOutlet weak var lblYoutubeLink: UILabel!
@@ -136,8 +144,10 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         novideoLbl.isHidden = true
         viewContainerPreview.isHidden = true
         imgViewUserPreview.isHidden = true
+        viewReportContainer.isHidden = true
         btnCrossImage.isHidden = true
         crossBack.isHidden = true
+        self.viewReportTxtView.isHidden = true
         viewImageViewContainer.isHidden = true
         //Mark: CollectionView Delegate
         serviceCollectionView.delegate = self
@@ -206,6 +216,48 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         btnCrossImage.isHidden = true
         crossBack.isHidden = true
         viewImageViewContainer.isHidden = true
+    }
+    
+    
+    
+    @IBAction func btnSubmitReportAction(_ sender: UIButton) {
+        self.viewReportContainer.isHidden = true
+        self.viewReportTxtView.isHidden = true
+        self.reportTxtViewValue.resignFirstResponder()
+    }
+    
+    @IBAction func btnCancelReportViewAction(_ sender: UIButton) {
+        self.viewReportContainer.isHidden = true
+        self.viewReportTxtView.isHidden = true
+        self.reportTxtViewValue.resignFirstResponder()
+    }
+    
+    @IBAction func btnReportAction(_ sender: UIButton) {
+        
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+            //to change font of title and message.
+        let titleFont = [NSAttributedString.Key.font: UIFont(name: "ArialHebrew-Bold", size: 18.0)!]
+            let titleAttrString = NSMutableAttributedString(string: "Report this artist", attributes: titleFont)
+            alertController.setValue(titleAttrString, forKey: "attributedTitle")
+            let action1 = UIAlertAction(title: "Yes", style: .default) { (action) in
+                self.viewReportContainer.isHidden = false
+                self.reportTxtViewValue.text = "WRITE_YOUR_REASON".localized()
+                self.viewReportTxtView.isHidden = false
+                self.reportTxtViewValue.resignFirstResponder()
+            }
+
+            let action2 = UIAlertAction(title: "No", style: .default) { (action) in
+                self.viewReportContainer.isHidden = true
+                self.viewReportTxtView.isHidden = true
+                self.reportTxtViewValue.resignFirstResponder()
+            }
+            alertController.addAction(action1)
+            alertController.addAction(action2)
+            alertController.view.tintColor = UIColor.black
+            alertController.view.backgroundColor = UIColor.black
+            alertController.view.layer.cornerRadius = 40
+            present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func cloaseOnPress(_ sender: UIButton) {
@@ -284,10 +336,8 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         let regExp = try? NSRegularExpression(pattern: regexString, options: .caseInsensitive)
         let array: [Any] = (regExp?.matches(in: link, options: [], range: NSRange(location: 0, length: (link.count))))!
         if array.count > 0 {
-            
             let result: NSTextCheckingResult? = array.first as? NSTextCheckingResult
             youtubeID = (link as NSString).substring(with: (result?.range)!)
-            
             print(youtubeID)
             if youtubeID == "" || youtubeID.isEmpty == true{
                 self.playerView.isHidden = false
@@ -301,7 +351,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
                 self.playerView.isHidden = true
                 self.youTubePlayer.isHidden = false
                 imgPlayBtnVideo.isHidden = true
-                
                 return youtubeID
             }
         }else{
@@ -399,6 +448,12 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
        
+    }
+    
+    
+    
+    
+    @IBAction func btnReportSubmitAction(_ sender: UIButton) {
     }
     
     @IBAction func btnBookAction(_ sender: UIButton) {
@@ -735,4 +790,14 @@ extension ViewProfileVC : GetArtistProfileViewModelProtocol{
     
 }
 
-
+extension ViewProfileVC : UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "WRITE_YOUR_REASON".localized(){
+            textView.text = ""
+        }}
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == ""{
+            textView.text = "WRITE_YOUR_REASON".localized()
+        } }
+}

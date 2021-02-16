@@ -291,29 +291,6 @@ class FriendMsgVC: UIViewController {
                     picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
                     picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
                 }
-                
-                
-//                if userName == reciverData.receiver_name ?? ""{
-//                    let param = ["receiver_id": reciverData.sender_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
-//                    chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
-//                    self.lblRecierverName.text = reciverData.sender_name ?? ""
-//                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.sender_image ?? "")"
-//                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-//                    print(urlStringaa)
-//                    let urlImage = URL(string: urlStringaa)!
-//                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-//                }else{
-//                    let param = ["receiver_id": reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
-//                    chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
-//                    self.lblRecierverName.text = reciverData.receiver_name ?? ""
-//                    let urlSting : String = "\(Api.imageURLArtist)\(reciverData.receiver_image ?? "")"
-//                    let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-//                    print(urlStringaa)
-//                    let urlImage = URL(string: urlStringaa)!
-//                    picUserReciever.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//                    picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
-//                }
             }
         }
     }
