@@ -23,15 +23,12 @@ var selectedIdentifier = String()
 var userArtistIDBooking : Any?
 var userChatIDNoti : Any?
 var cameFromChat  = false
-
-
 var userArtistID = Int()
 var arrayCategorySelected = [Int]()
 var arrayCategorySelectedName = [String]()
 var sendReceiveTime = String()
 var bookingPaymentID : Int?
 var idealPaymentFailed = Bool()
-
 var arrayCardListCommom = [GetCardModel]()
 var idealPayment = Bool()
 var idealPaymentAppDelegate = Bool()
@@ -47,7 +44,6 @@ var SelfImage = String()
 var addressIDEdit = String()
 var addressTypeEdit = String()
 var addressStreetAddressAfterEdit = String()
-
 var addressAdditionalDetailEdit = String()
 var addressLandMarkEdit = String()
 var otherAddresssFeildValue = String()
@@ -55,11 +51,8 @@ var isEditValue = Bool()
 var searchTextValueData = String()
 var startDateValue = String()
 var endDateValue = String()
-
 var isChatNotification = false
-
 var nextPageUrlCount = String()
-
 var lastPageUrlCount = Int()
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"
 
@@ -69,11 +62,6 @@ struct Storyboard {
     static let Profile = "Profile"
     static let Chat = "Chat"
 }
-
-
-
-
-
 
 
 struct StringFile {
@@ -90,32 +78,17 @@ struct StringFile {
     static let Enter_Password = "Enter your password"
     static let Enter_Email = "Enter your email"
     static let Enter_UserName = "Enter your user name"
-//    static let Publish_Key = "pk_test_51HcYaaDVPC7KpoaUBqxarUUagXrI14GRCicyaZt8NztibJ4G9Y7KMtunrcWTg5PDm3PzcuBe1zkFFJiJRt1mXs8s009njabz8l"
-//        static let Publish_Key =    "pk_live_51HcYaaDVPC7KpoaU4BhQKv4qykAVVtz3TYma2nb9Yuztmb5B3EsfDaNwA3KZpDHqNv9lRlZRKVvbo5grhmRrB3bl006lVXgjmr"
-
-    
-
-
-
-
 
 }
-
 
 struct ViewControllers {
     static let Login = "LoginVC"
     static let DashBoard = "Dashboard"
     static let ChatDash = "Chat"
     static let FriendList = "FriendListVC"
-
-
     static let ManageAddressVC = "ManageAddressVC"
     static let UpdateLocationVC = "UpdateLocationVC"
     static let ScheduleBookingVC = "ScheduleBookingVC"
-    
-    
-    
-    
     static let SeleteDate = "SelectDateVC"
     static let EditDateVC = "EditDateVC"
     static let ManualAddressVC = "ManualAddressVC"
@@ -128,30 +101,15 @@ struct ViewControllers {
     
 }
 
-
-
 struct Api {
-    /*Chat 167.71.9.146:8080
-    API Endpoint https://surprise-me.co/api/
-    Uploads Endpoint https://surprise-me.co/uploads/
-
-    Ravi Rakesh Abhishek Loveleen
-
-    Kindly update base url accordingly*/
- //MARK : SurpriseMe User API
+    
     static let baseUrl = "https://surprise-me.co/api/customer/"
     static let basePublicUrl = "https://surprise-me.co/api/"
-    
     static let baseAuthUrl = "https://surprise-me.co/api/"
     static let imageURL = "https://surprise-me.co/uploads/users/customer/"
-    
     static let imageURLArtist = "https://surprise-me.co/uploads/users/artist/"
     static let videoUrl = "https://surprise-me.co/uploads/artist/videos/"
-    
     static let videoUrlThumbnail = videoUrl + "thumbnail/"
-
-    
-    
     static let login                  = baseUrl + "login"
     static let Register               = baseUrl + "register"
     static let FBregister            = baseUrl + "register/fb"
@@ -183,9 +141,7 @@ struct Api {
     static let artistbookslot    = basePublicUrl + "customer/bookslot/list"
     static let customerCardList    = basePublicUrl + "customer/cards/list"
     static let customerdeleteCard    = basePublicUrl + "customer/cards/delete"
-
     static let customerAddCard    = basePublicUrl + "customer/cards/store"
-
     static let artistGetArtistRating    = basePublicUrl + "customer/getartistrating"
     static let artistAvailableSlot    = basePublicUrl + "customer/bookslot/list-date"
     static let idelPayment           = basePublicUrl + "customer/create-payment-intent"
@@ -194,7 +150,8 @@ struct Api {
     static let TermsAndCondi               = basePublicUrl + "config/terms_and_conditions"
     static let AboutUs               = basePublicUrl + "config/about_us"
     static let PrivacyPolicyApi               = basePublicUrl + "config/privacy_policy"
-    
+    static let customerReport               = basePublicUrl + "customer/report"
+    static let chatcustomerblock               = basePublicUrl + "chat/customer/block"
     static let stripeKey    = basePublicUrl + "payment-config"
       //String Files -
     

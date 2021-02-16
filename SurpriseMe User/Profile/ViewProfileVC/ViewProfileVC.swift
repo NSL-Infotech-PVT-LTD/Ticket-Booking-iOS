@@ -221,9 +221,21 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     
     @IBAction func btnSubmitReportAction(_ sender: UIButton) {
-        self.viewReportContainer.isHidden = true
-        self.viewReportTxtView.isHidden = true
-        self.reportTxtViewValue.resignFirstResponder()
+        
+        if reportTxtViewValue.text == "" || reportTxtViewValue.text == "WRITE_YOUR_REASON".localized(){
+            Helper.showOKAlert(onVC: self, title: "Alert", message: "Please enter your reason")
+            
+        }else{
+            self.reportArtist(artistID: userArtistID, reason: reportTxtViewValue.text)
+            self.viewReportContainer.isHidden = true
+            self.viewReportTxtView.isHidden = true
+            self.reportTxtViewValue.resignFirstResponder()
+        }
+        
+        
+        
+        
+        
     }
     
     @IBAction func btnCancelReportViewAction(_ sender: UIButton) {
@@ -451,9 +463,60 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     }
     
     
+   
+    func reportArtist(artistID:Int,reason:String)  {
+        let param = ["artist_id":artistID,"description":reason] as [String : Any]
+        
+        
+        
+        
+        
+        let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerReport, method: .post, param: param, header: headerToken) { (response, error) in
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    print("the response is \(response)")
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            
+                            Helper.showOKAlert(onVC: self, title: "Success", message: "Reported Successfully")
+                            
+                            let when = DispatchTime.now() + 3
+                            DispatchQueue.main.asyncAfter(deadline: when){
+                              // your code with delay
+                                self.back()
+                            }
+                            
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? String {
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
+//                            self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error_message)
+                        }
+                    }
+                }
+                else {
+//                    self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            Helper.showOKAlert(onVC: self, title: "nternet Error", message: "Please Check your Internet Connection")
+        }
+}
     
     
     @IBAction func btnReportSubmitAction(_ sender: UIButton) {
+        
+       
+        
     }
     
     @IBAction func btnBookAction(_ sender: UIButton) {

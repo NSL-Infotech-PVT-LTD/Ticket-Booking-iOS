@@ -12,6 +12,7 @@ class SignupVC: UIViewController {
     
     //MARK:- Variables -
     lazy var viewModelObject = SignUpViewModel()
+    var isAccepted = false
     
     //MARK:- Outlets -
     
@@ -33,6 +34,9 @@ class SignupVC: UIViewController {
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var tfConfirmPassword: UITextField!
     @IBOutlet weak var viewHeader: UIView!
+    @IBOutlet weak var lblTersService: UILabel!
+    @IBOutlet weak var btnAcceptTC: UIButton!
+    
     
     //MARK:- View's Life Cycle -
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +58,19 @@ class SignupVC: UIViewController {
         self.tfConfirmPassword.placeholder = "TYPE_HERE".localized()
         self.btnRegister.setTitle("register_now".localized(), for: .normal)
         self.btnBackToLogin.setTitle("BACK_TO_LOGIN".localized(), for: .normal)
+        
+        self.btnRegister.backgroundColor = UIColor.init(red: 142/255.0, green: 145/255.0, blue: 145/255.0, alpha: 1)
+        
+        
+        let tapviewFacebook = UITapGestureRecognizer(target: self, action: #selector(self.handlelblTermsANDCondView(_:)))
+        lblTersService.addGestureRecognizer(tapviewFacebook)
+        
+    }
+    
+    @objc func handlelblTermsANDCondView(_ sender: UITapGestureRecognizer? = nil) {
+        selectedIdentifier = "Terms And Conditions"
+        self.presentViewController(viewController : ViewControllers.TermsProfileVC , value : Storyboard.Main)
+        
     }
     
     override func viewDidLoad() {
@@ -83,6 +100,9 @@ class SignupVC: UIViewController {
         
     }
     
+    
+    
+   
     @IBAction func btnPasswordVisibleAction(_ sender: UIButton) {
         
         
@@ -93,12 +113,7 @@ class SignupVC: UIViewController {
             sender.isSelected = false
             self.tfPassword.isSecureTextEntry = true
         }
-        
-        
-        
-      
-        
-    }
+   }
     
     //MARK:- Custom's Register Button Action -
     @IBAction func btnRegisterAction(_ sender: UIButton) {
@@ -130,7 +145,10 @@ class SignupVC: UIViewController {
         else if (tfPassword.text!) != (tfConfirmPassword.text!) {
             Helper.showOKAlert(onVC: self, title: "Alert", message: "Password Does not match")
             
-        }else {
+        }else if isAccepted == false {
+            Helper.showOKAlert(onVC: self, title: "Alert", message: "Please Accept The Terms of service")
+        }
+        else {
             var param = [String : Any]()
             LoaderClass.shared.loadAnimation()
             
@@ -144,6 +162,21 @@ class SignupVC: UIViewController {
     @IBAction func btnBackToLoginAction(_ sender: UIButton) {
         self.pushWithAnimate(StoryName :Storyboard.Main,Controller : ViewControllers.Login)
     }
+    
+   @IBAction func btnAcceptTermAction(_ sender: UIButton) {
+        if sender.isSelected == false{
+            sender.isSelected = true
+            btnAcceptTC.setImage(UIImage(named: "tick_selected"), for: .normal)
+            self.btnRegister.backgroundColor = UIColor.init(red: 212/255.0, green: 20/255.0, blue: 90/255.0, alpha: 1)
+            isAccepted = true
+        }else{
+            sender.isSelected = false
+            btnAcceptTC.setImage(UIImage(named: "tick_unselect"), for: .normal)
+            self.btnRegister.backgroundColor = UIColor.init(red: 142/255.0, green: 145/255.0, blue: 145/255.0, alpha: 1)
+            isAccepted = false
+        }
+    }
+    
 }
 
 //Error handling Signup Api Here:-

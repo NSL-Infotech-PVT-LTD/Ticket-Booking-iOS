@@ -136,25 +136,38 @@ class LoginVC: UIViewController , NVActivityIndicatorViewable{
     @IBAction func btnRemberAction(_ sender: UIButton) {
         
         
-        if sender.isSelected{
-            print("selected")
+        
+        if sender.isSelected == false{
+            sender.isSelected = true
+            btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .normal)
+            UserDefaults.standard.set(true, forKey: "RememberMe")
+
+            
+        }else{
+            sender.isSelected = false
+            btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
             
             UserDefaults.standard.set(false, forKey: "RememberMe")
             UserDefaults.standard.set("", forKey: "UserName")
             UserDefaults.standard.set("", forKey: "Password")
-            
-            btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
-            
-            
-        }else{
-            print("Unselected")
-            UserDefaults.standard.set(true, forKey: "RememberMe")
-            btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .selected)
-            
-            
-            
         }
-        sender.isSelected = !sender.isSelected
+        
+//
+//        if sender.isSelected{
+//            print("Unselected")
+//            UserDefaults.standard.set(true, forKey: "RememberMe")
+//            btnRememberMe.setImage(UIImage(named: "tick_selected"), for: .selected)
+//             }else{
+//
+//
+//
+//            UserDefaults.standard.set(false, forKey: "RememberMe")
+//            UserDefaults.standard.set("", forKey: "UserName")
+//            UserDefaults.standard.set("", forKey: "Password")
+//
+//            btnRememberMe.setImage(UIImage(named: "tick_unselect"), for: .normal)
+//        }
+//        sender.isSelected = !sender.isSelected
         
     }
     

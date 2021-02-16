@@ -302,7 +302,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Artist You Listen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfW-ng-h90">
-                                                <rect key="frame" x="20" y="63" width="209.5" height="20"/>
+                                                <rect key="frame" x="20" y="63" width="178" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="e93-x0-jr9"/>
                                                 </constraints>
@@ -378,7 +378,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diljit Doshanj" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7v-U0-WHY">
-                                                                    <rect key="frame" x="20" y="205" width="92" height="15"/>
+                                                                    <rect key="frame" x="20" y="205" width="76" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="15" id="7fG-MF-gWY"/>
                                                                     </constraints>
@@ -5694,7 +5694,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="btnReportSubmitAction:" destination="Bob-Fu-YLs" eventType="touchUpInside" id="jtt-bm-RL8"/>
                                                     <action selector="btnSubmitReportAction:" destination="Bob-Fu-YLs" eventType="touchUpInside" id="7f8-hZ-755"/>
                                                 </connections>
                                             </button>
@@ -6359,19 +6358,19 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Person Booking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQx-LQ-M87">
-                                                        <rect key="frame" x="40" y="8.5" width="150" height="20"/>
+                                                        <rect key="frame" x="40" y="8.5" width="132" height="19"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
                                                         <color key="textColor" red="0.21176470589999999" green="0.22352941179999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming platform." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6B-OG-HBD">
-                                                        <rect key="frame" x="40" y="33.5" width="189" height="73.5"/>
+                                                        <rect key="frame" x="40" y="32.5" width="189" height="56"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bor-XP-Hzi">
-                                                        <rect key="frame" x="40" y="117" width="100" height="40"/>
+                                                        <rect key="frame" x="40" y="98.5" width="100" height="40"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="02C-JT-f91"/>
@@ -6434,19 +6433,19 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Virtual Show Booking" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-tx-BuD">
-                                                        <rect key="frame" x="40" y="18.5" width="176.5" height="20"/>
+                                                        <rect key="frame" x="40" y="18.5" width="153.5" height="19"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
                                                         <color key="textColor" red="0.21176470589999999" green="0.22352941179999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We are now ready with the next of wave of entertainment. We are proud to announce our in-house online streaming platform." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pih-g5-FWn">
-                                                        <rect key="frame" x="40" y="43.5" width="189" height="73.5"/>
+                                                        <rect key="frame" x="40" y="42.5" width="189" height="56"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                         <color key="textColor" red="0.69411764710000001" green="0.70196078429999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iN-6o-nd9">
-                                                        <rect key="frame" x="40" y="127" width="100" height="40"/>
+                                                        <rect key="frame" x="40" y="108.5" width="100" height="40"/>
                                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="100" id="DDD-TC-KKH"/>

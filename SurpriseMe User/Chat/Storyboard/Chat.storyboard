@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -402,7 +402,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jullya Matt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-lP-J1h">
-                                        <rect key="frame" x="106" y="49.5" width="100" height="21"/>
+                                        <rect key="frame" x="106" y="50" width="83" height="20"/>
                                         <fontDescription key="fontDescription" name="Montserrat-ExtraBold" family="Montserrat" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1227,14 +1227,27 @@
                                             <action selector="btnBackOnPress:" destination="69a-k5-XJa" eventType="touchUpInside" id="cG0-sj-M0f"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F0r-jb-19i">
+                                        <rect key="frame" x="250" y="41.5" width="50" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="B0L-k4-tCm"/>
+                                            <constraint firstAttribute="height" constant="47" id="yhg-ow-Y9d"/>
+                                        </constraints>
+                                        <state key="normal" image="threedots"/>
+                                        <connections>
+                                            <action selector="btnBlockAction:" destination="69a-k5-XJa" eventType="touchUpInside" id="HvV-By-2AX"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="p8b-zZ-yRw" firstAttribute="leading" secondItem="Xhb-sd-3qn" secondAttribute="trailing" constant="20" id="4l2-pl-ffd"/>
+                                    <constraint firstAttribute="trailing" secondItem="F0r-jb-19i" secondAttribute="trailing" constant="20" id="7Br-Ud-4ah"/>
                                     <constraint firstItem="jzG-qH-AeP" firstAttribute="leading" secondItem="p8b-zZ-yRw" secondAttribute="trailing" constant="18" id="7UQ-lT-JxJ"/>
                                     <constraint firstAttribute="bottom" secondItem="BjW-IS-9P0" secondAttribute="bottom" constant="15" id="8HC-yk-o67"/>
                                     <constraint firstItem="p8b-zZ-yRw" firstAttribute="centerY" secondItem="Xhb-sd-3qn" secondAttribute="centerY" id="9Zf-5m-Bpl"/>
                                     <constraint firstAttribute="bottom" secondItem="Xhb-sd-3qn" secondAttribute="bottom" constant="28" id="LdF-x8-AIQ"/>
+                                    <constraint firstItem="F0r-jb-19i" firstAttribute="centerY" secondItem="BjW-IS-9P0" secondAttribute="centerY" id="R8I-Tb-mcN"/>
                                     <constraint firstAttribute="height" constant="100" id="Zoe-T0-vvP"/>
                                     <constraint firstItem="jzG-qH-AeP" firstAttribute="centerY" secondItem="Xhb-sd-3qn" secondAttribute="centerY" id="ace-l7-Bgz"/>
                                     <constraint firstItem="BjW-IS-9P0" firstAttribute="leading" secondItem="zSq-G5-Ahc" secondAttribute="leading" id="hjE-TE-XyS"/>
@@ -1445,6 +1458,7 @@
         <image name="no chat" width="414" height="224"/>
         <image name="send msg" width="23" height="22"/>
         <image name="smile" width="21" height="21"/>
+        <image name="threedots" width="128" height="128"/>
         <image name="user (1)" width="128" height="128"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

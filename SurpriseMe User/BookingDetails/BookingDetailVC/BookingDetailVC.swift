@@ -276,7 +276,6 @@ class BookingDetailVC: UIViewController {
             let dict = ["search":"","limit":"20"]
             
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerCardList, method: .post, param: dict, header: headerToken) { (response, error) in
-                print(response)
                 //                LoaderClass.shared.stopAnimation()
                 if error == nil {
                     let result = response
@@ -289,7 +288,6 @@ class BookingDetailVC: UIViewController {
                             let dataDict = result["data"] as? [String : Any]
                             if let dataArray = dataDict?["data"] as? [[String : Any]]{
                                 for index in dataArray{
-                                    print("the index value is \(index)")
                                     let dataDict = GetCardModel.init(resposne: index)
                                     arrayCardListCommom.append(dataDict)
                                 }
@@ -326,7 +324,6 @@ class BookingDetailVC: UIViewController {
                 controller.isBookingDetails = true
                 if  isComingFrom == "NotificationCame"{
                     
-                    print("the id is \(bookingIDNotification)")
                     bookingPaymentID = userArtistIDBooking as? Int
                 }else  if isComingFrom == "Notification"{
                     
@@ -344,7 +341,6 @@ class BookingDetailVC: UIViewController {
                 controller.isBookingDetails = true
                 if  isComingFrom == "NotificationCame"{
                     
-                    print("the id is \(bookingIDNotification)")
                     bookingPaymentID = userArtistIDBooking as? Int
                 }else  if isComingFrom == "Notification"{
                     
@@ -370,7 +366,6 @@ class BookingDetailVC: UIViewController {
             
             if  isComingFrom == "NotificationCame"{
                 
-                print("the id is \(bookingIDNotification)")
                 bookingPaymentID = userArtistIDBooking as? Int
             }else  if isComingFrom == "Notification"{
                 

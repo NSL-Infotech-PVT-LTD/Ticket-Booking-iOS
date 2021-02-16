@@ -13,7 +13,7 @@ import SwiftyJSON
 
 
 protocol chatHistoryViewModelProtocol {
-    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel] ,receiverDetails : [String:Any] ,  isError : Bool)
+    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel] ,receiverDetails : [String:Any] ,  isError : Bool,is_blocked:Int)
     func errorAlert(errorTitle: String, errorMessage: String)
     
     
@@ -53,6 +53,10 @@ class ChatHistoryViewModel {
                 print(response)
                 LoaderClass.shared.stopAnimation()
                 if error == nil {
+                    
+                    var isBlocked = Int()
+                    
+                    
                     let result = response
                     if let status = result["status"] as? Bool {
                         if status ==  true{
@@ -72,6 +76,8 @@ class ChatHistoryViewModel {
                                 }
                             
                             let receiver_detail = chatData?["receiver_detail"] as? [String:Any]
+                                isBlocked = chatData?["is_blocked"] as? Int ?? 0
+
 
                             if let dataArray = chatList?["data"] as? NSArray {
                                 for index in dataArray{
@@ -83,7 +89,7 @@ class ChatHistoryViewModel {
                             }
                             
                             print("the chat history is \(self.arrayObject.count)")
-                                self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false)
+                                self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false, is_blocked: isBlocked ?? 0)
                             }
                             else {
 
@@ -118,7 +124,7 @@ class ChatHistoryViewModel {
                                 
                                 print("the chat history is \(self.arrayObject.count)")
 
-                                self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false)
+                                self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false, is_blocked: isBlocked)
                             }
                             
                             
@@ -191,7 +197,7 @@ class ChatHistoryViewModel {
                             
                             
                             
-                            self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false)
+                            self.delegate?.chatHistoryApiResponse(message: "success", response: self.arrayObject, receiverDetails: receiver_detail ?? [:], isError: false, is_blocked: 0)
                             
                         }
                         else{

@@ -27,7 +27,6 @@ class FriendMsgVC: UIViewController {
     @IBOutlet weak var myImage: UIImageView!
     @IBOutlet weak var textViewBackView: UIView!
     @IBOutlet weak var topView: UIView!
-    
     @IBOutlet weak var img2NoData: UIImageView!
     @IBOutlet weak var img1NoData: UIImageView!
     @IBOutlet weak var noDataLblChat: UILabel!
@@ -48,13 +47,10 @@ class FriendMsgVC: UIViewController {
     var current_page = 1
     var dateForHeader = [String]()
     var sendMessageValue = String()
-    
-    
+    var isBlockStatus = Int()
     @IBOutlet weak var viewImgTappedView: UIView!
     
-    
     //MARK:- View's Life Cycle -
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         msgTableView.delegate = self
@@ -74,7 +70,6 @@ class FriendMsgVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         chatdetail.chatDelegate = self
-        
         chatHistoryApi(boolValue: false, pageCounting: 1) //Call api here
         chatVMObject.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(FriendMsgVC.handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -83,35 +78,101 @@ class FriendMsgVC: UIViewController {
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapEdit))
         msgTableView.addGestureRecognizer(tapGesture)
-        
         let tapValue = UITapGestureRecognizer(target: self, action: #selector(viewImgTappedViewAction))
-        
-        //        let tap12 = UITapGestureRecognizer(target: self, action: #selector(viewImgTappedView))
         self.viewImgTappedView.isUserInteractionEnabled = true
         self.viewImgTappedView.addGestureRecognizer(tapValue)
-        
         let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
-        print("the user id is \(useriD  )")
         SocketConnectionManager.shared.socket.connect()
         
     }
     
+    func blockArtistAction(artistID : Int)  {
+        
+        
+        let param = ["artist_id":artistID] as [String : Any]
+       let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.chatcustomerblock, method: .post, param: param, header: headerToken) { (response, error) in
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    print("the response is \(response)")
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            let dataDict = response["data"] as? [String:Any]
+                            
+                            let alert = UIAlertController(title: "", message: dataDict?["message"] as? String, preferredStyle: .alert)
+                            self.present(alert, animated: true, completion: nil)
+                            self.txtMssg.text = nil
+
+                            let when = DispatchTime.now() + 3
+                            DispatchQueue.main.asyncAfter(deadline: when){
+                              // your code with delay
+                              alert.dismiss(animated: true, completion: nil)
+                                let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(1)"] as [String: Any]
+                                self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+                            }
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? String {
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
+//                            self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error_message)
+                        }
+                    }
+                }
+                else {
+//                    self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            Helper.showOKAlert(onVC: self, title: "nternet Error", message: "Please Check your Internet Connection")
+        }
+        
+        
+    }
     
+     @IBAction func btnBlockAction(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+            //to change font of title and message.
+        let titleFont = [NSAttributedString.Key.font: UIFont(name: "ArialHebrew-Bold", size: 18.0)!]
+        if isBlockStatus == 1{
+            let titleAttrString = NSMutableAttributedString(string: "Unblock this artist", attributes: titleFont)
+            alertController.setValue(titleAttrString, forKey: "attributedTitle")
+        }else{
+            let titleAttrString = NSMutableAttributedString(string: "Block this artist", attributes: titleFont)
+            alertController.setValue(titleAttrString, forKey: "attributedTitle")
+        }
+            let action1 = UIAlertAction(title: "Yes", style: .default) { (action) in
+                self.blockArtistAction(artistID: userArtistID)
+            }
+
+            let action2 = UIAlertAction(title: "No", style: .default) { (action) in
+               
+            }
+            alertController.addAction(action1)
+            alertController.addAction(action2)
+            alertController.view.tintColor = UIColor.black
+            alertController.view.backgroundColor = UIColor.black
+            alertController.view.layer.cornerRadius = 40
+            present(alertController, animated: true, completion: nil)
+        
+    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom > height {
-            print(" you reached end of the table")
         }
     }
     
-   
-    
-    
-    
-    func getdate() {
+   func getdate() {
         
         if chatHistoryData.count > 0 {
             for dateIn in 0...chatHistoryData.count - 1 {
@@ -152,36 +213,21 @@ class FriendMsgVC: UIViewController {
             userArtistID = recieverIDHistoryList
         }else{
             if reciverData.receiver_id ?? 0 == 0{
-                
                 var userID = userArtistID
                 userArtistID = userID
             }else{
-                
                 let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
                 print("the user id is \(useriD  )")
-                
                 if useriD == reciverData.sender_id{
                     userArtistID = reciverData.receiver_id ?? 0
-                    
                 }else{
                     userArtistID = reciverData.sender_id ?? 0
-                    
                 }
-                
-                //                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                //                if userName == reciverData.receiver_name ?? ""{
-                //                    userArtistID = reciverData.sender_id ?? 0
-                //
-                //                }else{
-                //                    userArtistID = reciverData.receiver_id ?? 0
-                //                }
             }
         }
         let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ViewProfileVC") as! ViewProfileVC
         navigationController?.pushViewController(controller, animated: false)
-        
-        
     }
     
     
@@ -189,7 +235,6 @@ class FriendMsgVC: UIViewController {
         if date == "" || date == nil {
             return ""
         } else {
-            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:SS"
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -211,21 +256,11 @@ class FriendMsgVC: UIViewController {
         }else{
             let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
             print("the user id is \(useriD  )")
-            
             if useriD == reciverData.sender_id{
                 userArtistID =  reciverData.receiver_id ?? 0
             }else{
                 userArtistID =  reciverData.sender_id ?? 0
-                
             }
-            
-            
-            //            let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-//            if userName == reciverData.receiver_name ?? ""{
-//                userArtistID =  reciverData.sender_id ?? 0
-//            }else{
-//                userArtistID =  reciverData.receiver_id ?? 0
-//            }
         }
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.ScheduleBookingVC)
     }
@@ -266,10 +301,8 @@ class FriendMsgVC: UIViewController {
                 picUserReciever.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "user (1)"))
             }else{
                 let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-                
                 let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
                 print("the user id is \(useriD  )")
-                
                 if useriD == reciverData.sender_id{
                     let param = ["receiver_id": reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
                     chatVMObject.getParamForChatHistory(param: param, checkLoader: boolValue, pageCount: pageCounting)
@@ -311,11 +344,9 @@ class FriendMsgVC: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        
         if let date = dateFormatter.date(from: dateStr) {
             dateFormatter.timeZone = TimeZone.current
             dateFormatter.dateFormat = "h:mm a"
-            
             return dateFormatter.string(from: date)
         }
         return nil
@@ -323,7 +354,6 @@ class FriendMsgVC: UIViewController {
     
     
     @objc func tapEdit(gesture: UITapGestureRecognizer) {
-        
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.bottomConstant?.constant = 0
             self.view.layoutIfNeeded()
@@ -334,7 +364,6 @@ class FriendMsgVC: UIViewController {
     
     
     @objc func viewImgTappedViewAction(gesture: UITapGestureRecognizer) {
-        
         if comingFrom == "NotificationTabs"{
             userArtistID = recieverIDHistoryList
         }else if comingFrom ==  "NotificationTabsTouch"{
@@ -345,23 +374,11 @@ class FriendMsgVC: UIViewController {
                 var userID = userArtistID
                 userArtistID = userID
             }else{
-//                let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-//                if userName == reciverData.receiver_name ?? ""{
-//                    userArtistID = reciverData.sender_id ?? 0
-//
-//                }else{
-//                    userArtistID = reciverData.receiver_id ?? 0
-//                }
-//
                 let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
-                print("the user id is \(useriD  )")
-                
                 if useriD == reciverData.sender_id{
                     userArtistID = reciverData.receiver_id ?? 0
-
                 }else{
                     userArtistID = reciverData.sender_id ?? 0
-
                 }
              }
         }
@@ -444,104 +461,84 @@ class FriendMsgVC: UIViewController {
     }
     
     @IBAction func btnSendmessageAction(_ sender: UIButton) {
-        var message = txtMssg.text ?? ""
-        sendMessageValue = message
-        message = message.trimmingCharacters(in: .whitespacesAndNewlines)
-//        message = message.replacingOccurrences(of: "\r", with: "\\r")
-        message = message.replacingOccurrences(of: "\r", with: "\\r")
-        if message.count == 0 || txtMssg.text == "Type your message"{
-            return
-        }
-        else {
-            let localTime = Int64(Date().timeIntervalSince1970*1000)
-            let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
-            if comingFrom == "NotificationTabs"{
-                let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(recieverIDHistoryList)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                let data = Data(data1.utf8)
-                if SocketConnectionManager.shared.socket.isConnected {
-                    SocketConnectionManager.shared.socket.write(data: data)
-                    let dataValue = String(decoding: data, as: UTF8.self)
-print("the value is \(dataValue)")
-                    txtMssg.text = ""
-                }else{
-                    SocketConnectionManager.shared.socket.connect()
-                }
-            }else if  comingFrom == "NotificationTabsTouch"{
-                let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userChatIDNoti ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                let data = Data(data1.utf8)
-                if SocketConnectionManager.shared.socket.isConnected {
-                    SocketConnectionManager.shared.socket.write(data: data)
-                    let dataValue = String(decoding: data, as: UTF8.self)
-print("the value is \(dataValue)")
-                    txtMssg.text = ""
-                }else{
-                    SocketConnectionManager.shared.socket.connect()
-                }
+        
+        print("the block status is \(isBlockStatus)")
+        
+        if isBlockStatus == 1{
+            Helper.showOKAlert(onVC: self, title: "", message: "Unblock this artist to send a message")
+        }else{
+            var message = txtMssg.text ?? ""
+            sendMessageValue = message
+            message = message.trimmingCharacters(in: .whitespacesAndNewlines)
+            message = message.replacingOccurrences(of: "\r", with: "\\r")
+            if message.count == 0 || txtMssg.text == "Type your message"{
+                return
             }
-            else{
-                if reciverData.receiver_id ?? 0 != 0{
-                     let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
-                    print("the user id is \(useriD  )")
-                    
-                    if useriD == reciverData.sender_id{
-                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                        let data = Data(data1.utf8)
-                        if SocketConnectionManager.shared.socket.isConnected {
-                            SocketConnectionManager.shared.socket.write(data: data)
-                            let dataValue = String(decoding: data, as: UTF8.self)
-print("the value is \(dataValue)")
-                            txtMssg.text = ""
-                        }else{
-                            SocketConnectionManager.shared.socket.connect()
-                        }
-                    }else{
-                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-                        let data = Data(data1.utf8)
-                        if SocketConnectionManager.shared.socket.isConnected {
-                            SocketConnectionManager.shared.socket.write(data: data)
-                            let dataValue = String(decoding: data, as: UTF8.self)
-print("the value is \(dataValue)")
-
-                            txtMssg.text = ""
-                        }else{
-                            SocketConnectionManager.shared.socket.connect()
-                        }
-                    }
-                    
-                    
-//
-//                    let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
-//                    if userName == reciverData.receiver_name ?? ""{
-//                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-//                        let data = Data(data1.utf8)
-//                        if SocketConnectionManager.shared.socket.isConnected {
-//                            SocketConnectionManager.shared.socket.write(data: data)
-//                            txtMssg.text = ""
-//                        }else{
-//                            SocketConnectionManager.shared.socket.connect()
-//                        }
-//                    }else{
-//                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
-//                        let data = Data(data1.utf8)
-//                        if SocketConnectionManager.shared.socket.isConnected {
-//                            SocketConnectionManager.shared.socket.write(data: data)
-//                            txtMssg.text = ""
-//                        }else{
-//                            SocketConnectionManager.shared.socket.connect()
-//                        }
-//                    }
-                }else{
-                    let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userArtistID)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+            else {
+                let localTime = Int64(Date().timeIntervalSince1970*1000)
+                let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                if comingFrom == "NotificationTabs"{
+                    let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(recieverIDHistoryList)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
                     let data = Data(data1.utf8)
                     if SocketConnectionManager.shared.socket.isConnected {
                         SocketConnectionManager.shared.socket.write(data: data)
+                        let dataValue = String(decoding: data, as: UTF8.self)
+                        txtMssg.text = ""
+                    }else{
+                        SocketConnectionManager.shared.socket.connect()
+                    }
+                }else if  comingFrom == "NotificationTabsTouch"{
+                    let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userChatIDNoti ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                    let data = Data(data1.utf8)
+                    if SocketConnectionManager.shared.socket.isConnected {
+                        SocketConnectionManager.shared.socket.write(data: data)
+                        let dataValue = String(decoding: data, as: UTF8.self)
                         txtMssg.text = ""
                     }else{
                         SocketConnectionManager.shared.socket.connect()
                     }
                 }
+                else{
+                    if reciverData.receiver_id ?? 0 != 0{
+                         let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                        if useriD == reciverData.sender_id{
+                            let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.receiver_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                            let data = Data(data1.utf8)
+                            if SocketConnectionManager.shared.socket.isConnected {
+                                SocketConnectionManager.shared.socket.write(data: data)
+                                let dataValue = String(decoding: data, as: UTF8.self)
+                                txtMssg.text = ""
+                            }else{
+                                SocketConnectionManager.shared.socket.connect()
+                            }
+                        }else{
+                            let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(reciverData.sender_id ?? 0)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                            let data = Data(data1.utf8)
+                            if SocketConnectionManager.shared.socket.isConnected {
+                                SocketConnectionManager.shared.socket.write(data: data)
+                                let dataValue = String(decoding: data, as: UTF8.self)
+
+                                txtMssg.text = ""
+                            }else{
+                                SocketConnectionManager.shared.socket.connect()
+                            }
+                        }
+                    }else{
+                        let data1 = "{\"sender_id\" :\"\(useriD)\",\"attachment\" :\"\("text")\",\"receiver_id\":\"\(userArtistID)\",\"message\":\"\(message.replacingOccurrences(of: "\n", with: "\\n"))\",\"type\":\"\("text")\",\"device_type\":\"\("ios")\",\"local_message_id\":\"\(localTime)\", \"thumbnail\": \"\("")\"}"
+                        let data = Data(data1.utf8)
+                        if SocketConnectionManager.shared.socket.isConnected {
+                            SocketConnectionManager.shared.socket.write(data: data)
+                            txtMssg.text = ""
+                        }else{
+                            SocketConnectionManager.shared.socket.connect()
+                        }
+                    }
+                }
             }
         }
+        
+        
+        
     }
     
     
@@ -565,7 +562,6 @@ print("the value is \(dataValue)")
             print("today")
             return "Today"
         } else {
-            print("the date is \(yourDate)")
             return yourDate
         }
         return ""
@@ -584,8 +580,7 @@ print("the value is \(dataValue)")
         }
         return nil
     }
-   
-    
+       
     
     @IBAction func btnBackOnPress(_ sender: UIButton) {
         if comingFrom == "NotificationTabsTouch"{
@@ -611,7 +606,6 @@ print("the value is \(dataValue)")
                 for match in matches {
                     guard let range = Range(match.range, in: input ?? "") else { continue }
                     let url = input?[range]
-                    print(url)
                     var string = url
                     if string?.range(of:"https://") != nil {
                         print("exists")
@@ -671,52 +665,22 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             
             SendCell.selectionStyle = .none
             let myString = chatHistoryData[indexPath.row].message ?? ""
-            
-            
-            //SendCell.lblSendMsg.enabledTypes = [.mention, .hashtag, .url, .email]
             SendCell.lblSendMsg.text = myString
-//            SendCell.lblSendMsg.handleHashtagTap { hashtag in
-//                print("Success. You just tapped the \(hashtag) hashtag")
-//            }
-            
-//            SendCell.lblSendMsg.text = myString
             let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
             let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
-            
-            
             let dateValue = self.convertDateIntoTodaysYesterday(somedate: date)
-            print("the date value is \(dateValue)")
-            print("the date value is \(date)")
-
-            
             SendCell.lblSenderTime.text = date
-            print("the created at is \(chatHistoryData[indexPath.row].created_at ?? "")")
             if chatHistoryData[indexPath.row].customValue != "" {
-                print("hello")
                 SendCell.lblSenderTime.isHidden = false
                 SendCell.senderHeight.constant = 30
             } else {
-                print("not hello")
                 SendCell.lblSenderTime.isHidden = true
                 SendCell.senderHeight.constant = 0
             }
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap))
             SendCell.addGestureRecognizer(tapGesture)
             SendCell.lblTime.text =  timeStamp
-            
-            
-            //MARK: UNDERLINE
-//            let input = chatHistoryData[indexPath.row].message ?? ""
-//            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-//            let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input.utf16.count ?? 0))
-//            for match in matches {
-//                guard let range = Range(match.range, in: input ?? "") else { continue }
-//                let url = input[range]
-//                print(url)
-//                SendCell.lblSendMsg.underline(text: String(url ?? ""))
-//            }
             return SendCell
-        
         }else{
             guard let ReceiveCell = tableView.dequeueReusableCell(withIdentifier: "recievedTableViewCell", for: indexPath) as? recievedTableViewCell else {
                 return UITableViewCell()
@@ -740,18 +704,6 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             let urlImage = URL(string: urlStringaa)!
             ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "image_placeholder"))
-            
-            //MARK: UNDERLINE
-//            let input = chatHistoryData[indexPath.row].message ?? ""
-//            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-//            let matches = detector.matches(in: input ?? "", options: [], range: NSRange(location: 0, length: input.utf16.count ?? 0))
-//            for match in matches {
-//                guard let range = Range(match.range, in: input ?? "") else { continue }
-//                let url = input[range]
-//                print(url)
-//                ReceiveCell.lblReceiveMsg.underline(text: String(url ?? ""))
-//            }
-            
             return ReceiveCell
         }
     }
@@ -804,43 +756,19 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
         
         let date = Date()
         let formatter = DateFormatter()
-
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
         let result = formatter.string(from: date)
-
-        
-        
-        
-        
-        
-        print("the time in utc is \(result)")
-        
-        
         let dateString = result
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let s = dateFormatter.date(from: dateString)
         print(s)
         let utcTime = self.localToUTC(dateStr: formatter.string(from: s ?? Date()))
-
-        print("the time in utc is \(utcTime)")
-
-        
-//        if reciverID == receiver_id && useriD == sender_id || useriD == receiver_id  {
-            
-            
-            if(sender_id == reciverID || receiver_id == reciverID) {
+            if(sender_id == reciverID || receiver_id == reciverID) && isBlockStatus == 0 {
                 chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage , "created_at" : utcTime]))
-
             }
-            
-//            chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": message, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage , "created_at" : utcTime]))
-//        }else{
-////            chatHistoryData.append(ChatHistoryModel.init(response: ["receiver_name": receiver_name, "sender_id": sender_id, "reply_id": reply_id, "id": id, "receiver_image": receiver_image, "sender_name": sender_name, "type": type, "message": sendMessageValue, "receiver_id": receiver_id, "message_id": message_id, "sender_image": sender_image, "is_read": is_read, "attachment": attachment, "thumbnail": thumbnailImage , "created_at" : utcTime]))
-//        }
+
             DispatchQueue.main.async {
-                
                if self.chatHistoryData.count == 0 {
                     let date = Date()
                     let dateFormatter = DateFormatter()
@@ -863,9 +791,7 @@ extension FriendMsgVC: chatDetailForChatVCProtocol {
                     self.msgTableView.reloadData()
                 }
                 self.msgTableView.reloadData()
-
             }
-        
     }
 }
 
@@ -877,15 +803,9 @@ extension FriendMsgVC : SocketConnectionManagerDelegate {
 }
 
 extension FriendMsgVC: chatHistoryViewModelProtocol {
-    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel], receiverDetails: [String : Any], isError: Bool) {
+    func chatHistoryApiResponse(message: String, response: [ChatHistoryModel], receiverDetails: [String : Any], isError: Bool,is_blocked:Int) {
         if message == "success" {
-            
-            
-            chatHistoryData = response.map({$0}).reversed()
-//            if current_page == 1 {
-//                self.scrollToBottom()
-//            }
-//            self.scrollToBottom()
+          chatHistoryData = response.map({$0}).reversed()
             if chatHistoryData.count == 0 {
                 self.firstTimeView.isHidden = false
                 let date = Date()
@@ -900,6 +820,7 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
             }else{
                 self.firstTimeView.isHidden = true
                 self.msgTableView.isHidden = false
+                isBlockStatus = is_blocked
                 
                 if current_page == 1 {
                     self.scrollToBottom()
