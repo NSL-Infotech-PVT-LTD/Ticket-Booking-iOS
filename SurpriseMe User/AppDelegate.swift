@@ -61,12 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-        
-//        Stripe.setDefaultPublishableKey(StringFile.Publish_Key)
-        
-        
-        
-        
         self.checkUserLogin()
         return true
     }
@@ -137,17 +131,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK:- Funtion check whether user is login or not -
     func checkUserLogin()  {
-//        let lang = UserDefaults.standard.value(forKey: "app_lang") as? String ?? ""
-//        if lang == nil || lang == "" || lang.isEmpty == true {
-//            let story = UIStoryboard(name: "Main", bundle:nil)
-//            let vc = story.instantiateViewController(withIdentifier: "WalkThroughVC") as! WalkThroughVC
-//            let navigationController = UINavigationController(rootViewController: vc)
-//            navigationController.isNavigationBarHidden = true
-//            vc.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-//            UIApplication.shared.windows.first?.rootViewController = navigationController
-//            UIApplication.shared.windows.first?.makeKeyAndVisible()
-//
-//        }else{
+
+        if #available(iOS 13.0, *) {
+            window!.overrideUserInterfaceStyle = .light
+        } else {
+            // Fallback on earlier versions
+        }
+
+
              let isLogin = UserDefaults.standard.bool(forKey: UserdefaultKeys.isLogin) as? Bool
                 if isLogin == true{
                     let vc = UIStoryboard(name: "Main", bundle: nil)

@@ -168,10 +168,8 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
             cell.lblUnreadCount.isHidden = false
         }
         
-        
         let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
         print("the user id is \(useriD  )")
-        
         if useriD == dataItem.sender_id{
             cell.lblFrindName.text = dataItem.receiver_name ?? ""
             //Mark: Reciver Profile Image Set
@@ -191,28 +189,6 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
             cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
         }
-        
-        
-//        if userName == dataItem.receiver_name ?? ""{
-//            cell.lblFrindName.text = dataItem.sender_name ?? ""
-//            //Mark: Reciver Profile Image Set
-//            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.sender_image ?? "")"
-//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-//            print(urlStringaa)
-//            let urlImage = URL(string: urlStringaa)!
-//            cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
-//
-//        }else{
-//            cell.lblFrindName.text = dataItem.receiver_name ?? ""
-//            //Mark: Reciver Profile Image Set
-//            let urlSting : String = "\(Api.imageURLArtist)\(dataItem.receiver_image ?? "")"
-//            let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
-//            print(urlStringaa)
-//            let urlImage = URL(string: urlStringaa)!
-//            cell.imgUserFriend.sd_imageIndicator = SDWebImageActivityIndicator.gray
-//            cell.imgUserFriend.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "Group 1337"))
-//        }
         cell.lblLastMssg.text = dataItem.message ?? ""
         dateTimeCommenMethod.sharesDateTime.date(dateSet: dataItem.created_at ?? "")
         cell.lblTime.text = self.convertTimeInto24(timeData: dataItem.created_at ?? "")

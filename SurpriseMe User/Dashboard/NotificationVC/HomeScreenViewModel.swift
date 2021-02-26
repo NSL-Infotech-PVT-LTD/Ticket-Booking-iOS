@@ -37,16 +37,15 @@ class HomeScreenViewModel {
             LoaderClass.shared.loadAnimation()
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.artistList, method: .post, param: param, header: headerToken) { (response, error) in
                 LoaderClass.shared.stopAnimation()
+                print("the response is without virtual \(response)")
                 if error == nil {
                     let result = response
                     if let status = result["status"] as? Bool {
                         if status ==  true{
                             self.arrayObject.removeAll()
-                            
                             let dataDict = result["data"] as? [String : Any]
                             if let dataArray = dataDict?["data"] as? [[String : Any]]{
                                 for index in dataArray{
-                                    
                                     let dataDict = GetArtistListHomeModel.init(resposne: index)
                                     self.arrayObject.append(dataDict)
                                 }

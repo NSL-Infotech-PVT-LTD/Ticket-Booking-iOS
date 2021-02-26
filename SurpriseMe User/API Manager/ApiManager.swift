@@ -53,6 +53,7 @@ var startDateValue = String()
 var endDateValue = String()
 var isChatNotification = false
 var nextPageUrlCount = String()
+var isVirtualValue = Int()
 var lastPageUrlCount = Int()
 let googleKey = "AIzaSyCRpD5-6NTTmuzvDUUBgpSjbUgyrA71bOM"
 
@@ -153,6 +154,8 @@ struct Api {
     static let customerReport               = basePublicUrl + "customer/report"
     static let chatcustomerblock               = basePublicUrl + "chat/customer/block"
     static let stripeKey    = basePublicUrl + "payment-config"
+    static let setting    = basePublicUrl + "setting"
+
       //String Files -
     
 }

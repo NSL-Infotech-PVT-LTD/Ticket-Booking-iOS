@@ -119,8 +119,8 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
-    
     var localVideoUrl = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
@@ -132,11 +132,9 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         let tap13 = UITapGestureRecognizer(target: self, action: #selector(imageTappedtap13))
         self.viewYoutubeProfile.isUserInteractionEnabled = true
         self.viewYoutubeProfile.addGestureRecognizer(tap13)
-        
         self.viewBack.addBottomShadow()
         self.imageSliderCollectionContainer.isHidden = true
         imgViewUserPreview.isHidden = false
-        
         getProfileVMObject.delegate = self //Mark: Delegate call
         //Mark:Api Hitp
         let dictParam = ["id":userArtistID]
@@ -182,7 +180,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     }
     
     func colletionImg() {
-        
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
         screenHeight = screenSize.height
@@ -199,14 +196,12 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        
         imgPlayBtnVideo.isHidden = true
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: [])
         }
         catch {
         }
-        
         let tapviewAboutUs = UITapGestureRecognizer(target: self, action: #selector(self.handletapviewAboutUs(_:)))
         imgProfile.addGestureRecognizer(tapviewAboutUs)
     }
@@ -221,22 +216,15 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     
     @IBAction func btnSubmitReportAction(_ sender: UIButton) {
-        
         if reportTxtViewValue.text == "" || reportTxtViewValue.text == "WRITE_YOUR_REASON".localized(){
             Helper.showOKAlert(onVC: self, title: "Alert", message: "Please enter your reason")
-            
         }else{
             self.reportArtist(artistID: userArtistID, reason: reportTxtViewValue.text)
             self.viewReportContainer.isHidden = true
             self.viewReportTxtView.isHidden = true
             self.reportTxtViewValue.resignFirstResponder()
         }
-        
-        
-        
-        
-        
-    }
+ }
     
     @IBAction func btnCancelReportViewAction(_ sender: UIButton) {
         self.viewReportContainer.isHidden = true
@@ -245,9 +233,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     }
     
     @IBAction func btnReportAction(_ sender: UIButton) {
-        
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
-            //to change font of title and message.
         let titleFont = [NSAttributedString.Key.font: UIFont(name: "ArialHebrew-Bold", size: 18.0)!]
             let titleAttrString = NSMutableAttributedString(string: "Report this artist", attributes: titleFont)
             alertController.setValue(titleAttrString, forKey: "attributedTitle")
@@ -269,7 +255,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
             alertController.view.backgroundColor = UIColor.black
             alertController.view.layer.cornerRadius = 40
             present(alertController, animated: true, completion: nil)
-        
     }
     
     @IBAction func cloaseOnPress(_ sender: UIButton) {
@@ -281,7 +266,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         let Username =  self.lblInstagramSubscribers.text ?? "" // Your Instagram Username here
         let appURL = URL(string: "instagram://user?username=\(Username)")!
         let application = UIApplication.shared
-        
         if application.canOpenURL(appURL) {
             application.open(appURL)
         } else {
@@ -418,7 +402,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
         let appURL = NSURL(string: "youtube://www.youtube.com/watch?v=\(YoutubeID)")!
         let webURL = NSURL(string: "https://www.youtube.com/watch?v=\(YoutubeID)")!
         let application = UIApplication.shared
-        
         if application.canOpenURL(appURL as URL) {
             application.open(appURL as URL)
         } else {
@@ -466,13 +449,7 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
    
     func reportArtist(artistID:Int,reason:String)  {
         let param = ["artist_id":artistID,"description":reason] as [String : Any]
-        
-        
-        
-        
-        
         let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
-        
         if Reachability.isConnectedToNetwork() {
             LoaderClass.shared.loadAnimation()
             ApiManeger.sharedInstance.callApiWithHeader(url: Api.customerReport, method: .post, param: param, header: headerToken) { (response, error) in
@@ -484,13 +461,10 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
                         if status ==  true{
                             
                             Helper.showOKAlert(onVC: self, title: "Success", message: "Reported Successfully")
-                            
                             let when = DispatchTime.now() + 3
                             DispatchQueue.main.asyncAfter(deadline: when){
-                              // your code with delay
                                 self.back()
                             }
-                            
                         }
                         else{
                         }
@@ -515,12 +489,9 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     
     @IBAction func btnReportSubmitAction(_ sender: UIButton) {
         
-       
-        
     }
     
     @IBAction func btnBookAction(_ sender: UIButton) {
-        
         userArtistID =  getArtistProfile?.id ?? 0
         self.pushWithAnimateDirectly(StoryName: Storyboard.DashBoard, Controller: ViewControllers.SeleteDate)
     }
@@ -528,7 +499,6 @@ class ViewProfileVC: UIViewController , UIScrollViewDelegate {
     func profileData(profile :GetArtistModel?)  {
         let imageUrl = Api.imageURLArtist
         self.lblName.text = profile?.name ?? ""
-        
         self.lblBookingPrice.text = "BOOKING_PRICE".localized()
         self.lblGallery.text = "GALLERY".localized()
         self.lblInPersonData.text = "IN_PRESON".localized()

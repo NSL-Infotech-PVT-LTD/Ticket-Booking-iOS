@@ -44,6 +44,7 @@ class EditDateVC: UIViewController {
     
     var arrNotSelect = [Int]()
     var arrNotSelectCombine = [Int]()
+    var arrayNewlyTime = [String]()
     
     
     @IBOutlet weak var viewNoData: UIView!
@@ -92,14 +93,46 @@ class EditDateVC: UIViewController {
         }
     }
     
+    
+    func splitTmeValue()  {
+        for index in aarayTime{
+            print("the index is \(index)")
+            let fullNameArr = index.components(separatedBy: " - ")
+
+            var firstName: String = fullNameArr[0]
+            var firstTime = self.convertLocalTime(currentTime: firstName)
+            
+            var lastName: String = fullNameArr[1]
+            var secondTime = self.convertLocalTime(currentTime: lastName)
+
+            arrayNewlyTime.append("\(firstTime) - \(secondTime)")
+        }
+        
+        print("the new array is \(arrayNewlyTime)")
+    }
+    
+    
+    
+    func convertLocalTime(currentTime : String) -> String {
+        
+        let dateAsString = currentTime
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "h:mm a"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                let date = dateFormatter.date(from: dateAsString)
+                dateFormatter.locale = Locale.current
+                dateFormatter.timeZone = TimeZone.current
+                dateFormatter.dateFormat = "h:mm a"
+                return dateFormatter.string(from: date ?? Date())
+        
+        
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.getCard()
         self.self.callApiGetStripeKey()
-        
-        
        
-        
-        
         lblArtistNotAvai.text = "choose_another_date".localized()
         btnBack.setTitle("back".localized(), for: .normal)
         lblMainTitle.text = "select_time_booking".localized()
@@ -110,7 +143,6 @@ class EditDateVC: UIViewController {
         btnProceed.setTitle("proceed_checkout".localized(), for: .normal)
         btnBack.setTitle("back".localized(), for: .normal)
 
-        
         self.setInitialSetup()
         print(aarayTime.count)
         print(aarayTimeSecond.count)
@@ -118,6 +150,7 @@ class EditDateVC: UIViewController {
         self.dateListCollectionView.isHidden = true
         self.viewNoData.isHidden = true
         btnProceed.backgroundColor = UIColor.init(red: 168/255, green: 168/255, blue: 168/255, alpha: 1)
+        self.splitTmeValue()
         
     }
     
@@ -517,7 +550,14 @@ extension EditDateVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateListCollectionViewCell", for: indexPath) as! dateListCollectionViewCell
-        cell.lblTimeSelect.text = aarayTime[indexPath.row]
+        
+        let timeZone = TimeZone.current.identifier
+         print(timeZone)
+        if timeZone == "Asia/Kolkata"{
+            cell.lblTimeSelect.text = aarayTime[indexPath.row]
+        }else{
+            cell.lblTimeSelect.text = arrayNewlyTime[indexPath.row]
+        }
         cell.viewCell.borderColor = UIColor.init(red: 54/255, green: 57/255, blue: 110/255, alpha: 1)
         cell.viewCell.layer.masksToBounds = true
         

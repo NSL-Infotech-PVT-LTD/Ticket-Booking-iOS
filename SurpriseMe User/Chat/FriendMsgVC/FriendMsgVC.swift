@@ -86,6 +86,68 @@ class FriendMsgVC: UIViewController {
         
     }
     
+    
+    
+    func blockArtistActionAny(artistID : Any)  {
+        
+        
+        let param = ["artist_id":artistID ?? 0] as [String : Any]
+       let headerToken =  ["Authorization": "Bearer \(UserDefaults.standard.value(forKey: UserdefaultKeys.token) ?? "")"]
+        
+        if Reachability.isConnectedToNetwork() {
+            LoaderClass.shared.loadAnimation()
+            ApiManeger.sharedInstance.callApiWithHeader(url: Api.chatcustomerblock, method: .post, param: param, header: headerToken) { (response, error) in
+                LoaderClass.shared.stopAnimation()
+                if error == nil {
+                    print("the response is \(response)")
+                    let result = response
+                    if let status = result["status"] as? Bool {
+                        if status ==  true{
+                            let dataDict = response["data"] as? [String:Any]
+                            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                                self.bottomConstant?.constant = 0
+                                self.view.layoutIfNeeded()
+                                self.view.endEditing(true)
+                                
+                            })
+                            
+                            let alert = UIAlertController(title: "", message: dataDict?["message"] as? String, preferredStyle: .alert)
+                            self.present(alert, animated: true, completion: nil)
+                            self.txtMssg.text = nil
+
+                            let when = DispatchTime.now() + 3
+                            DispatchQueue.main.asyncAfter(deadline: when){
+                              // your code with delay
+                              alert.dismiss(animated: true, completion: nil)
+                                let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(1)"] as [String: Any]
+                                self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+                            }
+                        }
+                        else{
+                        }
+                    }
+                    else {
+                        if let error_message = response["error"] as? String {
+                            Helper.showOKAlert(onVC: self, title: "Error", message: error_message)
+//                            self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error_message)
+                        }
+                    }
+                }
+                else {
+//                    self.delegate?.errorAlert(errorTitle: "Error", errorMessage: error as? String ?? "")
+                }
+            }
+            
+        }else{
+            Helper.showOKAlert(onVC: self, title: "nternet Error", message: "Please Check your Internet Connection")
+        }
+        
+        
+    }
+    
+    
+    
+    
     func blockArtistAction(artistID : Int)  {
         
         
@@ -102,6 +164,12 @@ class FriendMsgVC: UIViewController {
                     if let status = result["status"] as? Bool {
                         if status ==  true{
                             let dataDict = response["data"] as? [String:Any]
+                            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                                self.bottomConstant?.constant = 0
+                                self.view.layoutIfNeeded()
+                                self.view.endEditing(true)
+                                
+                            })
                             
                             let alert = UIAlertController(title: "", message: dataDict?["message"] as? String, preferredStyle: .alert)
                             self.present(alert, animated: true, completion: nil)
@@ -111,8 +179,69 @@ class FriendMsgVC: UIViewController {
                             DispatchQueue.main.asyncAfter(deadline: when){
                               // your code with delay
                               alert.dismiss(animated: true, completion: nil)
-                                let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(1)"] as [String: Any]
-                                self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+                                
+                                if self.comingFrom == "NotificationTabs"{
+                //                    let param = ["receiver_id": recieverIDHistoryList , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                                    
+//                                    self.blockArtistAction(artistID: self.recieverIDHistoryList)
+                                    
+                                    
+                                    
+                                    let param = ["receiver_id": self.recieverIDHistoryList , "limit": "20", "page": "\(1)"] as [String: Any]
+                                    self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+
+                                    
+                                }else if self.comingFrom ==  "NotificationTabsTouch"{
+                //                    let param = ["receiver_id": userChatIDNoti ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                                    
+                                    
+                                    let userID = userChatIDNoti ?? 0
+                                    
+                                    let param = ["receiver_id": userID , "limit": "20", "page": "\(1)"] as [String: Any]
+                                    self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+
+                                }
+                                else{
+                                    if self.reciverData.receiver_id ?? 0 == 0{
+                //                        let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                                       
+                                        let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(1)"] as [String: Any]
+                                        self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+                                        
+                                    }else{
+                                        let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                                        let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                                        print("the user id is \(useriD  )")
+                                        if useriD == self.reciverData.sender_id{
+                //                            let param = ["receiver_id": reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+//                                            self.blockArtistAction(artistID: self.reciverData.receiver_id ?? 0)
+                                            
+                                            let param = ["receiver_id": self.reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(1)"] as [String: Any]
+                                            self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+                                           
+                                        }else{
+//                                            let param = ["receiver_id": self.reciverData.sender_id ?? 0 , "limit": "20", "page": "\(self.current_page)"] as [String: Any]
+//                                            self.blockArtistAction(artistID: self.reciverData.sender_id ?? 0)
+                                            
+                                            
+                                            let param = ["receiver_id": self.reciverData.sender_id ?? 0 , "limit": "20", "page": "\(1)"] as [String: Any]
+                                            self.chatVMObject.getParamForChatHistory(param: param, checkLoader: false, pageCount: 1)
+                                            
+                                        }
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                               
                             }
                         }
                         else{
@@ -149,8 +278,42 @@ class FriendMsgVC: UIViewController {
             alertController.setValue(titleAttrString, forKey: "attributedTitle")
         }
             let action1 = UIAlertAction(title: "Yes", style: .default) { (action) in
-                self.blockArtistAction(artistID: userArtistID)
-            }
+                if self.comingFrom == "NotificationTabs"{
+//                    let param = ["receiver_id": recieverIDHistoryList , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                    
+                    self.blockArtistAction(artistID: self.recieverIDHistoryList)
+
+                    
+                }else if self.comingFrom ==  "NotificationTabsTouch"{
+//                    let param = ["receiver_id": userChatIDNoti ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                    
+                    
+                    let userID = userChatIDNoti ?? 0
+                    self.blockArtistActionAny(artistID: userID)
+
+                }
+                else{
+                    if self.reciverData.receiver_id ?? 0 == 0{
+//                        let param = ["receiver_id": userArtistID , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                        self.blockArtistAction(artistID: userArtistID)
+                        
+                    }else{
+                        let userName = UserDefaults.standard.string(forKey: UserdefaultKeys.userName)
+                        let useriD = UserDefaults.standard.integer(forKey: UserdefaultKeys.userID)
+                        print("the user id is \(useriD  )")
+                        if useriD == self.reciverData.sender_id{
+//                            let param = ["receiver_id": reciverData.receiver_id ?? 0 , "limit": "20", "page": "\(current_page)"] as [String: Any]
+                            self.blockArtistAction(artistID: self.reciverData.receiver_id ?? 0)
+                           
+                        }else{
+                            let param = ["receiver_id": self.reciverData.sender_id ?? 0 , "limit": "20", "page": "\(self.current_page)"] as [String: Any]
+                            self.blockArtistAction(artistID: self.reciverData.sender_id ?? 0)
+                            
+                        }
+                    }
+                }
+                
+           }
 
             let action2 = UIAlertAction(title: "No", style: .default) { (action) in
                
@@ -162,7 +325,7 @@ class FriendMsgVC: UIViewController {
             alertController.view.layer.cornerRadius = 40
             present(alertController, animated: true, completion: nil)
         
-    }
+   }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
@@ -536,9 +699,6 @@ class FriendMsgVC: UIViewController {
                 }
             }
         }
-        
-        
-        
     }
     
     
@@ -806,6 +966,7 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
     func chatHistoryApiResponse(message: String, response: [ChatHistoryModel], receiverDetails: [String : Any], isError: Bool,is_blocked:Int) {
         if message == "success" {
           chatHistoryData = response.map({$0}).reversed()
+            isBlockStatus = is_blocked
             if chatHistoryData.count == 0 {
                 self.firstTimeView.isHidden = false
                 let date = Date()
@@ -820,7 +981,7 @@ extension FriendMsgVC: chatHistoryViewModelProtocol {
             }else{
                 self.firstTimeView.isHidden = true
                 self.msgTableView.isHidden = false
-                isBlockStatus = is_blocked
+               
                 
                 if current_page == 1 {
                     self.scrollToBottom()

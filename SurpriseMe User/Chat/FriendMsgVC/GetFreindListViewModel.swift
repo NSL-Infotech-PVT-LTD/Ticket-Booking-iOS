@@ -57,8 +57,6 @@ class ChatHistoryModel: NSObject {
         status = json[Key.status].intValue
         customValue = json["customValue"].stringValue
 
-//        thumbnail = json[Key.thumbnail].stringValue
-        
     }
     
     struct Key {

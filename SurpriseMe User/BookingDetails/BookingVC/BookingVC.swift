@@ -110,28 +110,69 @@ class BookingVC: UIViewController {
     }
     
     
-    func convertDateToStringBook(profile : String)-> String{
+    func convertDateToStringBookUTC(profile : String)-> String{
         let formatter = DateFormatter()
-        // initially set the format based on your datepicker date / server String
-        formatter.dateFormat = "yyyy-MM-dd"
-        let myString =  profile // string purpose I add here
-        // convert your string to date
-        let yourDate = formatter.date(from: myString)
-        //then again set the date format whhich type of output you need
-        formatter.dateFormat = "dd MMMM , yyyy"
-        // again convert your date to string
-        let bookDate = formatter.string(from: yourDate ?? Date())
-        return bookDate
+                // initially set the format based on your datepicker date / server String
+                formatter.dateFormat = "yyyy-MM-dd"
+                let myString =  profile // string purpose I add here
+                // convert your string to date
+                let yourDate = formatter.date(from: myString)
+                //then again set the date format whhich type of output you need
+                formatter.dateFormat = "dd MMMM , yyyy"
+                // again convert your date to string
+                let bookDate = formatter.string(from: yourDate ?? Date())
+                return bookDate
+    }
+    
+    
+    func convertDateToStringBook(profile : String)-> String{
+//        let formatter = DateFormatter()
+//        // initially set the format based on your datepicker date / server String
+//        formatter.dateFormat = "yyyy-MM-dd"
+//        let myString =  profile // string purpose I add here
+//        // convert your string to date
+//        let yourDate = formatter.date(from: myString)
+//        //then again set the date format whhich type of output you need
+//        formatter.dateFormat = "dd MMMM , yyyy"
+//        // again convert your date to string
+//        let bookDate = formatter.string(from: yourDate ?? Date())
+//        return bookDate
+        
+        let dateAsString = profile
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                let date = dateFormatter.date(from: dateAsString)
+                dateFormatter.locale = Locale.current
+                dateFormatter.timeZone = TimeZone.current
+                dateFormatter.dateFormat = "dd MMMM , yyyy"
+                return dateFormatter.string(from: date ?? Date())
+        
+        
     }
     
     func convertDateFormater(date: String) -> String {
+//        let dateAsString = date
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm:ss"
+//        let date = dateFormatter.date(from: dateAsString)
+//        dateFormatter.dateFormat = "h:mm a"
+//        let Date12 = dateFormatter.string(from: date ?? Date())
+//        return Date12
+        
+        
         let dateAsString = date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        let date = dateFormatter.date(from: dateAsString)
-        dateFormatter.dateFormat = "h:mm a"
-        let Date12 = dateFormatter.string(from: date ?? Date())
-        return Date12
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm:ss"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                let date = dateFormatter.date(from: dateAsString)
+                dateFormatter.locale = Locale.current
+                dateFormatter.timeZone = TimeZone.current
+                dateFormatter.dateFormat = "h:mm a"
+                return dateFormatter.string(from: date ?? Date())
+        
+        
+        
     }
     
     
@@ -247,15 +288,36 @@ class BookingVC: UIViewController {
     }
     
     
+    func convertTimeIntoLocalInUTC(timeData : String) -> String {
+
+        let inputFormatter = DateFormatter()
+                inputFormatter.dateFormat = "yyyy-MM-dd"
+                let showDate = inputFormatter.date(from: timeData)
+                inputFormatter.dateFormat = "dd-MMM-yyyy"
+                let resultString = inputFormatter.string(from: showDate!)
+                print(resultString)
+                return resultString
+        
+        
+        
+    }
+    
+    
     
     func convertTimeIntoLocal(timeData : String) -> String {
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd"
-        let showDate = inputFormatter.date(from: timeData)
-        inputFormatter.dateFormat = "dd-MMM-yyyy"
-        let resultString = inputFormatter.string(from: showDate!)
-        print(resultString)
-        return resultString
+
+        let dateAsString = timeData
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                let date = dateFormatter.date(from: dateAsString)
+                dateFormatter.locale = Locale.current
+                dateFormatter.timeZone = TimeZone.current
+                dateFormatter.dateFormat = "dd-MMM-yyyy"
+                return dateFormatter.string(from: date ?? Date())
+        
+        
+        
     }
     
     
@@ -361,9 +423,26 @@ extension BookingVC : UITableViewDelegate,UITableViewDataSource {
         cell.lblName.text =  dataItem.artist_detail?.name ?? ""
         cell.lblOrderID.text = "#\(dataItem.id ?? 0)"
         //        cell.lblDate.text = self.convertDateBook(profile: dataItem.dateInString ?? "")
-        let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
-        cell.lblDate.text = localTime
-        cell.lblBookDate.text = self.convertDateToStringBook(profile: dataItem.dateInString ?? "")
+      
+        
+        
+        let timeZone = TimeZone.current.identifier
+         print(timeZone)
+        if timeZone == "Asia/Kolkata"{
+            
+            let localTime = self.convertTimeIntoLocalInUTC(timeData: dataItem.dateInString ?? "")
+            cell.lblDate.text = localTime
+            cell.lblBookDate.text = self.convertDateToStringBookUTC(profile: dataItem.dateInString ?? "")
+            
+        }else{
+            let localTime = self.convertTimeIntoLocal(timeData: dataItem.dateInString ?? "")
+            cell.lblDate.text = localTime
+            cell.lblBookDate.text = self.convertDateToStringBook(profile: dataItem.dateInString ?? "")
+        }
+        
+        
+        
+        
         cell.lblAddress.text = dataItem.address ?? ""
         //            cell.lblBookingStatus.text = "Status:- \(dataItem.status?.capitalized ?? "")"
         cell.lblBookingStatus.text = "\(dataItem.status?.capitalized ?? "")"
