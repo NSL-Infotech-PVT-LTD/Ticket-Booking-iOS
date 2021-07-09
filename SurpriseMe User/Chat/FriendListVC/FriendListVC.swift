@@ -124,6 +124,16 @@ class FriendListVC: UIViewController {
         return dateFormatter.string(from: date ?? Date())
     }
     
+    func convertTimeInto24UTC(timeData : String) -> String {
+        let dateAsString = timeData
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: dateAsString)
+        dateFormatter.dateFormat = "dd-MMM ,h:mm a"
+        return dateFormatter.string(from: date ?? Date())
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.setLocalisation()
         if  cameFromChat == true{
@@ -191,7 +201,25 @@ extension FriendListVC : UITableViewDelegate,UITableViewDataSource {
         }
         cell.lblLastMssg.text = dataItem.message ?? ""
         dateTimeCommenMethod.sharesDateTime.date(dateSet: dataItem.created_at ?? "")
-        cell.lblTime.text = self.convertTimeInto24(timeData: dataItem.created_at ?? "")
+        
+        let timeZone = TimeZone.current.identifier
+         print(timeZone)
+        if timeZone == "Asia/Kolkata"{
+            
+            cell.lblTime.text = self.convertTimeInto24UTC(timeData: dataItem.created_at ?? "")
+
+            
+        }else{
+            cell.lblTime.text = self.convertTimeInto24(timeData: dataItem.created_at ?? "")
+
+        }
+        
+        
+        
+        
+        
+        
+        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

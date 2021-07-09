@@ -20,17 +20,11 @@ class ChangePasswordVC: UIViewController {
     @IBOutlet weak var lblNewPassword: UILabel!
     @IBOutlet weak var lblConfirmPassword: UILabel!
     @IBOutlet weak var lblOldPassword: UILabel!
-    
     @IBOutlet weak var btnOldPassword: UIButton!
-    
     @IBOutlet weak var btnNewPassword: UIButton!
-    
     @IBOutlet weak var btnConfPassword: UIButton!
     
-    
-    
-    
-     //MARK:- Variale -
+    //MARK:- Variale -
     var modelObject = ChangePasswordViewModel()
     
     override func viewDidLoad() {

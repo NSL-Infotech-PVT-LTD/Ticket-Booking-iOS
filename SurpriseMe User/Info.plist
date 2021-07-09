@@ -71,11 +71,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>This app will use camera for upload profile picture</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Your location is required for getting current location</string>
+	<string>This app will use location for getting user's current location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location is required for getting current location</string>
+	<string>This app will use location for getting user's current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is required for getting current location</string>
+	<string>This app will use location for getting user's current location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app will use camera for upload profile picture</string>
 	<key>UIAppFonts</key>

@@ -502,6 +502,15 @@ class FriendMsgVC: UIViewController {
         return dateFormatter.string(from: date ?? Date())
     }
     
+    func convertTimeInto24UTC(timeData : String) -> String {
+        let dateAsString = timeData
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: dateAsString)
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: date ?? Date())
+    }
+    
     
     func utcToLocal(dateStr: String) -> String? {
         let dateFormatter = DateFormatter()
@@ -826,7 +835,7 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             SendCell.selectionStyle = .none
             let myString = chatHistoryData[indexPath.row].message ?? ""
             SendCell.lblSendMsg.text = myString
-            let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+          //  let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
             let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
             let dateValue = self.convertDateIntoTodaysYesterday(somedate: date)
             SendCell.lblSenderTime.text = date
@@ -839,15 +848,24 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             }
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTap))
             SendCell.addGestureRecognizer(tapGesture)
-            SendCell.lblTime.text =  timeStamp
-            return SendCell
+            
+            let timeZone = TimeZone.current.identifier
+             print(timeZone)
+            if timeZone == "Asia/Kolkata"{
+                let timeStamp = self.convertTimeInto24UTC(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+                SendCell.lblTime.text =  timeStamp
+            }else{
+                let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+                SendCell.lblTime.text =  timeStamp
+
+            }
+           return SendCell
         }else{
             guard let ReceiveCell = tableView.dequeueReusableCell(withIdentifier: "recievedTableViewCell", for: indexPath) as? recievedTableViewCell else {
                 return UITableViewCell()
             }
             ReceiveCell.selectionStyle = .none
             ReceiveCell.lblReceiveMsg.text = chatHistoryData[indexPath.row].message
-            let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
             let date = self.changeDateFormate(date: chatHistoryData[indexPath.row].created_at ?? "")
             ReceiveCell.lblReceiverTime.text = date
             if chatHistoryData[indexPath.row].customValue != "" {
@@ -857,13 +875,21 @@ extension FriendMsgVC : UITableViewDelegate,UITableViewDataSource {
             }
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(normalTapReviewver))
             ReceiveCell.addGestureRecognizer(tapGesture)
-            ReceiveCell.lblTime.text =  timeStamp
             let urlSting : String = "\(Api.imageURLArtist)\(chatHistoryData[indexPath.row].sender_image ?? "")"
             let urlStringaa = urlSting.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "" //This will fill the spaces with the %20
             print(urlStringaa)
             let urlImage = URL(string: urlStringaa)!
             ReceiveCell.receiverImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             ReceiveCell.receiverImg.sd_setImage(with: urlImage, placeholderImage: UIImage(named: "image_placeholder"))
+            let timeZone = TimeZone.current.identifier
+             print(timeZone)
+            if timeZone == "Asia/Kolkata"{
+                let timeStamp = self.convertTimeInto24UTC(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+                ReceiveCell.lblTime.text =  timeStamp
+            }else{
+                let timeStamp = self.convertTimeInto24(timeData: chatHistoryData[indexPath.row].created_at ?? "")
+                ReceiveCell.lblTime.text =  timeStamp
+            }
             return ReceiveCell
         }
     }

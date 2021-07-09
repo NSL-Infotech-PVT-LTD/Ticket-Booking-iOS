@@ -231,7 +231,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
             endingLineNumber = "214"
-            landmarkName = "callApiWithHeader(url:method:param:header:completion:)"
+            landmarkName = "callApi(url:method:param:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -391,7 +391,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
             endingLineNumber = "213"
-            landmarkName = "callApiWithHeader(url:method:param:header:completion:)"
+            landmarkName = "callApi(url:method:param:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -439,7 +439,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "145"
             endingLineNumber = "145"
-            landmarkName = "btnBlockAction(_:)"
+            landmarkName = "blockArtistActionAny(artistID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -455,8 +455,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
             endingLineNumber = "148"
-            landmarkName = "btnBlockAction(_:)"
-            landmarkType = "7">
+            landmarkName = "FriendMsgVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -471,8 +471,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
             endingLineNumber = "149"
-            landmarkName = "btnBlockAction(_:)"
-            landmarkType = "7">
+            landmarkName = "FriendMsgVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -487,7 +487,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
             endingLineNumber = "152"
-            landmarkName = "btnBlockAction(_:)"
+            landmarkName = "blockArtistAction(artistID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -14,8 +14,8 @@ class WalkThroughVC: UIViewController {
     @IBOutlet weak var pageController: UIPageControl!
     
     //MARK:- Variable -
-    var imgArray = ["WalkThrough1","WalkThrough2","WalkThrough3"]
-    var arrayHeader = ["BIRTHDAY_SURPRISE".localized(),"DJ_PERFORMERSDj".localized(),"DIGITAL_PERFORMANCE".localized()]
+    var imgArray = ["WalkThrough1","WalkThrough2"]
+    var arrayHeader = ["BIRTHDAY_SURPRISE".localized(),"DJ_PERFORMERSDj".localized()]
     var arrayDescHeader = ["DETAIL_CONTENT".localized()]
     
     var navigationControl = UINavigationController()
